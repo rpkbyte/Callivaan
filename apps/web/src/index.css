@@ -370,8 +370,166 @@ textarea:focus-visible,
   gap: var(--space-6);
 }
 
-@media (max-width: 768px) {
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Navbar Responsive Styles */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-actions-desktop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.mobile-nav-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Portal Responsive Structure */
+.portal-header {
+  min-height: 64px;
+  border-bottom: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.portal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.portal-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 64px);
+}
+
+.portal-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-subtle);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.portal-main {
+  flex: 1;
+  padding: 32px;
+  background-color: var(--color-surface-base);
+  overflow-y: auto;
+}
+
+/* Responsive Media Breakpoints */
+@media (max-width: 860px) {
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-nav-drawer.open {
+    display: flex;
+  }
+
+  .portal-layout {
+    flex-direction: column;
+  }
+
+  .portal-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-default);
+    padding: 8px 12px;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    gap: 6px;
+  }
+
+  .portal-sidebar button {
+    flex-shrink: 0;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+  }
+
+  .portal-main {
+    padding: 16px !important;
+  }
+
+  .portal-header {
+    padding: 12px 16px;
+  }
+
+  .portal-header-badge {
+    display: none !important;
+  }
+
   .grid-2, .grid-3, .grid-4 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-heading {
+    font-size: 32px !important;
+    line-height: 40px !important;
+  }
+
+  .hero-badges-wrapper {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+
+  .apk-spec-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .modal-content {
+    margin: 12px;
+    padding: 20px !important;
+    max-width: 100% !important;
   }
 }

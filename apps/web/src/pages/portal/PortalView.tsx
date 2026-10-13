@@ -245,17 +245,7 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
       {/* Top Portal Header */}
-      <header
-        style={{
-          height: '64px',
-          borderBottom: '1px solid #E4E8F0',
-          backgroundColor: '#FFFFFF',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 24px',
-        }}
-      >
+      <header className="portal-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div
             style={{
@@ -277,19 +267,19 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="portal-header-actions">
           {activeConfig && (
-            <span className="badge badge-info" style={{ fontSize: '11px' }}>
+            <span className="badge badge-info portal-header-badge" style={{ fontSize: '11px' }}>
               Active Agent v{activeConfig.versionNumber}
             </span>
           )}
           {route && (
-            <span className={route.status === 'verified' || route.status === 'active' ? 'badge badge-success' : 'badge badge-neutral'} style={{ fontSize: '11px' }}>
-              {route.providerVirtualNumber} ({route.status})
+            <span className={`portal-header-badge ${route.status === 'verified' || route.status === 'active' ? 'badge badge-success' : 'badge badge-neutral'}`} style={{ fontSize: '11px' }}>
+              {route.providerVirtualNumber}
             </span>
           )}
           {usage && (
-            <span className="badge badge-neutral" style={{ fontSize: '11px' }}>
+            <span className="badge badge-neutral portal-header-badge" style={{ fontSize: '11px' }}>
               {usage.usage.telephonyMinutesUsed} / {usage.usage.includedMinutes} mins
             </span>
           )}
@@ -314,19 +304,9 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
       </header>
 
       {/* Main Layout */}
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="portal-layout">
         {/* Navigation Sidebar */}
-        <aside
-          style={{
-            width: '240px',
-            borderRight: '1px solid #E4E8F0',
-            backgroundColor: '#F6F8FC',
-            padding: '20px 12px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-          }}
-        >
+        <aside className="portal-sidebar">
           {[
             { id: 'overview', label: 'Overview', icon: LayoutDashboard },
             { id: 'calls', label: 'Call History', icon: PhoneCall },
@@ -345,7 +325,7 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px',
+                  gap: '8px',
                   padding: '10px 14px',
                   borderRadius: '8px',
                   border: isActive ? '1px solid #E4E8F0' : '1px solid transparent',
@@ -367,7 +347,7 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
         </aside>
 
         {/* Content Area */}
-        <main style={{ flex: 1, padding: '32px', backgroundColor: '#FFFFFF', overflowY: 'auto' }}>
+        <main className="portal-main">
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <div>

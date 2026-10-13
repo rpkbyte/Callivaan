@@ -1,9 +1,5 @@
-/**
- * Public Navbar Component
- * Zero emojis, restrained cobalt & white styling.
- */
-import React from 'react';
-import { PhoneCall, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { PhoneCall, Download, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenAuth: (mode: 'signin' | 'signup') => void;
@@ -18,6 +14,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   isAuthenticated,
   onGoToPortal,
 }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (sectionId: string) => {
+    setMobileMenuOpen(false);
+    onNavigateSection?.(sectionId);
+  };
+
   return (
     <header
       style={{
@@ -45,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             gap: '10px',
             cursor: 'pointer',
           }}
-          onClick={() => onNavigateSection?.('hero')}
+          onClick={() => handleNavClick('hero')}
         >
           <div
             style={{
@@ -79,31 +82,31 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Navigation Links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+        {/* Desktop Navigation Links */}
+        <nav className="nav-links-desktop">
           <button
-            onClick={() => onNavigateSection?.('features')}
+            onClick={() => handleNavClick('features')}
             className="btn-tertiary"
             style={{ fontSize: '14px', border: 'none', background: 'none', cursor: 'pointer', color: '#172033' }}
           >
             How it works
           </button>
           <button
-            onClick={() => onNavigateSection?.('verticals')}
+            onClick={() => handleNavClick('verticals')}
             className="btn-tertiary"
             style={{ fontSize: '14px', border: 'none', background: 'none', cursor: 'pointer', color: '#172033' }}
           >
             Use cases
           </button>
           <button
-            onClick={() => onNavigateSection?.('pricing')}
+            onClick={() => handleNavClick('pricing')}
             className="btn-tertiary"
             style={{ fontSize: '14px', border: 'none', background: 'none', cursor: 'pointer', color: '#172033' }}
           >
             Pricing
           </button>
           <button
-            onClick={() => onNavigateSection?.('apk')}
+            onClick={() => handleNavClick('apk')}
             className="btn-tertiary"
             style={{
               fontSize: '14px',
@@ -121,8 +124,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </nav>
 
-        {/* Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Desktop Actions */}
+        <div className="nav-actions-desktop">
           {isAuthenticated ? (
             <button className="btn btn-primary btn-sm" onClick={onGoToPortal}>
               Open Portal
@@ -138,6 +141,79 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 className="btn btn-primary btn-sm"
                 onClick={() => onOpenAuth('signup')}
+              >
+                Start free trial
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Mobile Hamburger Toggle */}
+        <button
+          className="mobile-nav-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <button
+          onClick={() => handleNavClick('features')}
+          className="btn-tertiary"
+          style={{ fontSize: '14px', textAlign: 'left', padding: '10px 0' }}
+        >
+          How it works
+        </button>
+        <button
+          onClick={() => handleNavClick('verticals')}
+          className="btn-tertiary"
+          style={{ fontSize: '14px', textAlign: 'left', padding: '10px 0' }}
+        >
+          Use cases
+        </button>
+        <button
+          onClick={() => handleNavClick('pricing')}
+          className="btn-tertiary"
+          style={{ fontSize: '14px', textAlign: 'left', padding: '10px 0' }}
+        >
+          Pricing
+        </button>
+        <button
+          onClick={() => handleNavClick('apk')}
+          className="btn-tertiary"
+          style={{
+            fontSize: '14px',
+            textAlign: 'left',
+            padding: '10px 0',
+            color: '#3157D5',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+          }}
+        >
+          <Download size={15} />
+          Download Android APK
+        </button>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '12px', borderTop: '1px solid #E4E8F0' }}>
+          {isAuthenticated ? (
+            <button className="btn btn-primary" onClick={onGoToPortal}>
+              Open Portal
+            </button>
+          ) : (
+            <>
+              <button
+                className="btn btn-secondary"
+                onClick={() => { setMobileMenuOpen(false); onOpenAuth('signin'); }}
+              >
+                Sign in
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => { setMobileMenuOpen(false); onOpenAuth('signup'); }}
               >
                 Start free trial
               </button>

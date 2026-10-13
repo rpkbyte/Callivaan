@@ -44,6 +44,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
       >
         <div className="container" style={{ textAlign: 'center', maxWidth: '840px' }}>
           <h1
+            className="hero-heading"
             style={{
               fontSize: '48px',
               lineHeight: '56px',
@@ -95,6 +96,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
           </div>
 
           <div
+            className="hero-badges-wrapper"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -531,9 +533,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
             </p>
 
             <div
+              className="grid-3 apk-spec-grid"
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '16px',
                 padding: '16px',
                 backgroundColor: '#F6F8FC',
