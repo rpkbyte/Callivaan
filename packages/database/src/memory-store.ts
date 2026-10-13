@@ -58,7 +58,7 @@ export class MemoryDatabaseRepository implements DatabaseRepository {
       id: demoUserId,
       email: 'owner@callivaan.demo',
       // password is 'password123'
-      passwordHash: '$2b$12$K1dJ9K4w1gZ.M9bTjM3hOuVzOQdJ7Z5bXm8Y2tL4vF1rN3pQ6sTiu',
+      passwordHash: '$2a$10$WuuWmQFXU/2uoSkKjiEsOuO32DFdZN29u/ATXeIUHpYVzdqrvRyr2',
       fullName: 'Rahul Sharma',
       phoneNumber: '+919876543210',
       emailVerified: true,

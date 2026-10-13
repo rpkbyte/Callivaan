@@ -11,7 +11,7 @@ import { log } from '../logger.js';
 export const routeRouter = Router();
 routeRouter.use(requireAuth);
 
-routeRouter.get('/', async (req: AuthenticatedRequest, res: Response) => {
+routeRouter.get(['/', '/route'], async (req: AuthenticatedRequest, res: Response) => {
   try {
     const tenantId = req.tenant!.id;
     const db = getDatabase();
@@ -26,7 +26,7 @@ routeRouter.get('/', async (req: AuthenticatedRequest, res: Response) => {
   }
 });
 
-routeRouter.patch('/', requireRole(['owner', 'admin']), async (req: AuthenticatedRequest, res: Response) => {
+routeRouter.patch(['/', '/route'], requireRole(['owner', 'admin']), async (req: AuthenticatedRequest, res: Response) => {
   try {
     const tenantId = req.tenant!.id;
     const parseResult = PhoneRouteSetupSchema.safeParse(req.body);
@@ -64,7 +64,7 @@ routeRouter.patch('/', requireRole(['owner', 'admin']), async (req: Authenticate
   }
 });
 
-routeRouter.post('/test-call', async (req: AuthenticatedRequest, res: Response) => {
+routeRouter.post(['/test-call', '/route/test-call'], async (req: AuthenticatedRequest, res: Response) => {
   try {
     const tenantId = req.tenant!.id;
     const db = getDatabase();

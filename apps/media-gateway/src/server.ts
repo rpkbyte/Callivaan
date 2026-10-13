@@ -9,6 +9,11 @@ import { ExotelTelephonyAdapter } from './adapters/telephony.adapter.js';
 import { CallSession } from './session.js';
 import { logMedia } from './logger.js';
 
+export * from './mock-client.js';
+export * from './session.js';
+export * from './adapters/telephony.adapter.js';
+export * from './adapters/voice-ai.adapter.js';
+
 export function createMediaServer(port: number) {
   const activeSessions = new Map<string, CallSession>();
 
