@@ -23,7 +23,9 @@ import {
   Shield,
   Clock,
   Sparkles,
+  Smartphone,
 } from 'lucide-react';
+import { MobileApp } from '@callivaan/mobile';
 import { api } from '../../api/client.js';
 import {
   AgentConfigVersion,
@@ -72,6 +74,9 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
   const [simDialogue, setSimDialogue] = useState<{ role: 'agent' | 'user'; text: string }[]>([]);
   const [simUserInput, setSimUserInput] = useState('');
   const [simResultSummary, setSimResultSummary] = useState<CallSummary | null>(null);
+
+  // Mobile App Device Simulator State
+  const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
 
   // Initial Load
   useEffect(() => {
@@ -288,6 +293,15 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
               {usage.usage.telephonyMinutesUsed} / {usage.usage.includedMinutes} mins
             </span>
           )}
+          <button
+            onClick={() => setMobilePreviewOpen(true)}
+            className="btn btn-secondary btn-sm"
+            style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+            title="Open interactive Android mobile app preview"
+          >
+            <Smartphone size={14} color="#3157D5" />
+            Mobile App View
+          </button>
           <button
             onClick={onLogout}
             className="btn btn-secondary btn-sm"
@@ -1335,6 +1349,81 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
                 </button>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Interactive Android Mobile App Simulator Modal */}
+      {mobilePreviewOpen && (
+        <div className="modal-overlay" onClick={() => setMobilePreviewOpen(false)} role="presentation">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile App Preview"
+            style={{
+              backgroundColor: 'transparent',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '12px',
+              maxHeight: '96vh',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '380px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FFFFFF', fontSize: '13px', fontWeight: 500 }}>
+                <Smartphone size={16} />
+                <span>Android Mobile App Preview (Live)</span>
+              </div>
+              <button
+                onClick={() => setMobilePreviewOpen(false)}
+                aria-label="Close dialog"
+                style={{ background: 'none', border: 'none', color: '#FFFFFF', cursor: 'pointer', padding: '4px' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Realistic Smartphone Bezel */}
+            <div
+              style={{
+                width: '380px',
+                height: '720px',
+                backgroundColor: '#FFFFFF',
+                borderRadius: '36px',
+                border: '10px solid #172033',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+              }}
+            >
+              {/* Notch / Speaker Bar */}
+              <div
+                style={{
+                  height: '24px',
+                  backgroundColor: '#172033',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    width: '60px',
+                    height: '4px',
+                    backgroundColor: '#475467',
+                    borderRadius: '2px',
+                  }}
+                />
+              </div>
+
+              {/* Live Mobile App Container */}
+              <div style={{ flex: 1, overflowY: 'auto' }}>
+                <MobileApp />
+              </div>
+            </div>
           </div>
         </div>
       )}
