@@ -1,8 +1,10 @@
 /**
  * Mobile Login Screen
  * Conforms to docs/design.md: light mode, cobalt and white, zero emojis.
+ * Built with React Native primitives (View, Text, TextInput, Pressable, StyleSheet).
  */
 import React, { useState } from 'react';
+import { View, Text, TextInput, Pressable, StyleSheet } from '../primitives.js';
 import { mobileColors, mobileSpacing, mobileRadii } from '../theme/tokens.js';
 import { mobileApi } from '../api/mobile-client.js';
 
@@ -30,122 +32,155 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: `${mobileSpacing.xl}px`,
-        backgroundColor: mobileColors.white,
-        minHeight: '100vh',
-      }}
-    >
-      <div style={{ textAlign: 'center', marginBottom: `${mobileSpacing.xl}px` }}>
-        <div
-          style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: `${mobileRadii.md}px`,
-            backgroundColor: mobileColors.cobalt,
-            margin: '0 auto 12px auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: mobileColors.white,
-            fontWeight: 700,
-            fontSize: '20px',
-          }}
-        >
-          C
-        </div>
-        <h1 style={{ fontSize: '24px', fontWeight: 700, color: mobileColors.textPrimary }}>
-          Callivaan
-        </h1>
-        <p style={{ fontSize: '14px', color: mobileColors.textSecondary, marginTop: '4px' }}>
-          AI Voice Assistant Control Surface
-        </p>
-      </div>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.logoBadge}>
+          <Text style={styles.logoLetter}>C</Text>
+        </View>
+        <Text style={styles.title}>Callivaan</Text>
+        <Text style={styles.subtitle}>AI Voice Assistant Control Surface</Text>
+      </View>
 
-      {error && (
-        <div
-          style={{
-            padding: `${mobileSpacing.md}px`,
-            backgroundColor: '#FEF2F2',
-            border: '1px solid #FCA5A5',
-            borderRadius: `${mobileRadii.md}px`,
-            color: mobileColors.statusError,
-            fontSize: '13px',
-            marginBottom: `${mobileSpacing.md}px`,
-          }}
-        >
-          {error}
-        </div>
-      )}
+      {error ? (
+        <View style={styles.errorBox}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      ) : null}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: `${mobileSpacing.md}px` }}>
-        <div>
-          <label style={{ fontSize: '13px', fontWeight: 500, color: mobileColors.textPrimary, display: 'block', marginBottom: '4px' }}>
-            Work Email
-          </label>
-          <input
-            type="email"
+      <View style={styles.form}>
+        <View style={styles.fieldGroup}>
+          <Text style={styles.label}>Work Email</Text>
+          <TextInput
+            keyboardType="email-address"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px',
-              borderRadius: `${mobileRadii.md}px`,
-              border: `1px solid ${mobileColors.border}`,
-              fontSize: '14px',
-              outline: 'none',
-              boxSizing: 'border-box',
-            }}
+            onChangeText={setEmail}
+            style={styles.input}
+            placeholder="owner@callivaan.demo"
           />
-        </div>
+        </View>
 
-        <div>
-          <label style={{ fontSize: '13px', fontWeight: 500, color: mobileColors.textPrimary, display: 'block', marginBottom: '4px' }}>
-            Password
-          </label>
-          <input
-            type="password"
+        <View style={styles.fieldGroup}>
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            secureTextEntry
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px',
-              borderRadius: `${mobileRadii.md}px`,
-              border: `1px solid ${mobileColors.border}`,
-              fontSize: '14px',
-              outline: 'none',
-              boxSizing: 'border-box',
-            }}
+            onChangeText={setPassword}
+            style={styles.input}
+            placeholder="password123"
           />
-        </div>
+        </View>
 
-        <button
-          onClick={handleLogin}
+        <Pressable
+          onPress={handleLogin}
           disabled={loading}
-          style={{
-            width: '100%',
-            padding: '14px',
-            borderRadius: `${mobileRadii.md}px`,
-            backgroundColor: mobileColors.cobalt,
-            color: mobileColors.white,
-            border: 'none',
-            fontSize: '15px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            marginTop: `${mobileSpacing.sm}px`,
-          }}
+          style={({ pressed }: { pressed: boolean }) => [styles.button, pressed && styles.buttonPressed, loading && styles.buttonDisabled]}
         >
-          {loading ? 'Signing in...' : 'Sign In'}
-        </button>
-      </div>
+          <Text style={styles.buttonText}>{loading ? 'Signing in...' : 'Sign In'}</Text>
+        </Pressable>
+      </View>
 
-      <div style={{ textAlign: 'center', marginTop: `${mobileSpacing.xl}px`, fontSize: '12px', color: mobileColors.textMuted }}>
-        Light mode direct distribution release • Version 1.0.0
-      </div>
-    </div>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Light mode direct distribution release • Version 1.0.0</Text>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: mobileSpacing.xl,
+    backgroundColor: mobileColors.white,
+    minHeight: '100vh',
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: mobileSpacing.xl,
+  },
+  logoBadge: {
+    width: 48,
+    height: 48,
+    borderRadius: mobileRadii.md,
+    backgroundColor: mobileColors.cobalt,
+    marginBottom: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoLetter: {
+    color: mobileColors.white,
+    fontWeight: '700',
+    fontSize: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: mobileColors.textPrimary,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: mobileColors.textSecondary,
+    marginTop: 4,
+  },
+  errorBox: {
+    padding: mobileSpacing.md,
+    backgroundColor: '#FEF2F2',
+    borderWidth: 1,
+    borderColor: '#FCA5A5',
+    borderRadius: mobileRadii.md,
+    marginBottom: mobileSpacing.md,
+  },
+  errorText: {
+    color: mobileColors.statusError,
+    fontSize: 13,
+  },
+  form: {
+    gap: mobileSpacing.md,
+  },
+  fieldGroup: {
+    marginBottom: mobileSpacing.sm,
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: mobileColors.textPrimary,
+    marginBottom: 4,
+  },
+  input: {
+    width: '100%',
+    padding: 12,
+    borderRadius: mobileRadii.md,
+    borderWidth: 1,
+    borderColor: mobileColors.border,
+    fontSize: 14,
+    backgroundColor: mobileColors.white,
+  },
+  button: {
+    width: '100%',
+    padding: 14,
+    borderRadius: mobileRadii.md,
+    backgroundColor: mobileColors.cobalt,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: mobileSpacing.sm,
+  },
+  buttonPressed: {
+    opacity: 0.85,
+  },
+  buttonDisabled: {
+    backgroundColor: mobileColors.border,
+  },
+  buttonText: {
+    color: mobileColors.white,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  footer: {
+    alignItems: 'center',
+    marginTop: mobileSpacing.xl,
+  },
+  footerText: {
+    fontSize: 12,
+    color: mobileColors.textMuted,
+  },
+});
