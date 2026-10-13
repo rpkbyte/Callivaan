@@ -1,0 +1,23 @@
+{
+  "name": "@callivaan/media-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@callivaan/database": "*",
+    "@callivaan/shared": "*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.7.2"
+  }
+}

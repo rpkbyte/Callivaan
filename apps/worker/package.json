@@ -1,0 +1,21 @@
+{
+  "name": "@callivaan/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@callivaan/database": "*",
+    "@callivaan/shared": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

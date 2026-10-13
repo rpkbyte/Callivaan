@@ -1,0 +1,25 @@
+{
+  "name": "callivaan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Callivaan - AI Voice Agent & Call Assistant Platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "tests"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "dev:api": "npm run dev --workspace=@callivaan/api",
+    "dev:media": "npm run dev --workspace=@callivaan/media-gateway",
+    "dev:worker": "npm run dev --workspace=@callivaan/worker",
+    "dev:web": "npm run dev --workspace=@callivaan/web",
+    "dev": "npm run dev --workspaces --parallel"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

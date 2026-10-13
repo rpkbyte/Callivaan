@@ -1,0 +1,24 @@
+{
+  "name": "@callivaan/tests",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "node dist/src/e2e.js"
+  },
+  "dependencies": {
+    "@callivaan/api": "*",
+    "@callivaan/media-gateway": "*",
+    "@callivaan/worker": "*",
+    "@callivaan/database": "*",
+    "@callivaan/shared": "*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/ws": "^8.5.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
