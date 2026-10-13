@@ -74,16 +74,59 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Themed Browser Surfaces */
+::selection {
+  background-color: #DCE5FA;
+  color: #172033;
+}
+
+/* Custom Clean Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F9FA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Caret Color for all editable inputs */
+input, textarea, select {
+  caret-color: var(--color-brand-cobalt);
+}
+
+/* Tabular Numerals for Metrics, Timestamps, Codes, and Prices */
+.tabular-nums,
+table,
+.badge,
+code,
+pre,
+.phone-number,
+.mmi-code,
+.metric-value {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-primary);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
-h1 { font-size: 28px; line-height: 36px; }
-h2 { font-size: 22px; line-height: 28px; }
-h3 { font-size: 18px; line-height: 24px; }
+h1 { font-size: 32px; line-height: 40px; }
+h2 { font-size: 24px; line-height: 32px; }
+h3 { font-size: 18px; line-height: 26px; }
 h4 { font-size: 16px; line-height: 22px; }
 
 p {
@@ -94,6 +137,17 @@ p {
 .text-secondary { color: var(--color-text-secondary); }
 .text-muted { color: var(--color-text-muted); }
 .text-cobalt { color: var(--color-brand-cobalt); }
+
+/* Global Focus-Visible Styling */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-brand-cobalt);
+  outline-offset: 2px;
+}
 
 /* Common Buttons */
 .btn {

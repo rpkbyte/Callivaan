@@ -43,32 +43,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth }) => {
         }}
       >
         <div className="container" style={{ textAlign: 'center', maxWidth: '840px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 14px',
-              backgroundColor: '#EEF2FC',
-              borderRadius: '9999px',
-              color: '#3157D5',
-              fontSize: '13px',
-              fontWeight: 500,
-              marginBottom: '24px',
-            }}
-          >
-            <Sparkles size={14} />
-            <span>AI Voice Call Assistant for Indian Small Businesses</span>
-          </div>
-
           <h1
             style={{
-              fontSize: '44px',
-              lineHeight: '52px',
+              fontSize: '48px',
+              lineHeight: '56px',
               fontWeight: 700,
               color: '#172033',
               marginBottom: '20px',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.025em',
+              textWrap: 'balance',
             }}
           >
             Never lose a customer call when you are busy serving one.

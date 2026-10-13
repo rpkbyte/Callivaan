@@ -333,16 +333,16 @@ export const PortalView: React.FC<PortalViewProps> = ({ onLogout }) => {
                   alignItems: 'center',
                   gap: '10px',
                   padding: '10px 14px',
-                  borderRadius: '6px',
-                  border: 'none',
+                  borderRadius: '8px',
+                  border: isActive ? '1px solid #E4E8F0' : '1px solid transparent',
                   backgroundColor: isActive ? '#FFFFFF' : 'transparent',
                   color: isActive ? '#3157D5' : '#172033',
                   fontWeight: isActive ? 600 : 500,
                   fontSize: '14px',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  boxShadow: isActive ? '0 1px 3px rgba(23,32,51,0.05)' : 'none',
-                  borderLeft: isActive ? '3px solid #3157D5' : '3px solid transparent',
+                  boxShadow: isActive ? '0 1px 2px rgba(23,32,51,0.04)' : 'none',
+                  transition: 'background-color 0.15s ease, border-color 0.15s ease',
                 }}
               >
                 <Icon size={18} color={isActive ? '#3157D5' : '#667085'} />

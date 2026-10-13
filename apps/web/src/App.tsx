@@ -44,6 +44,15 @@ export const App: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (!activePolicyModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActivePolicyModal(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activePolicyModal]);
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {isAuthenticated ? (
@@ -71,19 +80,30 @@ export const App: React.FC = () => {
 
       {/* Trust & Legal Policy Modal */}
       {activePolicyModal && (
-        <div className="modal-overlay" onClick={() => setActivePolicyModal(null)}>
-          <div className="modal-content" style={{ maxWidth: '640px' }} onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={() => setActivePolicyModal(null)} role="presentation">
+          <div
+            className="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="policy-modal-title"
+            style={{ maxWidth: '640px' }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Shield size={20} color="#3157D5" />
-                <h3 style={{ fontSize: '18px' }}>
+                <h3 id="policy-modal-title" style={{ fontSize: '18px' }}>
                   {activePolicyModal === 'privacy' && 'Privacy Policy'}
                   {activePolicyModal === 'terms' && 'Terms of Service'}
                   {activePolicyModal === 'retention' && 'Data Retention & Deletion Schedule'}
                   {activePolicyModal === 'refund' && 'Subscription, Cancellation & Refund Terms'}
                 </h3>
               </div>
-              <button onClick={() => setActivePolicyModal(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667085' }}>
+              <button
+                onClick={() => setActivePolicyModal(null)}
+                aria-label="Close dialog"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667085', padding: '4px' }}
+              >
                 <X size={20} />
               </button>
             </div>

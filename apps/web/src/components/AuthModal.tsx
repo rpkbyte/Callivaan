@@ -30,6 +30,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -64,8 +75,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={onClose} role="presentation">
+      <div
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="auth-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
           <div style={{ display: 'flex', gap: '8px' }}>
             <button
@@ -85,13 +102,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close dialog"
             style={{ background: 'none', border: 'none', color: '#667085', cursor: 'pointer', padding: '4px' }}
           >
             <X size={20} />
           </button>
         </div>
 
-        <h3 style={{ marginBottom: '6px' }}>
+        <h3 id="auth-modal-title" style={{ marginBottom: '6px' }}>
           {mode === 'signup' ? 'Create your Callivaan account' : 'Welcome back'}
         </h3>
         <p style={{ fontSize: '14px', marginBottom: '20px' }}>
