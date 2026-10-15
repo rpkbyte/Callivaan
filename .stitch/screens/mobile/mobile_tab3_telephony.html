@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-dim" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callivaan Telephony - Forwarding</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-secondary-fixed-variant": "#3e475b",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#444654",
+            "surface-bright": "#fbf8ff",
+            "on-primary-fixed": "#001452",
+            "on-primary-container": "#d8ddff",
+            "on-surface": "#1a1b23",
+            "on-tertiary-container": "#ffd6c5",
+            "surface-dim": "#f6f8fc",
+            "secondary-fixed-dim": "#bdc6e0",
+            "on-tertiary": "#ffffff",
+            "outline-variant": "#c4c5d6",
+            "primary-container": "#3157d5",
+            "error-container": "#fef3f2",
+            "background": "#fbf8ff",
+            "on-tertiary-fixed": "#351000",
+            "surface-container": "#f1f4fa",
+            "surface-container-highest": "#dee5f0",
+            "tertiary-fixed": "#ffdbcc",
+            "tertiary-container": "#a84200",
+            "primary-fixed-dim": "#b7c4ff",
+            "surface-container-high": "#e8edf5",
+            "secondary-fixed": "#d9e2fc",
+            "on-error": "#ffffff",
+            "secondary": "#555e74",
+            "on-background": "#1a1b23",
+            "on-primary-fixed-variant": "#0038b6",
+            "tertiary-fixed-dim": "#ffb695",
+            "tertiary": "#475467",
+            "surface-variant": "#e2e1ec",
+            "on-secondary-container": "#5a6278",
+            "surface": "#ffffff",
+            "inverse-primary": "#b7c4ff",
+            "on-error-container": "#93000a",
+            "outline": "#e4e8f0",
+            "inverse-on-surface": "#f1f0fb",
+            "secondary-container": "#d7dff9",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#2f3038",
+            "surface-tint": "#2c53d1",
+            "on-secondary-fixed": "#121b2e",
+            "error": "#d92d20",
+            "primary-fixed": "#dde1ff",
+            "primary": "#063cbc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "20px",
+            "space-xxl": "64px",
+            "space-sm": "12px",
+            "margin": "48px",
+            "space-md": "24px",
+            "space-lg": "32px",
+            "gutter": "24px",
+            "space-xl": "48px",
+            "space-xs": "4px"
+          },
+          "fontFamily": {
+            "headline-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "display-lg": ["Inter"],
+            "mono": ["JetBrains Mono", "monospace"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-surface-dim text-on-surface antialiased flex justify-center items-start selection:bg-secondary-fixed">
+<!-- Mobile Viewport Container (390 x 844 iPhone Canvas) -->
+<main class="w-full max-w-[390px] min-h-[844px] bg-surface flex flex-col relative shadow-xl overflow-x-hidden border-x border-outline">
+<!-- 1. Mobile Status Bar (9:41, Cellular, WiFi, Battery) -->
+<header class="w-full h-11 pt-3 px-6 flex justify-between items-center text-on-surface bg-surface select-none z-30">
+<span class="font-headline-sm text-label-md font-semibold tracking-tight tabular-nums">9:41</span>
+<div class="flex items-center space-x-2 text-on-surface">
+<!-- Cellular Signal -->
+<span class="material-symbols-outlined text-[17px]" data-icon="signal_cellular_4_bar">signal_cellular_4_bar</span>
+<!-- Wi-Fi -->
+<span class="material-symbols-outlined text-[17px]" data-icon="wifi">wifi</span>
+<!-- Battery Full -->
+<span class="material-symbols-outlined text-[20px]" data-icon="battery_full">battery_full</span>
+</div>
+</header>
+<!-- 2. Top Header & Tenant Selector Bar -->
+<section class="w-full px-5 pt-1 pb-3 bg-surface border-b border-outline">
+<div class="flex items-center justify-between">
+<!-- Brand & Voice Waveform Icon -->
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center p-1.5 border border-outline">
+<!-- 5-bar vertical audio soundwave in cobalt blue -->
+<div class="flex items-center justify-center space-x-0.5 h-full w-full">
+<span class="w-0.5 h-2 bg-primary-container rounded-full"></span>
+<span class="w-0.5 h-4 bg-primary-container rounded-full"></span>
+<span class="w-0.5 h-5 bg-primary-container rounded-full"></span>
+<span class="w-0.5 h-3 bg-primary-container rounded-full"></span>
+<span class="w-0.5 h-1.5 bg-primary-container rounded-full"></span>
+</div>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Callivaan</span>
+<span class="bg-secondary-fixed text-primary px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider font-label-sm">VOICE AI</span>
+</div>
+</div>
+</div>
+<!-- Quick Action: Test Dial AI Button -->
+<button aria-label="Test Dial Voice AI" class="flex items-center space-x-1 bg-surface-container hover:bg-surface-container-high active:scale-95 text-primary-container px-2.5 py-1.5 rounded-lg border border-outline text-label-sm font-semibold transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="phone_in_talk">phone_in_talk</span>
+<span class="font-label-sm text-label-sm">Test Dial</span>
+</button>
+</div>
+<!-- Tenant Switcher Pill Row -->
+<div class="mt-2.5 flex items-center justify-between">
+<button class="inline-flex items-center space-x-1.5 bg-surface-container-low px-2.5 py-1 rounded-full border border-outline text-left" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[200px]">Shree Balaji Motors</span>
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="expand_more">expand_more</span>
+</button>
+<span class="font-label-sm text-label-sm text-secondary tabular-nums">Routing: Live</span>
+</div>
+</section>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto px-5 pt-4 pb-28 space-y-4 bg-surface-dim">
+<!-- 3. Master Forwarding Status Hero Card -->
+<section class="bg-surface rounded-xl p-4 border border-outline shadow-sm space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="pr-2">
+<h2 class="font-headline-sm text-[16px] text-on-surface font-semibold leading-tight">Forward Unanswered Calls to AI</h2>
+<p class="font-body-sm text-[13px] text-secondary mt-0.5">Captures customer queries when lines are busy</p>
+</div>
+<!-- Tactile ON Toggle Switch -->
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-12 h-6 bg-primary-container rounded-full transition-colors relative flex items-center px-0.5">
+<div class="w-5 h-5 bg-surface rounded-full shadow-md transform translate-x-6 transition-transform"></div>
+</div>
+</div>
+</div>
+<!-- Assigned Virtual Agent Gateway Number card -->
+<div class="bg-surface-container-low rounded-lg p-3 border border-outline flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-secondary block font-semibold">Assigned Agent Virtual Gateway</span>
+<span class="font-headline-sm text-[18px] text-on-surface font-bold tracking-tight font-mono tabular-nums block mt-0.5">+91 80 4736 8800</span>
+</div>
+<button aria-label="Copy Gateway Number" class="flex items-center space-x-1 bg-surface hover:bg-surface-container active:scale-95 px-2.5 py-1.5 rounded-lg border border-outline text-secondary text-label-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="content_copy">content_copy</span>
+<span class="font-label-sm text-label-sm font-medium text-on-surface">Copy</span>
+</button>
+</div>
+<!-- Real-time Telemetry Status Strip -->
+<div class="flex items-center space-x-2 pt-0.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+</span>
+<span class="font-label-sm text-[11.5px] text-secondary tracking-tight">
+            SIP Gateway Operational · Latency: <span class="font-mono tabular-nums text-on-surface font-semibold">320ms</span> · TRAI Consent Active
+          </span>
+</div>
+</section>
+<!-- 4. Forwarding Mode Selector (Two Selectable Options) -->
+<section class="space-y-2">
+<div class="flex items-center justify-between px-0.5">
+<span class="font-label-sm text-[12px] uppercase tracking-wider font-semibold text-secondary">Forwarding Routing Logic</span>
+<span class="font-label-sm text-[12px] text-primary-container font-medium">Smart AI Filter</span>
+</div>
+<!-- Option A: Conditional Forwarding (Active / Selected) -->
+<div class="bg-surface rounded-xl p-3.5 border-2 border-primary-container relative cursor-pointer shadow-sm bg-gradient-to-r from-secondary-fixed/20 to-transparent">
+<div class="flex items-start justify-between">
+<div class="flex items-start space-x-2.5">
+<div class="mt-0.5 w-4 h-4 rounded-full border-2 border-primary-container flex items-center justify-center bg-primary-container">
+<span class="material-symbols-outlined text-[12px] text-on-primary font-bold" data-icon="check">check</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Conditional Forwarding</h3>
+<span class="bg-primary-fixed text-primary px-1.5 py-0.2 rounded text-[10px] font-bold uppercase font-label-sm">Recommended</span>
+</div>
+<p class="font-body-sm text-label-md text-secondary mt-1 leading-snug">
+                  Forwards only when your line is busy or unanswered after 15 seconds. You keep taking direct calls normally.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Option B: Unconditional Forwarding (Unselected) -->
+<div class="bg-surface rounded-xl p-3.5 border border-outline relative cursor-pointer hover:border-outline-variant transition-colors">
+<div class="flex items-start space-x-2.5">
+<div class="mt-0.5 w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center bg-surface"></div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-medium">Unconditional Forwarding</h3>
+<p class="font-body-sm text-label-md text-secondary mt-0.5 leading-snug">
+                Forwards 100% of incoming calls immediately 24/7 directly to AI.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Indian Telecom Carrier 1-Tap USSD Setup Section -->
+<section class="space-y-2.5 pt-1">
+<div class="flex items-center justify-between px-0.5">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-[12px] uppercase tracking-wider font-semibold text-secondary">Carrier 1-Tap USSD Setup</span>
+<span class="bg-surface-container-high text-on-surface-variant px-1.5 py-0.5 rounded text-[10px] font-semibold">SIM 1 / Primary</span>
+</div>
+<span class="font-label-sm text-[12px] text-secondary">No app required</span>
+</div>
+<!-- Jio Card -->
+<div class="bg-surface rounded-xl p-3.5 border border-outline shadow-sm space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary flex items-center justify-center font-bold text-[11px] font-label-sm">JIO</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold block leading-tight">Reliance Jio</span>
+<span class="font-label-sm text-[11px] text-secondary">Condition: When Unanswered (15s)</span>
+</div>
+</div>
+<span class="text-[11px] font-semibold text-primary px-1.5 py-0.5 bg-surface-container rounded border border-outline font-mono">True 5G</span>
+</div>
+<!-- USSD Code Box & Dial Action -->
+<div class="flex items-center space-x-2">
+<div class="flex-1 bg-surface-container-low px-3 py-2 rounded-lg border border-outline flex items-center justify-between">
+<span class="font-mono text-label-lg font-semibold text-on-surface tracking-wide tabular-nums">*403*08047368800</span>
+<button aria-label="Copy USSD Code" class="text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<a class="bg-primary-container hover:bg-primary active:scale-95 text-on-primary font-label-sm font-semibold px-3 py-2 rounded-lg flex items-center space-x-1 transition-all shrink-0" href="tel:*403*08047368800">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span>
+<span>Dial (*403*)</span>
+</a>
+</div>
+<div class="flex items-center justify-between text-[11px] text-secondary pt-0.5">
+<span>Deactivation code: Cancel anytime with <strong class="font-mono text-on-surface">*402</strong></span>
+<span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+</div>
+</div>
+<!-- Airtel Card -->
+<div class="bg-surface rounded-xl p-3.5 border border-outline shadow-sm space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="w-6 h-6 rounded bg-error text-on-error flex items-center justify-center font-bold text-[11px] font-label-sm">air</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold block leading-tight">Bharti Airtel</span>
+<span class="font-label-sm text-[11px] text-secondary">Condition: When No Reply / Busy</span>
+</div>
+</div>
+<span class="text-[11px] font-semibold text-secondary px-1.5 py-0.5 bg-surface-container rounded border border-outline font-mono">4G/5G Plus</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="flex-1 bg-surface-container-low px-3 py-2 rounded-lg border border-outline flex items-center justify-between">
+<span class="font-mono text-label-lg font-semibold text-on-surface tracking-wide tabular-nums">**61*08047368800#</span>
+<button aria-label="Copy USSD Code" class="text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<a class="bg-surface-container hover:bg-surface-container-high border border-outline active:scale-95 text-on-surface font-label-sm font-semibold px-3 py-2 rounded-lg flex items-center space-x-1 transition-all shrink-0" href="tel:**61*08047368800%23">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="call">call</span>
+<span>Dial (**61*)</span>
+</a>
+</div>
+<div class="flex items-center justify-between text-[11px] text-secondary pt-0.5">
+<span>Deactivation code: Cancel anytime with <strong class="font-mono text-on-surface">##61#</strong></span>
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+</div>
+</div>
+<!-- Vi & BSNL Quick Grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Vi Card -->
+<div class="bg-surface rounded-xl p-3 border border-outline shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-sm font-semibold text-on-surface">Vodafone Idea</span>
+<span class="text-[10px] bg-surface-container px-1 rounded font-mono text-secondary">Vi</span>
+</div>
+<span class="font-mono text-label-sm text-on-surface font-semibold block tabular-nums mt-1">**67*08047368800#</span>
+<span class="text-[10px] text-secondary block mt-0.5">Cancel: ##67#</span>
+</div>
+<a class="mt-2.5 w-full bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface font-label-sm py-1.5 px-2 rounded-lg border border-outline flex items-center justify-center space-x-1 transition-all" href="tel:**67*08047368800%23">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="call">call</span>
+<span class="text-[11px] font-semibold">1-Tap Dial</span>
+</a>
+</div>
+<!-- BSNL Card -->
+<div class="bg-surface rounded-xl p-3 border border-outline shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-sm font-semibold text-on-surface">BSNL Mobile</span>
+<span class="text-[10px] bg-surface-container px-1 rounded font-mono text-secondary">Govt</span>
+</div>
+<span class="font-mono text-label-sm text-on-surface font-semibold block tabular-nums mt-1">*21*08047368800#</span>
+<span class="text-[10px] text-secondary block mt-0.5">Cancel: ##21#</span>
+</div>
+<a class="mt-2.5 w-full bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface font-label-sm py-1.5 px-2 rounded-lg border border-outline flex items-center justify-center space-x-1 transition-all" href="tel:*21*08047368800%23">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="call">call</span>
+<span class="text-[11px] font-semibold">1-Tap Dial</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 6. Inbound Route Verification Tool Card -->
+<section class="bg-surface rounded-xl p-3.5 border border-outline shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="router">router</span>
+<h3 class="font-headline-sm text-label-lg text-on-surface font-semibold">Forwarding Route Verification</h3>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 border border-outline flex items-start space-x-2">
+<span class="material-symbols-outlined text-primary-container text-[18px] shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<div class="text-[12px] leading-relaxed">
+<span class="font-semibold text-on-surface block">Route confirmed via Reliance Jio interconnect</span>
+<span class="text-secondary">Last verified: Today, 10:14 AM (Auto-monitored every 15 mins)</span>
+</div>
+</div>
+<button class="w-full bg-surface hover:bg-surface-container active:scale-98 text-on-surface font-label-sm font-semibold py-2 px-3 rounded-lg border border-outline flex items-center justify-center space-x-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="refresh">refresh</span>
+<span>Ping Telephony Gateway</span>
+</button>
+</section>
+</div>
+<!-- 7. Bottom Navigation Bar (Persistent Shared Shell) -->
+<!-- Matches JSON tokens: style_shell_layout, style_active_navigation, style_inactive_navigation -->
+<nav class="fixed bottom-0 w-full max-w-[390px] z-50 flex justify-around items-center px-space-xs py-space-xs bg-surface dark:bg-inverse-surface border-t border-outline">
+<!-- Tab 1: Overview / Calls -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim px-3 py-1 font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-0.5">Overview</span>
+</button>
+<!-- Tab 2: Forwarding (ACTIVE TAB: Strictly matches current screen context) -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 font-label-sm text-label-sm active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="phone_forwarded" data-weight="fill" style="font-variation-settings: 'FILL' 1;">phone_forwarded</span>
+<span class="font-label-sm text-label-sm mt-0.5 font-semibold text-on-primary">Forwarding</span>
+</button>
+<!-- Tab 3: Agents -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim px-3 py-1 font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-sm text-label-sm mt-0.5">Agents</span>
+</button>
+<!-- Tab 4: Logs -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim px-3 py-1 font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform duration-150 relative" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="call_log">call_log</span>
+<span class="font-label-sm text-label-sm mt-0.5">Logs</span>
+</button>
+<!-- Tab 5: Settings -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim px-3 py-1 font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="tune">tune</span>
+<span class="font-label-sm text-label-sm mt-0.5">Settings</span>
+</button>
+</nav>
+</main>
+</body></html>

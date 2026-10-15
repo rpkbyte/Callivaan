@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Callivaan Mobile App - Settings, WhatsApp Hub &amp; Account Billing</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "tertiary-container": "#a84200",
+            "secondary-fixed-dim": "#bdc6e0",
+            "error": "#d92d20",
+            "background": "#fbf8ff",
+            "on-secondary-fixed": "#121b2e",
+            "surface-container-low": "#f3f2fe",
+            "surface-dim": "#dad9e4",
+            "on-primary-container": "#d8ddff",
+            "primary-container": "#3157d5",
+            "inverse-on-surface": "#f1f0fb",
+            "on-primary-fixed-variant": "#0038b6",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "error-container": "#fef3f2",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2f3038",
+            "surface": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#b7c4ff",
+            "outline": "#e4e8f0",
+            "on-background": "#1a1b23",
+            "primary": "#063cbc",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-container-highest": "#e2e1ec",
+            "tertiary": "#475467",
+            "on-surface-variant": "#667085",
+            "outline-variant": "#d0d5dd",
+            "on-primary-fixed": "#001452",
+            "tertiary-fixed": "#ffdbcc",
+            "on-tertiary-fixed": "#351000",
+            "secondary-fixed": "#d9e2fc",
+            "surface-bright": "#ffffff",
+            "on-surface": "#1a1b23",
+            "on-secondary-container": "#5a6278",
+            "on-tertiary-container": "#ffd6c5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e8e7f2",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-variant": "#e2e1ec",
+            "surface-tint": "#2c53d1",
+            "secondary": "#555e74",
+            "primary-fixed-dim": "#b7c4ff",
+            "primary-fixed": "#dde1ff",
+            "surface-container": "#f1f4fa",
+            "secondary-container": "#d7dff9",
+            "on-secondary-fixed-variant": "#3e475b"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xxl": "64px",
+            "space-xl": "48px",
+            "space-xs": "4px",
+            "space-lg": "32px",
+            "space-md": "24px",
+            "gutter": "24px",
+            "space-sm": "12px",
+            "margin-mobile": "20px",
+            "margin": "48px"
+          },
+          "fontFamily": {
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-md": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Tabular numeric alignment for monetary, usage metrics & telecommunication timestamps */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Custom toggle appearance */
+    .toggle-checkbox:checked {
+      right: 2px;
+      border-color: #3157d5;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #3157d5;
+    }
+
+    /* Strict no tap highlight on mobile */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-[#f6f8fc] text-[#172033] antialiased selection:bg-primary selection:text-white flex justify-center items-start">
+<!-- Mobile Viewport Container (390px simulated chassis) -->
+<div class="w-full max-w-[390px] min-h-screen bg-[#f6f8fc] flex flex-col relative shadow-2xl overflow-x-hidden border-x border-outline">
+<!-- 1. Native Mobile Status Bar (390px iOS/Android standard) -->
+<header class="w-full bg-surface pt-3 px-6 pb-2 flex justify-between items-center text-on-surface z-40 select-none">
+<span class="font-label-md text-label-md font-semibold tracking-tight tabular-nums">9:41</span>
+<div class="flex items-center space-x-2 text-on-surface">
+<!-- Cellular Signal Indicator -->
+<span class="material-symbols-outlined text-[17px] leading-none" data-icon="signal_cellular_4_bar" data-weight="fill" style="font-variation-settings: 'FILL' 1;">signal_cellular_4_bar</span>
+<!-- Wi-Fi Indicator -->
+<span class="material-symbols-outlined text-[17px] leading-none" data-icon="wifi" data-weight="fill" style="font-variation-settings: 'FILL' 1;">wifi</span>
+<!-- Battery Pill -->
+<div class="flex items-center">
+<div class="w-5 h-2.5 rounded-[3px] border border-on-surface p-0.5 flex items-center">
+<div class="h-full w-full bg-on-surface rounded-[1px]"></div>
+</div>
+<div class="w-0.5 h-1 bg-on-surface rounded-r-sm"></div>
+</div>
+</div>
+</header>
+<!-- 2. Top Navigation & Tenant Header (Derived from TopAppBar Shared Component) -->
+<section class="bg-surface border-b border-outline w-full px-4 py-3 flex items-center justify-between shadow-sm sticky top-0 z-30">
+<div class="flex items-center space-x-3">
+<!-- Signature 5-bar Soundwave Logo in Cobalt Blue #3157D5 -->
+<div aria-label="Callivaan Precision Audio Engine" class="flex items-end justify-center space-x-[2px] h-6 w-6 py-0.5 bg-primary-fixed/40 rounded-lg p-1">
+<span class="w-[2.5px] h-2 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-3.5 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-5 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-3 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-1.5 bg-primary-container rounded-full"></span>
+</div>
+<!-- Tenant Title with Selector Dropdown -->
+<div class="flex flex-col">
+<div class="flex items-center space-x-1 cursor-pointer">
+<span class="font-label-lg text-label-lg text-[#172033] tracking-tight font-semibold">Shree Balaji Motors</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant font-semibold" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Settings &amp; Account</span>
+</div>
+</div>
+<!-- Live Release Telemetry Badge -->
+<div class="flex items-center space-x-1 px-2.5 py-1 rounded-full bg-surface-container border border-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+<span class="font-label-sm text-[11px] font-semibold text-on-surface-variant tabular-nums">Live v1.4</span>
+</div>
+</section>
+<!-- Main Content Canvas (Scrollable viewport) -->
+<main class="flex-1 flex flex-col p-4 space-y-4 pb-28">
+<!-- 3. Subscription & Monthly Minute Usage Meter Card -->
+<section class="bg-surface rounded-xl border border-outline p-4 shadow-sm relative overflow-hidden">
+<!-- Card Top: Plan Level & Status -->
+<div class="flex items-start justify-between mb-3">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Plan</span>
+<h2 class="font-headline-sm text-headline-sm text-[#172033] mt-0.5">Business Pro Plan</h2>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-[#e0e7ff] text-[#3157d5] font-label-sm text-[11px] font-bold tracking-wide uppercase border border-[#c7d2fe]">
+            ACTIVE
+          </span>
+</div>
+<!-- Metric Display & Progress Visualizer -->
+<div class="bg-[#f6f8fc] rounded-lg p-3 border border-outline mb-3.5">
+<div class="flex justify-between items-baseline mb-2">
+<div class="flex items-baseline space-x-1">
+<span class="font-headline-md text-headline-md font-bold text-[#172033] tabular-nums">248</span>
+<span class="font-label-md text-label-md text-on-surface-variant tabular-nums">/ 500 mins</span>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-semibold tabular-nums">
+              252 mins remaining
+            </span>
+</div>
+<!-- Linear Meter Gauge (49% used in #3157D5) -->
+<div class="w-full bg-[#e2e1ec] h-2 rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full rounded-full transition-all duration-300" style="width: 49.6%;"></div>
+</div>
+<div class="flex justify-between items-center mt-2 pt-1 border-t border-outline/70 text-[11px] font-label-sm text-on-surface-variant">
+<span>Quota resets 15 Nov 2026</span>
+<span class="tabular-nums">49.6% consumed</span>
+</div>
+</div>
+<!-- Overage Rate & Billing Ledger Footnote -->
+<div class="space-y-2 mb-4">
+<div class="flex items-center text-xs text-on-surface-variant space-x-2">
+<span class="material-symbols-outlined text-[15px] text-tertiary" data-icon="info">info</span>
+<span class="tabular-nums">Overage: ₹2.50 per additional minute beyond quota</span>
+</div>
+<div class="flex items-center text-xs text-on-surface-variant space-x-2 bg-surface-container/60 p-2 rounded border border-outline/60">
+<span class="material-symbols-outlined text-[15px] text-[#3157d5]" data-icon="account_balance">account_balance</span>
+<span class="tabular-nums leading-tight">Renews 15 Nov 2026 · ₹1,499/mo via UPI AutoPay (HDFC Bank ending 4012)</span>
+</div>
+</div>
+<!-- Upgrade Action Button -->
+<button class="w-full py-2.5 px-4 bg-primary-container hover:bg-primary text-white rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center space-x-2 shadow-sm transition-all active:scale-[0.98]">
+<span>Upgrade to Team Plan (2,000 mins)</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+<!-- 4. WhatsApp Connection & Lead Dispatch Hub Card -->
+<section class="bg-surface rounded-xl border border-outline p-4 shadow-sm space-y-4">
+<!-- Header with Verified Status -->
+<div class="flex items-center justify-between pb-3 border-b border-outline">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-emerald-600 text-[22px]" data-icon="chat" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-semibold text-[#172033]">WhatsApp Lead Dispatch Hub</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Automated caller transcripts &amp; dispatch</p>
+</div>
+</div>
+<span class="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px] text-emerald-600" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Meta API</span>
+</span>
+</div>
+<!-- Connected Handset Row -->
+<div class="flex items-center justify-between p-2.5 bg-[#f6f8fc] rounded-lg border border-outline">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-full bg-white border border-outline flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="phone_android">phone_android</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-lg text-label-lg font-semibold text-[#172033] tabular-nums">+91 98100 23456</span>
+<span class="material-symbols-outlined text-emerald-600 text-[16px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="text-[11px] text-on-surface-variant font-medium">Designated Principal Owner Handset</span>
+</div>
+</div>
+<button class="text-xs text-primary-container font-semibold hover:underline">Change</button>
+</div>
+<!-- Notification Toggles Group -->
+<div class="space-y-3 pt-1">
+<!-- Toggle 1: Instant Lead Cards -->
+<div class="flex items-start justify-between space-x-3">
+<div class="flex-1 pr-2">
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">Instant Lead Cards (&lt; 3s)</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Dispatched directly to owner handset upon call wrapup</p>
+</div>
+<!-- Toggle Switch (Checked/Active in #3157D5) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Divider -->
+<hr class="border-outline/60"/>
+<!-- Toggle 2: Daily 8:00 PM Summary Digest -->
+<div class="flex items-start justify-between space-x-3">
+<div class="flex-1 pr-2">
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">Daily 8:00 PM Summary Digest</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Consolidated end-of-day audio duration and qualified leads ledger</p>
+</div>
+<!-- Toggle Switch (Checked/Active in #3157D5) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Divider -->
+<hr class="border-outline/60"/>
+<!-- Toggle 3: TRAI Audio Waveform Links -->
+<div class="flex items-start justify-between space-x-3">
+<div class="flex-1 pr-2">
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">TRAI Audio Waveform Links</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Include secure 256-bit stream playback link in chat</p>
+</div>
+<!-- Toggle Switch (Unchecked/OFF) -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<!-- Remote Command Cheat Sheet -->
+<div class="bg-surface-container rounded-lg p-3 border border-outline/80 mt-2">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Remote Control Commands (Send to WhatsApp Bot)</span>
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant" data-icon="terminal">terminal</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="bg-surface p-2 rounded border border-outline flex flex-col">
+<code class="font-semibold text-primary font-mono text-[12px]">/summary</code>
+<span class="text-[11px] text-on-surface-variant leading-tight mt-0.5">Today's call tally</span>
+</div>
+<div class="bg-surface p-2 rounded border border-outline flex flex-col">
+<code class="font-semibold text-primary font-mono text-[12px]">/pause</code>
+<span class="text-[11px] text-on-surface-variant leading-tight mt-0.5">Pause AI agent</span>
+</div>
+<div class="bg-surface p-2 rounded border border-outline flex flex-col">
+<code class="font-semibold text-primary font-mono text-[12px]">/resume</code>
+<span class="text-[11px] text-on-surface-variant leading-tight mt-0.5">Resume reception</span>
+</div>
+<div class="bg-surface p-2 rounded border border-outline flex flex-col">
+<code class="font-semibold text-primary font-mono text-[12px]">/hours 9am-8pm</code>
+<span class="text-[11px] text-on-surface-variant leading-tight mt-0.5">Update operating hours</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Indian Telecom Regulatory & Compliance Section -->
+<section class="space-y-2">
+<h3 class="font-label-sm text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider px-1">
+          Telecom Regulatory &amp; Compliance
+        </h3>
+<div class="bg-surface rounded-xl border border-outline overflow-hidden shadow-sm divide-y divide-outline">
+<!-- TRAI Recording Consent -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container/30 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">TRAI Two-Party Recording Consent</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Standard Hindi/English caller pre-roll</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200">
+              Verified Active
+            </span>
+</div>
+<!-- Data Retention Window (DPDP Act 2023) -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container/30 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-[#dde1ff]/60 text-primary flex items-center justify-center border border-primary-fixed">
+<span class="material-symbols-outlined text-[18px]" data-icon="policy">policy</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">Data Retention Window</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DPDP Act 2023 Compliant</span>
+</div>
+</div>
+<span class="text-xs font-semibold text-on-surface-variant tabular-nums">90-Day Purge</span>
+</div>
+<!-- Monthly GST Tax Invoice (18% ITC) -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container/30 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-[#172033] flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">Monthly GST Tax Invoice (18% ITC)</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-semibold tabular-nums">₹269.82 ITC available</span>
+</div>
+</div>
+<button class="flex items-center space-x-1 text-xs text-primary-container font-semibold hover:underline">
+<span>Oct PDF</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+</button>
+</div>
+<!-- Grievance Redressal Officer -->
+<div class="p-3.5 flex items-center justify-between hover:bg-surface-container/30 transition-colors">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-[#172033] flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="support">support</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-[#172033] block">Grievance Redressal Officer</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mr. Alok Narayan (Bengaluru Nodal Desk)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="mail">mail</span>
+</div>
+</div>
+</section>
+<!-- 6. Account Security & Session Actions -->
+<section class="space-y-3 pt-1">
+<div class="bg-surface rounded-xl border border-outline overflow-hidden shadow-sm divide-y divide-outline">
+<!-- Switch SIM or Business Entity -->
+<button class="w-full p-3.5 flex items-center justify-between text-left hover:bg-surface-container/50 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md font-semibold text-[#172033]">Switch Business Location / SIM</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Sign Out Action -->
+<button class="w-full p-3.5 flex items-center justify-between text-left hover:bg-error-container/40 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-[20px] text-error" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md font-semibold text-error">Sign Out of Mobile App</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-error" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Telemetry & Node Footnote -->
+<div class="text-center py-2">
+<p class="font-label-sm text-[11px] text-on-surface-variant tabular-nums">
+            Callivaan Android Client v1.0.4 · Server Node: Mumbai (ap-south-1)
+          </p>
+</div>
+</section>
+</main>
+<!-- 7. Persistent Bottom Tab Bar (Derived from BottomNavBar Shared Component) -->
+<!-- Tab 5: Settings is strictly ACTIVE -->
+<nav aria-label="Main Mobile Navigation" class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto z-50 bg-surface border-t border-outline flex justify-around items-center px-1 py-1 select-none shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
+<!-- Tab 1: Calls -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 px-3 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="call">call</span>
+<span class="font-label-sm text-[11px] mt-0.5">Calls</span>
+</a>
+<!-- Tab 2: Leads (with badge 8) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 px-3 hover:text-primary transition-colors relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="contact_phone">contact_phone</span>
+<span class="absolute -top-1 -right-2 bg-primary text-white text-[9px] font-bold px-1 rounded-full tabular-nums">8</span>
+</div>
+<span class="font-label-sm text-[11px] mt-0.5">Leads</span>
+</a>
+<!-- Tab 3: Forwarding -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 px-3 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="forward_to_inbox">forward_to_inbox</span>
+<span class="font-label-sm text-[11px] mt-0.5">Forwarding</span>
+</a>
+<!-- Tab 4: Agent -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 px-3 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="support_agent">support_agent</span>
+<span class="font-label-sm text-[11px] mt-0.5">Agent</span>
+</a>
+<!-- Tab 5: Settings (ACTIVE STATE) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary-container font-semibold py-1 px-3" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-[11px] mt-0.5">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>

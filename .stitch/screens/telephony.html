@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-white" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Telephony Connection &amp; Carrier Call Forwarding Setup | Callivaan</title>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration based on Design Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e8edf5",
+            "on-error-container": "#93000a",
+            "surface-dim": "#f6f8fc",
+            "on-primary": "#ffffff",
+            "surface-bright": "#ffffff",
+            "on-surface": "#1a1b23",
+            "inverse-on-surface": "#f1f0fb",
+            "tertiary-fixed": "#ffdbcc",
+            "outline-variant": "#d0d5dd",
+            "surface-container": "#eeedf8",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-tint": "#2c53d1",
+            "secondary-fixed": "#d9e2fc",
+            "on-secondary-fixed": "#121b2e",
+            "background": "#fbf8ff",
+            "secondary": "#555e74",
+            "on-tertiary-container": "#ffd6c5",
+            "on-primary-fixed-variant": "#0038b6",
+            "surface-container-low": "#f6f8fc",
+            "error-container": "#fef3f2",
+            "secondary-fixed-dim": "#bdc6e0",
+            "inverse-surface": "#2f3038",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#351000",
+            "inverse-primary": "#b7c4ff",
+            "primary-fixed": "#dde1ff",
+            "tertiary-container": "#a84200",
+            "on-secondary-container": "#5a6278",
+            "primary-container": "#3157d5",
+            "primary": "#063cbc",
+            "on-primary-container": "#d8ddff",
+            "on-primary-fixed": "#001452",
+            "on-surface-variant": "#444654",
+            "error": "#d92d20",
+            "surface": "#ffffff",
+            "surface-container-highest": "#dee5f0",
+            "primary-fixed-dim": "#b7c4ff",
+            "outline": "#e4e8f0",
+            "tertiary": "#475467"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "4px",
+            "space-sm": "12px",
+            "space-md": "24px",
+            "space-lg": "32px",
+            "space-xl": "48px",
+            "space-xxl": "64px",
+            "gutter": "24px",
+            "margin": "48px",
+            "margin-mobile": "20px"
+          },
+          fontFamily: {
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "mono": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f6f8fc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d0d5dd;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555e74;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-surface-container-lowest text-on-surface font-body-sm text-body-sm antialiased flex flex-col">
+<!-- ========================================================================= -->
+<!-- 1. TOP NAVIGATION BAR (SHARED COMPONENT EXECUTION)                        -->
+<!-- ========================================================================= -->
+<header class="w-full bg-surface border-b border-outline shadow-sm sticky top-0 z-50">
+<div class="w-full px-space-md py-space-sm flex items-center justify-between">
+<!-- Brand & Tenant Context -->
+<div class="flex items-center gap-space-md">
+<!-- Brand Logo + Soundwave Icon -->
+<a class="flex items-center gap-2 text-primary font-headline-sm text-headline-sm font-semibold tracking-tight" href="#">
+<div class="flex items-end gap-[2px] h-5 w-6 px-0.5 py-0.5 bg-primary-fixed rounded text-primary">
+<span class="w-1 bg-primary rounded-full h-2 animate-pulse"></span>
+<span class="w-1 bg-primary rounded-full h-4"></span>
+<span class="w-1 bg-primary rounded-full h-3"></span>
+<span class="w-1 bg-primary rounded-full h-5"></span>
+<span class="w-1 bg-primary rounded-full h-2.5"></span>
+</div>
+<span>Callivaan</span>
+<span class="text-[10px] uppercase font-mono tracking-wider font-bold px-1.5 py-0.5 bg-primary-fixed text-primary rounded ml-0.5 border border-primary-fixed-dim">VOICE AI</span>
+</a>
+<!-- Vertical Separator -->
+<div class="h-5 w-px bg-outline hidden sm:block"></div>
+<!-- Tenant Switcher Dropdown -->
+<div class="relative group hidden sm:block">
+<button class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-outline bg-surface-container-low hover:bg-surface-container-high transition-colors text-left" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="storefront">storefront</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight font-semibold">Aura Wellness &amp; Hair Studio</span>
+<span class="text-[11px] font-mono text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block"></span>
+                Jio Business Primary
+              </span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-secondary ml-1" data-icon="unfold_more">unfold_more</span>
+</button>
+</div>
+</div>
+<!-- Navigation Links (Active: Telephony Setup) -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant font-label-lg text-label-lg pb-1 hover:text-on-surface transition-colors duration-150" href="#">Overview / Calls</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg pb-1 hover:text-on-surface transition-colors duration-150" href="#">Agent Configuration</a>
+<!-- ACTIVE TAB -->
+<a class="text-primary font-label-lg text-label-lg border-b-2 border-primary pb-1 flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings_phone">settings_phone</span>
+          Telephony Setup
+        </a>
+<a class="text-on-surface-variant font-label-lg text-label-lg pb-1 hover:text-on-surface transition-colors duration-150" href="#">WhatsApp Controls</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg pb-1 hover:text-on-surface transition-colors duration-150" href="#">Billing</a>
+</nav>
+<!-- Trailing Controls & Status -->
+<div class="flex items-center gap-3">
+<!-- Routing Status Pill Badge -->
+<div class="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-amber-800 font-medium">Forwarding Status: Pending Verification</span>
+</div>
+<!-- Place Test Call Primary Action -->
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg hover:bg-primary active:scale-[0.99] transition duration-100 shadow-sm" onclick="triggerTestCallFlow()" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="phone_in_talk">phone_in_talk</span>
+<span>Place Test Call</span>
+</button>
+<!-- Notification Bell Icon -->
+<button aria-label="Notifications" class="p-1.5 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<!-- User Profile Avatar -->
+<div class="flex items-center gap-2 pl-1 border-l border-outline">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center font-label-sm text-label-sm font-semibold text-primary" title="Rajesh Sharma">
+            RS
+          </div>
+</div>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- 2. BREADCRUMB & PAGE TITLE HEADER                                         -->
+<!-- ========================================================================= -->
+<section class="border-b border-outline bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-secondary text-body-sm font-body-sm mb-3">
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Telephony &amp; Carrier Infrastructure</a>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-medium">Call Forwarding Setup</span>
+</div>
+<!-- Header Content & Mode Switcher -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="max-w-3xl">
+<div class="flex items-center gap-2.5 mb-1.5">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Connect Your Phone Number to Callivaan AI</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              Zero App Required
+            </span>
+</div>
+<p class="text-secondary font-body-md text-body-md">
+            Route your customer calls to your autonomous AI assistant in under 2 minutes. Keep your existing phone number using simple carrier call forwarding, or provision a dedicated cloud business number.
+          </p>
+</div>
+<!-- Mode Switcher Segmented Control -->
+<div class="bg-surface-container-high p-1 rounded-xl flex items-center self-start lg:self-auto border border-outline-variant">
+<button class="px-3.5 py-1.5 rounded-lg text-label-sm font-label-sm font-semibold bg-surface text-primary shadow-sm transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="sim_card">sim_card</span>
+<span>Use Existing Number (Jio, Airtel, Vi, BSNL)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg text-label-sm font-label-sm text-secondary hover:text-on-surface transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="cloud">cloud</span>
+<span>Get Dedicated Cloud Number</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. MAIN SETUP WORKSPACE (TWO-COLUMN DESKTOP LAYOUT)                       -->
+<!-- ========================================================================= -->
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- ===================================================================== -->
+<!-- LEFT COLUMN (65% width: 8 of 12 cols): Interactive Forwarding Guide    -->
+<!-- ===================================================================== -->
+<div class="lg:col-span-8 space-y-6">
+<!-- CARD A: Forwarding Mode Selection -->
+<div class="bg-surface rounded-xl border border-outline p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline mb-5">
+<div class="flex items-center gap-2.5">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-mono font-bold text-label-md">01</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Choose Call Forwarding Trigger</h2>
+<p class="text-secondary text-body-sm font-body-sm">Decide when your AI receptionist should take incoming phone calls</p>
+</div>
+</div>
+<span class="text-xs text-secondary font-mono">Step 1 of 2</span>
+</div>
+<!-- Radio Options Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Radio Card 1 (Active/Selected) -->
+<label class="relative flex flex-col p-4 rounded-xl border-2 border-primary-container bg-surface-container-low cursor-pointer transition-all hover:bg-surface-bright">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<input checked="" class="h-4 w-4 text-primary-container focus:ring-primary border-outline-variant" name="forwarding_mode" type="radio" value="conditional"/>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Conditional Forwarding</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-primary border border-primary-fixed-dim">Recommended</span>
+</div>
+<p class="text-secondary text-body-sm font-body-sm leading-relaxed pl-6">
+                AI answers <strong class="text-on-surface font-medium">only when you miss a call</strong>, your phone is busy, or unanswered after 15 seconds. You can still answer normal calls first on your mobile phone.
+              </p>
+<div class="mt-3 pl-6 flex items-center gap-2 text-xs font-mono text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+<span>Best for owners taking personal customer calls</span>
+</div>
+</label>
+<!-- Radio Card 2 -->
+<label class="relative flex flex-col p-4 rounded-xl border border-outline bg-surface-bright cursor-pointer hover:border-outline-variant hover:bg-surface-container-low transition-all">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<input class="h-4 w-4 text-primary-container focus:ring-primary border-outline-variant" name="forwarding_mode" type="radio" value="unconditional"/>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Unconditional Forwarding</span>
+</div>
+</div>
+<p class="text-secondary text-body-sm font-body-sm leading-relaxed pl-6">
+                AI answers <strong class="text-on-surface font-medium">100% of incoming customer calls</strong> immediately 24/7. Your phone will not ring; all callers are handled directly by your AI voice assistant.
+              </p>
+<div class="mt-3 pl-6 flex items-center gap-2 text-xs font-mono text-secondary">
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+<span>Ideal for busy clinics, night shifts &amp; peak rush hours</span>
+</div>
+</label>
+</div>
+</div>
+<!-- CARD B: Interactive Carrier Selector & Dialing Steps -->
+<div class="bg-surface rounded-xl border border-outline p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-outline mb-5">
+<div class="flex items-center gap-2.5">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-mono font-bold text-label-md">02</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Activate on Your Mobile Carrier</h2>
+<p class="text-secondary text-body-sm font-body-sm">Dial the one-tap USSD shortcode from your phone's default dialer app</p>
+</div>
+</div>
+<span class="text-xs text-secondary font-mono">Step 2 of 2</span>
+</div>
+<!-- Carrier Tabs -->
+<div class="flex items-center gap-2 p-1 bg-surface-container-low rounded-lg border border-outline mb-6 overflow-x-auto">
+<!-- Reliance Jio (Active) -->
+<button class="carrier-tab flex-1 min-w-[120px] py-2 px-3 rounded-md font-label-md text-label-md text-center font-semibold bg-surface text-primary shadow-sm border border-outline transition" id="tab-jio" onclick="selectCarrier('jio')" type="button">
+              Reliance Jio
+            </button>
+<!-- Bharti Airtel -->
+<button class="carrier-tab flex-1 min-w-[120px] py-2 px-3 rounded-md font-label-md text-label-md text-center font-medium text-secondary hover:text-on-surface transition" id="tab-airtel" onclick="selectCarrier('airtel')" type="button">
+              Bharti Airtel
+            </button>
+<!-- Vodafone Idea (Vi) -->
+<button class="carrier-tab flex-1 min-w-[120px] py-2 px-3 rounded-md font-label-md text-label-md text-center font-medium text-secondary hover:text-on-surface transition" id="tab-vi" onclick="selectCarrier('vi')" type="button">
+              Vodafone Idea (Vi)
+            </button>
+<!-- BSNL -->
+<button class="carrier-tab flex-1 min-w-[120px] py-2 px-3 rounded-md font-label-md text-label-md text-center font-medium text-secondary hover:text-on-surface transition" id="tab-bsnl" onclick="selectCarrier('bsnl')" type="button">
+              BSNL Mobile
+            </button>
+</div>
+<!-- DYNAMIC CARRIER INSTRUCTIONS PANEL -->
+<div class="space-y-6" id="carrier-content">
+<!-- Step 1 -->
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-mono text-label-md font-semibold text-secondary flex-shrink-0">
+                01
+              </div>
+<div class="flex-1 pt-1">
+<p class="font-body-md text-body-md text-on-surface">
+                  Open the native <strong class="font-semibold text-on-surface">Phone Dialer app</strong> on your mobile phone with your registered Jio SIM card:
+                </p>
+<div class="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-surface-container-low border border-outline rounded-md text-xs font-mono text-secondary">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="phone_android">phone_android</span>
+                  Registered Number: <span class="font-semibold text-on-surface tabular-nums">+91 98765 43210</span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-mono text-label-md font-semibold text-secondary flex-shrink-0">
+                02
+              </div>
+<div class="flex-1 pt-1">
+<p class="font-body-md text-body-md text-on-surface mb-3">
+                  Dial the dedicated USSD activation code displayed below:
+                </p>
+<!-- High Contrast USSD Code Box -->
+<div class="p-4 rounded-xl bg-surface-container-low border-2 border-primary-fixed-dim relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]" data-icon="dialpad">dialpad</span>
+</div>
+<div>
+<div class="text-[11px] font-mono text-secondary uppercase tracking-wider">USSD Forwarding Code (Jio)</div>
+<div class="font-mono text-2xl sm:text-3xl font-bold text-primary tracking-tight tabular-nums" id="ussd-display">
+                        *401*08047369200
+                      </div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 rounded-lg bg-surface border border-outline hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition shadow-sm" id="copy-btn" onclick="copyUssdCode()" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="content_copy" id="copy-icon">content_copy</span>
+<span id="copy-text">Copy Code</span>
+</button>
+<a class="px-3.5 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5 hover:bg-primary transition shadow-sm" href="tel:*401*08047369200">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span>
+<span>Tap to Call</span>
+</a>
+</div>
+</div>
+<p class="mt-2 text-xs text-secondary font-body-sm">
+                  Dial <span class="font-mono font-semibold text-on-surface">*401*</span> followed by your dedicated Callivaan forwarding route number <span class="font-mono font-semibold text-on-surface">08047369200</span> and tap Call.
+                </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-mono text-label-md font-semibold text-secondary flex-shrink-0">
+                03
+              </div>
+<div class="flex-1 pt-1">
+<p class="font-body-md text-body-md text-on-surface">
+                  Listen for the automated Jio confirmation voice prompt:
+                </p>
+<div class="mt-2 p-3 rounded-lg bg-surface-container-lowest border border-outline flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="volume_up">volume_up</span>
+<span class="italic text-secondary text-body-sm font-body-sm">"Call forwarding has been successfully activated on your number."</span>
+</div>
+<p class="mt-2 text-xs text-secondary">Once you hear this message, end the call. Your forwarding route is now engaged at carrier level.</p>
+</div>
+</div>
+<!-- Deactivation Box -->
+<div class="mt-4 p-4 rounded-lg bg-surface-container-low border border-outline flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5" data-icon="lock_reset">lock_reset</span>
+<div class="text-body-sm font-body-sm">
+<span class="font-semibold text-on-surface">Deactivation Shortcode:</span>
+<span class="text-secondary"> To turn off call forwarding anytime and revert to normal cellular calls, simply dial </span>
+<span class="font-mono font-bold text-primary bg-surface px-1.5 py-0.5 rounded border border-outline" id="deact-code">*402</span>
+<span class="text-secondary"> from your registered phone.</span>
+</div>
+</div>
+</div>
+<!-- Quick Comparison Matrix for Indian Telcos -->
+<div class="mt-8 pt-6 border-t border-outline">
+<h3 class="font-label-lg text-label-lg text-on-surface mb-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="compare_arrows">compare_arrows</span>
+              Quick Reference for All Indian Telcos
+            </h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<!-- Airtel Mini Card -->
+<div class="p-3 rounded-lg border border-outline bg-surface-bright">
+<div class="flex items-center justify-between mb-1">
+<span class="font-semibold text-on-surface text-label-md">Bharti Airtel</span>
+<span class="text-[10px] font-mono text-secondary">GSM Standard</span>
+</div>
+<div class="text-xs text-secondary mb-1">Activation Code:</div>
+<div class="font-mono text-xs font-semibold text-primary bg-surface-container-low p-1.5 rounded border border-outline-variant mb-1">
+                  **21*08047369200#
+                </div>
+<div class="text-[11px] text-secondary font-mono">Deactivate: ##21#</div>
+</div>
+<!-- Vi Mini Card -->
+<div class="p-3 rounded-lg border border-outline bg-surface-bright">
+<div class="flex items-center justify-between mb-1">
+<span class="font-semibold text-on-surface text-label-md">Vodafone Idea</span>
+<span class="text-[10px] font-mono text-secondary">GSM Standard</span>
+</div>
+<div class="text-xs text-secondary mb-1">Activation Code:</div>
+<div class="font-mono text-xs font-semibold text-primary bg-surface-container-low p-1.5 rounded border border-outline-variant mb-1">
+                  **21*08047369200#
+                </div>
+<div class="text-[11px] text-secondary font-mono">Deactivate: ##21#</div>
+</div>
+<!-- BSNL Mini Card -->
+<div class="p-3 rounded-lg border border-outline bg-surface-bright">
+<div class="flex items-center justify-between mb-1">
+<span class="font-semibold text-on-surface text-label-md">BSNL Cellular</span>
+<span class="text-[10px] font-mono text-secondary">CDMA/GSM</span>
+</div>
+<div class="text-xs text-secondary mb-1">Activation Code:</div>
+<div class="font-mono text-xs font-semibold text-primary bg-surface-container-low p-1.5 rounded border border-outline-variant mb-1">
+                  **21*08047369200#
+                </div>
+<div class="text-[11px] text-secondary font-mono">Deactivate: ##21#</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD C: Alternative Cloud Number Provisioning -->
+<div class="bg-gradient-to-br from-surface to-surface-container-low rounded-xl border border-outline p-6 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-outline mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="domain_verification">domain_verification</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Need a Separate Business Line? Provision a Virtual Cloud Number</h3>
+</div>
+<p class="text-secondary text-body-sm font-body-sm">
+                Acquire an Indian landline or toll-free number with zero SIM requirement. Directly routed to Callivaan AI engine.
+              </p>
+</div>
+<button class="px-3.5 py-2 rounded-lg bg-surface border border-primary text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md transition flex items-center gap-1.5 flex-shrink-0 self-start sm:self-auto" type="button">
+<span>View Plans</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- City/STD Code options -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+<div class="p-2.5 rounded-lg border border-outline bg-surface text-center hover:border-primary-container cursor-pointer transition">
+<span class="text-xs font-mono font-semibold text-primary">Delhi NCR</span>
+<span class="block text-[11px] font-mono text-secondary tabular-nums">STD 011</span>
+</div>
+<div class="p-2.5 rounded-lg border border-outline bg-surface text-center hover:border-primary-container cursor-pointer transition">
+<span class="text-xs font-mono font-semibold text-primary">Mumbai</span>
+<span class="block text-[11px] font-mono text-secondary tabular-nums">STD 022</span>
+</div>
+<div class="p-2.5 rounded-lg border border-outline bg-surface text-center hover:border-primary-container cursor-pointer transition">
+<span class="text-xs font-mono font-semibold text-primary">Bengaluru</span>
+<span class="block text-[11px] font-mono text-secondary tabular-nums">STD 080</span>
+</div>
+<div class="p-2.5 rounded-lg border border-outline bg-surface text-center hover:border-primary-container cursor-pointer transition">
+<span class="text-xs font-mono font-semibold text-primary">Hyderabad</span>
+<span class="block text-[11px] font-mono text-secondary tabular-nums">STD 040</span>
+</div>
+<div class="p-2.5 rounded-lg border border-outline bg-surface text-center hover:border-primary-container cursor-pointer transition col-span-2 sm:col-span-1">
+<span class="text-xs font-mono font-semibold text-primary">All-India Toll Free</span>
+<span class="block text-[11px] font-mono text-secondary tabular-nums">1800 Series</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ===================================================================== -->
+<!-- RIGHT COLUMN (35% width: 4 of 12 cols): Route Verification & Telemetry -->
+<!-- ===================================================================== -->
+<div class="lg:col-span-4 space-y-6">
+<!-- CARD 1: Live Route Verification Dialer -->
+<div class="bg-surface rounded-xl border border-outline p-6 shadow-sm sticky top-20">
+<div class="flex items-center justify-between pb-3 border-b border-outline mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="satellite_alt">satellite_alt</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Route Verification</h3>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="text-[11px] font-mono text-emerald-700 font-semibold uppercase">Gateway Live</span>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Your Business Phone Number</label>
+<div class="relative rounded-lg shadow-sm">
+<input class="w-full px-3 py-2 rounded-lg border border-outline bg-surface-container-low font-mono text-on-surface text-body-sm focus:border-primary focus:ring-1 focus:ring-primary pl-9 tabular-nums" id="phone-input" type="text" value="+91 98765 43210"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="phone">phone</span>
+</div>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-secondary hover:text-primary" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+</div>
+<p class="text-[11px] text-secondary mt-1">SIM currently in your physical handset</p>
+</div>
+<!-- Verification Action Button -->
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-primary active:scale-[0.99] transition shadow-sm" id="verify-btn" onclick="startVerificationProcess()" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="cell_tower">cell_tower</span>
+<span>Place Verification Test Call</span>
+</button>
+<!-- LIVE TELEMETRY CONSOLE / STEP TRACKER -->
+<div class="p-3.5 rounded-lg bg-surface-container-low border border-outline space-y-3 font-mono text-xs">
+<div class="text-[11px] font-semibold text-secondary uppercase tracking-wider flex items-center justify-between pb-1 border-b border-outline">
+<span>Interconnect Telemetry</span>
+<span class="text-primary font-mono tabular-nums">SIP 200 OK</span>
+</div>
+<!-- Telemetry Step 1 -->
+<div class="flex items-start gap-2.5" id="tele-step-1">
+<span class="material-symbols-outlined text-[16px] text-emerald-600 mt-0.5 fill" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<p class="text-on-surface font-medium">Pinging carrier interconnect...</p>
+<p class="text-[11px] text-secondary">Jio Telephony Core: OK (RTT: 18ms)</p>
+</div>
+</div>
+<!-- Telemetry Step 2 -->
+<div class="flex items-start gap-2.5" id="tele-step-2">
+<span class="material-symbols-outlined text-[16px] text-emerald-600 mt-0.5 fill" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<p class="text-on-surface font-medium">Forwarding to Callivaan media gateway</p>
+<p class="text-[11px] text-secondary">Gateway Mumbai-1 (AWS ap-south-1)</p>
+</div>
+</div>
+<!-- Telemetry Step 3 -->
+<div class="flex items-start gap-2.5" id="tele-step-3">
+<span class="material-symbols-outlined text-[16px] text-emerald-600 mt-0.5 fill" data-icon="check_circle">check_circle</span>
+<div class="flex-1">
+<p class="text-on-surface font-medium">AI voice assistant answered</p>
+<p class="text-[11px] text-secondary">First-audio response: <span class="text-primary font-bold">340ms latency</span></p>
+</div>
+</div>
+</div>
+<!-- Verified Status Callout -->
+<div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200 flex items-start gap-2.5" id="verified-callout">
+<span class="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5" data-icon="verified">verified</span>
+<div>
+<div class="font-label-md text-label-md text-emerald-900 font-semibold">Route Verified &amp; Active!</div>
+<p class="text-xs text-emerald-700 leading-snug mt-0.5">
+                  Incoming forwarded calls will now be answered by your AI assistant within 1 ring cycle.
+                </p>
+</div>
+</div>
+<!-- Audio Waveform Telemetry Visualizer -->
+<div class="p-3 rounded-lg border border-outline bg-surface-container-lowest">
+<div class="flex items-center justify-between text-xs text-secondary mb-2">
+<span class="flex items-center gap-1 font-mono text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  G.711u Codec (64 kbps)
+                </span>
+<span class="font-mono text-[11px] tabular-nums">00:00:14</span>
+</div>
+<div class="flex items-center gap-1 h-8 px-2 bg-surface-container-low rounded border border-outline">
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-7 rounded-full animate-pulse"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary h-6 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-7 rounded-full"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-6 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+<div class="w-1 bg-primary h-1 rounded-full"></div>
+<div class="w-1 bg-primary h-4 rounded-full"></div>
+<div class="w-1 bg-primary h-6 rounded-full"></div>
+<div class="w-1 bg-primary h-2 rounded-full"></div>
+<div class="w-1 bg-primary h-5 rounded-full"></div>
+<div class="w-1 bg-primary h-3 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 2: Indian Carrier Practical Tips & Troubleshooting -->
+<div class="bg-surface rounded-xl border border-outline p-6 shadow-sm">
+<div class="flex items-center gap-2 pb-3 border-b border-outline mb-3">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="help">help</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Carrier Troubleshooting</h3>
+</div>
+<div class="divide-y divide-outline text-body-sm font-body-sm">
+<!-- Tip 1 -->
+<div class="py-3">
+<button class="w-full flex items-center justify-between text-left font-label-md text-label-md font-semibold text-on-surface group" type="button">
+<span>What if call forwarding gives a busy tone or fails?</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+<p class="mt-1 text-xs text-secondary leading-relaxed">
+                Ensure your SIM card has an active unlimited calling pack or sufficient main balance. Carrier call forwarding relies on standard voice outgoing routing rules.
+              </p>
+</div>
+<!-- Tip 2 -->
+<div class="py-3">
+<button class="w-full flex items-center justify-between text-left font-label-md text-label-md font-semibold text-on-surface group" type="button">
+<span>Does call forwarding cost extra per minute?</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+<p class="mt-1 text-xs text-secondary leading-relaxed">
+                Forwarded minutes utilize the standard unlimited voice calling quota bundled with your normal Jio, Airtel, or Vi prepaid/postpaid plan. No special VAS fees apply.
+              </p>
+</div>
+<!-- Tip 3 -->
+<div class="py-3">
+<button class="w-full flex items-center justify-between text-left font-label-md text-label-md font-semibold text-on-surface group" type="button">
+<span>Using a Dual SIM phone?</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+<p class="mt-1 text-xs text-secondary leading-relaxed">
+                Ensure you dial the shortcode explicitly using the physical SIM slot assigned to your business number (+91 98765 43210), not your secondary personal SIM.
+              </p>
+</div>
+</div>
+</div>
+<!-- CARD 3: Priority Activation Support -->
+<div class="bg-surface-container-low rounded-xl border border-outline p-5 shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Need help activating?</div>
+<p class="text-xs text-secondary">Our voice engineering desk is available</p>
+</div>
+</div>
+<div class="space-y-2">
+<a class="w-full py-2 px-3 rounded-lg bg-surface border border-outline hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition" href="https://wa.me/918047369200" target="_blank">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]" data-icon="chat">chat</span>
+<span>Direct WhatsApp Desk</span>
+</a>
+<div class="text-center">
+<span class="text-xs text-secondary">24/7 Priority Hotline: </span>
+<a class="text-xs font-mono font-bold text-primary hover:underline tabular-nums" href="tel:+918047369200">+91 80 4736 9200</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- 4. MINIMALIST COMPLIANCE FOOTER                                           -->
+<!-- ========================================================================= -->
+<footer class="mt-auto border-t border-outline bg-surface text-secondary py-8 text-xs font-body-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+<!-- Telephony Operational Badges -->
+<div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-outline">
+<div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-emerald-600 text-[16px]" data-icon="verified_user">verified_user</span>
+            TRAI &amp; DoT Compliant Telephony
+          </span>
+<span class="text-outline-variant">|</span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="lock">lock</span>
+            256-bit TLS Audio Stream Encryption
+          </span>
+<span class="text-outline-variant">|</span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="cloud_done">cloud_done</span>
+            Sovereign Data Hosting: Mumbai (AWS ap-south-1)
+          </span>
+</div>
+<div class="flex items-center gap-2 text-[11px] font-mono">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>Operational Telemetry: All Gateways Normal</span>
+</div>
+</div>
+<!-- Copyright & Meta -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-secondary text-[11px]">
+<div>
+<span>© 2025 Callivaan AI Technologies Private Limited. All rights reserved. CIN: U72900KA2023PTC174829.</span>
+</div>
+<div class="flex items-center gap-4">
+<a class="hover:text-primary transition" href="#">Telephony Service Terms</a>
+<a class="hover:text-primary transition" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition" href="#">TRAI DND Compliance</a>
+<a class="hover:text-primary transition" href="#">API Documentation</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- ========================================================================= -->
+<!-- INLINE VANILLA JAVASCRIPT FOR MICRO-INTERACTIONS                          -->
+<!-- ========================================================================= -->
+<script>
+    // Carrier switching state data
+    const carrierConfigs = {
+      jio: {
+        ussd: '*401*08047369200',
+        telUrl: 'tel:*401*08047369200',
+        deact: '*402',
+        name: 'Reliance Jio'
+      },
+      airtel: {
+        ussd: '**21*08047369200#',
+        telUrl: 'tel:**21*08047369200%23',
+        deact: '##21#',
+        name: 'Bharti Airtel'
+      },
+      vi: {
+        ussd: '**21*08047369200#',
+        telUrl: 'tel:**21*08047369200%23',
+        deact: '##21#',
+        name: 'Vodafone Idea (Vi)'
+      },
+      bsnl: {
+        ussd: '**21*08047369200#',
+        telUrl: 'tel:**21*08047369200%23',
+        deact: '##21#',
+        name: 'BSNL Mobile'
+      }
+    };
+
+    let activeCarrier = 'jio';
+
+    function selectCarrier(carrierKey) {
+      activeCarrier = carrierKey;
+      const data = carrierConfigs[carrierKey];
+      if (!data) return;
+
+      // Update Tab Styles
+      document.querySelectorAll('.carrier-tab').forEach(tab => {
+        tab.classList.remove('bg-surface', 'text-primary', 'shadow-sm', 'border', 'border-outline', 'font-semibold');
+        tab.classList.add('text-secondary', 'font-medium');
+      });
+
+      const activeTabEl = document.getElementById(`tab-${carrierKey}`);
+      if (activeTabEl) {
+        activeTabEl.classList.add('bg-surface', 'text-primary', 'shadow-sm', 'border', 'border-outline', 'font-semibold');
+        activeTabEl.classList.remove('text-secondary', 'font-medium');
+      }
+
+      // Update USSD Display
+      const ussdDisplay = document.getElementById('ussd-display');
+      if (ussdDisplay) {
+        ussdDisplay.textContent = data.ussd;
+      }
+
+      // Update Deactivation Display
+      const deactCode = document.getElementById('deact-code');
+      if (deactCode) {
+        deactCode.textContent = data.deact;
+      }
+    }
+
+    function copyUssdCode() {
+      const code = carrierConfigs[activeCarrier].ussd;
+      navigator.clipboard.writeText(code).then(() => {
+        const copyText = document.getElementById('copy-text');
+        const copyIcon = document.getElementById('copy-icon');
+        copyText.textContent = 'Copied!';
+        copyIcon.textContent = 'check';
+        setTimeout(() => {
+          copyText.textContent = 'Copy Code';
+          copyIcon.textContent = 'content_copy';
+        }, 2000);
+      });
+    }
+
+    function startVerificationProcess() {
+      const btn = document.getElementById('verify-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin" data-icon="sync">sync</span><span>Dialing Handset &amp; Testing Route...</span>`;
+      btn.disabled = true;
+
+      // Simulate verification telemetry
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span><span>Route Verified Successfully</span>`;
+        btn.classList.remove('bg-primary-container', 'hover:bg-primary');
+        btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        
+        const callout = document.getElementById('verified-callout');
+        if (callout) {
+          callout.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 1600);
+    }
+
+    function triggerTestCallFlow() {
+      startVerificationProcess();
+    }
+  </script>
+</body></html>

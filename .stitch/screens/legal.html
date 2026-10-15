@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callivaan | Trust, Privacy &amp; Telecom Regulatory Compliance</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms and container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim from Design System -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#5a6278",
+            "surface-bright": "#fbf8ff",
+            "surface-container": "#f1f4fa",
+            "surface-container-high": "#e8e7f2",
+            "on-surface": "#172033",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f1f0fb",
+            "primary-container": "#3157d5",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#e4e8f0",
+            "on-primary-container": "#d8ddff",
+            "error-container": "#fef3f2",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-container-low": "#f3f2fe",
+            "secondary-fixed-dim": "#bdc6e0",
+            "primary": "#063cbc",
+            "primary-fixed": "#dde1ff",
+            "inverse-primary": "#b7c4ff",
+            "surface-dim": "#f6f8fc",
+            "surface-container-highest": "#dee5f0",
+            "primary-fixed-dim": "#b7c4ff",
+            "outline-variant": "#c4c5d6",
+            "surface": "#ffffff",
+            "on-secondary-fixed-variant": "#3e475b",
+            "secondary-container": "#d7dff9",
+            "on-error": "#ffffff",
+            "tertiary": "#475467",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "tertiary-fixed": "#ffdbcc",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#0038b6",
+            "surface-variant": "#e2e1ec",
+            "on-surface-variant": "#667085",
+            "secondary": "#555e74",
+            "on-tertiary-container": "#ffd6c5",
+            "on-primary-fixed": "#001452",
+            "on-secondary-fixed": "#121b2e",
+            "on-background": "#1a1b23",
+            "background": "#fbf8ff",
+            "on-tertiary-fixed": "#351000",
+            "tertiary-container": "#a84200",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#2f3038",
+            "on-primary": "#ffffff",
+            "secondary-fixed": "#d9e2fc",
+            "surface-tint": "#2c53d1",
+            "error": "#d92d20"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "48px",
+            "gutter": "24px",
+            "space-xxl": "64px",
+            "space-md": "24px",
+            "margin": "48px",
+            "space-xs": "4px",
+            "space-sm": "12px",
+            "space-lg": "32px",
+            "margin-mobile": "20px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-secondary-container selection:text-primary">
+<!-- TOP APP BAR / NAVIGATION -->
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline sticky top-0 z-50 shadow-sm">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+<!-- Unified Callivaan Brand Logo -->
+<a class="flex items-center gap-3 group" href="#">
+<!-- 5-bar vertical audio soundwave icon (Cobalt Blue) -->
+<div class="flex items-center gap-0.5 h-6 px-1">
+<span class="w-1 bg-primary-container h-3 rounded-full"></span>
+<span class="w-1 bg-primary-container h-5 rounded-full"></span>
+<span class="w-1 bg-primary-container h-6 rounded-full"></span>
+<span class="w-1 bg-primary-container h-4 rounded-full"></span>
+<span class="w-1 bg-primary-container h-2 rounded-full"></span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight">Callivaan</span>
+<span class="bg-primary/10 text-primary text-label-sm font-label-sm px-2 py-0.5 rounded-full border border-primary/20">VOICE AI</span>
+</a>
+<!-- Center Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">Home</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">How It Works</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">Pricing</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">APK Download</a>
+<a class="text-label-lg font-label-lg text-primary font-semibold relative py-5 flex items-center gap-1.5" href="#">
+<span>Trust &amp; Compliance</span>
+<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-container rounded-full"></span>
+</a>
+</nav>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<a class="text-label-lg font-label-lg text-secondary hover:text-on-surface transition-colors duration-150 px-3 py-2" href="#">
+          Sign In
+        </a>
+<a class="bg-primary-container hover:bg-primary text-on-primary text-label-lg font-label-lg px-4 py-2 rounded-lg shadow-sm transition duration-150 ease-in-out active:scale-95" href="#">
+          Start Free Trial
+        </a>
+</div>
+</div>
+</header>
+<!-- PAGE HEADER & BANNER SECTION -->
+<section class="bg-surface-dim border-b border-outline">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-10">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Trust &amp; Legal</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-medium">Policy Center</span>
+</nav>
+<!-- Main Headline & Subtitle -->
+<div class="max-w-4xl">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-3">
+          Trust, Privacy &amp; Regulatory Compliance
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed mb-6">
+          Clear, transparent rules governing our cloud telephony platform, caller data handling, TRAI/DoT compliance, and subscription guarantees.
+        </p>
+<!-- Document Metadata Stamp -->
+<div class="inline-flex flex-wrap items-center gap-3 bg-surface border border-outline px-4 py-2.5 rounded-lg shadow-xs">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="text-label-sm font-label-sm font-semibold">Statutory Compliance Verified</span>
+</div>
+<span class="h-3.5 w-px bg-outline"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Effective Date: 13 October 2026</span>
+<span class="h-3.5 w-px bg-outline"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Document Version: 2.1</span>
+<span class="h-3.5 w-px bg-outline"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Jurisdiction: Mumbai, India</span>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN TWO-COLUMN CONTENT CANVAS -->
+<main class="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 flex-1">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: Sticky Policy Navigation & Statutory Desk (28% -> ~3.5 / 12 cols, use col-span-4 on lg) -->
+<aside class="lg:col-span-4 sticky top-24 space-y-6">
+<!-- Document Table of Contents Card -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-5 shadow-xs">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-outline">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold tracking-wider">LEGAL SECTIONS</span>
+<span class="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-secondary font-mono">5 Modules</span>
+</div>
+<nav class="space-y-1.5" id="policy-nav">
+<!-- Tab 1 -->
+<a class="group flex items-start gap-3 p-3 rounded-lg bg-surface-container-low border-l-4 border-primary-container text-primary transition-all" href="#terms-of-service">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">gavel</span>
+<div>
+<p class="text-label-md font-label-md font-semibold text-primary">Terms of Service</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Usage boundaries &amp; fair use</p>
+</div>
+</a>
+<!-- Tab 2 -->
+<a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-surface-dim border-l-4 border-transparent text-on-surface-variant hover:text-on-surface transition-all" href="#privacy-audio">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">mic</span>
+<div>
+<p class="text-label-md font-label-md font-medium text-on-surface group-hover:text-primary transition-colors">Privacy &amp; Caller Audio</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Consent, transcripts &amp; zero PII</p>
+</div>
+</a>
+<!-- Tab 3 -->
+<a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-surface-dim border-l-4 border-transparent text-on-surface-variant hover:text-on-surface transition-all" href="#telecom-trai">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">cell_tower</span>
+<div>
+<p class="text-label-md font-label-md font-medium text-on-surface group-hover:text-primary transition-colors">Telecom &amp; TRAI Compliance</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">DoT forwarding, Jio/Airtel &amp; DPDP</p>
+</div>
+</a>
+<!-- Tab 4 -->
+<a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-surface-dim border-l-4 border-transparent text-on-surface-variant hover:text-on-surface transition-all" href="#data-retention">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">auto_delete</span>
+<div>
+<p class="text-label-md font-label-md font-medium text-on-surface group-hover:text-primary transition-colors">Data Retention &amp; Deletion</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">90-day purge &amp; cryptographic wipe</p>
+</div>
+</a>
+<!-- Tab 5 -->
+<a class="group flex items-start gap-3 p-3 rounded-lg hover:bg-surface-dim border-l-4 border-transparent text-on-surface-variant hover:text-on-surface transition-all" href="#subscription-billing">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">credit_card</span>
+<div>
+<p class="text-label-md font-label-md font-medium text-on-surface group-hover:text-primary transition-colors">Subscription &amp; Refunds</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Minutes, grace overages &amp; GST</p>
+</div>
+</a>
+</nav>
+<!-- Download Action -->
+<div class="mt-4 pt-4 border-t border-outline">
+<button class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-outline bg-surface-container hover:bg-surface-container-high transition-colors text-left group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<span class="text-label-sm font-label-sm font-medium text-on-surface group-hover:text-primary transition-colors">Download Legal Pack (v2.1)</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">640 KB</span>
+</button>
+</div>
+</div>
+<!-- Statutory Grievance & DPO Desk Card -->
+<div class="bg-surface-dim border border-outline rounded-xl p-5 shadow-xs">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-[20px]">shield_person</span>
+<h3 class="text-label-md font-label-md font-bold text-on-surface">Statutory Compliance &amp; DPO Desk</h3>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+            Under Rule 5(9) of the Information Technology (Intermediary Guidelines) Rules, Indian business accounts have access to an escalated nodal contact.
+          </p>
+<dl class="space-y-2.5 text-body-sm font-body-sm mb-4">
+<div class="flex flex-col">
+<dt class="text-label-sm font-label-sm text-on-surface-variant">Grievance Officer:</dt>
+<dd class="font-medium text-on-surface">Rajesh V., Compliance Counsel</dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-label-sm font-label-sm text-on-surface-variant">Legal Inquiries Email:</dt>
+<dd><a class="text-primary hover:underline font-medium" href="mailto:legal@callivaan.com">legal@callivaan.com</a></dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-label-sm font-label-sm text-on-surface-variant">Mandated Turnaround SLA:</dt>
+<dd class="text-on-surface">Acknowledgment within 24 hours; resolution within 15 business days.</dd>
+</div>
+</dl>
+<div class="pt-3 border-t border-outline flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>CIN: U72900MH2024PTC412980</span>
+</div>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Policy Content Modules (72% -> col-span-8 on lg) -->
+<article class="lg:col-span-8 space-y-12">
+<!-- SECTION 1: Core Terms & Platform Service Boundaries -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-6 md:p-8 shadow-xs scroll-mt-24" id="terms-of-service">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">SECTION 01</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Last updated: Oct 2026</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-4">
+            Core Terms &amp; Platform Service Boundaries
+          </h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>
+              These Terms of Service constitute a legally binding contractual framework between <strong class="text-on-surface font-semibold">Callivaan AI Telephony Technologies Private Limited</strong> ("Callivaan", "we", "our") and the enterprise or proprietor utilizing our automated voice telephony infrastructure ("Customer", "Subscriber").
+            </p>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">1.1 Scope of Telephony Receptionist</h3>
+<p>
+              Callivaan provides an automated AI-assisted voice receptionist that interfaces with regular carrier inbound voice streams to answer queries, record appointment intent, relay store schedules, and summarize prospective client data into connected dashboard ledgers and WhatsApp dispatch queues.
+            </p>
+<!-- Prominent Non-Emergency Telecom Disclaimer Callout -->
+<div class="bg-error-container border border-error/20 rounded-xl p-5 my-6">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[24px] mt-0.5">emergency_home</span>
+<div>
+<h4 class="text-headline-sm font-headline-sm text-on-error-container mb-1">
+                    Explicit Non-Emergency Telecommunications Disclaimer
+                  </h4>
+<p class="text-body-sm font-body-sm text-on-surface leading-relaxed">
+                    Callivaan Voice AI is engineered solely for commercial appointments, operational inquiry triage, and business communications. Callivaan is <strong>NOT</strong> an emergency dispatch network, PSAP terminal, or public safety provider. Subscribers must never market or direct callers to Callivaan numbers for life-critical, police, fire, ambulance, or hazardous emergencies. Caller lines requiring immediate rescue should dial National Emergency Number <strong>112</strong>, Police <strong>100</strong>, Fire <strong>101</strong>, or Health Emergencies <strong>108</strong> directly.
+                  </p>
+</div>
+</div>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">1.2 Business Knowledge Integrity &amp; Agent Autonomy</h3>
+<p>
+              The voice agent speaks strictly within the operational boundaries, product lists, pricing catalogs, and operating hours provided by the business account administrator. Callivaan disclaims liability for any unverified promises made outside explicit knowledge-base constraints if the subscriber intentionally inputs erroneous data into the prompt engine.
+            </p>
+</div>
+</section>
+<!-- SECTION 2: Privacy Policy, Audio Consent & Call Summaries -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-6 md:p-8 shadow-xs scroll-mt-24" id="privacy-audio">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">SECTION 02</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">TRAI Consent Protocol</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-4">
+            Privacy Policy, Audio Consent &amp; Call Summaries
+          </h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>
+              We treat caller audio with stringent cryptographic discipline. Under Indian digital data frameworks, audio waveforms constitute sensitive data and are governed by strict recording and summarization standards.
+            </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+<div class="bg-surface-dim border border-outline rounded-lg p-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">mic_off</span>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Default Audio State: Disabled</h4>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Full dual-channel call recording is disabled by default across all newly provisioned accounts. Only speech-to-text semantic tokens are processed in volatile memory.
+                </p>
+</div>
+<div class="bg-surface-dim border border-outline rounded-lg p-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">record_voice_over</span>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface">Mandatory Audio Disclaimer</h4>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  When recording is activated by the subscriber, an unskippable prompt ("This call is answered by an automated voice assistant and recorded for service quality") executes before caller speech processing.
+                </p>
+</div>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">2.1 Structured Lead Extraction &amp; Minimization</h3>
+<p>
+              Callivaan algorithms isolate only relevant operational attributes from caller dialogue to deliver structured WhatsApp notifications:
+            </p>
+<ul class="list-disc pl-5 space-y-1 text-body-sm font-body-sm text-on-surface-variant">
+<li>Caller Identifier &amp; Name (as verbally stated or resolved via carrier header)</li>
+<li>Requested Service, SKU, or Appointment Date and Time Window</li>
+<li>Call Urgency Level and Caller Summary Note</li>
+</ul>
+<div class="bg-surface-container-low border border-primary/20 rounded-lg p-4 mt-4">
+<div class="flex items-center gap-2 text-primary font-semibold text-label-md font-label-md mb-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Zero Third-Party PII Monetization Guarantee</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+                Callivaan does not sell, lease, exchange, broker, or transmit customer contact books or caller phone numbers to ad networks, loan telemarketers, data aggregators, or unauthorized LLM training repositories.
+              </p>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Indian Telecommunications & Regulatory Compliance -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-6 md:p-8 shadow-xs scroll-mt-24" id="telecom-trai">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">SECTION 03</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">DoT &amp; TRAI Aligned</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-4">
+            Indian Telecommunications &amp; TRAI Regulatory Compliance
+          </h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>
+              Callivaan operates within the official cloud telephony, Virtual Private Network (VPN), and Machine-to-Machine/Intermediary guidance promulgated by the <strong class="text-on-surface">Department of Telecommunications (DoT)</strong> and the <strong class="text-on-surface">Telecom Regulatory Authority of India (TRAI)</strong>.
+            </p>
+<!-- Telecom Carrier Table -->
+<div class="border border-outline rounded-lg overflow-hidden my-4">
+<table class="w-full text-left border-collapse text-body-sm font-body-sm">
+<thead>
+<tr class="bg-surface-container border-b border-outline text-label-sm font-label-sm text-on-surface">
+<th class="py-3 px-4">Carrier Network</th>
+<th class="py-3 px-4">Integration Standard</th>
+<th class="py-3 px-4">Interconnect Legality</th>
+<th class="py-3 px-4">DoT Virtual Interconnect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline">
+<tr>
+<td class="py-3 px-4 font-medium text-on-surface">Reliance Jio</td>
+<td class="py-3 px-4 font-mono text-secondary">*401* Conditional Forwarding</td>
+<td class="py-3 px-4 text-primary font-medium">Standard SIP Routing</td>
+<td class="py-3 px-4 text-on-surface-variant">Class-A Gateway Interconnect</td>
+</tr>
+<tr>
+<td class="py-3 px-4 font-medium text-on-surface">Bharti Airtel</td>
+<td class="py-3 px-4 font-mono text-secondary">*21* / *67* Carrier Divert</td>
+<td class="py-3 px-4 text-primary font-medium">Fully Compliant</td>
+<td class="py-3 px-4 text-on-surface-variant">PRI / PRI-over-SIP Trunking</td>
+</tr>
+<tr>
+<td class="py-3 px-4 font-medium text-on-surface">Vodafone Idea (Vi)</td>
+<td class="py-3 px-4 font-mono text-secondary">Conditional Busy / No-Reply</td>
+<td class="py-3 px-4 text-primary font-medium">Fully Compliant</td>
+<td class="py-3 px-4 text-on-surface-variant">TRAI Commercial Trunk Partner</td>
+</tr>
+<tr>
+<td class="py-3 px-4 font-medium text-on-surface">BSNL / MTNL</td>
+<td class="py-3 px-4 font-mono text-secondary">Standard PSTN Call Diversion</td>
+<td class="py-3 px-4 text-primary font-medium">Fully Compliant</td>
+<td class="py-3 px-4 text-on-surface-variant">National Carrier Interconnection</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">3.1 Hardware Interconnect Verification</h3>
+<p>
+              Callivaan utilizes official enterprise SIP trunk gateways supplied by authorized Indian telecom licensees. We do not use, sell, or deploy unauthorized GSM fixed-cellular terminals ("SIM boxes") or bypass lawful interception interfaces defined by the Ministry of Communications.
+            </p>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">3.2 Sovereign Cloud Residency (DPDP Act Compliance)</h3>
+<p>
+              In adherence to the <strong class="text-on-surface">Digital Personal Data Protection Act (DPDP Act 2023)</strong>, 100% of our voice ingestion pipelines, automatic speech recognition inference clusters, and client database storage instances are located strictly in <strong class="text-primary font-semibold">AWS Mumbai Region (ap-south-1)</strong>. No telephone conversation or raw transcription leaves the sovereign borders of India.
+            </p>
+</div>
+</section>
+<!-- SECTION 4: Data Retention & Right-to-be-Forgotten -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-6 md:p-8 shadow-xs scroll-mt-24" id="data-retention">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">SECTION 04</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Retention Standard</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-4">
+            Data Retention &amp; Right-to-be-Forgotten
+          </h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>
+              We believe in bounded retention schedules. Storing inactive customer communications creates unnecessary organizational risk. Our retention architecture operates on three core commitments:
+            </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+<div class="p-4 bg-surface-dim border border-outline rounded-lg">
+<span class="text-label-md font-label-md font-semibold text-primary block mb-1">90-Day Purge Window</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Detailed call logs, caller transcripts, and audio recordings are systematically wiped after 90 days.
+                </p>
+</div>
+<div class="p-4 bg-surface-dim border border-outline rounded-lg">
+<span class="text-label-md font-label-md font-semibold text-primary block mb-1">One-Click Cryptographic Wipe</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Subscribers can purge any caller record or complete history from their portal instantly with zero residue.
+                </p>
+</div>
+<div class="p-4 bg-surface-dim border border-outline rounded-lg">
+<span class="text-label-md font-label-md font-semibold text-primary block mb-1">Free Data Portability</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Export complete structured lead ledgers at any time in industry-standard CSV and JSON files at no charge.
+                </p>
+</div>
+</div>
+<p class="text-body-sm font-body-sm">
+              Any caller requesting total erasure of their telephone interaction under Indian DPDP rights can request an expedited purge through their business counterparty or via our statutory DPO desk at <a class="text-primary hover:underline" href="mailto:legal@callivaan.com">legal@callivaan.com</a>.
+            </p>
+</div>
+</section>
+<!-- SECTION 5: Subscription, Pricing & Refund Policy -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-6 md:p-8 shadow-xs scroll-mt-24" id="subscription-billing">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">SECTION 05</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Billing &amp; Subscriptions</span>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface tracking-tight mb-4">
+            Subscription, Cancellation &amp; Refund Policy
+          </h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>
+              Callivaan provides pre-billed monthly and annual SaaS licensing tiers. All subscriptions operate with clear usage boundaries and zero surprise drops.
+            </p>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">5.1 Included Minutes &amp; Grace Overages</h3>
+<p>
+              Every plan (Starter, Business, Multi-Location) includes a pre-allocated bundle of inbound answered telephony minutes per month. If a high-volume call surge exceeds your bundle, <strong class="text-on-surface">Callivaan does NOT sever in-progress customer phone calls</strong>. Overage minutes are accrued transparently at published standard tier rates and invoiced on your subsequent cycle.
+            </p>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">5.2 Cancellation Guarantee</h3>
+<p>
+              Subscribers may cancel recurring billing at any point directly within the Control Hub settings dashboard with a single click. Cancellation becomes effective immediately at the close of the current paid billing period; no subsequent renewal charges will execute.
+            </p>
+<h3 class="text-headline-sm font-headline-sm text-on-surface pt-2">5.3 GST Tax Compliance &amp; Invoicing</h3>
+<p>
+              Callivaan generates GST-compliant e-invoices with designated HSN/SAC codes (SAC Code: 998431 - Cloud Telephony &amp; Information Technology Services). Indian registered businesses may input their GSTIN identifier to claim legitimate Input Tax Credit (ITC) under GST laws.
+            </p>
+</div>
+</section>
+<!-- OFFICIAL CORPORATE REGISTRAR CALLOUT BOX -->
+<div class="bg-surface-dim border border-outline rounded-xl p-6 shadow-xs">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Official Corporate Registrar Details</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Statutory Identification as per Ministry of Corporate Affairs (MCA), India</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-body-sm font-body-sm">
+<div class="space-y-2">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Legal Entity Name:</span>
+<span class="font-medium text-on-surface">Callivaan AI Telephony Technologies Private Limited</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Corporate Identity Number (CIN):</span>
+<span class="font-mono text-on-surface font-semibold">U72900MH2024PTC412980</span>
+</div>
+</div>
+<div class="space-y-2">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Registered Office:</span>
+<span class="text-on-surface">Level 4, Tech Park East, Bandra-Kurla Complex (BKC), Mumbai 400051, Maharashtra, India.</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Legal &amp; Telecom Support Desk:</span>
+<span class="text-on-surface font-medium">legal@callivaan.com • +91 80 4736 9200</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="bg-surface-container-low border-t border-outline text-on-surface-variant mt-16">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<!-- Brand & Mission Column -->
+<div class="md:col-span-1 space-y-4">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-0.5 h-6 px-1">
+<span class="w-1 bg-primary-container h-3 rounded-full"></span>
+<span class="w-1 bg-primary-container h-5 rounded-full"></span>
+<span class="w-1 bg-primary-container h-6 rounded-full"></span>
+<span class="w-1 bg-primary-container h-4 rounded-full"></span>
+<span class="w-1 bg-primary-container h-2 rounded-full"></span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight">Callivaan</span>
+<span class="bg-primary/10 text-primary text-label-sm font-label-sm px-2 py-0.5 rounded-full font-semibold">VOICE AI</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Next-generation enterprise AI telephony infrastructure purpose-engineered for Indian businesses, compliant with TRAI and DoT guidelines.
+          </p>
+</div>
+<!-- Links Column 1: Product -->
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface mb-3">Product Architecture</h4>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Voice Gateway Routing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">WhatsApp Lead Sync</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Appointment Assistant</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Android Control APK</a></li>
+</ul>
+</div>
+<!-- Links Column 2: Solutions -->
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface mb-3">Industry Solutions</h4>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Healthcare &amp; Clinics</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Automobile Service Centers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Real Estate Agencies</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Enterprise Telephony Hub</a></li>
+</ul>
+</div>
+<!-- Links Column 3: Trust & Legal -->
+<div>
+<h4 class="text-label-md font-label-md font-semibold text-on-surface mb-3">Trust &amp; Compliance</h4>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="hover:text-primary transition-colors" href="#terms-of-service">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#privacy-audio">Privacy &amp; Caller Audio</a></li>
+<li><a class="hover:text-primary transition-colors" href="#telecom-trai">TRAI Telephony Regulations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#data-retention">DPDP Data Retention Schedule</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar with Operational Telemetry & Copyright -->
+<div class="pt-8 border-t border-outline flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm font-body-sm">
+<!-- Operational Telemetry Status Indicator -->
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-on-surface font-medium">Operational Telemetry: Mumbai (ap-south-1) • TRAI &amp; DoT Compliant</span>
+</div>
+<!-- Copyright Notice verbatim from Shared Components -->
+<p class="text-on-surface-variant">
+          © 2025 Callivaan AI Telephony Technologies Pvt Ltd. All rights reserved.
+        </p>
+</div>
+</div>
+</footer>
+<!-- Light Vanilla Script for Synchronized Table of Contents Highlighting -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('#policy-nav a');
+      const sections = document.querySelectorAll('article section');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href').replace('#', '');
+          const label = link.querySelector('p');
+          if (href === currentSectionId) {
+            link.classList.remove('border-transparent', 'hover:bg-surface-dim');
+            link.classList.add('bg-surface-container-low', 'border-primary-container', 'text-primary');
+            if (label) label.classList.add('text-primary');
+          } else {
+            link.classList.remove('bg-surface-container-low', 'border-primary-container', 'text-primary');
+            link.classList.add('border-transparent', 'hover:bg-surface-dim');
+            if (label) label.classList.remove('text-primary');
+          }
+        });
+      });
+    });
+  </script>
+</body></html>

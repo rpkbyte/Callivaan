@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-dim" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Callivaan Mobile App - Inbound Calls Feed</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#d7dff9",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#b7c4ff",
+            "surface-dim": "#f6f8fc",
+            "surface-bright": "#fbf8ff",
+            "on-secondary-fixed": "#121b2e",
+            "error": "#d92d20",
+            "outline": "#e4e8f0",
+            "on-tertiary-fixed": "#351000",
+            "surface-container-low": "#f6f8fc",
+            "surface-container-highest": "#e2e1ec",
+            "surface-container": "#f1f4fa",
+            "tertiary-container": "#a84200",
+            "primary-container": "#3157d5",
+            "surface-tint": "#2c53d1",
+            "primary": "#063cbc",
+            "secondary-fixed-dim": "#bdc6e0",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#444654",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f1f0fb",
+            "on-tertiary-container": "#ffd6c5",
+            "secondary": "#555e74",
+            "surface-container-high": "#e8edf5",
+            "on-background": "#1a1b23",
+            "on-surface": "#1a1b23",
+            "on-primary-fixed": "#001452",
+            "tertiary": "#475467",
+            "secondary-fixed": "#d9e2fc",
+            "on-primary-fixed-variant": "#0038b6",
+            "on-secondary-fixed-variant": "#3e475b",
+            "primary-fixed": "#dde1ff",
+            "inverse-primary": "#b7c4ff",
+            "tertiary-fixed-dim": "#ffb695",
+            "inverse-surface": "#2f3038",
+            "background": "#fbf8ff",
+            "surface": "#ffffff",
+            "outline-variant": "#c4c5d6",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#d8ddff",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffdbcc",
+            "surface-variant": "#e2e1ec",
+            "on-secondary-container": "#5a6278",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "12px",
+            "space-lg": "32px",
+            "gutter": "24px",
+            "space-xs": "4px",
+            "space-xxl": "64px",
+            "margin-mobile": "20px",
+            "space-xl": "48px",
+            "space-md": "24px",
+            "margin": "48px"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-surface-dim font-body-sm text-on-surface antialiased flex justify-center">
+<!-- Mobile Viewport Wrapper (390 x 844 frame layout with responsive scaling) -->
+<div class="relative w-full max-w-[420px] min-h-screen bg-surface-dim flex flex-col pb-24 shadow-sm border-x border-outline">
+<!-- 1. Native Mobile Status Bar & Brand Header -->
+<header class="sticky top-0 z-40 bg-surface border-b border-outline">
+<!-- Status bar simulation -->
+<div class="flex items-center justify-between px-6 pt-2 pb-1 text-on-surface font-label-sm text-label-sm select-none">
+<span class="font-semibold tabular-nums">9:41</span>
+<div class="flex items-center space-x-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px]" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[15px]" data-icon="wifi">wifi</span>
+<span class="material-symbols-outlined text-[17px]" data-icon="battery_full">battery_full</span>
+</div>
+</div>
+<!-- TopAppBar Navigation Cluster -->
+<div class="px-5 py-2.5 flex items-center justify-between">
+<!-- Brand Identity & Logo Waveform -->
+<div class="flex items-center space-x-2.5">
+<!-- 5-bar vertical audio soundwave icon -->
+<div class="flex items-end space-x-0.5 h-5 px-1 py-0.5 rounded bg-primary-container/10">
+<span class="w-1 bg-primary-container rounded-full h-2"></span>
+<span class="w-1 bg-primary-container rounded-full h-4"></span>
+<span class="w-1 bg-primary-container rounded-full h-3"></span>
+<span class="w-1 bg-primary-container rounded-full h-5"></span>
+<span class="w-1 bg-primary-container rounded-full h-2.5"></span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm font-semibold text-primary tracking-tight">Callivaan</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-primary-fixed text-on-primary-fixed">VOICE AI</span>
+</div>
+</div>
+<!-- Quick Actions & Alerts -->
+<div class="flex items-center space-x-2">
+<button aria-label="Notifications" class="relative p-1.5 rounded-lg text-secondary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+<button class="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-surface-container-high text-primary hover:bg-secondary-container transition-colors font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]" data-icon="phone_forwarded">phone_forwarded</span>
+<span>Test</span>
+</button>
+</div>
+</div>
+<!-- Business Tenant Switcher Bar -->
+<div class="px-5 pb-3 pt-0.5 flex items-center justify-between">
+<button class="flex items-center space-x-2 px-2.5 py-1.5 bg-surface-container-low border border-outline rounded-lg text-left hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded bg-primary-container text-on-primary font-semibold text-[11px] flex items-center justify-center">
+            SB
+          </div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Shree Balaji Motors</span>
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<!-- Status badge -->
+<div class="flex items-center space-x-1.5 bg-surface-container-low px-2 py-1 rounded border border-outline text-[11px] text-tertiary font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="tabular-nums">340ms</span>
+<span class="text-outline-variant">|</span>
+<span class="tabular-nums">99.98%</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col space-y-4 px-4 pt-3">
+<!-- 2. Live Telephony Status Banner -->
+<div class="bg-surface border border-outline rounded-xl p-3 shadow-none">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Live Forwarding Active</span>
+</div>
+<span class="text-[11px] font-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded border border-outline">SIM 1</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary tabular-nums flex items-center space-x-1 truncate">
+<span class="material-symbols-outlined text-[15px] text-tertiary" data-icon="settings_phone">settings_phone</span>
+<span>Reliance Jio (*401*) → +91 80 4736 9200</span>
+</p>
+</div>
+<!-- 3. Quick Summary Metrics Row (3-column Bento grid) -->
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface border border-outline rounded-xl p-2.5 flex flex-col justify-between">
+<div class="text-[11px] font-label-sm text-secondary">Calls Today</div>
+<div class="mt-1 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface tabular-nums">24</span>
+<span class="text-[10px] font-label-sm text-emerald-600 font-semibold tabular-nums">+18%</span>
+</div>
+</div>
+<div class="bg-surface border border-outline rounded-xl p-2.5 flex flex-col justify-between">
+<div class="text-[11px] font-label-sm text-secondary">Total Talk Time</div>
+<div class="mt-1 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface tabular-nums">58<span class="text-body-sm font-normal text-secondary">m</span></span>
+<span class="text-[10px] font-label-sm text-secondary tabular-nums">avg 2.4m</span>
+</div>
+</div>
+<div class="bg-surface border border-outline rounded-xl p-2.5 flex flex-col justify-between">
+<div class="text-[11px] font-label-sm text-secondary">New Leads</div>
+<div class="mt-1 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md font-semibold text-primary-container tabular-nums">8</span>
+<span class="text-[10px] font-label-sm text-primary font-semibold">High Qual</span>
+</div>
+</div>
+</div>
+<!-- 4. Search & Filter Bar Section -->
+<div class="space-y-2.5">
+<div class="flex items-center space-x-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface border border-outline rounded-lg pl-9 pr-3 py-2 font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" placeholder="Search caller phone or name..." type="text"/>
+</div>
+<button aria-label="Filters" class="p-2 bg-surface border border-outline rounded-lg text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Scrollable Filter Chips -->
+<div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1">
+<button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold whitespace-nowrap shadow-none">
+            All (24)
+          </button>
+<button class="px-3 py-1.5 rounded-full bg-surface border border-outline text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors whitespace-nowrap">
+            Qualified (8)
+          </button>
+<button class="px-3 py-1.5 rounded-full bg-surface border border-outline text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors whitespace-nowrap">
+            Inquiry (11)
+          </button>
+<button class="px-3 py-1.5 rounded-full bg-surface border border-outline text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors whitespace-nowrap">
+            Escalated (3)
+          </button>
+<button class="px-3 py-1.5 rounded-full bg-surface border border-outline text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors whitespace-nowrap">
+            Missed (2)
+          </button>
+</div>
+</div>
+<!-- 5. Inbound Call Activity List -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-label-lg text-label-lg text-on-surface font-semibold">Today's Inbound Stream</h2>
+<span class="font-label-sm text-label-sm text-secondary tabular-nums">Auto-synced just now</span>
+</div>
+<!-- Card 1: Qualified Lead with Detailed Audio Visualizer -->
+<article class="bg-surface border border-outline rounded-xl p-3.5 space-y-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-semibold font-label-md">
+                RV
+              </div>
+<div>
+<h3 class="font-headline-sm text-[16px] leading-tight font-semibold text-on-surface">Rajat Verma</h3>
+<p class="font-body-sm text-body-sm text-secondary tabular-nums">+91 98765 43210</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-secondary tabular-nums">2m ago</div>
+<div class="font-label-sm text-[11px] text-tertiary tabular-nums">Duration 02:14</div>
+</div>
+</div>
+<!-- Metadata Badges -->
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-label-sm font-semibold flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span>Qualified Lead</span>
+</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline text-[11px] font-label-sm">
+              Hinglish
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] font-label-sm">
+              Property Site Visit
+            </span>
+</div>
+<!-- Extracted Intent Box -->
+<div class="bg-surface-container-low border border-outline rounded-lg p-2.5">
+<div class="flex items-center space-x-1 text-primary-container font-label-sm text-[11px] font-semibold mb-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="auto_awesome">auto_awesome</span>
+<span>AI Intent Summary</span>
+</div>
+<p class="font-body-sm text-[13px] leading-snug text-on-surface">
+              Commercial property site visit scheduled for Saturday 4 PM. Inquired about parking clearance.
+            </p>
+</div>
+<!-- Audio Waveform Preview -->
+<div class="flex items-center space-x-2 bg-surface-container-low p-2 rounded-lg border border-outline">
+<button class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="play_arrow" data-weight="fill">play_arrow</span>
+</button>
+<!-- 24-bar audio telemetry visualization -->
+<div class="flex-1 flex items-center space-x-1 h-5 overflow-hidden px-1">
+<span class="w-1 bg-primary-container rounded-full h-2"></span>
+<span class="w-1 bg-primary-container rounded-full h-3"></span>
+<span class="w-1 bg-primary-container rounded-full h-5"></span>
+<span class="w-1 bg-primary-container rounded-full h-4"></span>
+<span class="w-1 bg-primary-container rounded-full h-2"></span>
+<span class="w-1 bg-outline-variant rounded-full h-3"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-2"></span>
+<span class="w-1 bg-outline-variant rounded-full h-5"></span>
+<span class="w-1 bg-outline-variant rounded-full h-3"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-2"></span>
+<span class="w-1 bg-outline-variant rounded-full h-3"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-2"></span>
+<span class="w-1 bg-outline-variant rounded-full h-1"></span>
+</div>
+<span class="font-label-sm text-[11px] text-secondary tabular-nums">02:14</span>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center space-x-2 pt-0.5">
+<a class="flex-1 flex items-center justify-center space-x-1.5 py-2 px-3 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md font-semibold hover:bg-primary transition-colors" href="tel:+919876543210">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span>
+<span>Call Back</span>
+</a>
+<button class="flex items-center justify-center space-x-1 py-2 px-3 bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat">chat</span>
+<span>WhatsApp</span>
+</button>
+<button aria-label="View Details" class="p-2 border border-outline rounded-lg text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Doctor OPD Booking -->
+<article class="bg-surface border border-outline rounded-xl p-3.5 space-y-2.5">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-semibold font-label-md">
+                PS
+              </div>
+<div>
+<h3 class="font-headline-sm text-[16px] leading-tight font-semibold text-on-surface">Priya Sharma</h3>
+<p class="font-body-sm text-body-sm text-secondary tabular-nums">+91 98112 87654</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-secondary tabular-nums">1h ago</div>
+<div class="font-label-sm text-[11px] text-tertiary tabular-nums">Duration 01:40</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-label-sm font-semibold flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span>Qualified Lead</span>
+</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline text-[11px] font-label-sm">
+              English
+            </span>
+</div>
+<p class="font-body-sm text-[13px] leading-snug text-on-surface-variant bg-surface-container-low p-2 rounded-lg border border-outline">
+            Doctor OPD Consultation Friday 5 PM booking confirmed with Dr. Mehra.
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="text-[12px] font-label-sm text-secondary flex items-center space-x-1">
+<span class="material-symbols-outlined text-[15px] text-emerald-600" data-icon="check_circle">check_circle</span>
+<span>Synced with CRM</span>
+</span>
+<a class="inline-flex items-center space-x-1 py-1.5 px-3 bg-surface-container-high text-primary rounded-lg font-label-sm text-label-sm font-semibold hover:bg-secondary-container transition-colors" href="tel:+919811287654">
+<span class="material-symbols-outlined text-[15px]" data-icon="call">call</span>
+<span>Call Back</span>
+</a>
+</div>
+</article>
+<!-- Card 3: Inquiry Call with Quick Audio -->
+<article class="bg-surface border border-outline rounded-xl p-3.5 space-y-2.5">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-semibold font-label-md">
+                AS
+              </div>
+<div>
+<h3 class="font-headline-sm text-[16px] leading-tight font-semibold text-on-surface">Amit Saxena</h3>
+<p class="font-body-sm text-body-sm text-secondary tabular-nums">+91 99887 12345</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-secondary tabular-nums">3h ago</div>
+<div class="font-label-sm text-[11px] text-tertiary tabular-nums">Duration 00:52</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline text-[11px] font-label-sm">
+              Inquiry
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline text-[11px] font-label-sm">
+              Hindi
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[11px] font-label-sm">
+              Service Delivery
+            </span>
+</div>
+<p class="font-body-sm text-[13px] leading-snug text-on-surface-variant bg-surface-container-low p-2 rounded-lg border border-outline">
+            Vehicle general service status check. Requested delivery estimate.
+          </p>
+<div class="flex items-center space-x-2">
+<button class="flex items-center space-x-1.5 py-1 px-2.5 rounded bg-surface-container text-secondary text-[12px] font-label-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[15px]" data-icon="play_circle">play_circle</span>
+<span class="tabular-nums">Audio (00:52)</span>
+</button>
+<div class="flex-1"></div>
+<button class="p-1.5 text-secondary hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Urgent Escalated to Human (Red Accent Strip) -->
+<article class="bg-surface border-l-4 border-l-error border-y border-r border-outline rounded-xl p-3.5 space-y-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-9 h-9 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-semibold font-label-md">
+                VJ
+              </div>
+<div>
+<h3 class="font-headline-sm text-[16px] leading-tight font-semibold text-on-surface">Vikram Joshi</h3>
+<p class="font-body-sm text-body-sm text-secondary tabular-nums">+91 97170 54321</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-secondary tabular-nums">Yesterday</div>
+<div class="font-label-sm text-[11px] text-tertiary tabular-nums">Duration 03:10</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container border border-error/20 text-[11px] font-label-sm font-semibold flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span>Escalated to Human</span>
+</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant border border-outline text-[11px] font-label-sm">
+              Hinglish
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-error-container/50 text-error text-[11px] font-label-sm font-medium">
+              Requires Owner Action
+            </span>
+</div>
+<div class="bg-error-container/20 border border-error/20 rounded-lg p-2.5">
+<div class="flex items-center space-x-1 text-error font-label-sm text-[11px] font-semibold mb-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span>
+<span>Urgent Attention Required</span>
+</div>
+<p class="font-body-sm text-[13px] leading-snug text-on-surface font-medium">
+              Urgent legal injunction query. Caller requested immediate callback from owner.
+            </p>
+</div>
+<!-- Highlighted Urgent Call Action -->
+<div class="pt-0.5">
+<a class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-error text-on-error rounded-lg font-label-md text-label-md font-semibold hover:opacity-95 transition-opacity shadow-sm" href="tel:+919717054321">
+<span class="material-symbols-outlined text-[16px]" data-icon="phone_in_talk">phone_in_talk</span>
+<span>Immediate Call Back</span>
+</a>
+</div>
+</article>
+</section>
+</main>
+<!-- 6. Persistent Bottom Tab Bar (Anchored Shared Component BottomNavBar) -->
+<nav class="fixed bottom-0 max-w-[420px] w-full z-50 flex justify-around items-center px-3 py-1.5 bg-surface border-t border-outline">
+<!-- Calls (Active Destination) -->
+<a class="flex flex-col items-center justify-center text-primary font-label-sm text-label-sm py-1 transition-transform active:scale-95" href="#calls">
+<span class="material-symbols-outlined text-[22px]" data-icon="call" data-weight="fill">call</span>
+<span class="mt-0.5 font-semibold">Calls</span>
+</a>
+<!-- Analytics / Leads Destination -->
+<a class="relative flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm py-1 hover:text-primary transition-colors active:scale-95" href="#analytics">
+<span class="material-symbols-outlined text-[22px]" data-icon="bar_chart">bar_chart</span>
+<span class="mt-0.5">Analytics</span>
+<span class="absolute top-0.5 right-2 px-1 py-0.2 rounded-full text-[9px] font-bold bg-primary-container text-on-primary">8</span>
+</a>
+<!-- Agent Destination -->
+<a class="flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm py-1 hover:text-primary transition-colors active:scale-95" href="#agent">
+<span class="material-symbols-outlined text-[22px]" data-icon="smart_toy">smart_toy</span>
+<span class="mt-0.5">Agent</span>
+</a>
+<!-- Contacts Destination -->
+<a class="flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm py-1 hover:text-primary transition-colors active:scale-95" href="#contacts">
+<span class="material-symbols-outlined text-[22px]" data-icon="contacts">contacts</span>
+<span class="mt-0.5">Contacts</span>
+</a>
+<!-- Settings Destination -->
+<a class="flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm py-1 hover:text-primary transition-colors active:scale-95" href="#settings">
+<span class="material-symbols-outlined text-[22px]" data-icon="settings">settings</span>
+<span class="mt-0.5">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>

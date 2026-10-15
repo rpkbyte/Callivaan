@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Callivaan Mobile App - Voice Agent Persona &amp; Knowledge Setup</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#351000",
+            "surface-container-low": "#f3f2fe",
+            "surface-container-highest": "#e2e1ec",
+            "on-secondary-container": "#5a6278",
+            "on-background": "#1a1b23",
+            "on-tertiary": "#ffffff",
+            "error-container": "#fef3f2",
+            "secondary-fixed-dim": "#bdc6e0",
+            "tertiary": "#475467",
+            "inverse-surface": "#2f3038",
+            "surface-bright": "#ffffff",
+            "on-primary-fixed": "#001452",
+            "inverse-primary": "#b7c4ff",
+            "background": "#fbf8ff",
+            "surface": "#ffffff",
+            "primary-fixed": "#dde1ff",
+            "surface-container": "#eeedf8",
+            "surface-dim": "#dad9e4",
+            "error": "#d92d20",
+            "tertiary-fixed-dim": "#ffb695",
+            "secondary-fixed": "#d9e2fc",
+            "on-primary-fixed-variant": "#0038b6",
+            "tertiary-fixed": "#ffdbcc",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed": "#121b2e",
+            "primary": "#063cbc",
+            "on-tertiary-container": "#ffd6c5",
+            "surface-container-high": "#e8edf5",
+            "on-surface-variant": "#444654",
+            "on-primary": "#ffffff",
+            "outline-variant": "#d0d5dd",
+            "on-surface": "#172033",
+            "secondary": "#555e74",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "primary-container": "#3157d5",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "surface-variant": "#e2e1ec",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f1f0fb",
+            "primary-fixed-dim": "#b7c4ff",
+            "surface-tint": "#2c53d1",
+            "outline": "#e4e8f0",
+            "on-primary-container": "#d8ddff",
+            "tertiary-container": "#a84200",
+            "on-secondary-fixed-variant": "#3e475b",
+            "secondary-container": "#d7dff9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xxl": "64px",
+            "space-xs": "4px",
+            "space-lg": "32px",
+            "space-md": "24px",
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "space-sm": "12px",
+            "space-xl": "48px",
+            "margin": "48px"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Hide scrollbar for clean app experience */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-slate-100 flex justify-center items-center min-h-screen p-0 sm:p-4 text-on-surface">
+<!-- Mobile Viewport Shell (React Native / Expo 390x844 Frame) -->
+<div class="w-full max-w-[390px] h-[844px] bg-[#F6F8FC] rounded-none sm:rounded-[40px] shadow-2xl relative overflow-hidden flex flex-col border border-outline">
+<!-- 1. System Status Bar (iOS Style) -->
+<div class="w-full h-11 bg-surface flex justify-between items-center px-6 pt-1 select-none z-30 shrink-0">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface tabular-nums">9:41</span>
+<div class="flex items-center space-x-2 text-on-surface">
+<!-- Cellular -->
+<svg class="w-4 h-3.5" fill="none" viewbox="0 0 17 12">
+<rect fill="currentColor" height="3.5" rx="0.5" width="2.5" y="8.5"></rect>
+<rect fill="currentColor" height="6" rx="0.5" width="2.5" x="4.5" y="6"></rect>
+<rect fill="currentColor" height="9" rx="0.5" width="2.5" x="9" y="3"></rect>
+<rect fill="currentColor" height="11.5" rx="0.5" width="2.5" x="13.5" y="0.5"></rect>
+</svg>
+<!-- Wifi -->
+<svg class="w-4 h-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 16 12">
+<path d="M1.5 3C5 0 11 0 14.5 3" stroke-linecap="round"></path>
+<path d="M4 6.5C6.5 4.5 9.5 4.5 12 6.5" stroke-linecap="round"></path>
+<circle cx="8" cy="10.5" fill="currentColor" r="1"></circle>
+</svg>
+<!-- Battery -->
+<div class="flex items-center">
+<div class="w-5 h-2.5 border border-on-surface rounded-[3px] p-[1px] flex items-center">
+<div class="h-full w-3.5 bg-on-surface rounded-[1px]"></div>
+</div>
+<div class="w-0.5 h-1 bg-on-surface rounded-r-sm ml-[1px]"></div>
+</div>
+</div>
+</div>
+<!-- Top Navigation Bar & Action -->
+<header class="bg-surface px-4 py-2.5 flex items-center justify-between shadow-sm z-20 shrink-0">
+<div class="flex items-center space-x-2.5">
+<!-- Callivaan Unified 5-bar cobalt blue audio soundwave mark -->
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center p-1.5 border border-outline">
+<div class="flex items-center space-x-[2.5px] h-4">
+<span class="w-[2.5px] h-2 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-3.5 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-4 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-2.5 bg-primary-container rounded-full"></span>
+<span class="w-[2.5px] h-1.5 bg-primary-container rounded-full"></span>
+</div>
+</div>
+<div>
+<h1 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight tracking-tight">Voice Agent Setup</h1>
+<!-- Business switcher dropdown -->
+<div class="flex items-center space-x-1 cursor-pointer">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Shree Balaji Motors</span>
+<span class="material-symbols-outlined text-[15px] text-secondary">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded-full flex items-center space-x-1 shadow-sm active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[16px] text-on-primary">check</span>
+<span class="font-label-sm text-label-sm font-semibold">Save Changes</span>
+</button>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-4 py-3 space-y-3 pb-24">
+<!-- 2. Voice Agent Status & Speech Persona Card -->
+<section class="bg-surface rounded-xl p-3.5 border border-outline space-y-3 shadow-xs">
+<!-- Status indicator header -->
+<div class="flex items-center justify-between pb-2.5 border-b border-outline">
+<div class="flex items-center space-x-2">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Voice Agent Status: Active &amp; Listening</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary font-medium px-2 py-0.5 rounded-full border border-outline tabular-nums">
+            v1.4 Deployed
+          </span>
+</div>
+<!-- Tone Selector Header -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm font-semibold text-on-surface">Speech Persona Tone</label>
+<p class="font-body-sm text-label-sm text-secondary">Determines conversational cadence &amp; politeness level</p>
+</div>
+<!-- Horizontal Tone Options -->
+<div class="space-y-2">
+<!-- Option 1: Selected -->
+<div class="p-2.5 rounded-lg border-2 border-primary-container bg-surface-container-low flex items-start justify-between cursor-pointer">
+<div class="space-y-0.5 pr-2">
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Respectful (Namaste ji)</span>
+<span class="font-label-sm text-[10px] bg-primary text-on-primary px-1.5 py-0.2 rounded font-medium">Default</span>
+</div>
+<p class="font-body-sm text-label-sm text-secondary">Courteous &amp; formal Indian hospitality</p>
+</div>
+<!-- Custom Radio Check -->
+<div class="w-4 h-4 rounded-full border-2 border-primary-container flex items-center justify-center shrink-0 mt-0.5 bg-surface">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+</div>
+<!-- Option 2: Warm & Friendly -->
+<div class="p-2.5 rounded-lg border border-outline bg-surface flex items-start justify-between hover:bg-surface-container-low/40 transition-colors cursor-pointer">
+<div class="space-y-0.5 pr-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Warm &amp; Friendly</span>
+<p class="font-body-sm text-label-sm text-secondary">Approachable everyday tone</p>
+</div>
+<div class="w-4 h-4 rounded-full border border-outline shrink-0 mt-0.5 bg-surface"></div>
+</div>
+<!-- Option 3: Direct & Rapid -->
+<div class="p-2.5 rounded-lg border border-outline bg-surface flex items-start justify-between hover:bg-surface-container-low/40 transition-colors cursor-pointer">
+<div class="space-y-0.5 pr-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Direct &amp; Rapid</span>
+<p class="font-body-sm text-label-sm text-secondary">Fast transactional triage</p>
+</div>
+<div class="w-4 h-4 rounded-full border border-outline shrink-0 mt-0.5 bg-surface"></div>
+</div>
+</div>
+<!-- Language Segmentation -->
+<div class="pt-2 border-t border-outline space-y-1.5">
+<label class="font-label-sm text-label-sm font-semibold text-on-surface">Spoken Language Flow</label>
+<div class="grid grid-cols-3 gap-1.5 p-1 bg-surface-container rounded-lg border border-outline">
+<!-- Active Pill -->
+<button class="bg-primary-container text-on-primary py-1 px-2 rounded-md font-label-sm text-label-sm font-semibold shadow-xs flex items-center justify-center space-x-1 text-center">
+<span>Hinglish Natural</span>
+</button>
+<button class="bg-transparent text-secondary hover:text-on-surface py-1 px-2 rounded-md font-label-sm text-label-sm font-medium flex items-center justify-center text-center">
+<span>Pure Hindi</span>
+</button>
+<button class="bg-transparent text-secondary hover:text-on-surface py-1 px-2 rounded-md font-label-sm text-label-sm font-medium flex items-center justify-center text-center">
+<span>Indian English</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. Inbound Welcome Greeting Card -->
+<section class="bg-surface rounded-xl p-3.5 border border-outline space-y-2.5 shadow-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary-container">graphic_eq</span>
+<span class="font-label-md text-label-md font-semibold">Spoken Greeting</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary tabular-nums">118 / 300 chars</span>
+</div>
+<p class="font-body-sm text-[11px] text-secondary -mt-1">Played immediately following mandatory TRAI tone</p>
+<!-- Script Box -->
+<div class="relative bg-surface-container-low rounded-lg p-2.5 border border-outline focus-within:border-primary-container transition-colors">
+<textarea class="w-full bg-transparent border-0 p-0 text-on-surface font-body-sm text-body-sm focus:ring-0 resize-none leading-relaxed" rows="3">Namaste! Shree Balaji Motors me aapka swagat hai. Main aapka AI service assistant hoon. Aaj main aapki kya sahayata kar sakta hoon?</textarea>
+</div>
+<!-- Action row -->
+<div class="flex items-center justify-between pt-1">
+<button class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-outline bg-surface hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-primary-container">play_arrow</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Listen to Voice Sample</span>
+<div class="flex items-center space-x-0.5 ml-1">
+<span class="w-[2px] h-2 bg-primary-container rounded-full animate-pulse"></span>
+<span class="w-[2px] h-3.5 bg-primary-container rounded-full animate-pulse"></span>
+<span class="w-[2px] h-2.5 bg-primary-container rounded-full animate-pulse"></span>
+</div>
+</button>
+<div class="flex items-center space-x-1 text-secondary text-right">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">verified_user</span>
+<span class="font-label-sm text-[10px]">TRAI AI tag active</span>
+</div>
+</div>
+</section>
+<!-- 4. Operating Hours & Service Catalog Section -->
+<section class="bg-surface rounded-xl p-3.5 border border-outline space-y-3 shadow-xs">
+<!-- Sub-module 1: Operating Hours -->
+<div class="space-y-1.5 pb-2.5 border-b border-outline">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">schedule</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Operating Hours</span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline">Edit Timings</button>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-label-sm flex items-center justify-between tabular-nums">
+<span>Mon - Sat: 9:00 AM to 8:00 PM</span>
+<span class="text-error font-medium">Sun: Closed</span>
+</div>
+</div>
+<!-- Sub-module 2: Knowledge Catalog Summary -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">menu_book</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Knowledge Catalog</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary tabular-nums">14 Services Loaded</span>
+</div>
+<!-- Preview chips -->
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface border border-outline font-label-sm text-label-sm tabular-nums flex items-center space-x-1">
+<span>General Car Service:</span>
+<span class="font-bold text-primary">₹1,999</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface border border-outline font-label-sm text-label-sm tabular-nums flex items-center space-x-1">
+<span>Doorstep Pickup:</span>
+<span class="font-bold text-emerald-600">Free</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface border border-outline font-label-sm text-label-sm tabular-nums flex items-center space-x-1">
+<span>AC Diagnostic:</span>
+<span class="font-bold text-primary">₹499</span>
+</span>
+</div>
+<!-- Add FAQ Button -->
+<button class="w-full py-2 border border-dashed border-primary-container/60 hover:border-primary-container rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low flex items-center justify-center space-x-1.5 text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-label-md text-label-md font-semibold">+ Add Price / FAQ</span>
+</button>
+</div>
+</section>
+<!-- 5. Human Escalation Transfer Fallback Card -->
+<section class="bg-surface rounded-xl p-3.5 border border-outline space-y-2.5 shadow-xs">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-error">phone_forwarded</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Emergency Operator Transfer</span>
+</div>
+<p class="font-body-sm text-[11px] text-secondary -mt-1">Warm transfer call when voice confidence dips or user requests human</p>
+<!-- Phone input field -->
+<div class="flex items-center border border-outline rounded-lg bg-surface-container-low px-2.5 py-1.5 space-x-2">
+<span class="font-label-md text-label-md font-semibold text-secondary tabular-nums border-r border-outline pr-2">+91</span>
+<span class="font-label-md text-label-md font-bold text-on-surface tabular-nums tracking-wide flex-1">98110 55555</span>
+<span class="bg-surface text-secondary px-1.5 py-0.5 rounded text-[10px] font-semibold border border-outline">Owner Handset</span>
+<span class="material-symbols-outlined text-emerald-500 text-[18px]">check_circle</span>
+</div>
+<!-- Triggers / chips -->
+<div class="space-y-1">
+<span class="font-label-sm text-[11px] text-secondary font-medium">Automatic transfer on intent keyword match:</span>
+<div class="flex flex-wrap gap-1">
+<span class="bg-error-container text-error text-[11px] font-medium px-2 py-0.5 rounded border border-error/20">accident</span>
+<span class="bg-error-container text-error text-[11px] font-medium px-2 py-0.5 rounded border border-error/20">emergency</span>
+<span class="bg-surface-container text-secondary text-[11px] font-medium px-2 py-0.5 rounded border border-outline">legal</span>
+<span class="bg-surface-container text-secondary text-[11px] font-medium px-2 py-0.5 rounded border border-outline">dispute</span>
+<span class="bg-surface-container text-secondary text-[11px] font-medium px-2 py-0.5 rounded border border-outline">manager</span>
+</div>
+</div>
+</section>
+<!-- 6. Test Inbound Call Sandbox Banner -->
+<section class="bg-gradient-to-r from-primary-fixed/20 via-surface to-surface rounded-xl p-3 border-2 border-primary-container/30 space-y-2">
+<div class="flex items-start justify-between">
+<div class="space-y-0.5">
+<h3 class="font-label-md text-label-md font-bold text-on-surface">Agent Simulation Sandbox</h3>
+<p class="font-body-sm text-[11px] text-secondary leading-tight">Call your virtual agent instantly inside browser without carrier charges</p>
+</div>
+<div class="w-7 h-7 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">headset_mic</span>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary py-2 px-3 rounded-lg flex items-center justify-center space-x-2 shadow-sm active:scale-98 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span class="font-label-md text-label-md font-bold">Simulate Inbound Test Call</span>
+</button>
+</section>
+</main>
+<!-- 7. Persistent Bottom Tab Bar (Anchored at viewport bottom, Destination Count: 5) -->
+<!-- Executing exact style from Shared Components JSON: style_shell_layout & style_active_navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-xs bg-surface max-w-md mx-auto shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
+<!-- Tab 1: Calls -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span class="font-label-sm text-label-sm mt-0.5">Calls</span>
+</button>
+<!-- Tab 2: Leads -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors duration-150 relative">
+<span class="material-symbols-outlined text-[20px]">contact_phone</span>
+<!-- Notification badge 8 -->
+<span class="absolute top-0 right-1 bg-primary-container text-on-primary text-[10px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold tabular-nums">8</span>
+<span class="font-label-sm text-label-sm mt-0.5">Leads</span>
+</button>
+<!-- Tab 3: Forwarding -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">forward_to_inbox</span>
+<span class="font-label-sm text-label-sm mt-0.5">Forwarding</span>
+</button>
+<!-- Tab 4: Agent (ACTIVE TAB: Exact match mapping from JSON) -->
+<button class="flex flex-col items-center justify-center text-primary font-semibold py-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="font-label-sm text-label-sm mt-0.5">Agent</span>
+</button>
+<!-- Tab 5: Settings -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-sm text-label-sm mt-0.5">Settings</span>
+</button>
+</nav>
+<!-- iOS Home Indicator bar -->
+<div class="w-full h-4 bg-surface flex justify-center items-center z-50 shrink-0">
+<div class="w-28 h-1 bg-slate-300 rounded-full"></div>
+</div>
+</div>
+</body></html>

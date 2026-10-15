@@ -1,0 +1,854 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pricing &amp; Subscription Plans — Callivaan Telephony AI</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#667085",
+            "surface-container-high": "#e8e7f2",
+            "outline-variant": "#c4c5d6",
+            "on-surface": "#1a1b23",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#e2e1ec",
+            "inverse-on-surface": "#f1f0fb",
+            "surface-bright": "#fbf8ff",
+            "tertiary-fixed-dim": "#ffb695",
+            "secondary": "#555e74",
+            "inverse-primary": "#b7c4ff",
+            "on-tertiary-fixed": "#351000",
+            "secondary-fixed-dim": "#bdc6e0",
+            "on-primary-fixed-variant": "#0038b6",
+            "on-background": "#1a1b23",
+            "tertiary-container": "#a84200",
+            "primary-fixed": "#dde1ff",
+            "surface-container-lowest": "#ffffff",
+            "primary": "#063cbc",
+            "on-secondary-fixed-variant": "#3e475b",
+            "primary-fixed-dim": "#b7c4ff",
+            "surface": "#ffffff",
+            "on-primary-container": "#d8ddff",
+            "primary-container": "#3157d5",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#d9e2fc",
+            "surface-dim": "#f6f8fc",
+            "inverse-surface": "#2f3038",
+            "on-tertiary": "#ffffff",
+            "error": "#d92d20",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#ffdbcc",
+            "surface-container": "#eeedf8",
+            "background": "#fbf8ff",
+            "surface-variant": "#e2e1ec",
+            "surface-container-low": "#f6f8fc",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-tertiary-container": "#ffd6c5",
+            "outline": "#e4e8f0",
+            "error-container": "#fef3f2",
+            "secondary-container": "#d7dff9",
+            "surface-tint": "#2c53d1",
+            "on-primary-fixed": "#001452",
+            "on-secondary-fixed": "#121b2e",
+            "tertiary": "#475467",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#5a6278"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "12px",
+            "space-xl": "48px",
+            "space-xs": "4px",
+            "space-md": "24px",
+            "gutter": "24px",
+            "space-xxl": "64px",
+            "space-lg": "32px",
+            "margin": "48px",
+            "margin-mobile": "20px"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-lg": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 9999px;
+      background: #063cbc;
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 9999px;
+      background: #063cbc;
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component Blueprint) -->
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline shadow-sm docked full-width top-0 sticky z-50">
+<div class="w-full max-w-7xl mx-auto px-4 md:px-12 flex items-center justify-between h-14 md:h-16">
+  <div class="flex items-center space-x-4 md:space-x-8">
+    <a class="flex items-center space-x-2" href="#"><div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 3v18M8 8v8M4 11v2M16 6v12M20 10v4"></path></svg></div><div class="flex items-center space-x-2"><span class="text-xl font-bold text-on-surface tracking-tight">Callivaan</span><span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">VOICE AI</span></div></a>
+    <nav class="hidden md:flex items-center space-x-6 text-label-lg font-label-lg">
+      <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">Product</a>
+      <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">Solutions</a>
+      <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">How It Works</a>
+      <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">Control Hub</a>
+      <a class="text-primary font-semibold relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" href="#">Pricing</a>
+    </nav>
+  </div>
+  <div class="flex items-center space-x-2 md:space-x-4">
+    <a class="hidden lg:inline-flex text-label-md font-label-md text-on-surface-variant hover:text-on-surface px-3 py-2 transition-colors" href="#">
+      Download APK
+    </a>
+    <a class="hidden sm:inline-flex items-center text-label-md font-label-md text-primary hover:text-on-primary-fixed-variant px-2.5 py-1.5 md:px-3 md:py-2 font-semibold transition-colors" href="#">
+      Login
+    </a>
+    <a class="inline-flex items-center justify-center px-3 py-1.5 md:px-4 md:py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary text-label-sm md:text-label-md font-label-md font-semibold transition duration-150 ease-in-out shadow-sm active:scale-95 shrink-0" href="#plans">
+      Start Free Trial
+    </a>
+    <button aria-label="Open Menu" class="md:hidden p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low focus:outline-none flex items-center justify-center">
+      <span class="material-symbols-outlined text-headline-sm" data-icon="menu">menu</span>
+    </button>
+  </div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16">
+<!-- Hero & Cadence Selector -->
+<section class="text-center max-w-3xl mx-auto mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline text-label-sm font-label-sm text-secondary font-medium mb-4">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        Transparent Telephony Pricing
+      </div>
+<h1 class="text-display-lg font-display-lg text-on-surface mb-5">
+        Simple, Predictable Plans for Growing Businesses
+      </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-8 leading-relaxed">
+        All plans include 24/7 autonomous call answering in Hindi, English, and Hinglish, instant WhatsApp lead summaries, and direct Android app control. No setup fees. Cancel anytime.
+      </p>
+<!-- Billing Cadence Toggle -->
+<div class="inline-flex items-center p-1.5 rounded-xl bg-surface-container-low border border-outline shadow-inner mb-6">
+<button class="px-5 py-2 rounded-lg text-label-md font-label-md font-semibold transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm" id="cadence-monthly" onclick="switchCadence('monthly')">
+          Monthly Billing
+        </button>
+<button class="px-5 py-2 rounded-lg text-label-md font-label-md font-medium text-on-surface-variant hover:text-on-surface transition-all duration-150 flex items-center gap-2" id="cadence-annual" onclick="switchCadence('annual')">
+<span class="">Annual Billing</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed font-semibold">Save 20%</span>
+</button>
+</div>
+<!-- Reassurance Banner -->
+<div class="flex items-center justify-center gap-2 text-label-sm font-label-sm text-secondary bg-surface-dim border border-outline rounded-lg py-2.5 px-4 max-w-2xl mx-auto">
+<span class="material-symbols-outlined text-primary text-body-sm" data-icon="verified_user">verified_user</span>
+<span class="">14-Day Free Trial Includes 30 Test Minutes • Zero Credit Card Required • Works with Jio, Airtel, Vi, BSNL</span>
+</div>
+</section>
+<!-- Pricing Tiers Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-20" id="plans">
+<!-- Card 1: Trial / Starter -->
+<div class="rounded-xl border border-outline bg-surface-container-lowest p-8 flex flex-col justify-between transition-all hover:border-outline-variant hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-headline-md font-headline-md text-on-surface">Trial / Starter</h3>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-high text-secondary font-medium">Evaluation</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant min-h-[40px] mb-6">
+            Ideal for testing voice quality and call forwarding on your personal device.
+          </p>
+<div class="mb-6 pb-6 border-b border-outline">
+<div class="flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">Free</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">for 14 Days</span>
+</div>
+<div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline text-label-sm font-label-sm font-medium text-primary">
+<span class="material-symbols-outlined text-body-sm" data-icon="timer">timer</span>
+              30 Included Call Minutes
+            </div>
+</div>
+<div class="space-y-3.5 mb-8">
+<div class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Included Capabilities:</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">1 business number call forwarding</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Basic Hindi &amp; English conversational AI</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Instant WhatsApp lead summaries</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Standard business hours active schedule</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Lightweight Android APK beta access</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Standard community support</span>
+</div>
+</div>
+</div>
+<a class="w-full py-3 px-4 rounded-lg border border-outline hover:bg-surface-container-low text-on-surface font-label-lg text-label-lg text-center transition-colors font-semibold" href="#">
+          Start Free 14-Day Trial
+        </a>
+</div>
+<!-- Card 2: Business / Pro (Featured) -->
+<div class="rounded-xl border-2 border-primary-container bg-surface-container-lowest p-8 flex flex-col justify-between shadow-lg relative -translate-y-1">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-primary text-on-primary text-label-sm font-label-sm font-semibold tracking-wide uppercase shadow-sm">
+          Most Popular
+        </div>
+<div>
+<div class="flex items-center justify-between mb-3 mt-1">
+<h3 class="text-headline-md font-headline-md text-on-surface">Business / Pro</h3>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-primary-fixed text-on-primary-fixed font-semibold">Standard</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant min-h-[40px] mb-6">
+            For busy clinics, salons, repair workshops, and property consultants.
+          </p>
+<div class="mb-6 pb-6 border-b border-outline">
+<div class="flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface" id="price-business">₹1,499</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant" id="period-business">/ month</span>
+</div>
+<div class="mt-4 flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-label-sm font-label-sm font-medium text-on-primary-fixed">
+<span class="material-symbols-outlined text-body-sm" data-icon="timer">timer</span>
+                350 Included Call Minutes
+              </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Overage: ₹3.50 / min</span>
+</div>
+</div>
+<div class="space-y-3.5 mb-8">
+<div class="text-label-sm font-label-sm uppercase tracking-wider text-primary font-semibold">Full AI Automation Suite:</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface font-medium">Dedicated or forwarded phone number</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface font-medium">Custom Hindi + English + Hinglish voice agent</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Custom business FAQs &amp; service catalog knowledge</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">WhatsApp prompt control ("text to update hours &amp; pricing")</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">High-urgency lead alerts &amp; instant caller dispatch</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">One-tap dialer callback button on WhatsApp</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Priority telephony routing (&lt;400ms latency)</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Encrypted audio call recordings &amp; transcripts</span>
+</div>
+</div>
+</div>
+<a class="w-full py-3.5 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg text-center transition-colors font-semibold shadow-sm" href="#">
+          Subscribe to Business Plan
+        </a>
+</div>
+<!-- Card 3: Team / Multi-Location -->
+<div class="rounded-xl border border-outline bg-surface-container-lowest p-8 flex flex-col justify-between transition-all hover:border-outline-variant hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-headline-md font-headline-md text-on-surface">Team / Multi-Location</h3>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed font-medium">Enterprise</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant min-h-[40px] mb-6">
+            For growing service enterprises with multi-staff teams and branch locations.
+          </p>
+<div class="mb-6 pb-6 border-b border-outline">
+<div class="flex items-baseline gap-1">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface" id="price-team">₹3,999</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant" id="period-team">/ month</span>
+</div>
+<div class="mt-4 flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline text-label-sm font-label-sm font-medium text-primary">
+<span class="material-symbols-outlined text-body-sm" data-icon="timer">timer</span>
+                1,000 Included Call Minutes
+              </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Overage: ₹3.00 / min</span>
+</div>
+</div>
+<div class="space-y-3.5 mb-8">
+<div class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Everything in Business, plus:</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface font-medium">Up to 3 business phone numbers / locations</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Multi-staff WhatsApp summary routing to front desks</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Advanced CSV/CRM lead export integration</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Custom branch-specific greeting scripts</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">Dedicated onboarding specialist &amp; telephone config</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-body-md shrink-0 mt-0.5" data-icon="check_circle">check_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface">99.9% Telephony Uptime SLA assurance</span>
+</div>
+</div>
+</div>
+<a class="w-full py-3 px-4 rounded-lg border border-outline hover:bg-surface-container-low text-on-surface font-label-lg text-label-lg text-center transition-colors font-semibold" href="#">
+          Contact Team Sales
+        </a>
+</div>
+</section>
+<!-- Interactive Usage & Overage Calculator -->
+<section class="mb-20">
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 md:p-10 shadow-sm">
+<div class="max-w-2xl mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low text-label-sm font-label-sm text-primary font-semibold mb-2">
+<span class="material-symbols-outlined text-body-sm" data-icon="calculate">calculate</span>
+            Plan Sizing Tool
+          </div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">Estimate Your Monthly Call Volume</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Adjust your expected daily customer inquiries to view recommended capacity and estimated billing without unexpected surcharges.
+          </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Slider Control -->
+<div class="lg:col-span-7 space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-lg font-label-lg text-on-surface font-medium">Daily Estimated Customer Calls</span>
+<span class="text-headline-md font-headline-md text-primary font-bold" id="slider-calls-display">25 calls / day</span>
+</div>
+<input class="w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer focus:outline-none" id="calls-slider" max="100" min="10" oninput="calculateEstimates(this.value)" step="5" type="range" value="25">
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant mt-2">
+<span class="">10 calls/day</span>
+<span class="">50 calls/day</span>
+<span class="">100 calls/day</span>
+</div>
+</div>
+<!-- Telephony assumptions card -->
+<div class="grid grid-cols-3 gap-4 pt-4 border-t border-outline">
+<div class="p-3 bg-surface-container-low rounded-lg">
+<div class="text-label-sm font-label-sm text-on-surface-variant">Est. Monthly Calls</div>
+<div class="text-headline-sm font-headline-sm text-on-surface font-semibold mt-0.5" id="metric-monthly-calls">750</div>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<div class="text-label-sm font-label-sm text-on-surface-variant">Est. Monthly Minutes</div>
+<div class="text-headline-sm font-headline-sm text-on-surface font-semibold mt-0.5" id="metric-monthly-minutes">1,125 min</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">(1.5 min avg)</span>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<div class="text-label-sm font-label-sm text-on-surface-variant">Telecom Interconnect</div>
+<div class="text-headline-sm font-headline-sm text-primary font-semibold mt-0.5">₹0 / Free</div>
+</div>
+</div>
+</div>
+<!-- Breakdown Output Card -->
+<div class="lg:col-span-5 bg-surface-container-low border border-outline rounded-xl p-6">
+<div class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-semibold mb-1">Recommended Configuration</div>
+<div class="text-headline-md font-headline-md text-on-surface font-bold mb-4" id="calc-plan-name">Team / Multi-Location</div>
+<div class="space-y-3 pb-4 border-b border-outline text-body-sm font-body-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Base Plan Quota:</span>
+<span class="font-medium text-on-surface" id="calc-plan-quota">1,000 minutes included</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Base Monthly Cost:</span>
+<span class="font-medium text-on-surface" id="calc-base-cost">₹3,999</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Estimated Overage (<span id="calc-overage-mins" class="">125</span> min):</span>
+<span class="font-medium text-on-surface" id="calc-overage-cost">₹375</span>
+</div>
+</div>
+<div class="pt-4 flex justify-between items-baseline mb-4">
+<span class="text-label-lg font-label-lg font-semibold text-on-surface">Estimated Total:</span>
+<div class="text-right">
+<span class="text-headline-lg font-headline-lg text-primary font-bold" id="calc-total-cost">₹4,374</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">/ month (+ GST)</span>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-secondary bg-surface rounded-lg p-3 border border-outline">
+<span class="material-symbols-outlined text-body-sm align-text-bottom text-primary" data-icon="info">info</span>
+              Zero hidden interconnect charges, telecom forwarding surcharges, or maintenance fees.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Comprehensive Feature Comparison Table -->
+<section class="mb-20">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-3">Compare All Capabilities</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Complete transparent specifications across telecommunications reliability, conversational AI accuracy, and operations.
+        </p>
+</div>
+<div class="border border-outline rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline">
+<th class="p-4 md:p-5 text-label-lg font-label-lg text-on-surface font-semibold w-2/5">Feature &amp; Capability</th>
+<th class="p-4 md:p-5 text-label-lg font-label-lg text-on-surface font-semibold w-1/5 text-center">Trial (14 Days)</th>
+<th class="p-4 md:p-5 text-label-lg font-label-lg text-primary font-bold w-1/5 text-center bg-primary-fixed/20 border-x border-outline">Business / Pro</th>
+<th class="p-4 md:p-5 text-label-lg font-label-lg text-on-surface font-semibold w-1/5 text-center">Team / Multi-Location</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline text-body-sm font-body-sm">
+<!-- Category 1 -->
+<tr class="bg-surface-container">
+<td class="py-2.5 px-5 text-label-sm font-label-sm font-bold text-secondary uppercase tracking-wider" colspan="4">
+                  Telephony &amp; Voice AI
+                </td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Carrier Forwarding (Jio, Airtel, Vi, BSNL)</td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Dedicated Cloud Inbound Line</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Autonomous Response Latency</td>
+<td class="p-4 text-center text-on-surface-variant">&lt; 750ms</td>
+<td class="p-4 text-center font-semibold text-primary bg-primary-fixed/10 border-x border-outline">&lt; 400ms</td>
+<td class="p-4 text-center font-semibold text-primary">&lt; 350ms (Priority)</td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Bilingual Hinglish &amp; Code-Switching</td>
+<td class="p-4 text-center text-on-surface-variant">Basic Vocab</td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline">Adaptive Deep Neural</td>
+<td class="p-4 text-center text-primary">Adaptive Deep Neural</td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Custom Pronunciation &amp; Hindi Numbers</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Consent-Compliant Audio Recording &amp; Transcripts</td>
+<td class="p-4 text-center text-on-surface-variant">7 Days Retained</td>
+<td class="p-4 text-center text-on-surface bg-primary-fixed/10 border-x border-outline">90 Days Retained</td>
+<td class="p-4 text-center text-on-surface">Unlimited Vault Storage</td>
+</tr>
+<!-- Category 2 -->
+<tr class="bg-surface-container">
+<td class="py-2.5 px-5 text-label-sm font-label-sm font-bold text-secondary uppercase tracking-wider" colspan="4">
+                  WhatsApp Lead Dispatch &amp; Automation
+                </td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Instant WhatsApp Delivery (&lt; 1 sec)</td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Structured JSON / Card Lead Summary</td>
+<td class="p-4 text-center text-on-surface-variant">Plain Text</td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Caller Urgency Tagging (Emergency / High / Inactive)</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">One-Tap Direct WhatsApp Dial Button</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Natural Language SMS/WhatsApp Prompt Updates</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<!-- Category 3 -->
+<tr class="bg-surface-container">
+<td class="py-2.5 px-5 text-label-sm font-label-sm font-bold text-secondary uppercase tracking-wider" colspan="4">
+                  App Controls, Team &amp; Billing
+                </td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Android Control APK (Lightweight Telemetry)</td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Team Multi-User WhatsApp Routing</td>
+<td class="p-4 text-center text-on-surface-variant">1 Recipient</td>
+<td class="p-4 text-center text-on-surface-variant bg-primary-fixed/10 border-x border-outline">2 Recipients</td>
+<td class="p-4 text-center text-primary">Unlimited / Branch-wise</td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Real-Time Usage Ledger &amp; Top-Up Control</td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">GST Compliant Tax Invoice</td>
+<td class="p-4 text-center text-on-surface-variant"><span class="material-symbols-outlined" data-icon="remove">remove</span></td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+<tr>
+<td class="p-4 md:px-5 font-medium text-on-surface">Razorpay UPI AutoPay &amp; Card Mandates</td>
+<td class="p-4 text-center text-on-surface-variant">Not required</td>
+<td class="p-4 text-center text-primary bg-primary-fixed/10 border-x border-outline"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+<td class="p-4 text-center text-primary"><span class="material-symbols-outlined" data-icon="check">check</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Indian Payment Methods & Telecom Compliance -->
+<section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="border border-outline rounded-xl p-6 bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-primary font-semibold mb-2">
+<span class="material-symbols-outlined text-body-md" data-icon="account_balance_wallet">account_balance_wallet</span>
+            Seamless Indian Billing Infrastructure
+          </div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+            Supports automatic monthly recurring renewals or pre-paid top-up wallets. Cancel or modify mandates from your UPI app anytime.
+          </p>
+</div>
+<div class="pt-4 border-t border-outline flex flex-wrap items-center gap-2 text-label-sm font-label-sm text-secondary font-medium">
+<span class="px-2.5 py-1 bg-surface rounded border border-outline">UPI AutoPay</span>
+<span class="px-2.5 py-1 bg-surface rounded border border-outline">PhonePe</span>
+<span class="px-2.5 py-1 bg-surface rounded border border-outline">Google Pay</span>
+<span class="px-2.5 py-1 bg-surface rounded border border-outline">RuPay</span>
+<span class="px-2.5 py-1 bg-surface rounded border border-outline">Razorpay Verified</span>
+</div>
+</div>
+<div class="border border-outline rounded-xl p-6 bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-primary font-semibold mb-2">
+<span class="material-symbols-outlined text-body-md" data-icon="gavel">gavel</span>
+            TRAI &amp; DoT Telephony Compliance
+          </div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+            Operates on legitimate telecom interconnect lines adhering to Telecommunications Act guidelines. WebSockets protected by TLS 1.3 encryption.
+          </p>
+</div>
+<div class="pt-4 border-t border-outline flex items-center justify-between text-label-sm font-label-sm text-secondary">
+<span class="inline-flex items-center gap-1.5 font-medium">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+            Hosted in Mumbai (AWS ap-south-1)
+          </span>
+<span class="text-on-surface-variant">ISO 27001 Pipeline</span>
+</div>
+</div>
+</section>
+<!-- FAQ Accordion -->
+<section class="max-w-3xl mx-auto mb-20">
+<div class="text-center mb-10">
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">Frequently Asked Questions</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Everything you need to know about Callivaan billing, numbers, and minutes.</p>
+</div>
+<div class="space-y-4">
+<!-- Q1 -->
+<details class="group border border-outline rounded-xl bg-surface-container-lowest p-5 open:bg-surface-container-low transition-colors duration-150">
+<summary class="flex justify-between items-center cursor-pointer list-none text-headline-sm font-headline-sm text-on-surface">
+<span class="">What happens when I exhaust my included minutes?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-3 text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Your calls will never drop or get blocked abruptly mid-conversation. You can either enable automatic overage billing at the standard transparent per-minute rate for your tier, or configure a fixed top-up safety limit in your Android control hub.
+          </div>
+</details>
+<!-- Q2 -->
+<details class="group border border-outline rounded-xl bg-surface-container-lowest p-5 open:bg-surface-container-low transition-colors duration-150">
+<summary class="flex justify-between items-center cursor-pointer list-none text-headline-sm font-headline-sm text-on-surface">
+<span class="">Can I pay using UPI AutoPay or Indian corporate cards?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-3 text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Yes. We integrate Razorpay Subscriptions supporting UPI recurring mandates (Google Pay, PhonePe, Paytm, BHIM), all major Indian debit/credit cards (RuPay, Visa, Mastercard), and Netbanking for verified business accounts.
+          </div>
+</details>
+<!-- Q3 -->
+<details class="group border border-outline rounded-xl bg-surface-container-lowest p-5 open:bg-surface-container-low transition-colors duration-150">
+<summary class="flex justify-between items-center cursor-pointer list-none text-headline-sm font-headline-sm text-on-surface">
+<span class="">Can I cancel or switch plans anytime?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-3 text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Yes. You can cancel your subscription with a single tap in the app without penalty or retention calls. Upgrades or downgrades between tiers apply immediately, with billing adjusted on a pro-rata basis.
+          </div>
+</details>
+<!-- Q4 -->
+<details class="group border border-outline rounded-xl bg-surface-container-lowest p-5 open:bg-surface-container-low transition-colors duration-150">
+<summary class="flex justify-between items-center cursor-pointer list-none text-headline-sm font-headline-sm text-on-surface">
+<span class="">Do you provide a GST invoice for input tax credit?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-3 text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Absolutely. Enter your 15-digit GSTIN during checkout or inside your billing settings, and automated tax invoices with B2B input credit will be delivered directly to your registered email and WhatsApp every cycle.
+          </div>
+</details>
+<!-- Q5 -->
+<details class="group border border-outline rounded-xl bg-surface-container-lowest p-5 open:bg-surface-container-low transition-colors duration-150">
+<summary class="flex justify-between items-center cursor-pointer list-none text-headline-sm font-headline-sm text-on-surface">
+<span class="">Do I need any specialized hardware or PBX equipment?</span>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-3 text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Zero hardware required. Callivaan connects through simple call forwarding (conditional when busy/unanswered or unconditional 24/7) from your existing mobile SIM or landline number. Setup takes less than 2 minutes.
+          </div>
+</details>
+</div>
+</section>
+<!-- Bottom CTA Banner -->
+<section class="border border-outline rounded-2xl bg-surface-container-low p-8 md:p-12 text-center">
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-3">Ready to never miss another high-value customer?</h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xl mx-auto mb-8">
+        Set up your Indian AI call assistant in 2 minutes. Test real incoming calls with our free 14-day evaluation sandbox.
+      </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold transition duration-150 shadow-sm active:scale-95" href="#plans">
+          Start 14-Day Free Trial
+        </a>
+<a class="w-full sm:w-auto px-6 py-3 rounded-lg border border-outline hover:bg-surface-container-lowest text-on-surface font-label-lg text-label-lg font-semibold transition-colors" href="#">
+          Download Android APK
+        </a>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Blueprint) -->
+<footer class="bg-surface-container-low border-t border-outline full-width">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="md:col-span-1">
+<div class="flex items-center space-x-2 mb-3"><div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 3v18M8 8v8M4 11v2M16 6v12M20 10v4"></path></svg></div><div class="flex items-center space-x-2"><span class="text-xl font-bold text-on-surface tracking-tight">Callivaan</span><span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary">VOICE AI</span></div></div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+            Autonomous Voice Telephony AI for Indian Enterprises &amp; Local Business Owners.
+          </p>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+            Telephony Engine: Operational (Mumbai)
+          </div>
+</div>
+<div>
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider mb-4">Product Architecture</div>
+<ul class="space-y-2.5 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Product Architecture</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">WhatsApp Integration</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Android APK Beta</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">API Documentation</a></li>
+</ul>
+</div>
+<div>
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider mb-4">Solutions</div>
+<ul class="space-y-2.5 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Industry Solutions</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Clinics &amp; Healthcare</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Automotive &amp; Repairs</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Real Estate Agencies</a></li>
+</ul>
+</div>
+<div>
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider mb-4">Trust &amp; Compliance</div>
+<ul class="space-y-2.5 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Security &amp; Compliance</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">TRAI Telecommunications Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-outline flex flex-col md:flex-row items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="">
+          © 2025 Callivaan AI Telephony Technologies Pvt Ltd. All rights reserved.
+        </div>
+<div class="mt-4 md:mt-0 flex gap-6">
+<span class="">CIN: U72900MH2024PTC412980</span>
+<span class="">Mumbai, Maharashtra</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Micro-Interactions Script -->
+<script>
+    let currentCadence = 'monthly';
+
+    function switchCadence(cadence) {
+      currentCadence = cadence;
+      const monthlyBtn = document.getElementById('cadence-monthly');
+      const annualBtn = document.getElementById('cadence-annual');
+      const priceBiz = document.getElementById('price-business');
+      const periodBiz = document.getElementById('period-business');
+      const priceTeam = document.getElementById('price-team');
+      const periodTeam = document.getElementById('period-team');
+
+      if (cadence === 'annual') {
+        monthlyBtn.className = "px-5 py-2 rounded-lg text-label-md font-label-md font-medium text-on-surface-variant hover:text-on-surface transition-all duration-150";
+        annualBtn.className = "px-5 py-2 rounded-lg text-label-md font-label-md font-semibold transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm flex items-center gap-2";
+        
+        priceBiz.textContent = "₹1,199";
+        periodBiz.textContent = "/ mo billed annually";
+        priceTeam.textContent = "₹3,199";
+        periodTeam.textContent = "/ mo billed annually";
+      } else {
+        annualBtn.className = "px-5 py-2 rounded-lg text-label-md font-label-md font-medium text-on-surface-variant hover:text-on-surface transition-all duration-150 flex items-center gap-2";
+        monthlyBtn.className = "px-5 py-2 rounded-lg text-label-md font-label-md font-semibold transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm";
+        
+        priceBiz.textContent = "₹1,499";
+        periodBiz.textContent = "/ month";
+        priceTeam.textContent = "₹3,999";
+        periodTeam.textContent = "/ month";
+      }
+
+      // Re-trigger calculator with new cadence if needed
+      const sliderVal = document.getElementById('calls-slider').value;
+      calculateEstimates(sliderVal);
+    }
+
+    function calculateEstimates(dailyCalls) {
+      const calls = parseInt(dailyCalls, 10);
+      document.getElementById('slider-calls-display').textContent = `${calls} calls / day`;
+      
+      const monthlyCalls = calls * 30;
+      const totalMinutes = Math.round(monthlyCalls * 1.5);
+      
+      document.getElementById('metric-monthly-calls').textContent = monthlyCalls.toLocaleString('en-IN');
+      document.getElementById('metric-monthly-minutes').textContent = `${totalMinutes.toLocaleString('en-IN')} min`;
+
+      const planNameElem = document.getElementById('calc-plan-name');
+      const quotaElem = document.getElementById('calc-plan-quota');
+      const baseCostElem = document.getElementById('calc-base-cost');
+      const overageMinsElem = document.getElementById('calc-overage-mins');
+      const overageCostElem = document.getElementById('calc-overage-cost');
+      const totalCostElem = document.getElementById('calc-total-cost');
+
+      let planName = 'Trial / Starter';
+      let includedMinutes = 30;
+      let baseCost = 0;
+      let overageRate = 4.0;
+
+      if (totalMinutes <= 30) {
+        planName = 'Trial / Starter';
+        includedMinutes = 30;
+        baseCost = 0;
+        overageRate = 4.0;
+      } else if (totalMinutes <= 450) {
+        planName = 'Business / Pro';
+        includedMinutes = 350;
+        baseCost = currentCadence === 'annual' ? 1199 : 1499;
+        overageRate = 3.5;
+      } else {
+        planName = 'Team / Multi-Location';
+        includedMinutes = 1000;
+        baseCost = currentCadence === 'annual' ? 3199 : 3999;
+        overageRate = 3.0;
+      }
+
+      const overageMinutes = Math.max(0, totalMinutes - includedMinutes);
+      const overageCost = Math.round(overageMinutes * overageRate);
+      const totalCost = baseCost + overageCost;
+
+      planNameElem.textContent = planName;
+      quotaElem.textContent = `${includedMinutes.toLocaleString('en-IN')} minutes included`;
+      baseCostElem.textContent = `₹${baseCost.toLocaleString('en-IN')}`;
+      overageMinsElem.textContent = overageMinutes.toLocaleString('en-IN');
+      overageCostElem.textContent = `₹${overageCost.toLocaleString('en-IN')}`;
+      totalCostElem.textContent = `₹${totalCost.toLocaleString('en-IN')}`;
+    }
+
+    // Initialize calculator on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      calculateEstimates(25);
+    });
+  </script>
+
+
+</body></html>

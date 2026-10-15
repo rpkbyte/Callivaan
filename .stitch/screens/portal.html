@@ -1,0 +1,826 @@
+<!DOCTYPE html><html class="h-full bg-surface-dim text-on-surface antialiased" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Callivaan Customer Portal &amp; Call Operations Hub</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#3157d5",
+            "on-surface": "#1a1b23",
+            "surface": "#ffffff",
+            "surface-container": "#eeedf8",
+            "tertiary-fixed-dim": "#ffb695",
+            "outline-variant": "#c4c5d6",
+            "on-background": "#1a1b23",
+            "inverse-primary": "#b7c4ff",
+            "surface-dim": "#f6f8fc",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "error": "#d92d20",
+            "surface-bright": "#fbf8ff",
+            "secondary-fixed": "#d9e2fc",
+            "inverse-surface": "#2f3038",
+            "error-container": "#fef3f2",
+            "on-tertiary-fixed": "#351000",
+            "surface-container-high": "#e8e7f2",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#d8ddff",
+            "on-secondary-fixed": "#121b2e",
+            "surface-tint": "#2c53d1",
+            "on-primary-fixed": "#001452",
+            "on-secondary-fixed-variant": "#3e475b",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#bdc6e0",
+            "outline": "#e4e8f0",
+            "tertiary-container": "#a84200",
+            "on-primary": "#ffffff",
+            "tertiary": "#475467",
+            "secondary-container": "#d7dff9",
+            "on-secondary-container": "#5a6278",
+            "primary-fixed": "#dde1ff",
+            "tertiary-fixed": "#ffdbcc",
+            "surface-container-low": "#f6f8fc",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#667085",
+            "surface-container-highest": "#dee5f0",
+            "on-tertiary-container": "#ffd6c5",
+            "surface-variant": "#e2e1ec",
+            "secondary": "#555e74",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-primary-fixed-variant": "#0038b6",
+            "background": "#fbf8ff",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f1f0fb",
+            "primary": "#063cbc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "20px",
+            "space-xs": "4px",
+            "space-sm": "12px",
+            "gutter": "24px",
+            "space-md": "24px",
+            "space-lg": "32px",
+            "space-xl": "48px",
+            "margin": "48px",
+            "space-xxl": "64px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "display-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-surface-dim font-body-sm text-body-sm text-on-surface">
+<!-- 1. Top Navigation Bar (Integrated Shared Component TopNavBar) -->
+<header class="bg-surface docked full-width top-0 border-b border-outline shadow-sm z-30 sticky top-0">
+<div class="w-full px-3 sm:px-4 md:px-6 py-2.5 md:py-3 flex items-center justify-between gap-2 md:gap-4">
+<!-- Brand & Business Switcher -->
+<div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0 min-w-0">
+<div class="flex items-center gap-2.5 shrink-0"><div class="w-8 h-8 rounded-lg bg-primary-fixed/30 border border-primary-fixed flex items-center justify-center"><svg class="w-5 h-5 text-primary-container" fill="currentColor" viewBox="0 0 24 24"><rect rx="1.2" width="2.4" height="10" x="3" y="7"></rect><rect rx="1.2" width="2.4" height="18" x="7.2" y="3"></rect><rect rx="1.2" width="2.4" height="14" x="11.4" y="5"></rect><rect rx="1.2" width="2.4" height="20" x="15.6" y="2"></rect><rect rx="1.2" width="2.4" height="12" x="19.8" y="6"></rect></svg></div><span class="font-bold text-xl tracking-tight text-on-surface">Callivaan</span><span class="hidden sm:inline-flex items-center text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">VOICE AI</span></div>
+<div class="h-5 w-[1px] bg-outline hidden sm:block shrink-0"></div>
+<!-- Business Dropdown Selector -->
+<button class="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 rounded-lg bg-surface-container-low border border-outline hover:bg-surface-container-high transition-colors duration-150 text-left active:scale-[0.99] max-w-[180px] sm:max-w-[260px] md:max-w-none">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Aura Wellness &amp; Hair Studio</span>
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<span class="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-surface-lowest text-secondary border border-outline shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Jio Forwarding Active
+          </span>
+</button>
+</div>
+<!-- Agent Status Pill (Desktop only) -->
+<div class="hidden xl:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-low border border-outline shadow-sm shrink-0">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium whitespace-nowrap">
+          AI Agent Online <span class="text-secondary mx-1">•</span> Voice: Hindi &amp; English <span class="text-secondary mx-1">•</span> Config v1.4
+        </span>
+</div>
+<!-- Right Trailing Controls -->
+<div class="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
+<!-- Quota Progress Indicator (hidden on small screens, visible on lg+) -->
+<div class="hidden lg:flex flex-col items-end pr-2">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface whitespace-nowrap">265 / 350 Mins</span>
+<span class="text-on-surface-variant font-normal text-[11px] whitespace-nowrap">(Renews in 11d)</span>
+</div>
+<div class="w-28 sm:w-32 h-1.5 bg-surface-container-highest rounded-full mt-1 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 75.7%;"></div>
+</div>
+</div>
+<!-- Place Test Call CTA -->
+<button class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-primary-container text-white font-label-md text-label-md font-semibold hover:bg-primary transition-colors duration-150 shadow-sm active:scale-[0.98] shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="phone_in_talk">phone_in_talk</span>
+<span class="hidden sm:inline">Place Test Call</span>
+<span class="inline sm:hidden text-[13px]">Call</span>
+</button>
+<!-- Trailing Actions & Avatar -->
+<div class="flex items-center gap-0.5 sm:gap-1 border-l border-outline pl-1.5 sm:pl-2 shrink-0">
+<button class="p-1.5 sm:p-2 rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" title="Notifications">
+<span class="material-symbols-outlined text-[18px] sm:text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="p-1.5 sm:p-2 rounded-lg text-secondary hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150 hidden sm:inline-flex" title="Settings">
+<span class="material-symbols-outlined text-[18px] sm:text-[20px]" data-icon="settings">settings</span>
+</button>
+<div class="w-7 h-7 sm:w-8 sm:h-8 ml-0.5 sm:ml-1 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-label-sm text-label-sm font-semibold border border-outline shrink-0" title="Aura Wellness (Rajesh Sharma)">
+            AW
+          </div>
+</div>
+</div>
+</div>
+</header>
+<!-- Sub-Navigation Bar (Top Level Context Alignment) -->
+<div class="bg-surface border-b border-outline px-3 sm:px-4 md:px-6 overflow-x-auto">
+<nav class="flex items-center gap-4 sm:gap-6 md:gap-8 -mb-px min-w-max">
+<a class="text-primary font-label-lg text-label-lg border-b-2 border-primary pb-2.5 pt-2 font-semibold flex items-center gap-1.5 shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="dashboard">dashboard</span>
+        Dashboard
+      </a>
+<a class="text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg pb-2.5 pt-2 flex items-center gap-1.5 transition-colors shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">call</span>
+        Call Logs
+      </a>
+<a class="text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg pb-2.5 pt-2 flex items-center gap-1.5 transition-colors shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+        Leads
+      </a>
+<a class="text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg pb-2.5 pt-2 flex items-center gap-1.5 transition-colors shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+        Voice Agent
+      </a>
+<a class="text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg pb-2.5 pt-2 flex items-center gap-1.5 transition-colors shrink-0" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+        Billing
+      </a>
+</nav>
+</div>
+<!-- Main Canvas Container -->
+<main class="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+<!-- 2. WhatsApp Sync Banner / Alert -->
+<section class="bg-surface rounded-xl border border-outline p-3.5 px-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="mark_chat_read">mark_chat_read</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface">
+<span class="font-semibold text-emerald-800">WhatsApp Linked: +91 98765 43210 (Verified).</span>
+<span class="text-on-surface-variant ml-1">Summaries active. Tip: Text <code class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-[12px] text-on-surface border border-outline">"Change timings to 11 AM"</code> to your WhatsApp bot to update your agent instantly without logging in.</span>
+</div>
+</div>
+<button class="shrink-0 text-primary hover:text-primary-container font-label-sm text-label-sm font-semibold inline-flex items-center gap-1 hover:underline active:scale-[0.98]">
+<span class="">Test WhatsApp Ping</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+</button>
+</section>
+<!-- 3. Operational KPI Metrics Row (4 Asymmetric Summary Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium">Calls Handled This Month</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="ring_volume">ring_volume</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">142</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[12px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+            +18%
+          </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between">
+<span class="">vs last month (120 calls)</span>
+<span class="text-primary font-medium text-[11px]">8.2 min avg talk</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium">Qualified Leads Captured</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="contact_phone">contact_phone</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">118</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[12px] font-semibold bg-primary-fixed text-primary font-mono">
+            83% Conv.
+          </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="">24 appointments confirmed</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium">Remaining Included Minutes</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="schedule">schedule</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">85 <span class="font-body-md text-body-md text-secondary font-normal">mins</span></span>
+<span class="font-label-sm text-label-sm text-secondary">Quota: 350 m</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 24.2%;"></div>
+</div>
+<button class="text-primary font-semibold hover:underline text-[12px]">Top up minutes</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm hover:border-outline-variant transition-colors">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium">Avg Caller Latency &amp; Health</span>
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="speed">speed</span>
+</div>
+<div class="mt-2.5 flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">360<span class="font-body-md text-body-md text-secondary font-normal">ms</span></span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[12px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            100% Up
+          </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-sm text-label-sm truncate">
+<span class="">ap-south-1 • Cloud Route Line 02</span>
+</div>
+</div>
+</section>
+<!-- 4. Main Two-Column Content Layout (65% Inbox / 35% Drawer) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left 65% Column: Inbound Calls & WhatsApp Leads Table -->
+<div class="lg:col-span-8 space-y-4">
+<div class="bg-surface rounded-xl border border-outline shadow-sm overflow-hidden">
+<!-- Section Header & Controls -->
+<div class="p-4 border-b border-outline space-y-3.5 bg-surface">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-2.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Inbound Calls &amp; WhatsApp Leads</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold border border-outline">
+                  142 Total
+                </span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline bg-surface hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+<span class="">Export CSV</span>
+</button>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+<!-- Search Bar -->
+<div class="sm:col-span-6 relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]" data-icon="search">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 text-body-sm bg-surface-container-low border border-outline rounded-lg text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container" placeholder="Search by caller phone number, customer name, or service keyword..." type="text">
+</div>
+<!-- Date Filter -->
+<div class="sm:col-span-2">
+<select class="w-full px-2.5 py-1.5 text-body-sm bg-surface-container-low border border-outline rounded-lg text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container">
+<option>Last 7 Days</option>
+<option>Today</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<!-- Outcome Filter -->
+<div class="sm:col-span-2">
+<select class="w-full px-2.5 py-1.5 text-body-sm bg-surface-container-low border border-outline rounded-lg text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container">
+<option>All Outcomes</option>
+<option>Appointment Booked</option>
+<option>Callback Requested</option>
+<option>Enquiry Answered</option>
+</select>
+</div>
+<!-- Urgency Filter -->
+<div class="sm:col-span-2">
+<select class="w-full px-2.5 py-1.5 text-body-sm bg-surface-container-low border border-outline rounded-lg text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container">
+<option>All Urgency</option>
+<option>High Urgency</option>
+<option>Normal</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold">Caller</th>
+<th class="py-3 px-3 font-semibold">Date &amp; Duration</th>
+<th class="py-3 px-3 font-semibold">Lead Summary &amp; Intent</th>
+<th class="py-3 px-3 font-semibold">Slot Requested</th>
+<th class="py-3 px-2 font-semibold">Urgency</th>
+<th class="py-3 px-3 font-semibold">WhatsApp</th>
+<th class="py-3 px-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline">
+<!-- Row 1: Selected / Active Row -->
+<tr class="bg-primary-fixed/30 hover:bg-primary-fixed/40 transition-colors border-l-4 border-l-primary-container cursor-pointer">
+<td class="py-3.5 px-4">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Siddharth Mehra</div>
+<div class="text-[12px] text-on-surface-variant font-mono flex items-center gap-1">
+<span class="">+91 98112 33445</span>
+<span class="text-[10px] text-secondary font-sans bg-surface-container px-1 py-0.2 rounded">Airtel</span>
+</div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="text-on-surface font-medium">Today, 3:45 PM</div>
+<div class="text-[12px] text-on-surface-variant font-mono">2m 14s</div>
+</td>
+<td class="py-3.5 px-3 max-w-[220px]">
+<div class="text-on-surface font-medium truncate" title="Beard Styling &amp; Deep Cleanse Facial enquiry. Asked for stylist Rahul.">
+                      Beard Styling &amp; Deep Cleanse Facial
+                    </div>
+<div class="text-[12px] text-on-surface-variant truncate">
+                      Asked for stylist Rahul
+                    </div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-lowest border border-outline text-[12px] font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="event">event</span>
+                      Today, 6:30 PM
+                    </div>
+</td>
+<td class="py-3.5 px-2 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      High
+                    </span>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="flex items-center gap-1 text-[12px] text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="done_all">done_all</span>
+<span class="">3:46 PM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5">
+<button class="px-2.5 py-1 rounded bg-primary-container text-white text-[12px] font-semibold hover:bg-primary transition-colors">
+                        Call Back
+                      </button>
+<button class="px-2 py-1 rounded border border-outline bg-surface text-secondary hover:text-on-surface text-[12px] font-medium">
+                        View
+                      </button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3.5 px-4">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Priya Sharma</div>
+<div class="text-[12px] text-on-surface-variant font-mono flex items-center gap-1">
+<span class="">+91 98761 22334</span>
+<span class="text-[10px] text-secondary font-sans bg-surface-container px-1 py-0.2 rounded">Jio</span>
+</div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="text-on-surface font-medium">Today, 2:15 PM</div>
+<div class="text-[12px] text-on-surface-variant font-mono">1m 38s</div>
+</td>
+<td class="py-3.5 px-3 max-w-[220px]">
+<div class="text-on-surface font-medium truncate" title="Keratin treatment pricing and weekend slot availability inquiry.">
+                      Keratin treatment pricing
+                    </div>
+<div class="text-[12px] text-on-surface-variant truncate">
+                      Weekend slot availability inquiry
+                    </div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-lowest border border-outline text-[12px] font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="event">event</span>
+                      Tomorrow, 4:00 PM
+                    </div>
+</td>
+<td class="py-3.5 px-2 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      High
+                    </span>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="flex items-center gap-1 text-[12px] text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="done_all">done_all</span>
+<span class="">2:16 PM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-[12px] font-semibold transition-colors">
+                      Call Back
+                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3.5 px-4">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Amit Saxena</div>
+<div class="text-[12px] text-on-surface-variant font-mono flex items-center gap-1">
+<span class="">+91 99201 55667</span>
+<span class="text-[10px] text-secondary font-sans bg-surface-container px-1 py-0.2 rounded">Vi</span>
+</div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="text-on-surface font-medium">Today, 11:20 AM</div>
+<div class="text-[12px] text-on-surface-variant font-mono">0m 52s</div>
+</td>
+<td class="py-3.5 px-3 max-w-[220px]">
+<div class="text-on-surface font-medium truncate" title="Rescheduling existing haircut appointment from Friday to Sunday morning.">
+                      Rescheduling haircut
+                    </div>
+<div class="text-[12px] text-on-surface-variant truncate">
+                      Moving from Friday to Sunday morning
+                    </div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-lowest border border-outline text-[12px] font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="event">event</span>
+                      Sun 11:00 AM
+                    </div>
+</td>
+<td class="py-3.5 px-2 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                      Normal
+                    </span>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="flex items-center gap-1 text-[12px] text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="done_all">done_all</span>
+<span class="">11:21 AM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-[12px] font-semibold transition-colors">
+                      Call Back
+                    </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3.5 px-4">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Neha Kapoor</div>
+<div class="text-[12px] text-on-surface-variant font-mono flex items-center gap-1">
+<span class="">+91 98450 78901</span>
+<span class="text-[10px] text-secondary font-sans bg-surface-container px-1 py-0.2 rounded">Airtel</span>
+</div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="text-on-surface font-medium">Yesterday, 5:10 PM</div>
+<div class="text-[12px] text-on-surface-variant font-mono">3m 05s</div>
+</td>
+<td class="py-3.5 px-3 max-w-[220px]">
+<div class="text-on-surface font-medium truncate" title="Bridal makeup trial package query for next month. Sent rate card via SMS.">
+                      Bridal makeup trial package
+                    </div>
+<div class="text-[12px] text-on-surface-variant truncate">
+                      Sent rate card via WhatsApp
+                    </div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-lowest border border-outline text-[12px] font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="event">event</span>
+                      15 Oct, 2:00 PM
+                    </div>
+</td>
+<td class="py-3.5 px-2 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                      Normal
+                    </span>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="flex items-center gap-1 text-[12px] text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="done_all">done_all</span>
+<span class="">5:11 PM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-[12px] font-semibold transition-colors">
+                      Call Back
+                    </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3.5 px-4">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Vikram Malhotra</div>
+<div class="text-[12px] text-on-surface-variant font-mono flex items-center gap-1">
+<span class="">+91 97110 33221</span>
+<span class="text-[10px] text-secondary font-sans bg-surface-container px-1 py-0.2 rounded">Jio</span>
+</div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="text-on-surface font-medium">Yesterday, 1:40 PM</div>
+<div class="text-[12px] text-on-surface-variant font-mono">1m 15s</div>
+</td>
+<td class="py-3.5 px-3 max-w-[220px]">
+<div class="text-on-surface font-medium truncate" title="Salon parking space inquiry and head massage booking.">
+                      Salon parking &amp; massage
+                    </div>
+<div class="text-[12px] text-on-surface-variant truncate">
+                      Head massage slot booking
+                    </div>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-lowest border border-outline text-[12px] font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="event">event</span>
+                      Today, 7:00 PM
+                    </div>
+</td>
+<td class="py-3.5 px-2 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                      Normal
+                    </span>
+</td>
+<td class="py-3.5 px-3 whitespace-nowrap">
+<div class="flex items-center gap-1 text-[12px] text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="done_all">done_all</span>
+<span class="">1:41 PM</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-[12px] font-semibold transition-colors">
+                      Call Back
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Bar -->
+<div class="p-3.5 px-4 border-t border-outline bg-surface flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<div class="">
+              Showing <span class="font-semibold text-on-surface">1-5</span> of <span class="font-semibold text-on-surface">142</span> calls
+            </div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded border border-outline bg-surface hover:bg-surface-container-low text-secondary font-medium disabled:opacity-50" disabled="">
+                Previous
+              </button>
+<button class="px-3 py-1 rounded border border-outline bg-surface hover:bg-surface-container-low text-on-surface font-semibold">
+                Next
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 35% Column: Selected Call Detail & Inspection Panel -->
+<div class="lg:col-span-4 space-y-4">
+<!-- Sticky Detail Drawer -->
+<div class="bg-surface rounded-xl border border-outline shadow-sm overflow-hidden sticky top-20">
+<!-- Header -->
+<div class="p-4 border-b border-outline bg-surface-container-low flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-mono font-semibold text-on-surface text-[14px]">#CAL-8492</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-100 text-emerald-800">Completed</span>
+</div>
+<div class="mt-1 flex items-center gap-1.5 text-secondary text-[12px]">
+<span class="material-symbols-outlined text-[15px]" data-icon="graphic_eq">graphic_eq</span>
+<span class="">Hinglish (Hindi + English)</span>
+<span class="">•</span>
+<span class="font-mono">2m 14s</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[11px] font-mono text-secondary">Today, 3:45 PM</span>
+</div>
+</div>
+<!-- Caller Identification & Compliance Bar -->
+<div class="p-4 border-b border-outline space-y-2">
+<div class="flex items-center justify-between">
+<div>
+<div class="font-headline-sm text-[16px] text-on-surface font-semibold">Siddharth Mehra</div>
+<div class="text-secondary font-mono text-[13px] flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="phone">phone</span>
+<span class="">+91 98112 33445</span>
+<span class="text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-secondary">Airtel</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-semibold text-[14px]">
+                SM
+              </div>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-secondary bg-surface-container-low px-2.5 py-1.5 rounded-lg border border-outline">
+<span class="material-symbols-outlined text-[14px] text-emerald-600" data-icon="verified_user">verified_user</span>
+<span class="">Recording enabled by customer consent (TRAI compliant)</span>
+</div>
+</div>
+<!-- Audio Player Bar -->
+<div class="p-4 border-b border-outline bg-surface-bright space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="play_circle">play_circle</span>
+                Call Recording Playback
+              </span>
+<div class="flex items-center gap-1 text-[11px] font-mono">
+<button class="px-1.5 py-0.5 rounded bg-surface border border-outline text-primary font-semibold">1.0x</button>
+<button class="px-1.5 py-0.5 rounded bg-surface border border-outline text-secondary hover:text-on-surface">1.5x</button>
+</div>
+</div>
+<!-- Waveform Scrubber Mockup -->
+<div class="bg-surface p-2.5 rounded-lg border border-outline space-y-1.5">
+<div class="flex items-center gap-2">
+<button class="w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center shrink-0 shadow-xs hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="pause">pause</span>
+</button>
+<!-- Waveform frequency bars -->
+<div class="flex-1 flex items-center gap-0.5 h-6">
+<!-- Played portion -->
+<div class="w-1 h-3 bg-primary-container rounded-full"></div>
+<div class="w-1 h-4 bg-primary-container rounded-full"></div>
+<div class="w-1 h-2 bg-primary-container rounded-full"></div>
+<div class="w-1 h-5 bg-primary-container rounded-full"></div>
+<div class="w-1 h-6 bg-primary-container rounded-full"></div>
+<div class="w-1 h-4 bg-primary-container rounded-full"></div>
+<div class="w-1 h-3 bg-primary-container rounded-full"></div>
+<div class="w-1 h-5 bg-primary-container rounded-full"></div>
+<div class="w-1 h-2 bg-primary-container rounded-full"></div>
+<!-- Scrubber head -->
+<div class="w-1.5 h-6 bg-primary rounded-full relative">
+<span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<!-- Unplayed portion -->
+<div class="w-1 h-4 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-3 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-5 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-2 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-4 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-6 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-3 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-2 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-4 bg-surface-container-highest rounded-full"></div>
+<div class="w-1 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<div class="text-[11px] font-mono text-secondary shrink-0">
+                  00:48 / 02:14
+                </div>
+</div>
+</div>
+</div>
+<!-- Structured Lead Card (WhatsApp Sync Preview) -->
+<div class="p-4 space-y-3">
+<div class="rounded-lg border border-emerald-200 bg-emerald-50/40 p-3.5 space-y-2.5">
+<div class="flex items-center justify-between pb-2 border-b border-emerald-100">
+<div class="flex items-center gap-1.5 text-emerald-800 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px] text-emerald-600" data-icon="forum">forum</span>
+                  WhatsApp Lead Sync
+                </div>
+<span class="text-[11px] font-mono text-emerald-700">Sent to Owner at 3:46 PM</span>
+</div>
+<div class="space-y-1.5 text-[13px] text-on-surface">
+<div>
+<span class="font-semibold text-secondary text-[12px] block">Service Requested:</span>
+<span class="font-medium text-on-surface">Beard Styling &amp; Deep Cleanse Facial</span>
+</div>
+<div>
+<span class="font-semibold text-secondary text-[12px] block">Requested Time Slot:</span>
+<span class="font-semibold text-primary">Today, 6:30 PM</span>
+</div>
+<div>
+<span class="font-semibold text-secondary text-[12px] block">Caller Notes:</span>
+<p class="text-on-surface-variant text-[12px] leading-relaxed">
+                    Needs parking space for a compact SUV; explicitly asked if stylist Rahul is on shift today.
+                  </p>
+</div>
+<div class="pt-2 border-t border-emerald-100">
+<span class="font-semibold text-emerald-900 text-[12px] block">AI Suggested Next Action:</span>
+<div class="text-[12px] text-emerald-800 font-medium flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="task_alt">task_alt</span>
+                    Call back to confirm Rahul's slot availability.
+                  </div>
+</div>
+</div>
+</div>
+<!-- Action Buttons Bar -->
+<div class="space-y-2 pt-1">
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container hover:bg-primary text-white font-label-md text-label-md font-semibold flex items-center justify-center gap-2 shadow-sm transition-colors active:scale-[0.99]">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">call</span>
+<span class="">Dial Caller Now (+91 98112 33445)</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 rounded-lg border border-outline bg-surface hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-emerald-600" data-icon="share">share</span>
+                  Forward via WhatsApp
+                </button>
+<button class="py-2 px-3 rounded-lg border border-outline bg-surface hover:bg-surface-container-low text-secondary hover:text-on-surface font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+                  Mark Resolved
+                </button>
+</div>
+</div>
+</div>
+<!-- Quick Agent Behavior & Prompt Preview Widget -->
+<div class="p-4 border-t border-outline bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="smart_toy">smart_toy</span>
+                Active Voice Assistant Configuration
+              </span>
+<span class="text-[11px] font-mono text-secondary">v1.4</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface border border-outline text-[12px] space-y-1.5">
+<div class="text-secondary font-medium">Active Greeting:</div>
+<p class="text-on-surface italic text-[11px] leading-relaxed">
+                "Namaste! Aura Studio mein aapka swagat hai. Main Callivaan AI assistant hoon. Aaj main aapki kya madad kar sakta hoon?"
+              </p>
+<div class="pt-1 flex items-center justify-between text-[11px] text-secondary border-t border-outline">
+<span class="">Bilingual (Hindi dominant)</span>
+<span class="">Mumbai Core Line 02</span>
+</div>
+</div>
+<div class="text-right">
+<a class="text-primary hover:underline font-label-sm text-[12px] font-semibold inline-flex items-center gap-1" href="#">
+<span class="">Edit Full Agent Configuration</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- 5. Minimalist Portal Footer -->
+<footer class="mt-auto border-t border-outline bg-surface py-4 px-space-md text-[12px] text-secondary">
+<div class="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+<div class="flex items-center gap-2 flex-wrap text-center md:text-left">
+<div class="inline-flex items-center gap-2"><div class="w-6 h-6 rounded-md bg-primary-fixed/30 border border-primary-fixed flex items-center justify-center shrink-0"><svg class="w-3.5 h-3.5 text-primary-container" fill="currentColor" viewBox="0 0 24 24"><rect rx="1.2" width="2.4" height="10" x="3" y="7"></rect><rect rx="1.2" width="2.4" height="18" x="7.2" y="3"></rect><rect rx="1.2" width="2.4" height="14" x="11.4" y="5"></rect><rect rx="1.2" width="2.4" height="20" x="15.6" y="2"></rect><rect rx="1.2" width="2.4" height="12" x="19.8" y="6"></rect></svg></div><span class="font-bold tracking-tight text-on-surface">Callivaan</span><span class="text-[10px] bg-primary/10 text-primary font-semibold px-1.5 py-0.2 rounded-full">VOICE AI</span><span class="font-medium text-secondary text-[12px]">Core v2.4</span></div>
+<span class="">•</span>
+<span class="">SOC2 &amp; TRAI compliant</span>
+<span class="">•</span>
+<span class="font-mono">Hosted on AWS Mumbai (ap-south-1: 18ms latency)</span>
+</div>
+<div class="flex items-center gap-4 flex-wrap">
+<div class="flex items-center gap-1.5 text-emerald-700 font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">All Systems Operational</span>
+</div>
+<span class="">•</span>
+<a class="hover:text-on-surface hover:underline" href="#">Live Help &amp; Documentation</a>
+<span class="">•</span>
+<a class="hover:text-on-surface hover:underline" href="#">Telephony Regulatory Policy</a>
+</div>
+</div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,143 @@
+{
+  "projectId": "8667126615452640509",
+  "projectTitle": "Callivaan - AI Voice Agent",
+  "designSystemId": "assets/d9df30dddc1548cf8c5f68333d7e0ca6",
+  "designSystemName": "Callivaan Precision Voice",
+  "updatedAt": "2026-10-15T13:10:00.000000Z",
+  "desktopScreens": [
+    {
+      "id": "6979d13f075a4b4d9ead87e27a17968c",
+      "title": "Callivaan Marketing Landing Page",
+      "deviceType": "DESKTOP",
+      "route": "/",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1V0v8fw5GGdV5I0hCWj-7usXXT-sclV9ipgXxjub5BX1lTDKpAezXxYZHmKDLJuVv31AoMfQEkGvKy9mtL1QBz18cQk34HebMLBsTm1fAclfGw_bOwILQhWQkZtmIp150j6OzxctPknXk7TQg805x_Oa6lEGvtX5d9NKPQnB7qkWUTniqWvaFVZN6uAzwAry0VIgSgHbwvu5zJJXEadJ00e1wUW2TtP6ARlPm1Fl8YxCbbQxAXJdQIwiA",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY1ZGRmZWExYjAwZmUwMzM4NWJkMzBhMDcxNmNjEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=89354086",
+      "localFile": ".stitch/screens/landing.html"
+    },
+    {
+      "id": "489f9fb246254a62909be0efd55d1cf3",
+      "title": "Callivaan Pricing & Subscription Plans",
+      "deviceType": "DESKTOP",
+      "route": "/pricing",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1VnwdCtpiu-eb8WjIizqMVBOh5FJiPMUhIan_CtQbrjCkEKoU3ver5v84A9KfcpTtEAdp2qo_9Zl-goVdDBmQkHHNRN5pd5AZDl_n2xohDx4-WF4IBiRDP6Ezo05U6DzLRORAdpUzXwk0IAZOPwRdbN-rgPez2eYqmySZqffn0jOI2z905rJSzKa81qzulktvHb89Q0bQfvCi-4FMxZjntxqyRnxsr08s2-4HS2JU8bP7UEjkSmfOEeVQ",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY1ZGRmZTllNWMzNTMwNTAzYzFkMjFkMmVhOTg2EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=89354086",
+      "localFile": ".stitch/screens/pricing.html"
+    },
+    {
+      "id": "529eb3cc1cc843b18fd3a4f36b73a850",
+      "title": "Callivaan Customer Portal & Inbound Call Dashboard",
+      "deviceType": "DESKTOP",
+      "route": "/portal",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1W5bfcRNAdvddGfKV3t78S3HPMbX9JKNb_GPICHyZRmiSqckA30PwFhNmuKxx7vidWlO6odmYwu2dpUjsh_YatusLJY60dplXJFplfY9yzKpMNAHgj2oFk3eD__ImE6_0wYSz1Rxcj6KCB_yvwiQ4WJbt21l7P42lBpiCa_q4azm0RW8xc0k80AM9LH3hjxYrxnt3dS4s30DJv4kMSmS0zn_4TzmmXlK6E8KcgIgOLI_YsJrukZYqQBpOY",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY1ZGRmZTlmNTM3MDIwN2M0ZDBhMTk1MTVjNTVlEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=89354086",
+      "localFile": ".stitch/screens/portal.html"
+    },
+    {
+      "id": "273320c72b474e57be1d85fba1403623",
+      "title": "Callivaan Voice Agent Configuration & Prompt Management",
+      "deviceType": "DESKTOP",
+      "route": "/agent",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UA9T3d7HTjMS2-jk2yXQkEMtI-9ptDQC2K2GYIU_sqdlBcl3odUvoe647CDCHItkgZ_Nxo8vKUSfnXG0pRM6kKeNxXDMnavs4FCyZuaWO0g65JPyYrVwgx6NrNauhaJlB3BejkgzM3djMTFN2-KD-E-v51cTFoOLo_U31SPN4LgViZ8qH-3cUw8BNs3heP6U0uMpUh_3pD9-q1WmCYQ8KGRGvFCwpMVe7-EDDU-S15O2GqcVwF5lBIPd4",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzAwMDY1ZGRmZWEwYzExMGYwMzM4NWJkMzBhMDcxNmNjEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=89354086",
+      "localFile": ".stitch/screens/agent.html"
+    },
+    {
+      "id": "22955eb250784ca39c961f2710efdd91",
+      "title": "Callivaan Authentication & Business Account Onboarding",
+      "deviceType": "DESKTOP",
+      "route": "/auth",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WWWB1Zvyf-Rw-1T_gdTTgRvWVN3HhLyEyTmhw4vju2Ac4a-XdUmGaiWPEIq450bZvMsFaXjWaxfpyrtitlktpauEFr7NYssPWEKAaMXMY-rb9FIC3XmlzatehP24di8GPec6iWjXMBPY7bD1YaG9FhT6LWQWVnfgDyNIGEO6ttxobKuwItihsaiQZOnuB-5M209gfLnq16IFKIpOnm0L0kFvdlwYypbpyye83H9UJ9fpr7feyQ36qkOQ",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzFkZTBmMDdmOTU2YjRlMDA4MmQ2MzExNmRjYWYzN2U0EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/auth.html"
+    },
+    {
+      "id": "a7b3b46ad2994ad582f96442042525f8",
+      "title": "Callivaan Telephony Connection & Carrier Call Forwarding Guide",
+      "deviceType": "DESKTOP",
+      "route": "/telephony",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1VQd06zmwtQFd8Gf3-MJcHe2zqSt0GXw3P663ruEMYHWpxHBq2e59wJ6M120RAYOPzpp_HsJ_l2ScN6CAsHJOCjZzpusKLBbN0Iqh80qzRVmv0RFlKY7E96OSvAMM9esZpuQsfqM7quAwUyYq9AN3QaBk07PiKjs_ynOvZCNSVdia2ab-R_UuIkwengmf3XEOlkGkC6b7rFwewwCX9jwLiK-V20cea60DJFqv38vcsyw8wmaAw63hdkgKs",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzVkYzhkZTY4OWQyMjQzMDhiNTBlZGUyY2Y0NzUzMTIwEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/telephony.html"
+    },
+    {
+      "id": "a0fdcdfe571b4534a64ca14b36a24373",
+      "title": "Callivaan WhatsApp Connection & Lead Dispatch Hub",
+      "deviceType": "DESKTOP",
+      "route": "/whatsapp",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XlN_19PMRSswxC5H5S-kEJhvWVQz9VYjHQq0TQJllaFailh0HP3_DvFwMOVg9zZaw-kiLM9D-lqmsEeKjdMHgdZlIbDEMXm7nJ2jHBf3McS5byh7kawT3YFsoIverHCNl4fuXkvCQzzgk_0DB5Ykp7b_Gzdpz5rQND15RayiO55_Ncyh__bIPJ3btnyA6fgr5SH0808I2nVqWlRIaZY0MwVFg7z8Auf6dwDAsHqbIFaPP32d8PseO8e9w",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzU3NGFmZTU5N2IwNTRjYmI5YTllZDIzOTAzNzk5Y2Y2EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/whatsapp.html"
+    },
+    {
+      "id": "db699aaccf164fa992d1652f4d387db6",
+      "title": "Callivaan Legal, Privacy & Regulatory Compliance Policy Center",
+      "deviceType": "DESKTOP",
+      "route": "/legal",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XMQ4YbXMGJ2o1voWY6akbMyAdSdz44m7ltrvvqK_4pwjS--P15yoBVXF38NKR_dbmhSv9Ii7oDmBESUU5Nn0w9xsdgWAhT8Hu1uUoSkAHrpCja4RiRGB0AvsuqljTWawFLJYAbaOHtCRZW_kjzk-SdRLbpKN7wfUNy4uA8SNPB-8PJg3fUEzAPZ1Y1TOO7XSvSRxw40mKZ5B3_DwjZWBRLP43i4w0_oiDolCNI18Ovn-075lZSmHkteUY",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzkxMzg4ZGIyNzc0ODQxYjBiMjllYWQ3YTA2MjAxYmJhEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/legal.html"
+    }
+  ],
+  "mobileScreens": [
+    {
+      "id": "3db802338cd54398b16cc251633d437f",
+      "tab": "Calls (Tab 1)",
+      "title": "Callivaan Mobile App Inbound Calls Activity Feed",
+      "deviceType": "MOBILE",
+      "route": "/(tabs)/calls",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1VakZEth661ma33yId2mV6qNRo8QHTsWWCqJr2WMhYiXPicHDiIE1KKr8sM61_T45a-1DaYm8oHPUo7YU5dye1HzyAQVI844ffwVetUDpx8UYvVrHMEY-LaG4vCQ-IUqCKr802DslTALQh91usiZZN5M4ULhBGJOyUPTyCZtfloAAV5cVfwlAviQ4vc_Q4sTzCf5PR0Ni48bbv613O0INWx6Mx9R4-bNAdG44myUzg3TLL6zsJN70HS8bQ",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzliY2U3MzQ1NzNhZTQ3NTI4ZDI2Njg5MGEzM2IyNzkyEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_tab1_calls.html"
+    },
+    {
+      "id": "90d443854173413cb78a650d0a0cf4b2",
+      "tab": "Leads (Tab 2)",
+      "title": "Callivaan Mobile App Leads Dispatch & Qualification Pipeline",
+      "deviceType": "MOBILE",
+      "route": "/(tabs)/leads",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Xeo0HHR3ZERye5rU0aWsYUSqXum3O5Be0BdYWpB9j09LuOqS2b3pnWvmxBSZfnql_xlt4GBlQ3ju48B52C7pWoE0xY80JZTfN9Y5ckUpbSUEQc2nVmzvOj3apJ2xalx5ZSrXvAS_Y2mRQIrFO5O9SlZlXCkOOtGhBxwmWeP9AhyLTwKLrca_NuiqDSlyqP9mPZSdodMSEzdhDKeqyzmvFaWdYtGi2B5eYT9gJxMDhjVtflFQCtat9xm0A",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QxY2RhYjQ4ZjBkNTQ0ODE5ZGZiN2Q0YWMyZTFkYmUxEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_tab2_leads.html"
+    },
+    {
+      "id": "9071b4e774924f75848a80b181360e12",
+      "tab": "Forwarding (Tab 3)",
+      "title": "Callivaan Mobile App Carrier Forwarding & Telephony Hub",
+      "deviceType": "MOBILE",
+      "route": "/(tabs)/telephony",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UI6hkTZ2H2oOqMOIf-sAzAzUAxNaEqt2kFMzfRLSSe4YiQwfvCu2HLVJvVoi_BTObVdpMECZdsdeana5-9xGLS4NFr1rYTSoP3sjseCi6xex-25TJjaoURyGBImbiPtFn96XatrJQN5tJGyiSTlWIPP8zDIahHGkcrFzxsvGcJ4D5gFE1p8EvKu5Jut72Kmn5uOROfZfFAhQklV4kA6E0RHKRKdkttEkls-3CYNUDIpmCE5dYcPxHBBOM",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzM5M2FhZmE5MGQ4NjQ0MDA5MWZlN2I0NTFlYThhODY2EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_tab3_telephony.html"
+    },
+    {
+      "id": "f97f78c3fe8b4c55bd2e466acd2536da",
+      "tab": "Agent (Tab 4)",
+      "title": "Callivaan Mobile App Voice Agent Persona & Knowledge Setup",
+      "deviceType": "MOBILE",
+      "route": "/(tabs)/agent",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1Uo_ATsixWiUd5b1o11ApmshVs58wt6d_gd_j2wuJh55KHjuAE1Ud8h0NWIEttc7MnIWmeRsnQUIjI_-aSlevRRKqW4fWFlRookMidDf5DTT9wtvN3VaxeP1cPvpI_XDlT8WbMwSHdbD4XDif6hDRXGFjIAKHGfxzftcyx2VoGkGHpCI5kXnYay7qy6jIjMhz8eGdE_OnJrr0U0Tvf_d0JW65nHe01wAxM7oWsUoTSzNLWAAiQ9vktaMRA",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzIzZTMxZDQxYTBjYjRlNzE4ZjUxNzBiYzhhOTc0MDhiEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_tab4_agent.html"
+    },
+    {
+      "id": "9c759853a9bd4d9693341256b3191272",
+      "tab": "Settings (Tab 5)",
+      "title": "Callivaan Mobile App Settings, WhatsApp Hub & Account Billing",
+      "deviceType": "MOBILE",
+      "route": "/(tabs)/settings",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XvA4ObK9uMVwG-EIFUFmTUvHXjTLz8g12sqXQGYBNNse1fXMs9jJny6kENc8xZDKevPj7i-FViOZ3oDCf74k2bVa0ZvbvYDUcFNV8-CivFEafh-tWDhHVyQyw0H4SuxmfOm1g-nw6I5I_ztTyctG5hNhW1qxGYUs4KLd8qiHSnHoc55OkH1fT4cUWhVig9eYO6cMDx3S3BLulISS7fYLhQB_3lCFkxXCsVgciH5m2C4s6moy7WaH8IM-w",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzRhZjE1N2VlYTkxOTRiMWY5MmZhMjlhY2E3ZjI3OGI0EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_tab5_settings.html"
+    },
+    {
+      "id": "d21044a3e2e84826a389ebd562ceff87",
+      "tab": "Call Details (Drill-down)",
+      "title": "Callivaan Mobile App Inbound Call Detail, Audio Waveform & Transcript",
+      "deviceType": "MOBILE",
+      "route": "/calls/[id]",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1X4zxG2aV2zJcFZEhdGKmK7PNjn2VgpVeq2EBvvzpDToje2Hd43ICH3AaYrx9kvavpKLnn2r0CMWb9T9EUIaSMfMgRG87dvGnqD6D2hJdDUbs0a5vWPjieQqN7KXxDIx49WVqz8dmb4MLF0uBpV6uwuV1t1Sbf4pjkBhAOxbTfC9a_r_8YH1f7gdpK82F8n2PgZul-QPZTTDnFg8R772iOVOig-FmGikhxQ2joe2iEjh96ZPYDQDvHfrw",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2E0NjMwNGJhMGJiNjQ0MjdhOTI5YjdjYTI1MDRjMGI0EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/mobile/mobile_call_detail.html"
+    }
+  ]
+}

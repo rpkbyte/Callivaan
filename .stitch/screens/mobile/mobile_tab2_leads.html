@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low text-on-surface antialiased" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callivaan Mobile App - Leads Dispatch &amp; Qualification Pipeline</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config as specified in the theme instructions -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#3e475b",
+            "outline-variant": "#d0d5dd",
+            "tertiary-container": "#a84200",
+            "surface-bright": "#fbf8ff",
+            "surface-container-highest": "#dee5f0",
+            "on-surface-variant": "#667085",
+            "on-tertiary-fixed": "#351000",
+            "surface-variant": "#e2e1ec",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#f1f4fa",
+            "surface-dim": "#dad9e4",
+            "primary": "#063cbc",
+            "surface-container-high": "#e8edf5",
+            "on-error": "#ffffff",
+            "inverse-primary": "#b7c4ff",
+            "background": "#fbf8ff",
+            "on-secondary-container": "#5a6278",
+            "error-container": "#ffdad6",
+            "on-background": "#1a1b23",
+            "on-surface": "#172033",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#f1f0fb",
+            "tertiary-fixed": "#ffdbcc",
+            "secondary-container": "#d7dff9",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-primary-fixed": "#001452",
+            "surface-container-low": "#f6f8fc",
+            "secondary": "#555e74",
+            "on-primary-fixed-variant": "#0038b6",
+            "outline": "#e4e8f0",
+            "secondary-fixed-dim": "#bdc6e0",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "surface": "#ffffff",
+            "inverse-surface": "#2f3038",
+            "error": "#d92d20",
+            "on-primary-container": "#d8ddff",
+            "tertiary-fixed-dim": "#ffb695",
+            "tertiary": "#475467",
+            "on-secondary-fixed": "#121b2e",
+            "surface-tint": "#2c53d1",
+            "primary-fixed": "#dde1ff",
+            "on-tertiary-container": "#ffd6c5",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#3157d5",
+            "secondary-fixed": "#d9e2fc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "4px",
+            "space-sm": "12px",
+            "space-md": "24px",
+            "space-lg": "32px",
+            "space-xl": "48px",
+            "space-xxl": "64px",
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "margin": "48px"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    /* Tabular figures for telemetry & numbers */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Hide scrollbar for tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#121316] flex items-center justify-center min-h-screen p-0 sm:p-4 select-none">
+<!-- Mobile Device Shell 390x844 -->
+<main class="w-full max-w-[390px] h-[844px] bg-surface-container-low flex flex-col relative overflow-hidden shadow-2xl rounded-[36px] border border-outline/60">
+<!-- Top System / Status Bar (iOS standard mockup) -->
+<header class="w-full bg-surface pt-3 px-6 pb-2 flex justify-between items-center z-30 shrink-0">
+<span class="text-label-md font-label-md font-semibold text-on-surface tracking-tight tabular-nums">9:41</span>
+<div class="flex items-center space-x-2 text-on-surface">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</header>
+<!-- Top Navigation Anchor (Based on Shared Components TopAppBar with Business Context) -->
+<section class="bg-surface px-space-md py-space-sm border-b border-outline shrink-0 z-20">
+<!-- Row 1: Brand & Tenant Switcher + Action Controls -->
+<div class="flex justify-between items-center w-full">
+<!-- Brand Mark & Tenant Switcher -->
+<div class="flex items-center space-x-2.5">
+<!-- 5-bar vertical audio soundwave icon mark in cobalt blue -->
+<div aria-hidden="true" class="h-8 w-8 rounded-lg bg-secondary-container/50 flex items-center justify-center gap-[2.5px] px-1.5">
+<span class="w-[3px] h-2 bg-primary-container rounded-full"></span>
+<span class="w-[3px] h-4 bg-primary-container rounded-full"></span>
+<span class="w-[3px] h-6 bg-primary-container rounded-full"></span>
+<span class="w-[3px] h-3 bg-primary-container rounded-full"></span>
+<span class="w-[3px] h-5 bg-primary-container rounded-full"></span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-primary font-semibold">Callivaan Leads</span>
+</div>
+<!-- Tenant Selector Dropdown Chip -->
+<button class="flex items-center gap-1 text-label-md font-label-md text-on-surface font-semibold hover:text-primary transition-colors text-left" type="button">
+<span>Shree Balaji Motors</span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Trailing Action Icons -->
+<div class="flex items-center space-x-1">
+<!-- Live Telephony / Mic Test Button -->
+<button aria-label="Microphone Audio Diagnostics" class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">graphic_eq</span>
+</button>
+<!-- Notifications Bell with unread pulse -->
+<button aria-label="Notifications" class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container relative active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+</div>
+</div>
+<!-- Row 2: Search & Quick CSV Export Action -->
+<div class="mt-3 flex items-center gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-on-surface-variant pointer-events-none">search</span>
+<input class="w-full bg-surface-container-low border border-outline rounded-xl pl-9 pr-3 py-2 text-label-md font-label-md text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Search customer name, requirement, or phone..." type="text"/>
+</div>
+<button class="h-9 px-3 rounded-xl border border-outline bg-surface hover:bg-surface-container flex items-center justify-center text-on-surface-variant active:scale-95 transition-all" title="Export CSV" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+<!-- Row 3: High-Yield KPI Cards Metric Summary -->
+<div class="grid grid-cols-3 gap-2 mt-3">
+<!-- KPI 1 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-2 flex flex-col justify-between">
+<span class="text-[11px] leading-tight text-on-surface-variant font-medium">Hot Leads Today</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-headline-sm font-headline-sm text-on-surface tabular-nums">8</span>
+<span class="text-[10px] font-semibold text-primary tabular-nums">+3</span>
+</div>
+<span class="text-[10px] text-on-surface-variant mt-0.5">vs yesterday</span>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-2 flex flex-col justify-between">
+<span class="text-[11px] leading-tight text-on-surface-variant font-medium">Est. Pipeline</span>
+<div class="flex items-baseline mt-1">
+<span class="text-headline-sm font-headline-sm text-on-surface tabular-nums">₹4.2L</span>
+</div>
+<span class="text-[10px] text-primary font-medium mt-0.5">High Intent</span>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-2 flex flex-col justify-between">
+<span class="text-[11px] leading-tight text-on-surface-variant font-medium">WhatsApp Sync</span>
+<div class="flex items-baseline mt-1">
+<span class="text-headline-sm font-headline-sm text-primary font-bold tabular-nums">100%</span>
+</div>
+<div class="flex items-center gap-0.5 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span class="text-[9px] font-semibold text-emerald-700 tracking-tight">&lt;3s latency</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pipeline Horizontal Filter Tabs -->
+<nav class="bg-surface px-4 py-2.5 border-b border-outline overflow-x-auto no-scrollbar flex items-center space-x-2 shrink-0">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary text-label-sm font-label-sm font-medium whitespace-nowrap shadow-sm active:scale-95 transition-all">
+        All Leads (8)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm font-medium whitespace-nowrap active:scale-95 transition-all">
+        High Intent (4)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm font-medium whitespace-nowrap active:scale-95 transition-all">
+        Pending Callback (3)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm font-medium whitespace-nowrap active:scale-95 transition-all">
+        Converted (1)
+      </button>
+</nav>
+<!-- Scrollable Lead Cards Stream -->
+<div class="flex-1 overflow-y-auto px-4 py-3 space-y-3 pb-24">
+<!-- Lead Card 1: Rajat Verma (High Priority) -->
+<article class="bg-surface rounded-xl border border-outline p-3.5 shadow-sm space-y-3">
+<!-- Top Metadata Row -->
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-label-lg tabular-nums">
+              RV
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-label-lg font-label-lg text-on-surface font-semibold">Rajat Verma</h3>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  HIGH INTENT
+                </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant tabular-nums mt-0.5">+91 98765 43210</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant tabular-nums">2m ago</span>
+</div>
+<!-- AI Extracted Intent Box -->
+<div class="bg-surface-container-low border border-outline rounded-lg p-2.5 space-y-1.5">
+<div class="flex items-center gap-1 text-[11px] font-semibold text-primary tracking-wide">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>AI EXTRACTED REQUIREMENT</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+            Commercial Office Space Sector 62 (approx 1,200 sq ft). Budget: <span class="font-semibold tabular-nums">₹85 Lakhs</span>.
+          </p>
+<div class="flex items-center gap-1.5 pt-0.5 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-tertiary">schedule</span>
+<span>Requested callback tomorrow at <strong class="text-on-surface tabular-nums">11:30 AM</strong> for site inspection.</span>
+</div>
+</div>
+<!-- WhatsApp Telephony Dispatch Telemetry -->
+<div class="flex items-center gap-1.5 text-[11px] text-emerald-700 bg-emerald-50/70 border border-emerald-100 rounded-md px-2 py-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">done_all</span>
+<span>WhatsApp Lead Card Dispatched (&lt;3s) • Delivered to Owner Handset</span>
+</div>
+<!-- Quick Status Toggle State -->
+<div class="flex items-center gap-1.5 pt-0.5">
+<span class="text-[11px] font-medium text-on-surface-variant mr-1">Status:</span>
+<button class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary text-on-primary">New Lead</button>
+<button class="px-2 py-0.5 rounded text-[11px] font-medium border border-outline text-on-surface-variant hover:bg-surface-container">Contacted</button>
+<button class="px-2 py-0.5 rounded text-[11px] font-medium border border-outline text-on-surface-variant hover:bg-surface-container">Converted</button>
+</div>
+<!-- Action Split Buttons -->
+<div class="grid grid-cols-12 gap-2 pt-1 border-t border-outline/70">
+<button class="col-span-5 bg-primary-container text-on-primary hover:bg-primary py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Now</span>
+</button>
+<button class="col-span-5 bg-surface border border-outline text-emerald-700 hover:bg-emerald-50 py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px] text-emerald-600">chat</span>
+<span>WhatsApp</span>
+</button>
+<button class="col-span-2 border border-outline rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" title="View AI Call Transcript">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</button>
+</div>
+</article>
+<!-- Lead Card 2: Sunita Malhotra (Automobile Quote) -->
+<article class="bg-surface rounded-xl border border-outline p-3.5 shadow-sm space-y-3">
+<!-- Top Metadata Row -->
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-label-lg tabular-nums">
+              SM
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-label-lg font-label-lg text-on-surface font-semibold">Sunita Malhotra</h3>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-primary-container border border-blue-200">
+                  QUALIFIED
+                </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant tabular-nums mt-0.5">+91 98220 11223</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant tabular-nums">45m ago</span>
+</div>
+<!-- Extracted Requirement -->
+<div class="bg-surface-container-low border border-outline rounded-lg p-2.5 space-y-1.5">
+<div class="flex items-center gap-1 text-[11px] font-semibold text-primary tracking-wide">
+<span class="material-symbols-outlined text-[14px]">directions_car</span>
+<span>SERVICE / AUTOMOBILE QUOTE</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+            Full Car Ceramic Coating &amp; PPF for new Creta. Quoted: <span class="font-semibold tabular-nums">₹28,000 package</span>.
+          </p>
+<div class="text-label-sm font-label-sm text-on-surface-variant">
+            Note: Caller confirmed vehicle delivery date is this Thursday. Needs morning drop-off.
+          </div>
+</div>
+<!-- Telephony Telemetry Info -->
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant px-1 tabular-nums">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-on-surface-variant">record_voice_over</span>
+            Inbound Call Duration: 01:48
+          </span>
+<span class="font-medium text-primary">320ms Agent Latency</span>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-outline/70">
+<button class="bg-primary-container text-on-primary hover:bg-primary py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Now</span>
+</button>
+<button class="bg-surface border border-outline text-emerald-700 hover:bg-emerald-50 py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px] text-emerald-600">chat</span>
+<span>WhatsApp</span>
+</button>
+</div>
+</article>
+<!-- Lead Card 3: Priya Sharma (Healthcare / Consultation) -->
+<article class="bg-surface rounded-xl border border-outline p-3.5 shadow-sm space-y-3">
+<!-- Top Metadata Row -->
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-10 h-10 rounded-full bg-purple-100 text-purple-900 flex items-center justify-center font-bold text-label-lg tabular-nums">
+              PS
+            </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-label-lg font-label-lg text-on-surface font-semibold">Priya Sharma</h3>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                  APPOINTMENT
+                </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant tabular-nums mt-0.5">+91 98112 87654</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant tabular-nums">1h ago</span>
+</div>
+<!-- Extracted Requirement -->
+<div class="bg-surface-container-low border border-outline rounded-lg p-2.5 space-y-1.5">
+<div class="flex items-center gap-1 text-[11px] font-semibold text-purple-700 tracking-wide">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span>
+<span>CLINIC RESERVATION</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+            Orthopedic OPD Consultation with Dr. Kapoor. Slot reserved: <span class="font-semibold tabular-nums">Friday 5:00 PM</span>.
+          </p>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-emerald-700 pt-0.5">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+<span>Auto-synced to clinic calendar and WhatsApp confirmation sent.</span>
+</div>
+</div>
+<!-- Action Split Buttons -->
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-outline/70">
+<button class="bg-primary-container text-on-primary hover:bg-primary py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Patient</span>
+</button>
+<button class="bg-surface border border-outline text-on-surface hover:bg-surface-container py-2 rounded-lg text-label-md font-label-md font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px] text-tertiary">receipt_long</span>
+<span>View Slip</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Persistent Bottom Navigation Bar (Mandated by Shared Components JSON) -->
+<!-- Fixed dock at bottom, 5 items: Calls, Leads (Active), Forwarding, Agent, Settings -->
+<nav class="absolute bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-xs bg-surface border-t border-outline max-w-md mx-auto shadow-lg">
+<!-- Nav Item 1: Calls -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">call</span>
+<span class="text-label-sm font-label-sm mt-0.5">Calls</span>
+</button>
+<!-- Nav Item 2: Leads (ACTIVE as per page intent) -->
+<button class="flex flex-col items-center justify-center text-primary font-semibold py-1 relative active:scale-95" type="button">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">contact_phone</span>
+<span class="absolute -top-1 -right-2 bg-primary-container text-on-primary text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center tabular-nums">8</span>
+</div>
+<span class="text-label-sm font-label-sm mt-0.5">Leads</span>
+</button>
+<!-- Nav Item 3: Forwarding -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">forward_to_inbox</span>
+<span class="text-label-sm font-label-sm mt-0.5">Forwarding</span>
+</button>
+<!-- Nav Item 4: Agent -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+<span class="text-label-sm font-label-sm mt-0.5">Agent</span>
+</button>
+<!-- Nav Item 5: Settings -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-normal py-1 hover:text-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+<span class="text-label-sm font-label-sm mt-0.5">Settings</span>
+</button>
+</nav>
+</main>
+</body></html>

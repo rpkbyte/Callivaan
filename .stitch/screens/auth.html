@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-dim" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callivaan | Business Onboarding &amp; Authentication</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#555e74",
+            "on-tertiary-container": "#ffd6c5",
+            "secondary-fixed": "#d9e2fc",
+            "surface-container-highest": "#dee5f0",
+            "surface-container": "#eeedf8",
+            "tertiary": "#475467",
+            "primary": "#063cbc",
+            "on-primary-container": "#d8ddff",
+            "background": "#fbf8ff",
+            "on-primary": "#ffffff",
+            "on-surface": "#172033",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-bright": "#fbf8ff",
+            "surface-dim": "#f6f8fc",
+            "tertiary-fixed-dim": "#ffb695",
+            "on-primary-fixed": "#001452",
+            "on-surface-variant": "#444654",
+            "surface-container-low": "#f3f2fe",
+            "primary-fixed": "#dde1ff",
+            "on-tertiary-fixed": "#351000",
+            "secondary-fixed-dim": "#bdc6e0",
+            "on-secondary-fixed": "#121b2e",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f1f0fb",
+            "surface-variant": "#e2e1ec",
+            "error-container": "#fef3f2",
+            "surface-container-high": "#e8e7f2",
+            "surface-tint": "#2c53d1",
+            "error": "#d92d20",
+            "primary-container": "#3157d5",
+            "surface": "#ffffff",
+            "outline-variant": "#d0d5dd",
+            "on-background": "#1a1b23",
+            "secondary-container": "#d7dff9",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-secondary-container": "#5a6278",
+            "on-primary-fixed-variant": "#0038b6",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdbcc",
+            "inverse-primary": "#b7c4ff",
+            "tertiary-container": "#a84200",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#3e475b",
+            "inverse-surface": "#2f3038",
+            "outline": "#e4e8f0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "24px",
+            "space-sm": "12px",
+            "margin-mobile": "20px",
+            "space-xxl": "64px",
+            "gutter": "24px",
+            "space-xs": "4px",
+            "space-xl": "48px",
+            "margin": "48px",
+            "space-lg": "32px"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-sm": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes soundwave-pulse {
+      0%, 100% { height: 6px; }
+      50% { height: 18px; }
+    }
+    .wave-bar-1 { animation: soundwave-pulse 1.2s ease-in-out infinite 0.1s; }
+    .wave-bar-2 { animation: soundwave-pulse 1.2s ease-in-out infinite 0.25s; }
+    .wave-bar-3 { animation: soundwave-pulse 1.2s ease-in-out infinite 0.4s; }
+    .wave-bar-4 { animation: soundwave-pulse 1.2s ease-in-out infinite 0.15s; }
+    .wave-bar-5 { animation: soundwave-pulse 1.2s ease-in-out infinite 0.3s; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-surface-dim text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="w-full bg-surface border-b border-outline shadow-sm sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-3.5 flex items-center justify-between">
+<!-- Left: Unified Callivaan logo mark -->
+<a class="flex items-center gap-3 group focus:outline-none" href="#">
+<!-- 5-bar vertical audio soundwave icon in cobalt blue -->
+<div aria-label="Callivaan Acoustic Mark" class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center gap-[3px] border border-outline px-1.5">
+<span class="w-[3px] h-3 bg-primary-container rounded-full wave-bar-1"></span>
+<span class="w-[3px] h-5 bg-primary-container rounded-full wave-bar-2"></span>
+<span class="w-[3px] h-6 bg-primary rounded-full wave-bar-3"></span>
+<span class="w-[3px] h-4 bg-primary-container rounded-full wave-bar-4"></span>
+<span class="w-[3px] h-2 bg-primary-container rounded-full wave-bar-5"></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Callivaan</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-container text-on-secondary-fixed tracking-wide border border-secondary-fixed">
+            VOICE AI
+          </span>
+</div>
+</a>
+<!-- Right: Navigation actions & helpline -->
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 text-tertiary font-body-sm text-body-sm border-r border-outline pr-6">
+<span class="material-symbols-outlined text-[18px] text-secondary">support_agent</span>
+<span>Support: <strong class="font-semibold text-on-surface">+91 80 4736 9200</strong></span>
+<span class="text-on-surface-variant font-label-sm text-label-sm ml-1 text-slate-500">| mon-sat 9am-8pm</span>
+</div>
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-secondary hover:text-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back to Home</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-6 lg:px-8 py-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+<!-- Left Column: Value Proposition & Telephony Assurance (5 cols) -->
+<section class="lg:col-span-5 flex flex-col gap-6">
+<!-- Live Status Pill Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-outline shadow-sm w-fit">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">
+            Autonomous Call Assistant for Indian Businesses
+          </span>
+</div>
+<!-- Headline & Narrative -->
+<div>
+<h1 class="font-display-lg text-headline-lg lg:text-display-lg font-bold text-on-surface tracking-tight leading-tight">
+            Answer Every Customer Call, Even When You're Busy
+          </h1>
+<p class="mt-3.5 font-body-md text-body-md text-tertiary">
+            Automate phone bookings, customer inquiries, and lead qualification for your salon, clinic, workshop, or local enterprise with real-time WhatsApp sync.
+          </p>
+</div>
+<!-- Value Bullet Points -->
+<div class="space-y-3.5 pt-1">
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+              24/7 Bilingual Voice AI in Hindi, English, and Hinglish
+            </p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+              Instant structured lead summaries delivered to your WhatsApp
+            </p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+              Seamless call forwarding on Jio, Airtel, Vi, and BSNL
+            </p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">
+              14-day free trial with 30 included minutes. Zero credit card required.
+            </p>
+</div>
+</div>
+<!-- Live Telephony Interactive Demonstration Stack -->
+<div class="mt-2 space-y-3.5">
+<!-- Card 1: Live Incoming Stream -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between pb-3 border-b border-outline mb-3">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Live Incoming Call</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Latency: 360ms</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md font-semibold text-on-surface">+91 98765 43210</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Rajat Verma (New Customer)</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded border border-outline">
+<span class="material-symbols-outlined text-[18px] text-primary">record_voice_over</span>
+<span class="font-label-sm text-label-sm font-medium text-primary">Hindi / Hinglish</span>
+</div>
+</div>
+<div class="mt-3 bg-surface-dim p-2.5 rounded-lg border border-outline-variant/60 font-body-sm text-body-sm text-tertiary italic">
+              "Haircut aur beard trim ke liye slot chahiye aaj shaam 6 baje..."
+            </div>
+</div>
+<!-- Card 2: Instant WhatsApp Lead Sync -->
+<div class="bg-surface rounded-xl border border-outline p-4 shadow-sm">
+<div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-outline">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Instant WhatsApp Lead Sync</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Delivered</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-label-sm font-label-sm mb-3">
+<div><span class="text-secondary">Lead Name:</span> <strong class="text-on-surface font-semibold">Rajat Verma</strong></div>
+<div><span class="text-secondary">Urgency:</span> <strong class="text-primary font-semibold">High Priority</strong></div>
+<div><span class="text-secondary">Service:</span> <span class="text-on-surface">Haircut + Beard</span></div>
+<div><span class="text-secondary">Slot:</span> <span class="text-on-surface">Today, 6:00 PM</span></div>
+</div>
+<button class="w-full py-1.5 px-3 bg-surface-container-low border border-primary/20 hover:bg-secondary-fixed text-primary font-label-sm text-label-sm rounded-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>One-Tap Call Back</span>
+</button>
+</div>
+</div>
+<!-- Regulatory & Infrastructure Trust Banner -->
+<div class="p-3.5 rounded-xl bg-surface border border-outline flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm font-semibold text-on-surface">
+              TRAI &amp; DoT compliant telephony infrastructure
+            </p>
+<p class="font-body-sm text-[12px] text-tertiary">
+              256-bit TLS audio stream encryption. Sovereign data hosting in Mumbai (AWS ap-south-1).
+            </p>
+</div>
+</div>
+</section>
+<!-- Right Column: Authentication Card Container (7 cols) -->
+<section class="lg:col-span-7">
+<div class="bg-surface rounded-xl border border-outline shadow-[0_4px_20px_rgba(23,32,51,0.05)] p-6 sm:p-8 lg:p-9">
+<!-- Segmented Auth Switcher -->
+<div class="bg-surface-dim p-1.5 rounded-lg border border-outline grid grid-cols-2 gap-1 mb-8" role="tablist">
+<button aria-selected="false" class="py-2.5 rounded-md font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center justify-center gap-2" id="tab-signin" onclick="switchAuthMode('signin')" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+<span>Sign In</span>
+</button>
+<button aria-selected="true" class="py-2.5 rounded-md font-label-md text-label-md bg-surface text-primary shadow-sm font-semibold transition-all flex items-center justify-center gap-2 border border-outline" id="tab-signup" onclick="switchAuthMode('signup')" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+<span>Create Business Account</span>
+</button>
+</div>
+<!-- Header Inside Card -->
+<div class="mb-6" id="auth-title-container">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight" id="auth-heading">Set up your business voice agent</h2>
+<p class="font-body-sm text-body-sm text-tertiary mt-1" id="auth-subheading">Get instant call answering ready for your business in under 3 minutes.</p>
+</div>
+<!-- SIGN UP FORM -->
+<form class="space-y-4" id="signup-form" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Field 1: Business Name -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="business_name">
+                  Business Name <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="business_name" name="business_name" placeholder="e.g. Aura Wellness Studio" required="" type="text"/>
+</div>
+</div>
+<!-- Field 2: Owner Full Name -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="owner_name">
+                  Owner Full Name <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="owner_name" name="owner_name" placeholder="e.g. Rajesh Sharma" required="" type="text"/>
+</div>
+</div>
+</div>
+<!-- Field 3: WhatsApp Mobile Number -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="whatsapp_number">
+                WhatsApp Mobile Number <span class="text-error">*</span>
+</label>
+<div class="flex rounded-lg border border-outline bg-surface-container-low overflow-hidden focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all">
+<span class="inline-flex items-center px-3.5 bg-surface-container border-r border-outline font-label-md text-label-md font-semibold text-on-surface select-none">
+                  +91
+                </span>
+<div class="relative flex-1">
+<input class="w-full px-3.5 py-2.5 bg-transparent border-0 text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:ring-0 focus:outline-none" id="whatsapp_number" maxlength="10" name="whatsapp_number" placeholder="98765 43210" required="" type="tel"/>
+</div>
+</div>
+<p class="mt-1.5 font-label-sm text-[12px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">info</span>
+<span>We will send a one-time verification OTP and pair your WhatsApp leads here</span>
+</p>
+</div>
+<!-- Field 4: Business Email Address -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="business_email">
+                Business Email Address <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="business_email" name="business_email" placeholder="rajesh@aurawellness.in" required="" type="email"/>
+</div>
+</div>
+<!-- Field 5: Business Category Dropdown -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="business_category">
+                Business Category <span class="text-error">*</span>
+</label>
+<select class="w-full px-3.5 py-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="business_category" name="business_category">
+<option selected="" value="salon_spa">Salon &amp; Spa</option>
+<option value="healthcare">Dental Clinic / Healthcare</option>
+<option value="repairs">Appliance &amp; Home Repair</option>
+<option value="real_estate">Real Estate &amp; Property</option>
+<option value="professional">Independent Professional / Other</option>
+</select>
+</div>
+<!-- Field 6: Password with eye toggle & strength meter -->
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="password">
+                Password <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 pr-10 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="password" name="password" placeholder="Minimum 8 characters" required="" type="password"/>
+<button aria-label="Toggle password view" class="absolute inset-y-0 right-0 pr-3 flex items-center text-secondary hover:text-on-surface" onclick="togglePasswordVisibility('password')" type="button">
+<span class="material-symbols-outlined text-[20px]" id="password-toggle-icon">visibility</span>
+</button>
+</div>
+<!-- Password Strength Bar -->
+<div class="mt-2 flex items-center justify-between gap-3">
+<div class="flex-1 grid grid-cols-4 gap-1.5">
+<div class="h-1.5 rounded-full bg-emerald-500"></div>
+<div class="h-1.5 rounded-full bg-emerald-500"></div>
+<div class="h-1.5 rounded-full bg-emerald-500"></div>
+<div class="h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<span class="font-label-sm text-[12px] font-semibold text-emerald-700">Strong password</span>
+</div>
+</div>
+<!-- Micro-Assurance Callout Box -->
+<div class="mt-4 p-3.5 rounded-lg bg-[#f0f4ff] border border-primary-container/30 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0 mt-0.5">verified</span>
+<p class="font-body-sm text-body-sm text-primary font-medium">
+                No credit card or payment info needed today. 30 free test call minutes included.
+              </p>
+</div>
+<!-- Primary CTA Button -->
+<button class="w-full mt-2 py-3.5 px-6 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" type="submit">
+<span>Start 14-Day Free Trial</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Legal Agreement Footer -->
+<p class="text-center font-body-sm text-[12px] text-tertiary pt-2">
+              By signing up, you agree to Callivaan's 
+              <a class="text-primary hover:underline font-medium" href="#">Terms of Service</a> and 
+              <a class="text-primary hover:underline font-medium" href="#">Privacy Policy</a>.
+            </p>
+</form>
+<!-- SIGN IN FORM (Hidden by default, toggleable) -->
+<form class="space-y-4 hidden" id="signin-form" onsubmit="event.preventDefault();">
+<!-- Sign-in Mode switcher: Phone OTP vs Email -->
+<div class="flex items-center gap-4 pb-2 border-b border-outline">
+<button class="font-label-md text-label-md text-primary font-semibold border-b-2 border-primary pb-1" id="signin-method-otp" onclick="setSignInMethod('otp')" type="button">
+                WhatsApp / Phone OTP
+              </button>
+<button class="font-label-md text-label-md text-secondary pb-1" id="signin-method-password" onclick="setSignInMethod('password')" type="button">
+                Email + Password
+              </button>
+</div>
+<!-- OTP Login View -->
+<div class="space-y-4" id="signin-view-otp">
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="signin_phone">
+                  Registered WhatsApp Mobile Number
+                </label>
+<div class="flex rounded-lg border border-outline bg-surface-container-low overflow-hidden focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all">
+<span class="inline-flex items-center px-3.5 bg-surface-container border-r border-outline font-label-md text-label-md font-semibold text-on-surface">
+                    +91
+                  </span>
+<input class="w-full px-3.5 py-2.5 bg-transparent border-0 text-on-surface font-body-sm text-body-sm placeholder:text-outline-variant focus:ring-0 focus:outline-none" id="signin_phone" maxlength="10" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+<button class="w-full py-3 px-6 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">sms</span>
+<span>Send WhatsApp Verification OTP</span>
+</button>
+</div>
+<!-- Password Login View -->
+<div class="space-y-4 hidden" id="signin-view-password">
+<div>
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1.5" for="signin_email">
+                  Business Email
+                </label>
+<input class="w-full px-3.5 py-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" id="signin_email" placeholder="rajesh@aurawellness.in" type="email"/>
+</div>
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block font-label-sm text-label-sm font-semibold text-on-surface" for="signin_pwd">
+                    Password
+                  </label>
+<a class="font-label-sm text-[12px] text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 pr-10 rounded-lg bg-surface-container-low border border-outline text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" id="signin_pwd" placeholder="Enter your password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-secondary hover:text-on-surface" onclick="togglePasswordVisibility('signin_pwd')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full py-3 px-6 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 transition-all" type="button">
+<span>Sign In to Dashboard</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<p class="text-center font-body-sm text-[13px] text-tertiary pt-3 border-t border-outline">
+              New to Callivaan? 
+              <button class="text-primary hover:underline font-semibold ml-1" onclick="switchAuthMode('signup')" type="button">
+                Create 14-day free trial account
+              </button>
+</p>
+</form>
+</div>
+</section>
+</div>
+</main>
+<!-- Global Footer -->
+<footer class="w-full bg-surface border-t border-outline mt-auto py-6">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 font-body-sm text-[13px] text-tertiary">
+<div>
+<span>© 2025 Callivaan AI Telephony Technologies Pvt Ltd. All rights reserved. CIN: U72900MH2024PTC412980</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="inline-flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>Operational Telemetry: Mumbai (ap-south-1) • TRAI &amp; DoT Telephony Compliant</span>
+</span>
+<span class="text-outline-variant">|</span>
+<a class="text-primary hover:underline font-medium" href="mailto:support@callivaan.com">support@callivaan.com</a>
+</div>
+</div>
+</footer>
+<!-- Vanilla Interaction Controller -->
+<script>
+    function switchAuthMode(mode) {
+      const tabSignIn = document.getElementById('tab-signin');
+      const tabSignUp = document.getElementById('tab-signup');
+      const formSignUp = document.getElementById('signup-form');
+      const formSignIn = document.getElementById('signin-form');
+      const heading = document.getElementById('auth-heading');
+      const subheading = document.getElementById('auth-subheading');
+
+      if (mode === 'signin') {
+        tabSignIn.className = "py-2.5 rounded-md font-label-md text-label-md bg-surface text-primary shadow-sm font-semibold transition-all flex items-center justify-center gap-2 border border-outline";
+        tabSignIn.setAttribute('aria-selected', 'true');
+        tabSignUp.className = "py-2.5 rounded-md font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center justify-center gap-2";
+        tabSignUp.setAttribute('aria-selected', 'false');
+
+        formSignUp.classList.add('hidden');
+        formSignIn.classList.remove('hidden');
+
+        heading.textContent = "Sign in to Callivaan Console";
+        subheading.textContent = "Manage your voice agent telemetry, call logs, and WhatsApp leads.";
+      } else {
+        tabSignUp.className = "py-2.5 rounded-md font-label-md text-label-md bg-surface text-primary shadow-sm font-semibold transition-all flex items-center justify-center gap-2 border border-outline";
+        tabSignUp.setAttribute('aria-selected', 'true');
+        tabSignIn.className = "py-2.5 rounded-md font-label-md text-label-md text-secondary hover:text-on-surface transition-all flex items-center justify-center gap-2";
+        tabSignIn.setAttribute('aria-selected', 'false');
+
+        formSignIn.classList.add('hidden');
+        formSignUp.classList.remove('hidden');
+
+        heading.textContent = "Set up your business voice agent";
+        subheading.textContent = "Get instant call answering ready for your business in under 3 minutes.";
+      }
+    }
+
+    function setSignInMethod(method) {
+      const btnOtp = document.getElementById('signin-method-otp');
+      const btnPwd = document.getElementById('signin-method-password');
+      const viewOtp = document.getElementById('signin-view-otp');
+      const viewPwd = document.getElementById('signin-view-password');
+
+      if (method === 'otp') {
+        btnOtp.className = "font-label-md text-label-md text-primary font-semibold border-b-2 border-primary pb-1";
+        btnPwd.className = "font-label-md text-label-md text-secondary pb-1";
+        viewOtp.classList.remove('hidden');
+        viewPwd.classList.add('hidden');
+      } else {
+        btnPwd.className = "font-label-md text-label-md text-primary font-semibold border-b-2 border-primary pb-1";
+        btnOtp.className = "font-label-md text-label-md text-secondary pb-1";
+        viewPwd.classList.remove('hidden');
+        viewOtp.classList.add('hidden');
+      }
+    }
+
+    function togglePasswordVisibility(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      if (field.type === 'password') {
+        field.type = 'text';
+      } else {
+        field.type = 'password';
+      }
+    }
+  </script>
+</body></html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Callivaan | Autonomous AI Voice Telephony &amp; WhatsApp Inbound Assistant</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#1a1b23",
+            "surface-container": "#f1f4fa",
+            "surface": "#ffffff",
+            "on-background": "#1a1b23",
+            "surface-bright": "#ffffff",
+            "surface-container-highest": "#e2e1ec",
+            "primary": "#063cbc",
+            "on-secondary-container": "#5a6278",
+            "surface-tint": "#2c53d1",
+            "secondary-fixed-dim": "#bdc6e0",
+            "inverse-surface": "#2f3038",
+            "secondary-fixed": "#d9e2fc",
+            "on-secondary-fixed": "#121b2e",
+            "surface-container-high": "#e8edf5",
+            "on-primary-fixed": "#001452",
+            "secondary": "#555e74",
+            "on-error": "#ffffff",
+            "outline-variant": "#c4c5d6",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#444654",
+            "on-secondary-fixed-variant": "#3e475b",
+            "primary-fixed": "#dde1ff",
+            "inverse-primary": "#b7c4ff",
+            "surface-dim": "#f6f8fc",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#3157d5",
+            "primary-fixed-dim": "#b7c4ff",
+            "error": "#d92d20",
+            "tertiary-container": "#a84200",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f2fe",
+            "background": "#fbf8ff",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-tertiary-fixed": "#351000",
+            "on-primary-fixed-variant": "#0038b6",
+            "tertiary": "#475467",
+            "outline": "#e4e8f0",
+            "secondary-container": "#d7dff9",
+            "inverse-on-surface": "#f1f0fb",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffdbcc",
+            "on-tertiary-container": "#ffd6c5",
+            "on-primary-container": "#d8ddff",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb695",
+            "surface-variant": "#e2e1ec"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xl": "48px",
+            "space-xs": "4px",
+            "space-md": "24px",
+            "space-sm": "12px",
+            "gutter": "24px",
+            "margin": "48px",
+            "space-xxl": "64px",
+            "space-lg": "32px",
+            "margin-mobile": "20px"
+          },
+          fontFamily: {
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "display-lg": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "headline-lg-mobile": ["26px", { lineHeight: "34px", fontWeight: "600" }],
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+            "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+            "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      vertical-align: middle;
+    }
+    .font-tnums {
+      font-variant-numeric: tabular-nums;
+    }
+    @keyframes wavePulse {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    .wave-bar-1 { animation: wavePulse 1.1s ease-in-out infinite; }
+    .wave-bar-2 { animation: wavePulse 0.8s ease-in-out infinite 0.15s; }
+    .wave-bar-3 { animation: wavePulse 1.3s ease-in-out infinite 0.3s; }
+    .wave-bar-4 { animation: wavePulse 0.9s ease-in-out infinite 0.45s; }
+    .wave-bar-5 { animation: wavePulse 1.4s ease-in-out infinite 0.2s; }
+    .wave-bar-6 { animation: wavePulse 0.7s ease-in-out infinite 0.5s; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col">
+<!-- 1. STICKY TOP NAVIGATION BAR (Anchored to Shared Component JSON TopNavBar) -->
+<header class="bg-surface/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-outline shadow-sm">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+<!-- Brand Wordmark & Telephony Waveform Icon -->
+<a class="flex items-center gap-2.5 tracking-tight group" href="#"><span class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-container text-white shadow-sm"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><rect x="3" y="7" width="2.5" height="10" rx="1.25"></rect><rect x="7.5" y="3" width="2.5" height="18" rx="1.25"></rect><rect x="12" y="5" width="2.5" height="14" rx="1.25"></rect><rect x="16.5" y="2" width="2.5" height="20" rx="1.25"></rect><rect x="21" y="6" width="2.5" height="12" rx="1.25"></rect></svg></span><span class="font-bold text-xl tracking-tight text-on-surface">Callivaan</span><span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-xs font-semibold tracking-wide bg-primary-fixed text-primary border border-primary/20">VOICE AI</span></a>
+<!-- Navigation Links from JSON: ["Product", "Solutions", "How It Works", "Control Hub", "Pricing"] -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-primary font-semibold text-label-lg font-label-lg transition duration-150 ease-in-out active:scale-95" href="#product">Product</a>
+<a class="text-on-surface-variant hover:text-on-surface text-label-lg font-label-lg transition duration-150 ease-in-out active:scale-95" href="#solutions">Solutions</a>
+<a class="text-on-surface-variant hover:text-on-surface text-label-lg font-label-lg transition duration-150 ease-in-out active:scale-95" href="#how-it-works">How It Works</a>
+<a class="text-on-surface-variant hover:text-on-surface text-label-lg font-label-lg transition duration-150 ease-in-out active:scale-95" href="#control-hub">Control Hub</a>
+<a class="text-on-surface-variant hover:text-on-surface text-label-lg font-label-lg transition duration-150 ease-in-out active:scale-95" href="#pricing">Pricing</a>
+</nav>
+<!-- Actions from JSON: trailing_primary_action: "Download APK", trailing_secondary_action: "Book Demo" -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg text-label-lg font-label-lg text-primary hover:bg-surface-container-low transition duration-150 active:scale-95 font-medium border border-outline" href="#demo">
+          Book Demo
+        </a>
+<a class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-label-lg font-label-lg bg-primary hover:bg-primary-container text-on-primary transition duration-150 active:scale-95 shadow-sm" href="#apk-download">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">Download APK</span>
+</a>
+</div>
+</div>
+</header>
+<!-- 2. HERO SECTION (High-impact Asymmetric 2-Column Grid) -->
+<section class="relative overflow-hidden pt-10 pb-16 md:pt-16 md:pb-24 border-b border-outline bg-gradient-to-b from-surface via-surface to-surface-dim" id="product">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Copy & Value Proposition -->
+<div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+<!-- Trust Pill Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline text-on-surface-variant text-label-sm font-label-sm w-fit">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-medium text-on-surface">Autonomous Inbound Call Assistant for Indian Businesses</span>
+</div>
+<!-- Display Headline -->
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight max-w-2xl">
+            Never Lose Another Lead to an <span class="text-primary-container underline decoration-primary-fixed decoration-4 underline-offset-4">Unanswered Call</span>
+</h1>
+<!-- Subcopy -->
+<p class="text-body-lg font-body-lg text-tertiary max-w-xl">
+            Callivaan answers your customer phone calls 24/7 with a natural Hindi and English voice agent, collects caller requirements, and delivers structured lead summaries directly to your WhatsApp with one-tap callback.
+          </p>
+<!-- Action Group -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-semibold shadow-sm transition duration-150 ease-in-out active:scale-95" href="#trial">
+<span class="">Start 14-Day Free Trial</span>
+<span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center px-5 py-3.5 rounded-lg bg-surface border border-outline hover:bg-surface-container text-on-surface font-label-lg text-label-lg font-medium transition duration-150 ease-in-out active:scale-95 gap-2" href="#apk-download">
+<span class="material-symbols-outlined text-primary text-[20px]">android</span>
+<span class="">Download Android APK</span>
+<span class="ml-1 px-1.5 py-0.5 rounded text-[11px] font-mono font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant">v1.0 Signed</span>
+</a>
+</div>
+<!-- Micro-trust note -->
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-tertiary pt-1">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="">No credit card required. Works with any Indian mobile carrier (Airtel, Jio, Vi) or cloud business number.</span>
+</div>
+<!-- Live Tabular Metric Counter Bar -->
+<div class="grid grid-cols-3 gap-4 pt-6 border-t border-outline">
+<div class="space-y-0.5">
+<div class="text-headline-sm font-headline-sm text-on-surface font-bold font-tnums">180,000+</div>
+<div class="text-label-sm font-label-sm text-tertiary">Calls Handled</div>
+</div>
+<div class="space-y-0.5 border-l border-outline pl-4">
+<div class="text-headline-sm font-headline-sm text-primary-container font-bold font-tnums">&lt; 400ms</div>
+<div class="text-label-sm font-label-sm text-tertiary">Response Latency</div>
+</div>
+<div class="space-y-0.5 border-l border-outline pl-4">
+<div class="text-headline-sm font-headline-sm text-on-surface font-bold font-tnums">94%</div>
+<div class="text-label-sm font-label-sm text-tertiary">Hindi &amp; English Accuracy</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Live Telephony & WhatsApp Lead Capture Demo Module -->
+<div class="lg:col-span-5 relative">
+<div class="bg-surface rounded-xl border border-outline shadow-sm p-5 space-y-4">
+<!-- Top Telephony Sub-Card: Live incoming call state -->
+<div class="bg-surface-dim rounded-lg border border-outline p-4 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-ping"></span>
+<span class="text-label-sm font-label-sm font-semibold uppercase tracking-wider text-error">Live Incoming Call</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface border border-outline text-label-sm font-label-sm text-tertiary font-tnums">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="">00:42</span>
+</div>
+</div>
+<!-- Caller Info & Waveform -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold font-tnums">+91 98765 43210</div>
+<div class="text-label-sm font-label-sm text-tertiary">Rajat Verma (New Customer)</div>
+</div>
+<!-- Animated Waveform Bars -->
+<div class="flex items-center gap-1 h-8 px-2 py-1 bg-surface rounded border border-outline">
+<span class="w-1 bg-primary-container rounded-full wave-bar-1"></span>
+<span class="w-1 bg-primary-container rounded-full wave-bar-2"></span>
+<span class="w-1 bg-primary-container rounded-full wave-bar-3"></span>
+<span class="w-1 bg-primary-container rounded-full wave-bar-4"></span>
+<span class="w-1 bg-primary-container rounded-full wave-bar-5"></span>
+<span class="w-1 bg-primary-container rounded-full wave-bar-6"></span>
+</div>
+</div>
+<!-- Dialogue Transcript Box -->
+<div class="bg-surface rounded border border-outline p-3 space-y-2 text-body-sm font-body-sm">
+<div class="text-on-surface-variant">
+<span class="font-semibold text-on-surface">Customer:</span> "Haircut aur beard trim ke liye slot chahiye aaj shaam 6 baje"
+                </div>
+<div class="text-primary font-medium">
+<span class="font-semibold text-primary-container">Callivaan AI:</span> "Ji Rajat ji, aaj shaam 6 baje slot available hai. Main aapka appointment confirm kar rahi hoon."
+                </div>
+</div>
+</div>
+<!-- Directional Pipeline Connector -->
+<div class="flex items-center justify-center gap-2 py-1 text-label-sm font-label-sm font-medium text-tertiary">
+<span class="h-px flex-1 bg-outline"></span>
+<span class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high border border-outline text-on-surface text-[11px] font-mono">
+<span class="material-symbols-outlined text-[14px] text-primary">bolt</span>
+<span class="">Instant WhatsApp Lead Sync (0.8s)</span>
+</span>
+<span class="h-px flex-1 bg-outline"></span>
+</div>
+<!-- Real-time WhatsApp Notification Preview Card -->
+<div class="bg-[#f0f9f3] rounded-lg border border-[#cbe8d5] p-4 space-y-3">
+<div class="flex items-center justify-between pb-2 border-b border-[#d8eedf]">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-[#25d366] text-white flex items-center justify-center">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path>
+</svg>
+</span>
+<div>
+<div class="text-label-md font-label-md font-bold text-on-surface flex items-center gap-1">
+                      Callivaan Inbound Lead Bot
+                      <span class="material-symbols-outlined text-[#25d366] text-[15px]">check_circle</span>
+</div>
+<div class="text-[11px] text-tertiary">via WhatsApp Business Cloud API</div>
+</div>
+</div>
+<span class="text-[11px] font-mono text-tertiary font-tnums">Just now</span>
+</div>
+<!-- Structured Fields -->
+<div class="space-y-1.5 text-body-sm font-body-sm text-on-surface">
+<div class="flex justify-between items-start py-0.5 border-b border-white/60">
+<span class="text-tertiary font-medium">Lead Name:</span>
+<span class="font-semibold text-on-surface">Rajat Verma</span>
+</div>
+<div class="flex justify-between items-start py-0.5 border-b border-white/60">
+<span class="text-tertiary font-medium">Service:</span>
+<span class="font-semibold text-on-surface">Haircut + Beard Grooming</span>
+</div>
+<div class="flex justify-between items-start py-0.5 border-b border-white/60">
+<span class="text-tertiary font-medium">Slot Requested:</span>
+<span class="font-semibold text-primary font-tnums">Today, 6:00 PM</span>
+</div>
+<div class="flex justify-between items-start py-0.5 border-b border-white/60">
+<span class="text-tertiary font-medium">Urgency:</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed">High</span>
+</div>
+<div class="flex justify-between items-start py-0.5">
+<span class="text-tertiary font-medium">Source:</span>
+<span class="font-mono text-xs font-semibold text-on-surface font-tnums">+91 98765 43210</span>
+</div>
+</div>
+<!-- Action buttons inside notification preview -->
+<div class="grid grid-cols-2 gap-2 pt-2">
+<button class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary-container text-white text-label-sm font-label-sm font-semibold shadow-xs hover:bg-primary transition">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span class="">One-Tap Call Back</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-[#cbe8d5] text-on-surface text-label-sm font-label-sm font-medium hover:bg-[#ebf7ef] transition">
+<span class="material-symbols-outlined text-[16px] text-[#25d366]">chat</span>
+<span class="">Confirm Slot</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. VALUE PROPOSITION & HOW IT WORKS (3-Step Horizontal Architecture) -->
+<section class="py-16 md:py-24 bg-surface border-b border-outline" id="how-it-works">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<!-- Section Header -->
+<div class="max-w-2xl mx-auto text-center space-y-3 mb-16">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline text-primary text-label-sm font-label-sm font-semibold uppercase tracking-wider">
+          Seamless Workflow
+        </div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+          How Callivaan Works for Your Daily Business
+        </h2>
+<p class="text-body-md font-body-md text-tertiary">
+          Up and running in 2 minutes without replacing your existing SIM or business setup.
+        </p>
+</div>
+<!-- 3 Asymmetric Process Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Step 01 -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 flex flex-col justify-between hover:border-outline-variant transition duration-200">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-headline-sm font-bold text-primary font-tnums">01</span>
+<span class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[20px]">phone_forwarded</span>
+</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+              Connect in 2 Minutes
+            </h3>
+<p class="text-body-sm font-body-sm text-tertiary leading-relaxed">
+              Simple call forwarding code (*21* or conditional busy/unanswered) from your existing Airtel, Jio, or Vi SIM, or assign a dedicated cloud business number with one click.
+            </p>
+</div>
+<!-- Phone dialer code snippet graphic -->
+<div class="mt-6 pt-4 border-t border-outline space-y-2">
+<div class="text-[11px] font-label-sm uppercase tracking-wider text-tertiary font-semibold">Universal Dial Code</div>
+<div class="p-2.5 rounded bg-surface border border-outline flex items-center justify-between font-mono text-body-sm font-semibold text-on-surface font-tnums">
+<span class="">*21*918001234567#</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">content_copy</span>
+</div>
+<div class="text-[11px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">check</span>
+<span class="">Zero hardware or PBX required</span>
+</div>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 flex flex-col justify-between hover:border-outline-variant transition duration-200">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-headline-sm font-bold text-primary font-tnums">02</span>
+<span class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[20px]">record_voice_over</span>
+</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+              AI Answers Naturally
+            </h3>
+<p class="text-body-sm font-body-sm text-tertiary leading-relaxed">
+              Fluent Hindi, English, and Hinglish agent responds intelligently using your customized business catalog, services, clinic timings, pricing, and live seat availability.
+            </p>
+</div>
+<!-- Latency & Language chip metrics -->
+<div class="mt-6 pt-4 border-t border-outline space-y-2.5">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-tertiary font-medium">Spoken Latency</span>
+<span class="font-mono font-semibold text-primary font-tnums">380ms Sub-Second</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface border border-outline text-label-sm font-label-sm text-on-surface">Shuddh Hindi</span>
+<span class="px-2 py-0.5 rounded bg-surface border border-outline text-label-sm font-label-sm text-on-surface">Indian English</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high border border-outline text-label-sm font-label-sm font-medium text-primary">Conversational Hinglish</span>
+</div>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 flex flex-col justify-between hover:border-outline-variant transition duration-200">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-headline-sm font-bold text-primary font-tnums">03</span>
+<span class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[20px]">mark_chat_unread</span>
+</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">
+              Instant WhatsApp Follow-up
+            </h3>
+<p class="text-body-sm font-body-sm text-tertiary leading-relaxed">
+              Within seconds of call termination, a structured breakdown of caller requirements, intent classification, and next steps lands in your WhatsApp chat with one-tap dial.
+            </p>
+</div>
+<!-- Structured alert preview -->
+<div class="mt-6 pt-4 border-t border-outline space-y-2">
+<div class="p-2.5 rounded bg-surface border border-outline text-label-sm font-label-sm space-y-1">
+<div class="flex items-center justify-between font-medium">
+<span class="text-tertiary">Status</span>
+<span class="text-[#25d366] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#25d366]"></span>
+                  Lead Classified
+                </span>
+</div>
+<div class="text-on-surface truncate font-semibold">Priority: Appointment Booked</div>
+</div>
+<div class="text-[11px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">send</span>
+<span class="">Delivered to owner + staff WhatsApp</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. UNIQUE WHATSAPP CONTROL SHOWCASE -->
+<section class="py-16 md:py-24 bg-surface-dim border-b border-outline" id="control-hub">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Sub-panel: Copy & Feature Bullet List -->
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-outline text-primary text-label-sm font-label-sm font-semibold uppercase tracking-wider">
+            Zero Dashboard Friction
+          </div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+            Control Your AI Agent Directly on WhatsApp
+          </h2>
+<p class="text-body-lg font-body-lg text-tertiary leading-relaxed">
+            No complex software dashboards to log into while running your salon, clinic, or workshop. Send natural instructions via WhatsApp chat just like messaging a branch manager.
+          </p>
+<div class="space-y-4 pt-2">
+<div class="flex items-start gap-3">
+<div class="p-1 rounded bg-primary-fixed text-primary mt-0.5">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</div>
+<div>
+<div class="text-headline-sm text-base font-headline-sm text-on-surface font-semibold">Instant Prompt &amp; Script Updates</div>
+<div class="text-body-sm font-body-sm text-tertiary">Change answering instructions, add new promotional offers, or update slot timings in real-time.</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-1 rounded bg-primary-fixed text-primary mt-0.5">
+<span class="material-symbols-outlined text-[18px]">event_busy</span>
+</div>
+<div>
+<div class="text-headline-sm text-base font-headline-sm text-on-surface font-semibold">Vacation &amp; Emergency Pause Mode</div>
+<div class="text-body-sm font-body-sm text-tertiary">Text "Doctor unavailable today till 4 PM" and Callivaan immediately adjusts scheduling logic for callers.</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-1 rounded bg-primary-fixed text-primary mt-0.5">
+<span class="material-symbols-outlined text-[18px]">currency_rupee</span>
+</div>
+<div>
+<div class="text-headline-sm text-base font-headline-sm text-on-surface font-semibold">Price Changes Reflected Immediately</div>
+<div class="text-body-sm font-body-sm text-tertiary">Modify haircut, consultation, or inspection rates straight through text; no engineering or support tickets.</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-1 rounded bg-primary-fixed text-primary mt-0.5">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</div>
+<div>
+<div class="text-headline-sm text-base font-headline-sm text-on-surface font-semibold">Tamper-Proof Version History</div>
+<div class="text-body-sm font-body-sm text-tertiary">Every instruction requires a single-word confirmation ("YES") before pushing live to telephone lines.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sub-panel: Realistic WhatsApp Chat Conversation Interface -->
+<div class="lg:col-span-6">
+<div class="max-w-md mx-auto bg-surface rounded-xl border border-outline shadow-sm overflow-hidden">
+<!-- WhatsApp Top Bar -->
+<div class="bg-[#128c7e] text-white p-3.5 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
+                  C
+                </span>
+<div>
+<div class="font-semibold text-sm flex items-center gap-1">
+                    Callivaan Agent Controller
+                    <span class="material-symbols-outlined text-[14px]">check_circle</span>
+</div>
+<div class="text-[11px] text-white/80">Online | AI Configuration Bot</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</div>
+</div>
+<!-- WhatsApp Chat Background Canvas -->
+<div class="p-4 bg-[#efeae2] space-y-3.5 min-h-[380px] flex flex-col justify-end text-body-sm font-body-sm">
+<!-- System Timestamp Pill -->
+<div class="flex justify-center">
+<span class="px-2.5 py-0.5 rounded bg-white/80 text-[11px] font-medium text-tertiary font-tnums shadow-xs">
+                  Today
+                </span>
+</div>
+<!-- Message 1: User Prompt Update -->
+<div class="flex justify-end">
+<div class="bg-[#d9fdd3] text-on-surface rounded-lg rounded-tr-none p-3 max-w-[85%] shadow-xs space-y-1">
+<p class="leading-relaxed">Hindi mein baat karo aur salon timings 10 AM to 9 PM batao. Hair spa ka price 899 rupees kar do.</p>
+<div class="text-[10px] text-tertiary text-right font-tnums flex items-center justify-end gap-1">
+<span class="">11:42 AM</span>
+<span class="material-symbols-outlined text-[13px] text-primary">done_all</span>
+</div>
+</div>
+</div>
+<!-- Message 2: Callivaan AI System Verification -->
+<div class="flex justify-start">
+<div class="bg-white text-on-surface rounded-lg rounded-tl-none p-3 max-w-[88%] shadow-xs space-y-1.5 border border-outline/50">
+<div class="text-[11px] font-semibold text-primary uppercase tracking-wide flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                    Prompt Update Received
+                  </div>
+<div class="space-y-1 text-xs">
+<div class="">• <strong>Language:</strong> Switched to Hindi Conversational</div>
+<div class="">• <strong>Business Hours:</strong> 10:00 AM – 9:00 PM</div>
+<div class="">• <strong>Hair Spa Price:</strong> ₹899 (Regular)</div>
+</div>
+<div class="pt-1 text-xs font-medium text-on-surface-variant border-t border-outline">
+                    Type <strong>YES</strong> to publish to live telephone calls.
+                  </div>
+<div class="text-[10px] text-tertiary text-right font-tnums">11:42 AM</div>
+</div>
+</div>
+<!-- Message 3: User Confirmation Response -->
+<div class="flex justify-end">
+<div class="bg-[#d9fdd3] text-on-surface rounded-lg rounded-tr-none px-3 py-1.5 max-w-[85%] shadow-xs flex items-center gap-2">
+<span class="font-bold">YES</span>
+<div class="text-[10px] text-tertiary font-tnums flex items-center gap-1">
+<span class="">11:43 AM</span>
+<span class="material-symbols-outlined text-[13px] text-primary">done_all</span>
+</div>
+</div>
+</div>
+<!-- Message 4: Callivaan AI Confirmation -->
+<div class="flex justify-start">
+<div class="bg-white text-on-surface rounded-lg rounded-tl-none p-3 max-w-[88%] shadow-xs space-y-1 border-l-4 border-l-[#25d366]">
+<div class="flex items-center gap-1 text-[#25d366] font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Live Deployment Confirmed</span>
+</div>
+<p class="text-xs text-on-surface-variant">All incoming calls will now use these updated parameters immediately.</p>
+<div class="text-[10px] text-tertiary text-right font-tnums">11:43 AM</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp Bottom Mock Input Bar -->
+<div class="p-2.5 bg-[#f0f2f5] border-t border-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">sentiment_satisfied</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">attach_file</span>
+<div class="flex-1 bg-white rounded-lg px-3 py-1.5 text-xs text-tertiary border border-outline">
+                Type instructions for your AI agent...
+              </div>
+<span class="material-symbols-outlined text-[#128c7e] text-[20px]">mic</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. INDUSTRY SOLUTIONS GRID -->
+<section class="py-16 md:py-24 bg-surface border-b border-outline" id="solutions">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="max-w-2xl mx-auto text-center space-y-3 mb-16">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-outline text-primary text-label-sm font-label-sm font-semibold uppercase tracking-wider">
+          Tailored Workflows
+        </div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+          Built for Appointment &amp; Enquiry-Driven Businesses
+        </h2>
+<p class="text-body-md font-body-md text-tertiary">
+          Pre-trained on thousands of industry-specific conversations across Indian commercial hubs.
+        </p>
+</div>
+<!-- 4 Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Salons & Spas -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 space-y-4 hover:border-outline-variant transition duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[24px]">content_cut</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Salons &amp; Spas</h3>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface border border-outline text-label-sm font-label-sm text-primary font-medium">98.2% Slot Fill Rate</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Handles complex hair treatment bookings, specific stylist preferences, package discounts, and slot rescheduling without tying up your front desk.
+          </p>
+<div class="bg-surface rounded-lg border border-outline p-3 space-y-1.5 text-xs">
+<div class="text-tertiary font-medium">Sample Inbound Lead:</div>
+<div class="text-on-surface font-mono font-medium font-tnums">"Hair coloring + Balayage with Stylist Priya on Saturday 4:00 PM"</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Service Catalog Mapping</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Stylist Rostering</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Instant WhatsApp Token</span>
+</div>
+</div>
+<!-- Clinics & Doctors -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 space-y-4 hover:border-outline-variant transition duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[24px]">clinical_notes</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Clinics &amp; Doctors</h3>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface border border-outline text-label-sm font-label-sm text-primary font-medium">Zero Double Bookings</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Qualifies patient symptoms, provides OPD visiting hours, confirms doctor specialization inquiries, and sends clinic location pins via WhatsApp.
+          </p>
+<div class="bg-surface rounded-lg border border-outline p-3 space-y-1.5 text-xs">
+<div class="text-tertiary font-medium">Sample Inbound Lead:</div>
+<div class="text-on-surface font-mono font-medium font-tnums">"Dr. Mehra OPD | Pediatric fever consultation | Urgent evening slot"</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">OPD Schedule Sync</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Location Pin Dispatch</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Follow-up Protocols</span>
+</div>
+</div>
+<!-- Home & Appliance Repair -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 space-y-4 hover:border-outline-variant transition duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[24px]">home_repair_service</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Home &amp; Appliance Repair</h3>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface border border-outline text-label-sm font-label-sm text-primary font-medium">&lt; 2-Min Dispatch</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Categorizes appliance breakdown severity, captures service address &amp; pincode, and dispatches job alerts directly to your technician's WhatsApp.
+          </p>
+<div class="bg-surface rounded-lg border border-outline p-3 space-y-1.5 text-xs">
+<div class="text-tertiary font-medium">Sample Inbound Lead:</div>
+<div class="text-on-surface font-mono font-medium font-tnums">"Voltas 1.5 Ton Split AC Not Cooling | Pincode 110024 | Inspection requested"</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Pincode Filtering</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Breakdown Urgency Flag</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Technician WhatsApp Routing</span>
+</div>
+</div>
+<!-- Real Estate & Property -->
+<div class="bg-surface-dim rounded-xl border border-outline p-6 space-y-4 hover:border-outline-variant transition duration-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface border border-outline text-primary">
+<span class="material-symbols-outlined text-[24px]">apartment</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Real Estate &amp; Property</h3>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface border border-outline text-label-sm font-label-sm text-primary font-medium">3.4x Site Visit Conversions</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Vets buyer budget tiers, 2BHK/3BHK configuration needs, preferred possession timelines, and schedules accompanied site visits with your sales agents.
+          </p>
+<div class="bg-surface rounded-lg border border-outline p-3 space-y-1.5 text-xs">
+<div class="text-tertiary font-medium">Sample Inbound Lead:</div>
+<div class="text-on-surface font-mono font-medium font-tnums">"3BHK Inquire | Budget 1.2 - 1.5 Cr | Sunday morning site visit agreed"</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Budget Qualification</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">Site Visit Booking</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-label-sm font-label-sm text-on-surface-variant">CRM Webhook Sync</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. DIRECT ANDROID APK & SELF-SERVE SALES BANNER -->
+<section class="py-16 md:py-24 bg-surface border-b border-outline" id="apk-download">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="bg-inverse-surface rounded-2xl p-8 md:p-12 text-surface border border-outline-variant relative overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+<!-- Left Content -->
+<div class="lg:col-span-7 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-primary-fixed text-label-sm font-label-sm border border-white/20">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">Enterprise Release v1.0.4 Signed APK</span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-white">
+              Take Full Control from Your Android Phone
+            </h2>
+<p class="text-body-md font-body-md text-secondary-fixed-dim max-w-xl">
+              Install the lightweight Callivaan controller app. Monitor active calls, adjust speech prompts on the fly, and view call audio recordings without opening a laptop.
+            </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-primary-container hover:bg-primary text-white font-label-lg text-label-lg font-semibold transition active:scale-95 shadow-sm" href="#download-file">
+<span class="material-symbols-outlined text-[20px]">android</span>
+<span class="">Download Callivaan v1.0.4 APK</span>
+<span class="text-xs opacity-80 font-mono font-tnums">(28 MB)</span>
+</a>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-secondary-fixed-dim px-2">
+<span class="material-symbols-outlined text-[18px] text-[#25d366]">security</span>
+<span class="">SHA-256 Verified Binary</span>
+</div>
+</div>
+<div class="pt-4 border-t border-white/10 flex flex-wrap items-center gap-6 text-label-sm font-label-sm text-secondary-fixed-dim">
+<div class="flex items-center gap-1.5 font-tnums">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Compatible with Android 9.0 and higher</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Direct carrier forwarding toggle</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Encrypted call recordings</span>
+</div>
+</div>
+</div>
+<!-- Right Phone UI & QR Code Mockup -->
+<div class="lg:col-span-5 flex flex-col sm:flex-row items-center justify-center gap-6">
+<!-- Mobile App Screen Mockup -->
+<div class="w-64 bg-surface rounded-2xl border-4 border-[#444654] p-3 text-on-surface shadow-2xl space-y-3">
+<div class="flex items-center justify-between pb-2 border-b border-outline text-xs">
+<span class="font-bold text-primary font-tnums">9:41 AM</span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="text-[11px] font-semibold text-tertiary uppercase">Recent Inbound Calls</div>
+<div class="text-xs font-bold text-on-surface">Live Activity Log</div>
+</div>
+<!-- List of calls in app -->
+<div class="space-y-2">
+<div class="p-2 rounded bg-surface-dim border border-outline text-xs space-y-1">
+<div class="flex items-center justify-between font-tnums">
+<span class="font-bold">+91 98765 43210</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#ebf7ef] text-[#25d366]">Booked</span>
+</div>
+<div class="text-[11px] text-tertiary">Salon • Haircut + Beard Grooming</div>
+</div>
+<div class="p-2 rounded bg-surface-dim border border-outline text-xs space-y-1">
+<div class="flex items-center justify-between font-tnums">
+<span class="font-bold">+91 98110 54321</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-surface-container text-tertiary">Enquiry</span>
+</div>
+<div class="text-[11px] text-tertiary">Clinic • OPD Timings requested</div>
+</div>
+<div class="p-2 rounded bg-surface-dim border border-outline text-xs space-y-1">
+<div class="flex items-center justify-between font-tnums">
+<span class="font-bold">+91 99201 12345</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed">Urgent</span>
+</div>
+<div class="text-[11px] text-tertiary">AC Repair • Compressor Breakdown</div>
+</div>
+</div>
+<!-- Remaining minutes gauge -->
+<div class="p-2 rounded bg-surface-container border border-outline text-center space-y-0.5">
+<div class="text-[11px] text-tertiary">Active Plan Balance</div>
+<div class="text-sm font-bold text-primary font-tnums">842 / 1,000 Mins</div>
+</div>
+</div>
+<!-- Scan QR Code Sub-Box -->
+<div class="bg-surface p-4 rounded-xl text-center space-y-2 border border-outline text-on-surface">
+<div class="w-32 h-32 bg-surface-container-high rounded-lg p-2 mx-auto flex items-center justify-center border border-outline">
+<!-- Clean Minimalist SVG QR Code Representation -->
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewBox="0 0 100 100">
+<path d="M10 10h30v30h-30zM15 15v20h20v-20zM22 22h6v6h-6zM60 10h30v30h-30zM65 15v20h20v-20zM72 22h6v6h-6zM10 60h30v30h-30zM15 65v20h20v-20zM22 72h6v6h-6zM50 15h5v5h-5zM50 35h5v5h-5zM55 25h5v5h-5zM60 50h5v10h-5zM70 50h10v5h-10zM50 70h10v5h-10zM70 65h5v10h-5zM80 75h10v15h-10zM60 85h15v5h-15zM50 85h5v5h-5z"></path>
+</svg>
+</div>
+<div class="text-[11px] font-semibold text-on-surface">Scan with Phone</div>
+<div class="text-[10px] text-tertiary">Instant APK Download</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. INTERACTIVE FAQ ACCORDION -->
+<section class="py-16 md:py-24 bg-surface-dim border-b border-outline">
+<div class="w-full max-w-4xl mx-auto px-6 md:px-12">
+<div class="text-center space-y-3 mb-12">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-outline text-primary text-label-sm font-label-sm font-semibold uppercase tracking-wider">
+          Got Questions?
+        </div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+          Frequently Asked Questions
+        </h2>
+<p class="text-body-md font-body-md text-tertiary">
+          Everything you need to know about setting up Callivaan for your Indian business.
+        </p>
+</div>
+<div class="space-y-4">
+<!-- Accordion Item 1 (Default Open) -->
+<details class="group bg-surface rounded-xl border border-outline open:border-primary/40 open:shadow-sm" open="">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none text-headline-sm text-lg font-headline-sm text-on-surface font-semibold select-none">
+<span class="">Do I need to change my current business phone number?</span>
+<span class="material-symbols-outlined text-tertiary group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-body-md font-body-md text-tertiary border-t border-outline/50 pt-3 leading-relaxed">
+            No. You keep your existing mobile number or landline. Callivaan connects using standard conditional call forwarding supported natively by Reliance Jio, Airtel, Vodafone Idea (Vi), and BSNL. Whenever your line is busy, unanswered after 3 rings, or out of network, calls automatically forward to your Callivaan AI agent.
+          </div>
+</details>
+<!-- Accordion Item 2 -->
+<details class="group bg-surface rounded-xl border border-outline open:border-primary/40 open:shadow-sm">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none text-headline-sm text-lg font-headline-sm text-on-surface font-semibold select-none">
+<span class="">How does Callivaan handle Hindi and English mixed sentences (Hinglish)?</span>
+<span class="material-symbols-outlined text-tertiary group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-body-md font-body-md text-tertiary border-t border-outline/50 pt-3 leading-relaxed">
+            Callivaan's acoustic and natural language pipeline is specifically fine-tuned on real Indian speech patterns. When a customer speaks conversational Hinglish (e.g., <em>"Bhaiya aaj shaam ko 6 baje haircut ka appointment mil sakta hai kya?"</em>), the model understands the intent seamlessly and responds in natural, courteous tone without awkward translation pauses.
+          </div>
+</details>
+<!-- Accordion Item 3 -->
+<details class="group bg-surface rounded-xl border border-outline open:border-primary/40 open:shadow-sm">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none text-headline-sm text-lg font-headline-sm text-on-surface font-semibold select-none">
+<span class="">Can I listen to call recordings and review audio transcripts?</span>
+<span class="material-symbols-outlined text-tertiary group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-body-md font-body-md text-tertiary border-t border-outline/50 pt-3 leading-relaxed">
+            Yes. Every call produces a full bilingual text transcript and an optional 128kbps audio recording. You can listen directly within the Android APK or click the recording link delivered with your WhatsApp notification message.
+          </div>
+</details>
+<!-- Accordion Item 4 -->
+<details class="group bg-surface rounded-xl border border-outline open:border-primary/40 open:shadow-sm">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none text-headline-sm text-lg font-headline-sm text-on-surface font-semibold select-none">
+<span class="">How fast does the lead notification arrive on my WhatsApp?</span>
+<span class="material-symbols-outlined text-tertiary group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-body-md font-body-md text-tertiary border-t border-outline/50 pt-3 leading-relaxed">
+            Our cloud pipeline processes and summarizes the conversation within 800 milliseconds of the caller hanging up. The structured WhatsApp message typically arrives on your phone before the customer even locks their screen.
+          </div>
+</details>
+<!-- Accordion Item 5 -->
+<details class="group bg-surface rounded-xl border border-outline open:border-primary/40 open:shadow-sm">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none text-headline-sm text-lg font-headline-sm text-on-surface font-semibold select-none">
+<span class="">Can I test the agent with my own phone before going live?</span>
+<span class="material-symbols-outlined text-tertiary group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-body-md font-body-md text-tertiary border-t border-outline/50 pt-3 leading-relaxed">
+            Absolutely. During the 14-day free trial, you receive a sandbox testing number. You can dial in, simulate customer inquiries, change instructions via WhatsApp, and ensure you are 100% satisfied before enabling call forwarding on your commercial lines.
+          </div>
+</details>
+</div>
+</div>
+</section>
+<!-- 8. STRUCTURED FOOTER (Anchored to Shared Component JSON Footer) -->
+<footer class="bg-surface-container-low border-t border-outline full-width">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-outline">
+<!-- Brand & Mission Column -->
+<div class="lg:col-span-2 space-y-4">
+<a class="flex items-center gap-2.5 tracking-tight group" href="#"><span class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-container text-white shadow-sm"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><rect x="3" y="7" width="2.5" height="10" rx="1.25"></rect><rect x="7.5" y="3" width="2.5" height="18" rx="1.25"></rect><rect x="12" y="5" width="2.5" height="14" rx="1.25"></rect><rect x="16.5" y="2" width="2.5" height="20" rx="1.25"></rect><rect x="21" y="6" width="2.5" height="12" rx="1.25"></rect></svg></span><span class="font-bold text-xl tracking-tight text-on-surface">Callivaan</span><span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-xs font-semibold tracking-wide bg-primary-fixed text-primary border border-primary/20">VOICE AI</span></a>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-sm leading-relaxed">
+            Callivaan Precision Telephony develops autonomous, bilingual conversational AI voice infrastructure tailored for appointment and enquiry-driven Indian commercial enterprises.
+          </p>
+<div class="text-label-sm font-label-sm text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span class="">TRAI &amp; DoT Telephony Regulatory Compliant</span>
+</div>
+</div>
+<!-- Links from JSON: "Product Architecture", "Android APK Beta", "API Documentation", "WhatsApp Integration" -->
+<div class="space-y-3">
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider">Product</div>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#product">Product Architecture</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#control-hub">WhatsApp Integration</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#apk-download">Android APK Beta</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#api">API Documentation</a></li>
+</ul>
+</div>
+<!-- Links from JSON: "Industry Solutions", "Security & Compliance" -->
+<div class="space-y-3">
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider">Solutions</div>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#solutions">Industry Solutions</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#solutions">Clinics &amp; Healthcare</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#solutions">Salons &amp; Wellness</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#solutions">Home &amp; Appliance Repair</a></li>
+</ul>
+</div>
+<!-- Links from JSON: "Security & Compliance", "Privacy Policy", "Terms of Service" -->
+<div class="space-y-3">
+<div class="text-label-md font-label-md font-bold text-on-surface uppercase tracking-wider">Compliance &amp; Legal</div>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#security">Security &amp; Compliance</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#privacy">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#terms">Terms of Service</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="#support">Help Desk &amp; Helpline</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar: Exact Copyright Text from JSON -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-body-sm font-body-sm text-on-surface-variant">
+<div class="">
+          © 2025 Callivaan AI Telephony Technologies Pvt Ltd. All rights reserved.
+        </div>
+<div class="flex items-center gap-4 text-xs font-mono text-tertiary font-tnums">
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-[#25d366]"></span>
+            Telemetry Grid: 99.98% Uptime
+          </span>
+<span class="">•</span>
+<span class="">Mumbai (ap-south-1)</span>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-dim" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Callivaan Mobile - Call Details &amp; Audio</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#d9e2fc",
+            "surface-bright": "#ffffff",
+            "on-primary-fixed": "#001452",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#5a6278",
+            "outline-variant": "#d0d5dd",
+            "surface-container-low": "#f3f2fe",
+            "surface-container-highest": "#e2e1ec",
+            "secondary-fixed-dim": "#bdc6e0",
+            "surface": "#ffffff",
+            "tertiary-fixed-dim": "#ffb695",
+            "error-container": "#fef3f2",
+            "surface-container-high": "#e8e7f2",
+            "surface-container": "#f1f4fa",
+            "inverse-on-surface": "#f1f0fb",
+            "on-surface": "#172033",
+            "on-primary-fixed-variant": "#0038b6",
+            "on-tertiary-container": "#ffd6c5",
+            "on-secondary-fixed-variant": "#3e475b",
+            "on-primary-container": "#d8ddff",
+            "error": "#d92d20",
+            "secondary-container": "#d7dff9",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-dim": "#f6f8fc",
+            "on-background": "#1a1b23",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#667085",
+            "primary": "#063cbc",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#a84200",
+            "on-tertiary-fixed": "#351000",
+            "background": "#fbf8ff",
+            "tertiary-fixed": "#ffdbcc",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "outline": "#e4e8f0",
+            "inverse-primary": "#b7c4ff",
+            "primary-fixed": "#dde1ff",
+            "on-error": "#ffffff",
+            "secondary": "#555e74",
+            "surface-tint": "#2c53d1",
+            "primary-container": "#3157d5",
+            "tertiary": "#475467",
+            "inverse-surface": "#2f3038",
+            "on-secondary-fixed": "#121b2e",
+            "surface-variant": "#e2e1ec"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "32px",
+            "space-xs": "4px",
+            "space-xl": "48px",
+            "space-xxl": "64px",
+            "margin": "48px",
+            "space-md": "24px",
+            "space-sm": "12px",
+            "margin-mobile": "20px",
+            "gutter": "24px"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "display-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Inter", "sans-serif"]
+          },
+          "fontSize": {
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .tnum {
+      font-feature-settings: 'tnum' 1;
+      font-variant-numeric: tabular-nums;
+    }
+    /* Hide scrollbar for clean presentation */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim text-on-surface font-body-sm antialiased min-h-screen flex justify-center selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Viewport Shell (390px x 844px iPhone frame simulation) -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface-dim flex flex-col relative shadow-2xl border-x border-outline">
+<!-- Top System Header Status Bar Emulation -->
+<div class="w-full h-11 bg-surface px-6 flex items-center justify-between text-on-surface font-label-sm text-label-sm tnum select-none">
+<span class="font-semibold text-on-surface">9:41</span>
+<div class="flex items-center space-x-1.5 text-on-surface">
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path></svg>
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"></path></svg>
+<svg class="w-5 h-2.5 fill-current" viewbox="0 0 24 12"><rect fill="none" height="12" rx="3" stroke="currentColor" stroke-width="2" width="20"></rect><rect height="8" rx="1.5" width="13" x="2" y="2"></rect><rect height="4" rx="1" width="2" x="22" y="4"></rect></svg>
+</div>
+</div>
+<!-- SHARED COMPONENT: TopAppBar (from JSON) -->
+<!-- JSON Blueprint: headline="Call Details & Audio", leading_icon="arrow_back", trailing_icon="more_vert", h-14, px-margin-mobile -->
+<header class="bg-surface dark:bg-surface border-b border-outline dark:border-outline-variant flex justify-between items-center w-full px-margin-mobile h-14 sticky top-0 z-30">
+<!-- Leading action: Back link with chevron -->
+<div class="flex items-center space-x-1.5">
+<button aria-label="Go back" class="p-1 -ml-1.5 rounded-lg text-on-surface hover:bg-surface-container transition-colors duration-150 active:opacity-80 flex items-center" type="button">
+<span class="material-symbols-outlined text-[22px] leading-none text-primary">arrow_back</span>
+<span class="font-label-lg text-label-lg text-primary font-semibold ml-0.5">Calls</span>
+</button>
+</div>
+<!-- Headline -->
+<div class="flex items-center space-x-1.5">
+<h1 class="text-headline-sm font-headline-sm font-semibold text-on-surface dark:text-inverse-on-surface truncate tracking-tight text-[17px] leading-tight">
+          Call Details &amp; Audio
+        </h1>
+<span class="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" title="Telemetry Synchronized"></span>
+</div>
+<!-- Trailing actions: WhatsApp button + More menu -->
+<div class="flex items-center space-x-1">
+<button aria-label="WhatsApp options" class="p-1.5 rounded-lg text-[#25D366] hover:bg-surface-container transition-colors duration-150 active:opacity-80 relative" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.56 20.16 9.11 19.76 7.85 19.02L7.55 18.84L4.43 19.66L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"></path>
+</svg>
+<span class="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border border-surface"></span>
+</button>
+<button aria-label="More options" class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-150 active:opacity-80" type="button">
+<span class="material-symbols-outlined text-[20px] leading-none text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto px-4 py-4 space-y-4 pb-28">
+<!-- SECTION 2: Caller Identity & Metadata Hero Card -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-4 shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-3">
+<!-- Initial Avatar in Cobalt Tint -->
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg select-none">
+              RV
+            </div>
+<div>
+<div class="flex items-center space-x-1.5">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface tracking-tight text-[18px]">Rajat Verma</h2>
+<span class="material-symbols-outlined text-[16px] text-primary" title="Verified Caller">verified</span>
+</div>
+<div class="flex items-center space-x-1.5 mt-0.5">
+<span class="font-body-md text-body-md font-semibold text-on-surface tnum text-[15px]">+91 98765 43210</span>
+<button aria-label="Copy phone number" class="text-on-surface-variant hover:text-primary transition-colors p-0.5" type="button">
+<span class="material-symbols-outlined text-[15px] leading-none">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Carrier status pill -->
+<div class="flex flex-col items-end">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-medium border border-outline/70">
+              SIM 1 · Jio
+            </span>
+</div>
+</div>
+<!-- Inbound Routing / Location -->
+<div class="mt-3 flex items-center space-x-1.5 text-on-surface-variant font-body-sm text-body-sm text-[13px] border-t border-outline/60 pt-2.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+<span>Sector 62, Noida · Inbound Telephony</span>
+</div>
+<!-- Metadata Chips Row -->
+<div class="mt-3 flex flex-wrap gap-1.5 items-center">
+<!-- Qualified Lead Badge -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Qualified Lead
+          </span>
+<!-- Hinglish Badge -->
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-xs border border-outline">
+            Hinglish
+          </span>
+<!-- Timestamp Pill -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-xs border border-outline tnum">
+<span class="material-symbols-outlined text-[13px] leading-none text-secondary">calendar_today</span>
+            Today, 02:45 PM
+          </span>
+<!-- Duration Pill -->
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-xs border border-outline tnum">
+<span class="material-symbols-outlined text-[13px] leading-none text-secondary">schedule</span>
+            02:14
+          </span>
+</div>
+</section>
+<!-- SECTION 3: TRAI Audio Waveform Player Module -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-4 shadow-sm space-y-3.5">
+<!-- Player Header with TRAI Consent Pill -->
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">graphic_eq</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Call Audio Recording</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px] text-emerald-600 font-bold">check_circle</span>
+            TRAI Consent Recorded
+          </div>
+</div>
+<!-- Soundwave Visualization Container (36 vertical bars) -->
+<div class="bg-surface-container/60 border border-outline/70 rounded-lg p-3">
+<div class="h-16 flex items-center justify-between gap-[3px] px-1 select-none">
+<!-- Played bars (approx 13 bars: Cobalt Blue #3157D5) -->
+<div class="w-1.5 rounded-full bg-primary-container h-4"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-8"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-12"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-6"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-14"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-10"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-5"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-11"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-16"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-9"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-13"></div>
+<div class="w-1.5 rounded-full bg-primary-container h-7"></div>
+<!-- Active Scrubber Point Marker -->
+<div class="relative flex items-center justify-center">
+<div class="w-1.5 rounded-full bg-primary h-14 ring-2 ring-primary/20"></div>
+<div class="absolute -top-1 w-2.5 h-2.5 bg-primary rounded-full shadow-sm"></div>
+</div>
+<!-- Unplayed bars (approx 23 bars: Whisper Gray #E4E8F0) -->
+<div class="w-1.5 rounded-full bg-outline h-9"></div>
+<div class="w-1.5 rounded-full bg-outline h-5"></div>
+<div class="w-1.5 rounded-full bg-outline h-12"></div>
+<div class="w-1.5 rounded-full bg-outline h-8"></div>
+<div class="w-1.5 rounded-full bg-outline h-15"></div>
+<div class="w-1.5 rounded-full bg-outline h-10"></div>
+<div class="w-1.5 rounded-full bg-outline h-6"></div>
+<div class="w-1.5 rounded-full bg-outline h-14"></div>
+<div class="w-1.5 rounded-full bg-outline h-9"></div>
+<div class="w-1.5 rounded-full bg-outline h-13"></div>
+<div class="w-1.5 rounded-full bg-outline h-7"></div>
+<div class="w-1.5 rounded-full bg-outline h-11"></div>
+<div class="w-1.5 rounded-full bg-outline h-5"></div>
+<div class="w-1.5 rounded-full bg-outline h-8"></div>
+<div class="w-1.5 rounded-full bg-outline h-14"></div>
+<div class="w-1.5 rounded-full bg-outline h-10"></div>
+<div class="w-1.5 rounded-full bg-outline h-6"></div>
+<div class="w-1.5 rounded-full bg-outline h-12"></div>
+<div class="w-1.5 rounded-full bg-outline h-8"></div>
+<div class="w-1.5 rounded-full bg-outline h-4"></div>
+<div class="w-1.5 rounded-full bg-outline h-7"></div>
+<div class="w-1.5 rounded-full bg-outline h-3"></div>
+<div class="w-1.5 rounded-full bg-outline h-5"></div>
+</div>
+<!-- Progress scrubber track -->
+<div class="relative w-full h-1.5 bg-outline rounded-full mt-2 cursor-pointer">
+<div class="absolute left-0 top-0 h-1.5 bg-primary-container rounded-full" style="width: 35%;"></div>
+<div class="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-primary rounded-full shadow-md border-2 border-surface" style="left: calc(35% - 7px);"></div>
+</div>
+<!-- Time tracker indicators -->
+<div class="flex justify-between items-center text-xs text-on-surface-variant font-label-sm tnum mt-1.5">
+<span class="font-semibold text-primary">00:46</span>
+<span class="text-on-surface-variant">02:14</span>
+</div>
+</div>
+<!-- Audio Player Controls Row -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<!-- Rewind 10s -->
+<button aria-label="Rewind 10 seconds" class="p-2 rounded-full border border-outline hover:bg-surface-container text-on-surface transition-colors active:opacity-80 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[19px] leading-none">replay_10</span>
+</button>
+<!-- Play/Pause Primary Solid Circle -->
+<button aria-label="Play audio" class="w-11 h-11 rounded-full bg-primary-container hover:bg-primary text-on-primary flex items-center justify-center shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px] leading-none" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<!-- Fast-Forward 10s -->
+<button aria-label="Fast forward 10 seconds" class="p-2 rounded-full border border-outline hover:bg-surface-container text-on-surface transition-colors active:opacity-80 flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[19px] leading-none">forward_10</span>
+</button>
+</div>
+<!-- Speed Selector Segmented Pills -->
+<div class="flex items-center bg-surface-container p-0.5 rounded-lg border border-outline">
+<button class="px-2 py-1 text-xs font-semibold rounded bg-primary text-white shadow-xs" type="button">1x</button>
+<button class="px-2 py-1 text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors" type="button">1.25x</button>
+<button class="px-2 py-1 text-xs font-medium text-on-surface-variant hover:text-on-surface transition-colors" type="button">1.5x</button>
+</div>
+</div>
+<!-- DPDPA Retention Notice Banner -->
+<div class="flex items-center space-x-2 text-[11px] font-label-sm text-on-surface-variant bg-surface-container-low border border-outline/80 rounded-lg p-2.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">security</span>
+<span class="leading-tight">86 Days Ephemeral Retention Remaining (Auto-purges under DPDPA compliance)</span>
+</div>
+</section>
+<!-- SECTION 4: AI Extracted Lead Summary & WhatsApp Sync Card -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-4 shadow-sm space-y-3">
+<!-- Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[19px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-label-lg text-label-lg font-semibold text-on-surface">Lead Qualification Summary</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold text-[11px] border border-primary/20">
+            High Intent
+          </span>
+</div>
+<!-- Summary Prose Box -->
+<div class="bg-surface-dim border border-outline rounded-lg p-3 text-body-sm font-body-sm text-on-surface leading-relaxed text-[13.5px]">
+          Caller interested in Commercial Office Space in Sector 62 (approx 1,200 sq ft). Budget: ₹85 Lakhs. Site visit agreed for tomorrow at 11:30 AM.
+        </div>
+<!-- Extracted Key Attributes Bento Grid -->
+<div class="grid grid-cols-3 gap-2 text-left">
+<div class="bg-surface-container border border-outline rounded-lg p-2 flex flex-col justify-between">
+<span class="text-[10.5px] font-medium text-on-surface-variant uppercase tracking-wider">Requirement</span>
+<span class="text-xs font-semibold text-on-surface mt-1 leading-snug">Office 1,200 sq ft</span>
+</div>
+<div class="bg-surface-container border border-outline rounded-lg p-2 flex flex-col justify-between">
+<span class="text-[10.5px] font-medium text-on-surface-variant uppercase tracking-wider">Budget</span>
+<span class="text-xs font-semibold text-on-surface mt-1 leading-snug tnum">₹85 Lakhs</span>
+</div>
+<div class="bg-surface-container border border-outline rounded-lg p-2 flex flex-col justify-between">
+<span class="text-[10.5px] font-medium text-on-surface-variant uppercase tracking-wider">Next Action</span>
+<span class="text-xs font-semibold text-primary mt-1 leading-snug">Site Visit 11:30 AM</span>
+</div>
+</div>
+<!-- WhatsApp Dispatch Telemetry Banner -->
+<div class="bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-lg p-2.5 flex items-center justify-between text-xs font-medium">
+<div class="flex items-center space-x-1.5 truncate">
+<span class="material-symbols-outlined text-[16px] text-emerald-600 font-semibold">check</span>
+<span class="truncate">Delivered to owner WhatsApp (+91 98100 23456) in <span class="font-bold tnum">2.4s</span></span>
+</div>
+<button class="text-emerald-700 hover:text-emerald-900 font-semibold underline ml-2 shrink-0 text-xs" type="button">
+            Resend Alert
+          </button>
+</div>
+</section>
+<!-- SECTION 5: Turn-by-Turn Bilingual Transcript -->
+<section class="bg-surface-container-lowest border border-outline rounded-xl p-4 shadow-sm space-y-3.5">
+<div class="flex items-center justify-between border-b border-outline/70 pb-3">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">forum</span>
+<h3 class="font-label-lg text-label-lg font-semibold text-on-surface">Full Call Transcript</h3>
+</div>
+<div class="flex items-center space-x-1 text-[11px] font-medium text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span>Synchronized with playback</span>
+</div>
+</div>
+<!-- Conversational Turn Feed -->
+<div class="space-y-3">
+<!-- Turn 1: Callivaan AI -->
+<div class="flex flex-col space-y-1">
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed border border-primary/20">
+                Callivaan AI
+              </span>
+<span class="text-[11px] font-label-sm text-on-surface-variant tnum">00:02</span>
+</div>
+<div class="bg-surface-container rounded-lg rounded-tl-none p-3 text-body-sm font-body-sm text-on-surface leading-normal border border-outline/60 text-[13px]">
+              Namaste! Callivaan Realty assistance me aapka swagat hai. Main aapki kya sahayata kar sakta hoon?
+            </div>
+</div>
+<!-- Turn 2: Rajat Verma -->
+<div class="flex flex-col space-y-1 pl-4">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-[11px] font-label-sm text-on-surface-variant tnum">00:08</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface border border-outline">
+                Rajat Verma
+              </span>
+</div>
+<div class="bg-white rounded-lg rounded-tr-none p-3 text-body-sm font-body-sm text-on-surface leading-normal border border-outline text-[13px] shadow-xs">
+              Haan ji, mujhe Sector 62 me commercial office space ke rates janne the.
+            </div>
+</div>
+<!-- Turn 3: Callivaan AI -->
+<div class="flex flex-col space-y-1">
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed border border-primary/20">
+                Callivaan AI
+              </span>
+<span class="text-[11px] font-label-sm text-on-surface-variant tnum">00:16</span>
+</div>
+<div class="bg-surface-container rounded-lg rounded-tl-none p-3 text-body-sm font-body-sm text-on-surface leading-normal border border-outline/60 text-[13px]">
+              Sector 62 me premium towers me 800 sq ft se 2400 sq ft units available hain. Aapka estimated budget kya hai?
+            </div>
+</div>
+<!-- Turn 4: Rajat Verma (Active/Synced Turn highlighting current 00:46 scrub state) -->
+<div class="flex flex-col space-y-1 pl-4">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-[11px] font-label-sm text-on-surface-variant tnum">00:26</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface border border-outline">
+                Rajat Verma
+              </span>
+</div>
+<div class="bg-white rounded-lg rounded-tr-none p-3 text-body-sm font-body-sm text-on-surface leading-normal border border-outline text-[13px] shadow-xs">
+              Lagbhag 1200 square feet chahiye, budget around 80 se 85 Lakhs ka hai.
+            </div>
+</div>
+<!-- Turn 5: Callivaan AI -->
+<div class="flex flex-col space-y-1">
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed border border-primary/20">
+                Callivaan AI
+              </span>
+<span class="text-[11px] font-label-sm text-on-surface-variant tnum">00:38</span>
+</div>
+<div class="bg-primary-fixed/25 rounded-lg rounded-tl-none p-3 text-body-sm font-body-sm text-on-surface leading-normal border border-primary/30 text-[13px] ring-1 ring-primary/20">
+              Bilkul Rajat ji, hamare paas 2 units ready-to-move hain. Kal subah 11:30 AM par site inspection visit schedule kar diya gaya hai.
+            </div>
+</div>
+</div>
+<!-- Transcript Footer Status -->
+<div class="pt-3 border-t border-outline/70 flex items-center justify-between text-xs text-on-surface-variant font-label-sm">
+<span>End of Call · <span class="tnum">02m 14s</span></span>
+<span class="text-secondary font-medium">Disconnected by Caller</span>
+</div>
+</section>
+</main>
+<!-- SECTION 6: Sticky Bottom Dual Action Bar -->
+<div class="sticky bottom-0 z-30 w-full bg-surface/95 backdrop-blur-md border-t border-outline p-3 flex items-center gap-2">
+<!-- Call Back Primary Action Button -->
+<button class="flex-1 bg-primary-container hover:bg-primary active:bg-primary text-on-primary font-semibold text-[13.5px] rounded-lg py-3 px-3 flex items-center justify-center gap-2 transition-colors duration-150 shadow-sm active:scale-[0.99]" type="button">
+<svg class="w-4 h-4 fill-current shrink-0" viewbox="0 0 24 24">
+<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+</svg>
+<span class="truncate">Call Back (+91 98765 43210)</span>
+</button>
+<!-- WhatsApp Secondary Action Button -->
+<button class="bg-surface hover:bg-surface-container active:bg-surface-container-high border border-outline hover:border-emerald-500 text-on-surface font-semibold text-[13.5px] rounded-lg py-3 px-3.5 flex items-center justify-center gap-1.5 transition-colors duration-150 active:scale-[0.99] shrink-0" type="button">
+<svg class="w-4 h-4 fill-[#25D366] shrink-0" viewbox="0 0 24 24">
+<path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.56 20.16 9.11 19.76 7.85 19.02L7.55 18.84L4.43 19.66L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"></path>
+</svg>
+<span>WhatsApp</span>
+</button>
+</div>
+<!-- iOS Home Indicator Emulation -->
+<div class="w-full h-5 bg-surface flex items-center justify-center pb-1">
+<div class="w-32 h-1 bg-on-surface-variant/30 rounded-full"></div>
+</div>
+</div>
+</body></html>

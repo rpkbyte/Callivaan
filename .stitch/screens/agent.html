@@ -1,0 +1,717 @@
+<!DOCTYPE html><html class="h-full bg-background" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Callivaan | Voice Agent Setup &amp; Personality</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#f3f2fe",
+            "outline-variant": "#c4c5d6",
+            "inverse-primary": "#b7c4ff",
+            "tertiary": "#475467",
+            "surface-dim": "#dad9e4",
+            "surface-tint": "#2c53d1",
+            "surface-container-high": "#e8edf5",
+            "secondary-fixed-dim": "#bdc6e0",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#a84200",
+            "surface-container": "#f1f4fa",
+            "primary-container": "#3157d5",
+            "outline": "#e4e8f0",
+            "on-primary": "#ffffff",
+            "error": "#d92d20",
+            "surface-container-highest": "#e2e1ec",
+            "surface-variant": "#e2e1ec",
+            "inverse-on-surface": "#f1f0fb",
+            "on-error": "#ffffff",
+            "secondary": "#555e74",
+            "on-tertiary-fixed": "#351000",
+            "on-secondary-container": "#5a6278",
+            "on-primary-fixed": "#001452",
+            "surface-bright": "#fbf8ff",
+            "primary-fixed-dim": "#b7c4ff",
+            "tertiary-fixed-dim": "#ffb695",
+            "background": "#fbf8ff",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-primary-fixed-variant": "#0038b6",
+            "on-tertiary-container": "#ffd6c5",
+            "on-secondary-fixed-variant": "#3e475b",
+            "surface": "#ffffff",
+            "on-secondary-fixed": "#121b2e",
+            "tertiary-fixed": "#ffdbcc",
+            "secondary-container": "#d7dff9",
+            "on-surface": "#172033",
+            "secondary-fixed": "#d9e2fc",
+            "on-surface-variant": "#444654",
+            "on-primary-container": "#d8ddff",
+            "on-background": "#1a1b23",
+            "primary-fixed": "#dde1ff",
+            "primary": "#063cbc",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#2f3038",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "48px",
+            "space-lg": "32px",
+            "space-xs": "4px",
+            "space-xxl": "64px",
+            "space-sm": "12px",
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "space-md": "24px",
+            "margin": "48px"
+          },
+          "fontFamily": {
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Tabular numbers for clean precision specs */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Waveform animation keyframes */
+    @keyframes wavePulse {
+      0%, 100% { height: 6px; }
+      50% { height: 28px; }
+    }
+    .wave-bar {
+      animation: wavePulse 1.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-[#f6f8fc] font-body-sm text-on-surface antialiased flex flex-col selection:bg-primary selection:text-on-primary">
+<!-- TOP APP BAR (Consistent with Callivaan Shared Component Anchor) -->
+<header class="sticky top-0 z-40 bg-surface border-b border-outline shadow-sm w-full">
+<div class="px-3 sm:px-4 md:px-space-md py-2.5 sm:py-space-sm flex items-center justify-between gap-2 sm:gap-4"> <div class="flex items-center gap-2 sm:gap-4 min-w-0"> <div class="flex items-center gap-2 shrink-0"><div class="flex items-center gap-2"><svg class="w-6 h-6 text-[#3157D5] shrink-0" fill="currentColor" viewBox="0 0 24 24"><rect height="10" rx="1.5" width="3" x="1.5" y="7"></rect><rect height="18" rx="1.5" width="3" x="6.5" y="3"></rect><rect height="14" rx="1.5" width="3" x="11.5" y="5"></rect><rect height="20" rx="1.5" width="3" x="16.5" y="2"></rect><rect height="12" rx="1.5" width="3" x="21.5" y="6"></rect></svg><span class="font-bold text-xl tracking-tight text-[#172033]">Callivaan</span></div><span class="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">VOICE AI</span></div> <div class="hidden sm:block h-4 w-px bg-outline shrink-0"></div> <div class="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-surface-container rounded-lg border border-outline hover:bg-surface-container-high transition-colors cursor-pointer group max-w-[140px] sm:max-w-[220px] md:max-w-none"> <div class="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">A</div> <div class="flex flex-col min-w-0"> <div class="flex items-center gap-1"> <span class="font-label-md text-xs sm:text-label-md text-on-surface font-semibold group-hover:text-primary transition-colors truncate">Aura Wellness &amp; Hair Studio</span> <span class="material-symbols-outlined text-xs sm:text-sm text-secondary shrink-0">expand_more</span> </div> <div class="hidden md:flex items-center gap-1 text-[11px] text-emerald-700"> <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse shrink-0"></span> <span class="tabular-nums truncate">Forwarding Active: Jio +91 98765 43210</span> </div> </div> </div> </div> <div class="flex items-center gap-1.5 sm:gap-3 shrink-0"> <div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 bg-surface-container rounded-full border border-outline text-xs text-secondary"> <span class="w-2 h-2 rounded-full bg-emerald-500"></span> <span class="font-medium text-on-surface">Active: v1.4</span> <span class="text-outline-variant">•</span> <span class="text-secondary tabular-nums">Deployed 2d ago</span> </div> <button aria-label="Notifications" class="p-1.5 sm:p-2 text-secondary hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors relative" type="button"> <span class="material-symbols-outlined text-lg sm:text-xl">notifications</span> <span class="absolute top-1 sm:top-1.5 right-1 sm:right-1.5 w-2 h-2 bg-primary rounded-full"></span> </button> <button aria-label="Settings" class="hidden sm:inline-flex p-2 text-secondary hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"> <span class="material-symbols-outlined text-xl">settings</span> </button> <button class="flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 bg-primary hover:bg-[#05329c] text-on-primary rounded-lg font-label-md text-xs sm:text-label-md font-semibold transition-all shadow-sm active:scale-[0.98]"> <span class="material-symbols-outlined text-base sm:text-lg">call</span> <span class="hidden xs:inline sm:inline">Test Call</span> </button> <div class="hidden sm:block h-6 w-px bg-outline"></div> <div class="flex items-center gap-1.5 sm:gap-2 pl-0.5 sm:pl-1 cursor-pointer"> <div class="w-7 h-7 sm:w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container font-semibold flex items-center justify-center text-xs border border-outline shrink-0"> RS </div> <span class="hidden md:inline-block font-label-md text-label-md text-on-surface font-medium">Rajesh Sharma</span> </div> </div> </div>
+<div class="border-t border-outline/70 bg-surface px-3 sm:px-4 md:px-space-md overflow-x-auto"> <nav class="flex items-center gap-4 sm:gap-6 min-w-max py-1.5"> <a class="text-on-surface-variant font-label-lg text-xs sm:text-label-lg py-1 hover:text-on-surface transition-colors" href="#overview">Overview / Calls</a> <a class="text-primary font-label-lg text-xs sm:text-label-lg border-b-2 border-primary py-1 flex items-center gap-1.5 font-semibold" href="#agent-config"> <span class="material-symbols-outlined text-sm sm:text-base">tune</span> Agent Configuration </a> <a class="text-on-surface-variant font-label-lg text-xs sm:text-label-lg py-1 hover:text-on-surface transition-colors flex items-center gap-1.5" href="#whatsapp"> <span class="">WhatsApp Controls</span> <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500"></span> </a> <a class="text-on-surface-variant font-label-lg text-xs sm:text-label-lg py-1 hover:text-on-surface transition-colors" href="#telephony">Telephony Setup</a> <a class="text-on-surface-variant font-label-lg text-xs sm:text-label-lg py-1 hover:text-on-surface transition-colors" href="#billing">Billing &amp; Usage</a> </nav> </div></header>
+<!-- HEADER & ACTION STICKY SUB-BAR -->
+<div class="sticky top-[86px] sm:top-[92px] z-30 bg-surface/95 backdrop-blur-md border-b border-outline py-2.5 sm:py-3 px-3 sm:px-4 md:px-space-md"> <div class="max-w-[1720px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4"> <div> <nav class="flex items-center gap-1 text-[11px] sm:text-xs text-secondary mb-0.5 sm:mb-1 overflow-x-auto min-w-max"> <span class="">Settings</span> <span class="material-symbols-outlined text-xs text-outline-variant">chevron_right</span> <span class="">Voice Agent</span> <span class="material-symbols-outlined text-xs text-outline-variant">chevron_right</span> <span class="text-primary font-medium">Prompt &amp; Behavior Configuration</span> </nav> <div class="flex items-center gap-2 sm:gap-3 flex-wrap"> <h1 class="font-headline-md text-lg sm:text-headline-md text-on-surface font-semibold tracking-tight">Voice Agent Setup &amp; Personality</h1> <span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] sm:text-xs font-semibold tabular-nums">Draft v1.5</span> </div> <p class="font-body-sm text-xs sm:text-body-sm text-secondary mt-0.5"> Configure your agent's greeting, language mix, service knowledge, and rules. Changes can also be updated on the fly via WhatsApp. </p> </div> <div class="flex items-center gap-2 sm:gap-3 flex-wrap w-full md:w-auto justify-between md:justify-end"> <div class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-surface-container rounded-lg border border-outline text-[11px] sm:text-xs text-secondary"> <span class="relative flex h-2 w-2"> <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span> <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span> </span> <span class="">Draft saved <span class="font-medium text-on-surface tabular-nums">3 mins ago</span></span> <span class="text-outline-variant">•</span> <span class="text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded font-medium tabular-nums">Unsaved: 2</span> </div> <div class="flex items-center gap-2 shrink-0"> <button class="px-3 sm:px-4 py-1.5 sm:py-2 bg-surface hover:bg-surface-container-high text-on-surface border border-outline rounded-lg font-label-md text-xs sm:text-label-md font-semibold transition-colors shadow-xs active:scale-[0.98]"> Save as Draft </button> <button class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary hover:bg-[#05329c] text-on-primary rounded-lg font-label-md text-xs sm:text-label-md font-semibold transition-all shadow-sm active:scale-[0.98]"> <span class="material-symbols-outlined text-base sm:text-lg">rocket_launch</span> <span class="hidden sm:inline">Deploy New Version (v1.5)</span> <span class="sm:hidden">Deploy</span> </button> </div> </div> </div> </div>
+<!-- MAIN WORKSPACE LAYOUT (Two-Column Precision Architecture) -->
+<main class="flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-6 lg:p-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- ========================================== -->
+<!-- LEFT COLUMN (~64%): Modular Form Sections  -->
+<!-- ========================================== -->
+<div class="lg:col-span-7 xl:col-span-8 space-y-6">
+<!-- SECTION 1: Greeting & Opening Message -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="px-6 py-4 border-b border-outline flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-bold text-xs tabular-nums">01</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Greeting &amp; Opening Message</h2>
+<p class="text-xs text-secondary">What the caller hears within the first 300ms of pickup</p>
+</div>
+</div>
+<!-- Starter Template Selector -->
+<div class="flex items-center gap-2">
+<span class="text-xs text-secondary font-medium hidden sm:inline">Preset:</span>
+<div class="relative inline-block">
+<select class="appearance-none bg-surface-container text-xs font-semibold text-on-surface pl-3 pr-8 py-1.5 rounded-lg border border-outline hover:border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary">
+<option selected="">Salon &amp; Spa Starter</option>
+<option>Dental Clinic Starter</option>
+<option>Appliance Repair Starter</option>
+<option>Custom Clean Slate</option>
+</select>
+<span class="material-symbols-outlined text-sm text-secondary absolute right-2 top-2 pointer-events-none">unfold_more</span>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5" for="welcome-greeting">
+                  Welcome Greeting Prompt
+                  <span class="text-xs text-secondary font-normal">(Primary Voice Hook)</span>
+</label>
+<span class="text-xs text-secondary tabular-nums font-mono">148 / 300 chars</span>
+</div>
+<div class="relative">
+<textarea class="w-full text-sm rounded-lg border border-outline bg-surface p-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary leading-relaxed resize-none shadow-inner" id="welcome-greeting" placeholder="Enter first-utterance text..." rows="3">Namaste! Aura Wellness Studio mein aapka swagat hai. Main Callivaan AI receptionist hoon. Aaj main aapki kya madad kar sakti hoon?</textarea>
+</div>
+</div>
+<!-- Controls row: Regulatory switch + Preview Button -->
+<div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-outline/70">
+<label class="flex items-start sm:items-center gap-3 cursor-pointer">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-medium block">Identify as AI Assistant</span>
+<span class="text-[11px] text-secondary">Mandatory under TRAI Conversational AI guidelines for customer inbound lines.</span>
+</div>
+</label>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline bg-surface-container hover:bg-surface-container-high text-xs font-semibold text-on-surface transition-colors shadow-xs shrink-0">
+<span class="material-symbols-outlined text-sm text-primary" data-weight="fill">play_arrow</span>
+                Preview Greeting Voice
+              </button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Language, Dialect & Speaking Tone -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="px-6 py-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-bold text-xs tabular-nums">02</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Language, Dialect &amp; Speaking Tone</h2>
+<p class="text-xs text-secondary">Control natural accent, language mixing threshold, and pacing</p>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<!-- Language Segmented Selector -->
+<div>
+<label class="font-label-md text-label-md text-on-surface font-semibold block mb-2">Base Spoken Language &amp; Vernacular Flow</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<!-- Option 1: Selected Hinglish -->
+<div class="p-3.5 rounded-lg border-2 border-primary bg-primary-fixed/20 relative cursor-pointer flex flex-col justify-between">
+<div class="flex items-start justify-between mb-2">
+<span class="font-semibold text-xs text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm" data-weight="fill">check_circle</span>
+                      Bilingual (Hinglish)
+                    </span>
+<span class="text-[10px] bg-primary text-on-primary font-semibold px-1.5 py-0.5 rounded">Mumbai / NCR</span>
+</div>
+<p class="text-xs text-secondary">Natural mixed Hindi &amp; English everyday phrasing. Ideal for metro customer inquiries.</p>
+</div>
+<!-- Option 2: Pure Hindi -->
+<div class="p-3.5 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer flex flex-col justify-between transition-colors">
+<div class="flex items-start justify-between mb-2">
+<span class="font-semibold text-xs text-on-surface">Pure Hindi (Shuddh)</span>
+</div>
+<p class="text-xs text-secondary">Standard formal Hindi vocabulary with regional inflection for tier-2/3 callers.</p>
+</div>
+<!-- Option 3: Indian English -->
+<div class="p-3.5 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer flex flex-col justify-between transition-colors">
+<div class="flex items-start justify-between mb-2">
+<span class="font-semibold text-xs text-on-surface">Professional Indian English</span>
+</div>
+<p class="text-xs text-secondary">Crisp, non-synthesized neutral Indian accent with standard corporate vocabulary.</p>
+</div>
+</div>
+</div>
+<!-- Speaking Tone Radio Cards -->
+<div>
+<label class="font-label-md text-label-md text-on-surface font-semibold block mb-2">Speaking Demeanor &amp; Customer Tone</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<!-- Tone 1: Selected -->
+<div class="p-3.5 rounded-lg border-2 border-primary bg-surface relative cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Polite &amp; Warm</span>
+<span class="w-3.5 h-3.5 rounded-full border-4 border-primary bg-white"></span>
+</div>
+<span class="text-[11px] text-primary font-medium block mb-1.5">Hospitality &amp; Salon</span>
+<p class="text-xs text-secondary leading-relaxed">Uses respectful honorifics like "Ji", warm pacing, courteous signoffs, and polite validation.</p>
+</div>
+<!-- Tone 2 -->
+<div class="p-3.5 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Direct &amp; Efficient</span>
+<span class="w-3.5 h-3.5 rounded-full border border-outline-variant bg-white"></span>
+</div>
+<span class="text-[11px] text-secondary font-medium block mb-1.5">Repairs &amp; Field Services</span>
+<p class="text-xs text-secondary leading-relaxed">Zero fluff, quick triage, rapid problem categorization, and immediate appointment booking.</p>
+</div>
+<!-- Tone 3 -->
+<div class="p-3.5 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Clinical &amp; Reassuring</span>
+<span class="w-3.5 h-3.5 rounded-full border border-outline-variant bg-white"></span>
+</div>
+<span class="text-[11px] text-secondary font-medium block mb-1.5">Healthcare &amp; Clinics</span>
+<p class="text-xs text-secondary leading-relaxed">Empathetic cadence, gentle patient tone, careful appointment timing confirmations.</p>
+</div>
+</div>
+</div>
+<!-- Voice Persona & Speed Controls -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-outline/70">
+<div>
+<label class="font-label-md text-label-md text-on-surface font-semibold block mb-1.5">Voice Model Persona</label>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<select class="w-full appearance-none bg-surface text-xs font-medium text-on-surface pl-3 pr-8 py-2 rounded-lg border border-outline focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="">Pooja (Warm Indian Accent, Bilingual Female)</option>
+<option>Aarav (Professional Indian Accent, Neutral Male)</option>
+<option>Meera (Expressive Hindi-First Accent, Female)</option>
+</select>
+<span class="material-symbols-outlined text-sm text-secondary absolute right-2.5 top-2.5 pointer-events-none">expand_more</span>
+</div>
+<button aria-label="Listen to voice sample" class="p-2 border border-outline rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-lg">volume_up</span>
+</button>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="speed-slider">Speech Speed / Pacing</label>
+<span class="text-xs font-semibold text-primary tabular-nums">1.0x Normal</span>
+</div>
+<div class="space-y-1">
+<input class="w-full accent-primary h-1.5 bg-surface-container rounded-lg cursor-pointer" id="speed-slider" max="1.3" min="0.8" step="0.1" type="range" value="1.0">
+<div class="flex justify-between text-[10px] text-secondary font-mono tabular-nums">
+<span class="">0.8x (Patient)</span>
+<span class="font-semibold text-on-surface">1.0x (Standard)</span>
+<span class="">1.2x (Brisk)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Business Knowledge & Pricing Catalog -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="px-6 py-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-bold text-xs tabular-nums">03</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Business Knowledge, Catalog &amp; Boundaries</h2>
+<p class="text-xs text-secondary">Operating hours, service rate sheet, and strict conversation guardrails</p>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<!-- Operating Hours Matrix -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Business Operating Hours</span>
+<button class="text-xs text-primary font-semibold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">add</span> Add Holiday / Vacation Exception
+                </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div class="flex items-center justify-between p-2.5 rounded-lg border border-outline bg-surface-container/50 text-xs">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-medium text-on-surface">Monday – Saturday</span>
+</div>
+<span class="font-mono text-secondary tabular-nums">10:00 AM – 9:00 PM</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg border border-outline bg-surface-container/50 text-xs">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-medium text-on-surface">Sunday</span>
+</div>
+<span class="font-mono text-secondary tabular-nums">11:00 AM – 7:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Service FAQs & Price Sheet -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Service FAQs &amp; Price Catalog</label>
+<button class="text-xs font-semibold text-primary hover:text-[#05329c] flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">add_circle</span>
+<span class="">Add FAQ Item</span>
+</button>
+</div>
+<div class="space-y-3">
+<!-- FAQ Item 1 -->
+<div class="p-3 rounded-lg border border-outline bg-surface-container/20 space-y-2">
+<div class="flex items-start gap-2">
+<span class="text-xs font-bold text-secondary uppercase tracking-wider shrink-0 mt-1">Q:</span>
+<input class="flex-1 text-xs font-medium bg-surface rounded border border-outline px-2.5 py-1.5 focus:border-primary" type="text" value="Haircut aur beard trim ka kya charges hai?">
+<button class="text-secondary hover:text-error p-1"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wider shrink-0 mt-1">A:</span>
+<textarea class="flex-1 text-xs bg-surface rounded border border-outline px-2.5 py-1.5 focus:border-primary" rows="1">Men's haircut ₹350 se start hota hai aur beard trim ₹200.</textarea>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="p-3 rounded-lg border border-outline bg-surface-container/20 space-y-2">
+<div class="flex items-start gap-2">
+<span class="text-xs font-bold text-secondary uppercase tracking-wider shrink-0 mt-1">Q:</span>
+<input class="flex-1 text-xs font-medium bg-surface rounded border border-outline px-2.5 py-1.5 focus:border-primary" type="text" value="Sunday ko appointment compulsory hai kya?">
+<button class="text-secondary hover:text-error p-1"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wider shrink-0 mt-1">A:</span>
+<textarea class="flex-1 text-xs bg-surface rounded border border-outline px-2.5 py-1.5 focus:border-primary" rows="1">Haan, Sunday ko heavy rush hota hai toh pehle slot book karna behtar hai.</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Guardrails and Prohibited Commitments -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5" for="guardrails-textarea">
+                  Prohibited Commitments &amp; Agent Boundaries
+                  <span class="material-symbols-outlined text-xs text-secondary" title="Strict guardrails injected directly into system prompt">info</span>
+</label>
+<span class="text-[11px] font-semibold text-error bg-error-container/30 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">shield</span> Enforced Strictly
+                </span>
+</div>
+<textarea class="w-full text-xs rounded-lg border border-outline bg-surface p-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary leading-relaxed" id="guardrails-textarea" rows="2">Do not promise discounts beyond 10%. Do not confirm appointment slots after 8:30 PM. For bridal makeup inquiries, always offer to connect with senior stylist Neha.</textarea>
+<p class="text-[11px] text-secondary mt-1">Agent will refuse commitments outside these bounds and politely route to phone staff.</p>
+</div>
+</div>
+</div>
+<!-- SECTION 4: What Information to Collect -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="px-6 py-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-bold text-xs tabular-nums">04</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Intake &amp; Lead Capture Fields</h2>
+<p class="text-xs text-secondary">AI agent will organically extract these fields during conversation and send instant WhatsApp alert</p>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Field 1 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-primary/40 bg-primary-fixed/10 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-semibold text-on-surface">Caller Full Name</span>
+</div>
+<span class="text-[10px] font-semibold text-primary bg-white px-2 py-0.5 rounded border border-primary/20">Required</span>
+</label>
+<!-- Field 2 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-primary/40 bg-primary-fixed/10 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-semibold text-on-surface">Requested Service or Inquiry</span>
+</div>
+<span class="text-[10px] font-semibold text-primary bg-white px-2 py-0.5 rounded border border-primary/20">Required</span>
+</label>
+<!-- Field 3 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-primary/40 bg-primary-fixed/10 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-semibold text-on-surface">Preferred Date &amp; Time Slot</span>
+</div>
+<span class="text-[10px] font-semibold text-primary bg-white px-2 py-0.5 rounded border border-primary/20">Required</span>
+</label>
+<!-- Field 4 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-primary/40 bg-primary-fixed/10 cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-semibold text-on-surface">Urgency Classification (High/Normal)</span>
+</div>
+<span class="text-[10px] font-semibold text-primary bg-white px-2 py-0.5 rounded border border-primary/20">Required</span>
+</label>
+<!-- Field 5 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-medium text-secondary">Alternate Callback Contact</span>
+</div>
+<span class="text-[10px] font-medium text-secondary bg-surface-container px-2 py-0.5 rounded">Optional</span>
+</label>
+<!-- Field 6 -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline hover:border-outline-variant bg-surface cursor-pointer">
+<div class="flex items-center gap-2.5">
+<input class="rounded text-primary focus:ring-primary border-outline h-4 w-4" type="checkbox">
+<span class="text-xs font-medium text-secondary">Physical Address / Landmark</span>
+</div>
+<span class="text-[10px] font-medium text-secondary bg-surface-container px-2 py-0.5 rounded">Optional</span>
+</label>
+</div>
+</div>
+</div>
+<!-- SECTION 5: Escalation & Human Transfer Rules -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="px-6 py-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-fixed text-primary font-bold text-xs tabular-nums">05</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Escalation &amp; Fallback Rules</h2>
+<p class="text-xs text-secondary">Automated triggers to switch from AI voice to immediate staff notification</p>
+</div>
+</div>
+<!-- Main Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-3.5 rounded-lg border border-outline bg-surface-container/30">
+<span class="text-xs font-semibold text-secondary uppercase tracking-wider block mb-1">Trigger Condition</span>
+<p class="text-xs text-on-surface font-medium leading-relaxed">
+                  When caller explicitly requests human, repeats confusion 2x, or asks for the business owner.
+                </p>
+</div>
+<div class="p-3.5 rounded-lg border border-primary/30 bg-primary-fixed/20">
+<span class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">Action Dispatched</span>
+<p class="text-xs text-on-surface font-medium leading-relaxed">
+                  Send immediate WhatsApp flash card marked <span class="text-error font-semibold">[URGENT ESCALATION]</span> to <span class="font-mono text-primary font-bold">+91 98765 43210</span> with live call audio recording link.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ============================================================ -->
+<!-- RIGHT COLUMN (~36%): Live Simulator, WhatsApp & Audit Stream -->
+<!-- ============================================================ -->
+<div class="lg:col-span-5 xl:col-span-4 space-y-6">
+<!-- CARD 1: Interactive Browser Test Simulator -->
+<div class="bg-surface rounded-xl border border-outline shadow-sm overflow-hidden sticky top-28">
+<div class="p-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-weight="fill">headset_mic</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Test Configuration</span>
+</div>
+<span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              Ready to Simulate
+            </span>
+</div>
+<div class="p-5 space-y-4">
+<!-- Simulated Waveform & Primary Call Trigger -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline flex flex-col items-center justify-center text-center">
+<!-- Waveform bars -->
+<div class="flex items-center gap-1 h-9 mb-3">
+<span class="w-1 bg-primary/40 rounded-full wave-bar" style="animation-delay: 0.1s;"></span>
+<span class="w-1 bg-primary/60 rounded-full wave-bar" style="animation-delay: 0.3s;"></span>
+<span class="w-1 bg-primary rounded-full wave-bar" style="animation-delay: 0.5s;"></span>
+<span class="w-1 bg-primary/80 rounded-full wave-bar" style="animation-delay: 0.2s;"></span>
+<span class="w-1 bg-primary rounded-full wave-bar" style="animation-delay: 0.6s;"></span>
+<span class="w-1 bg-primary/40 rounded-full wave-bar" style="animation-delay: 0.4s;"></span>
+<span class="w-1 bg-primary/90 rounded-full wave-bar" style="animation-delay: 0.25s;"></span>
+<span class="w-1 bg-primary/50 rounded-full wave-bar" style="animation-delay: 0.45s;"></span>
+</div>
+<button class="w-full py-2.5 px-4 bg-primary hover:bg-[#05329c] text-on-primary rounded-lg font-label-md text-label-md font-semibold transition-all shadow-sm flex items-center justify-center gap-2 active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg">mic</span>
+<span class="">Run Interactive Test Call in Browser</span>
+</button>
+<p class="text-[11px] text-secondary mt-2">Latency: ~360ms • Uses microphone &amp; draft prompts</p>
+</div>
+<!-- Simulated Conversation Transcript Log -->
+<div class="space-y-3 pt-1">
+<div class="flex items-center justify-between text-xs text-secondary font-semibold">
+<span class="">SIMULATED TRANSCRIPT STREAM</span>
+<span class="text-[10px] text-emerald-600 font-mono">00:42 DURATION</span>
+</div>
+<div class="space-y-2.5 max-h-[260px] overflow-y-auto pr-1">
+<!-- Agent message -->
+<div class="flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                    P
+                  </div>
+<div class="bg-surface-container rounded-lg rounded-tl-none p-2.5 border border-outline text-xs text-on-surface leading-relaxed">
+<span class="text-[10px] font-bold text-primary block mb-0.5">Agent (Pooja)</span>
+                    Namaste! Aura Wellness Studio mein aapka swagat hai. Main Callivaan AI receptionist hoon...
+                  </div>
+</div>
+<!-- Caller message -->
+<div class="flex items-start gap-2.5 justify-end">
+<div class="bg-primary text-on-primary rounded-lg rounded-tr-none p-2.5 text-xs leading-relaxed max-w-[85%]">
+<span class="text-[10px] font-semibold text-on-primary-container block mb-0.5">Caller (You)</span>
+                    Mujhe kal 4 baje haircut ke liye slot chahiye, stylist Rahul available hai kya?
+                  </div>
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                    Y
+                  </div>
+</div>
+<!-- Agent message 2 -->
+<div class="flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                    P
+                  </div>
+<div class="bg-surface-container rounded-lg rounded-tl-none p-2.5 border border-outline text-xs text-on-surface leading-relaxed">
+<span class="text-[10px] font-bold text-primary block mb-0.5">Agent (Pooja)</span>
+                    Kal sham 4:00 baje Rahul ji ka slot available hai. Kya main aapka naam book kar doon?
+                  </div>
+</div>
+</div>
+<!-- Quick action -->
+<button class="w-full py-2 bg-surface hover:bg-surface-container text-xs font-semibold text-on-surface border border-outline rounded-lg transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-emerald-600">send</span>
+<span class="">Send Test Summary to WhatsApp</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CARD 2: WhatsApp Configuration Rules Assistant -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="p-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-xl" data-weight="fill">chat</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Control Agent via WhatsApp</span>
+</div>
+<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              Verified Bot
+            </span>
+</div>
+<div class="p-5 space-y-3.5">
+<p class="text-xs text-secondary leading-relaxed">
+              No need to open this portal for quick changes. Message your dedicated Callivaan number (<span class="font-mono text-on-surface font-semibold tabular-nums">+91 98765 43210</span>) directly from WhatsApp.
+            </p>
+<div>
+<span class="text-[11px] font-semibold text-secondary uppercase tracking-wider block mb-2">Example WhatsApp Commands (Click to Copy):</span>
+<div class="space-y-1.5">
+<div class="p-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline text-xs font-mono text-on-surface flex items-center justify-between cursor-pointer group transition-colors">
+<span class="truncate">"Hindi mein baat karo aur greeting chhota karo"</span>
+<span class="material-symbols-outlined text-xs text-secondary group-hover:text-primary">content_copy</span>
+</div>
+<div class="p-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline text-xs font-mono text-on-surface flex items-center justify-between cursor-pointer group transition-colors">
+<span class="truncate">"Sunday timing 12 PM to 6 PM kar do"</span>
+<span class="material-symbols-outlined text-xs text-secondary group-hover:text-primary">content_copy</span>
+</div>
+<div class="p-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline text-xs font-mono text-on-surface flex items-center justify-between cursor-pointer group transition-colors">
+<span class="truncate">"Hair spa package ka price 999 batao"</span>
+<span class="material-symbols-outlined text-xs text-secondary group-hover:text-primary">content_copy</span>
+</div>
+<div class="p-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline text-xs font-mono text-on-surface flex items-center justify-between cursor-pointer group transition-colors">
+<span class="truncate">"Vacation mode on: 20 se 24 October tak band hai"</span>
+<span class="material-symbols-outlined text-xs text-secondary group-hover:text-primary">content_copy</span>
+</div>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between text-xs border-t border-outline/70">
+<span class="text-secondary flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                WhatsApp Remote Control
+              </span>
+<span class="font-semibold text-emerald-700">Active &amp; Verified</span>
+</div>
+</div>
+</div>
+<!-- CARD 3: Version Control & Audit History -->
+<div class="bg-surface rounded-xl border border-outline shadow-xs overflow-hidden">
+<div class="p-4 border-b border-outline flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">history</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">Deployment &amp; History</span>
+</div>
+<span class="text-xs text-secondary font-mono tabular-nums">12 revisions</span>
+</div>
+<div class="p-5">
+<div class="space-y-4 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-outline">
+<!-- Version 1.4 Active -->
+<div class="relative pl-6">
+<span class="absolute left-1.5 top-1 w-3 h-3 rounded-full bg-primary border-2 border-white ring-2 ring-primary/20"></span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-on-surface flex items-center gap-1.5">
+                    Version 1.4
+                    <span class="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-semibold uppercase">Active Now</span>
+</span>
+<span class="text-[10px] text-secondary font-mono tabular-nums">13 Oct, 2:15 PM</span>
+</div>
+<p class="text-xs text-secondary mt-0.5">Deployed via WhatsApp by Rajesh Sharma</p>
+<p class="text-[11px] text-on-surface font-mono bg-surface-container px-2 py-0.5 rounded mt-1.5 inline-block">"Updated Sunday timings to 11am-7pm"</p>
+</div>
+<!-- Version 1.3 -->
+<div class="relative pl-6">
+<span class="absolute left-2 top-1.5 w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-on-surface">Version 1.3</span>
+<span class="text-[10px] text-secondary font-mono tabular-nums">08 Oct, 11:30 AM</span>
+</div>
+<p class="text-xs text-secondary mt-0.5">Deployed via Web Dashboard</p>
+<div class="flex items-center justify-between mt-1">
+<span class="text-[11px] text-secondary font-mono">"Added Diwali bridal packages"</span>
+<button class="text-[11px] font-semibold text-primary hover:underline">Revert</button>
+</div>
+</div>
+<!-- Version 1.2 -->
+<div class="relative pl-6">
+<span class="absolute left-2 top-1.5 w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-on-surface">Version 1.2</span>
+<span class="text-[10px] text-secondary font-mono tabular-nums">01 Oct, 9:00 AM</span>
+</div>
+<p class="text-xs text-secondary mt-0.5">Initialized from Salon Starter</p>
+<div class="flex items-center justify-end mt-0.5">
+<button class="text-[11px] font-semibold text-primary hover:underline">Revert</button>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-outline text-center">
+<a class="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1" href="#changelog">
+                View full audit changelog (12 revisions)
+                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- MINIMALIST DASHBOARD FOOTER -->
+<footer class="mt-auto border-t border-outline bg-surface py-3 px-space-md text-xs text-secondary">
+<div class="max-w-[1720px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+<div>
+<span class="inline-flex items-center gap-1.5 font-bold tracking-tight text-[#172033]"><svg class="w-4 h-4 text-[#3157D5] shrink-0 inline" fill="currentColor" viewBox="0 0 24 24"><rect height="10" rx="1.5" width="3" x="1.5" y="7"></rect><rect height="18" rx="1.5" width="3" x="6.5" y="3"></rect><rect height="14" rx="1.5" width="3" x="11.5" y="5"></rect><rect height="20" rx="1.5" width="3" x="16.5" y="2"></rect><rect height="12" rx="1.5" width="3" x="21.5" y="6"></rect></svg>Callivaan <span class="font-normal text-secondary ml-0.5">Telephony Core v2.4</span></span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="">SOC2 &amp; TRAI compliant</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="">Active voice model: <span class="font-mono text-on-surface">Whisper-v3 + Deep Neural Hinglish</span></span>
+</div>
+<div class="hidden md:block text-secondary">
+<span class="">Auto-save: All draft edits stored locally</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-on-surface">All Telephony Gateways Operational (Mumbai ap-south-1)</span>
+<span class="text-outline-variant">•</span>
+<span class="font-mono tabular-nums text-primary font-semibold">Latency ~360ms</span>
+</div>
+</div>
+</footer>
+
+
+</body></html>
