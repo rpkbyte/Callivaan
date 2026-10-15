@@ -5,7 +5,31 @@
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "skillPath": ".agents/skills/impeccable/SKILL.md",
-      "computedHash": "de0ad62df4a20451e6f9715b6861b068ac8f558b1829a5c7b947c58ae94f0c6f"
+      "computedHash": "cdbc7dd8df1b13c4a0ed9c64317cea0fbbab45a0b383f605e152a8fc3bf5add0"
+    },
+    "stitch::generate-design": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-design/skills/generate-design/SKILL.md",
+      "computedHash": "b854eb1747fbd02220bb7323590030fa644b8de126f8f6311749905ea09d7ae9"
+    },
+    "stitch::react-native": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-build/skills/react-native/SKILL.md",
+      "computedHash": "8fb779a0449a4dd0e9fe4b8b78973033f5977716903c2e291f896bf43c392411"
+    },
+    "taste-design": {
+      "source": "google-labs-code/stitch-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/stitch-utilities/skills/taste-design/SKILL.md",
+      "computedHash": "3772ea408777070865890e10d693118baa1e1de14ee5bacdf6ab46fdea7359bb"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "7ac62d931e52dbc7c309ed8ee067101969db2454709339b02daa583e80e98d5f"
     }
   }
 }

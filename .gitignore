@@ -43,3 +43,4 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 *.db
+*.agents
