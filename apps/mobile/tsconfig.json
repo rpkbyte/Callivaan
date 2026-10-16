@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
@@ -12,11 +15,24 @@
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "baseUrl": ".",
     "paths": {
-      "react-native": ["src/types/react-native.d.ts"]
+      "react-native": [
+        "types/react-native.d.ts"
+      ]
     }
   },
-  "include": ["src/**/*", "App.tsx"]
+  "include": [
+    "components/**/*",
+    "screens/**/*",
+    "types/**/*",
+    "data/**/*",
+    "theme.ts",
+    "index.ts",
+    "App.tsx"
+  ],
+  "extends": "expo/tsconfig.base"
 }

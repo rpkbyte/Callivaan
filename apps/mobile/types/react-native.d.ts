@@ -197,6 +197,11 @@ declare module 'react-native' {
     static getInitialURL(): Promise<string | null>;
   }
 
+  export class AppRegistry {
+    static registerComponent(appKey: string, componentProvider: () => React.ComponentType<any>): void;
+    static getAppKeys(): string[];
+  }
+
   export namespace StyleSheet {
     type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle };
     export function create<T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T>): T;

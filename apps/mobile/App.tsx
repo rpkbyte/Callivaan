@@ -7,29 +7,30 @@ import {
   Alert,
   Linking,
 } from 'react-native';
+import { registerRootComponent } from 'expo';
 import {
   TabName,
   CallRecord,
   LeadRecord,
   LeadStatus,
   AgentPersona,
-} from './src/types';
+} from './types';
 import {
   initialCalls,
   initialLeads,
   carrierConfigs,
   defaultAgentPersona,
   virtualGatewayNumber,
-} from './src/data/mockData';
-import { theme } from './src/theme';
-import { AppHeader } from './src/components/organisms/AppHeader';
-import { BottomTabBar } from './src/components/organisms/BottomTabBar';
-import { CallsScreen } from './src/screens/CallsScreen';
-import { LeadsScreen } from './src/screens/LeadsScreen';
-import { TelephonyScreen } from './src/screens/TelephonyScreen';
-import { AgentScreen } from './src/screens/AgentScreen';
-import { SettingsScreen } from './src/screens/SettingsScreen';
-import { CallDetailScreen } from './src/screens/CallDetailScreen';
+} from './data/mockData';
+import { theme } from './theme';
+import { AppHeader } from './components/organisms/AppHeader';
+import { BottomTabBar } from './components/organisms/BottomTabBar';
+import { CallsScreen } from './screens/CallsScreen';
+import { LeadsScreen } from './screens/LeadsScreen';
+import { TelephonyScreen } from './screens/TelephonyScreen';
+import { AgentScreen } from './screens/AgentScreen';
+import { SettingsScreen } from './screens/SettingsScreen';
+import { CallDetailScreen } from './screens/CallDetailScreen';
 
 export default function App(): React.JSX.Element {
   const [currentTab, setCurrentTab] = useState<TabName>('calls');
@@ -228,3 +229,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+registerRootComponent(App);
+
