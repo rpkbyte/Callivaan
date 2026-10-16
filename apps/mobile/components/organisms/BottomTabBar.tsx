@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { TabName } from '../../types';
 import { theme } from '../../theme';
+import { TabIcon } from '../atoms/TabIcons';
 
 export interface BottomTabBarProps {
   readonly currentTab: TabName;
@@ -10,8 +11,8 @@ export interface BottomTabBarProps {
 }
 
 interface TabItem {
-  id: TabName;
-  label: string;
+  readonly id: TabName;
+  readonly label: string;
 }
 
 const TABS: readonly TabItem[] = [
@@ -32,30 +33,27 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
       {TABS.map((tab) => {
         const isActive = currentTab === tab.id;
         const showBadge = tab.id === 'leads' && leadsBadgeCount > 0;
+        const iconColor = isActive ? theme.colors.primary : theme.colors.muted;
 
         return (
           <Pressable
             key={tab.id}
             onPress={() => onSelectTab(tab.id)}
-            style={styles.tabButton}
+            style={({ pressed }) => [
+              styles.tabButton,
+              pressed && { opacity: 0.75 },
+            ]}
             accessibilityRole="tab"
             accessibilityState={{ selected: isActive }}
             accessibilityLabel={`${tab.label} tab`}
           >
             <View style={styles.iconContainer}>
-              <View
-                style={[
-                  styles.tabIconPlaceholder,
-                  isActive && styles.tabIconActive,
-                ]}
-              >
-                <View
-                  style={[
-                    styles.innerIndicator,
-                    isActive && styles.innerIndicatorActive,
-                  ]}
-                />
-              </View>
+              <TabIcon
+                name={tab.id}
+                color={iconColor}
+                size={22}
+                isActive={isActive}
+              />
 
               {showBadge ? (
                 <View style={styles.badge}>
@@ -72,6 +70,8 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
             >
               {tab.label}
             </Text>
+
+            {isActive ? <View style={styles.activeDot} /> : null}
           </Pressable>
         );
       })}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.surface,
     borderTopWidth: 1,
     borderTopColor: theme.colors.outline,
-    paddingVertical: 8,
+    paddingTop: 8,
     paddingBottom: 16,
     justifyContent: 'space-around',
     elevation: 8,
@@ -101,35 +101,17 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   iconContainer: {
-    position: 'relative',
-    marginBottom: 4,
-  },
-  tabIconPlaceholder: {
-    width: 22,
-    height: 22,
-    borderRadius: theme.radii.xs,
-    borderWidth: 1.5,
-    borderColor: theme.colors.muted,
+    width: 28,
+    height: 24,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  tabIconActive: {
-    borderColor: theme.colors.primary,
-    backgroundColor: theme.colors.primaryFixed,
-  },
-  innerIndicator: {
-    width: 8,
-    height: 8,
-    borderRadius: 2,
-    backgroundColor: theme.colors.muted,
-  },
-  innerIndicatorActive: {
-    backgroundColor: theme.colors.primary,
+    position: 'relative',
+    marginBottom: 4,
   },
   badge: {
     position: 'absolute',
     top: -4,
-    right: -8,
+    right: -6,
     backgroundColor: theme.colors.primary,
     borderRadius: theme.radii.pill,
     minWidth: 16,
@@ -137,6 +119,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: theme.colors.surface,
   },
   badgeText: {
     color: theme.colors.onPrimary,
@@ -151,5 +135,12 @@ const styles = StyleSheet.create({
   tabLabelActive: {
     color: theme.colors.primary,
     fontWeight: '700',
+  },
+  activeDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: theme.colors.primary,
+    marginTop: 2,
   },
 });

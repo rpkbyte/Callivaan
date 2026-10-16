@@ -17,6 +17,8 @@
     "dev:worker": "npm run dev --workspace=@callivaan/worker",
     "dev:web": "npm run dev --workspace=@callivaan/web",
     "dev:mobile": "npm run start --workspace=@callivaan/mobile",
+    "mirror:mobile": "npm run mirror --workspace=@callivaan/mobile",
+    "start": "npm run dev:mobile",
     "dev": "npm run dev --workspaces --parallel"
   },
   "devDependencies": {

@@ -76,6 +76,24 @@
       "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XMQ4YbXMGJ2o1voWY6akbMyAdSdz44m7ltrvvqK_4pwjS--P15yoBVXF38NKR_dbmhSv9Ii7oDmBESUU5Nn0w9xsdgWAhT8Hu1uUoSkAHrpCja4RiRGB0AvsuqljTWawFLJYAbaOHtCRZW_kjzk-SdRLbpKN7wfUNy4uA8SNPB-8PJg3fUEzAPZ1Y1TOO7XSvSRxw40mKZ5B3_DwjZWBRLP43i4w0_oiDolCNI18Ovn-075lZSmHkteUY",
       "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzkxMzg4ZGIyNzc0ODQxYjBiMjllYWQ3YTA2MjAxYmJhEgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
       "localFile": ".stitch/screens/legal.html"
+    },
+    {
+      "id": "e6f7ef6728c44fa78796a072c83321cb",
+      "title": "Callivaan Enterprise B2B SaaS Inbound Telephony Dashboard Shell",
+      "deviceType": "DESKTOP",
+      "route": "/dashboard",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XugMwoAuKCwR8pvgd83H4PSG16a4Ip8JF2dqxjJci1V_8jfl5T05MDy5t0E3iefxBzdX9-k4sWACmRGRGU8gUXUlhBVYL7yOtqF_xxOMQ--KbWPPhYRvg2yzU8ZuNQAhP18umtXPRyRErjKdcJ0tkNGB7TSFd1862vYm7bfqWbPdU04LVseZQ9SLQbdbOHZ1w_8mPfXyEzkd-8pb98ucbxfy4N5sIqCt6x0Z4PcYGeQZkuAzXcz75nkg",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzMxMjY5OGVhZThlMDRlMTA4M2Q2ZWJhZTJiZWE3MTE0EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/dashboard_shell.html"
+    },
+    {
+      "id": "4b8f33bbf82a44b885b7e97257c427dc",
+      "title": "Callivaan AI Voice Agent - B2B SaaS Public Marketing Landing Page (Clean Navbar)",
+      "deviceType": "DESKTOP",
+      "route": "/",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WsVD3hGXg6YlipRri2p3OnYDvHaT_y7wnowY6ylzxYfNcXAjmZ7316lJc2y_CI2bim3nxGOdr1FBh3kSTHQV06YS6_efqF_oJVWSiG1ecB1cHF35ZdVF_fLrNzrIjhKmqmzkeNXSsHh25Ie9-reZMxrC6A_SYqP5dyark7F4Uw5HvoqOYsIHpIx8XqqZDWLIkiNbWoawcreHz2EjC0m_LjWKC3Ii0MsQaVI-7rMJCEoaOPr9P8Ey-ktVc",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzg2YjkxODI3ZmU2NzRlNDViN2M1ZTZkNTBjNTIzYTQ4EgsSBxCmzJDohxwYAZIBIwoKcHJvamVjdF9pZBIVQhM4NjY3MTI2NjE1NDUyNjQwNTA5&filename=&opi=96797242",
+      "localFile": ".stitch/screens/landing_v2.html"
     }
   ],
   "mobileScreens": [

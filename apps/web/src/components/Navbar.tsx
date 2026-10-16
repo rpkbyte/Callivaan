@@ -11,10 +11,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
   const navLinks = [
     { label: 'Product', route: '/' },
     { label: 'Pricing', route: '/pricing' },
-    { label: 'Portal', route: '/portal' },
-    { label: 'Agent Setup', route: '/agent' },
-    { label: 'Telephony', route: '/telephony' },
-    { label: 'WhatsApp', route: '/whatsapp' },
     { label: 'Compliance', route: '/legal' },
   ];
 

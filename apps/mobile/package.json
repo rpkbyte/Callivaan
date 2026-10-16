@@ -8,6 +8,7 @@
     "android": "npx expo start --android",
     "ios": "npx expo start --ios",
     "web": "npx expo start --web",
+    "mirror": "scrcpy --stay-awake",
     "build": "tsc --noEmit"
   },
   "dependencies": {

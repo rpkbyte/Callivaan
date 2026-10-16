@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Callivaan | Autonomous Telephony AI Voice Agent for Indian Enterprises</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#1a1b23",
+            "tertiary-fixed-dim": "#ffb695",
+            "inverse-primary": "#b7c4ff",
+            "surface-container": "#eeedf8",
+            "inverse-surface": "#2f3038",
+            "background": "#fbf8ff",
+            "on-surface": "#172033",
+            "surface-container-highest": "#e2e1ec",
+            "surface-variant": "#e2e1ec",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-container": "#ffd6c5",
+            "tertiary": "#475467",
+            "surface-container-high": "#e8edf5",
+            "on-secondary-fixed": "#121b2e",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed-variant": "#7b2e00",
+            "on-secondary-fixed-variant": "#3e475b",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#b7c4ff",
+            "inverse-on-surface": "#f1f0fb",
+            "on-surface-variant": "#444654",
+            "tertiary-container": "#a84200",
+            "surface-dim": "#dad9e4",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#d8ddff",
+            "primary": "#063cbc",
+            "secondary-fixed-dim": "#bdc6e0",
+            "tertiary-fixed": "#ffdbcc",
+            "on-secondary-container": "#5a6278",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#f6f8fc",
+            "surface-tint": "#2c53d1",
+            "on-primary": "#ffffff",
+            "secondary": "#555e74",
+            "error": "#d92d20",
+            "outline": "#e4e8f0",
+            "surface": "#ffffff",
+            "outline-variant": "#c4c5d6",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#d9e2fc",
+            "on-tertiary-fixed": "#351000",
+            "primary-container": "#3157d5",
+            "surface-bright": "#fbf8ff",
+            "secondary-container": "#d7dff9",
+            "primary-fixed": "#dde1ff",
+            "on-primary-fixed": "#001452",
+            "on-primary-fixed-variant": "#0038b6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "32px",
+            "margin": "48px",
+            "space-xxl": "64px",
+            "space-sm": "12px",
+            "space-xs": "4px",
+            "space-md": "24px",
+            "margin-mobile": "20px",
+            "space-xl": "48px",
+            "gutter": "24px"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-lg": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Subtle acoustic soundwave pulse */
+    @keyframes wave-pulse {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    .wave-bar-1 { animation: wave-pulse 1.2s ease-in-out infinite; }
+    .wave-bar-2 { animation: wave-pulse 0.9s ease-in-out infinite 0.15s; }
+    .wave-bar-3 { animation: wave-pulse 1.4s ease-in-out infinite 0.3s; }
+    .wave-bar-4 { animation: wave-pulse 1.1s ease-in-out infinite 0.45s; }
+    .wave-bar-5 { animation: wave-pulse 0.8s ease-in-out infinite 0.2s; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar (Shared Component Anchor) -->
+<header class="bg-surface/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-outline shadow-sm">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+<!-- Wordmark & Soundwave -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="h-8 w-8 rounded-lg bg-primary-container/10 border border-primary-container/20 flex items-center justify-center p-1.5 gap-0.5">
+<span class="w-1 bg-primary-container rounded-full h-3"></span>
+<span class="w-1 bg-primary-container rounded-full h-5"></span>
+<span class="w-1 bg-primary-container rounded-full h-2"></span>
+<span class="w-1 bg-primary-container rounded-full h-6"></span>
+<span class="w-1 bg-primary-container rounded-full h-3.5"></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight">Callivaan</span>
+<span class="text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed rounded">VOICE AI</span>
+</div>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-label-lg font-label-lg text-primary font-semibold transition-colors" href="#product">Product</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#solutions">Solutions</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#how-it-works">How It Works</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#compliance">Control Hub</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#pricing">Pricing</a>
+</nav>
+<!-- Trailing Action Buttons -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center justify-center text-label-lg font-label-lg px-4 py-2 text-on-surface border border-outline rounded-lg hover:bg-surface-container-low transition duration-150 ease-in-out active:scale-95" href="#demo">
+          Book Demo
+        </a>
+<a class="inline-flex items-center justify-center gap-2 text-label-lg font-label-lg px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary-container transition duration-150 ease-in-out active:scale-95 shadow-sm" href="#download">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Download APK</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-surface-container-low/50">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<!-- Trust Regulatory Tag -->
+<div class="flex justify-center mb-6">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline text-label-sm font-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Autonomous Telephony Infrastructure for Indian Enterprises</span>
+<span class="text-outline-variant">•</span>
+<span class="font-semibold text-on-surface">TRAI &amp; DoT Compliant</span>
+</div>
+</div>
+<!-- Hero Typography -->
+<div class="text-center max-w-4xl mx-auto mb-10">
+<h1 class="text-headline-lg-mobile md:text-display-lg font-headline-lg-mobile md:font-display-lg text-on-surface tracking-tight mb-5">
+          Never Miss Another Customer Call. AI Voice Agent That Speaks Fluent Indian English &amp; Hindi.
+        </h1>
+<p class="text-body-md md:text-body-lg font-body-md md:font-body-lg text-tertiary max-w-2xl mx-auto">
+          Answers within 1 ring, speaks natural Hinglish, qualifies high-intent buyers, and dispatches ready-to-close leads directly to your WhatsApp in 2.4 seconds.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all shadow-sm" href="tel:+918047368800">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Try Live AI Demo (+91 80 4736 8800)</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-surface-container-lowest border border-outline text-on-surface font-label-lg text-label-lg hover:bg-surface-container-low transition-all" href="#how-it-works">
+<span class="material-symbols-outlined text-[20px] text-primary">play_circle</span>
+<span>Watch 90-Second Walkthrough</span>
+</a>
+</div>
+<!-- Trust Metrics Ribbon -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 pb-12 border-t border-outline/70">
+<div class="text-center px-4">
+<p class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md text-on-surface font-bold tracking-tight">180,000+</p>
+<p class="text-label-sm font-label-sm text-tertiary mt-0.5">Calls Answered</p>
+</div>
+<div class="text-center px-4 border-l border-outline/60">
+<p class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md text-primary font-bold tracking-tight">&lt;420ms</p>
+<p class="text-label-sm font-label-sm text-tertiary mt-0.5">Voice Latency</p>
+</div>
+<div class="text-center px-4 border-l-0 md:border-l border-outline/60">
+<p class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md text-on-surface font-bold tracking-tight">97.4%</p>
+<p class="text-label-sm font-label-sm text-tertiary mt-0.5">Hinglish Intent Accuracy</p>
+</div>
+<div class="text-center px-4 border-l border-outline/60">
+<p class="text-headline-sm md:text-headline-md font-headline-sm md:font-headline-md text-on-surface font-bold tracking-tight">Zero App</p>
+<p class="text-label-sm font-label-sm text-tertiary mt-0.5">Standard Telecom Divert</p>
+</div>
+</div>
+<!-- Interactive Dual Comparison Card UI -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+<!-- Left Card: Missed Call Problem -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-6 relative overflow-hidden flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-4 border-b border-outline mb-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-error-container text-on-error-container text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">call_missed</span>
+                3 Unanswered Rings
+              </span>
+<span class="text-label-sm font-label-sm text-tertiary">Peak Hour • 3:42 PM</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Missed Call = Lost Revenue</h3>
+<p class="text-body-sm font-body-sm text-tertiary mb-6">
+              Prospective buyer calls showroom for Creta test drive. Front-desk executives are busy with on-floor walk-ins. The line disconnects after 4 rings.
+            </p>
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline/60 space-y-3">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-tertiary">Customer Action</span>
+<span class="font-medium text-error">Searches competitor dealer</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-tertiary">CRM Log</span>
+<span class="font-medium text-on-surface-variant">Unlogged / Abandoned</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm pt-2 border-t border-outline">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Revenue Captured</span>
+<span class="text-label-md font-label-md font-bold text-error">₹0</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline/70 flex items-center justify-between text-label-sm font-label-sm text-tertiary">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error">cancel</span>
+              Lead permanently cold
+            </span>
+<span class="text-error font-medium">Lost Deal Opportunity</span>
+</div>
+</div>
+<!-- Right Card: Callivaan Solution -->
+<div class="bg-surface-container-lowest border-2 border-primary-container/40 rounded-xl p-6 relative overflow-hidden flex flex-col justify-between shadow-sm">
+<div class="absolute -right-12 -top-12 w-40 h-40 bg-primary-fixed/30 rounded-full blur-2xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between pb-4 border-b border-outline mb-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">call_received</span>
+                Answered on Ring 1
+              </span>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-label-sm font-label-sm font-mono text-primary">
+<span>LATENCY</span>
+<span class="font-bold">382ms</span>
+</div>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Callivaan Voice AI</h3>
+<!-- Live Audio Waveform Graphic -->
+<div class="flex items-center gap-1 h-6">
+<span class="w-1 bg-primary wave-bar-1 rounded-full"></span>
+<span class="w-1 bg-primary wave-bar-2 rounded-full"></span>
+<span class="w-1 bg-primary wave-bar-3 rounded-full"></span>
+<span class="w-1 bg-primary wave-bar-4 rounded-full"></span>
+<span class="w-1 bg-primary wave-bar-5 rounded-full"></span>
+</div>
+</div>
+<!-- Hinglish Dialogue Box -->
+<div class="p-3.5 rounded-lg bg-surface-container-low border border-outline mb-4 space-y-2">
+<p class="text-label-sm font-label-sm text-primary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">record_voice_over</span>
+                AI Agent (Bilingual Hindi-English):
+              </p>
+<p class="text-body-sm font-body-sm text-on-surface italic">
+                "Namaste! Balaji Motors me aapka swagat hai. Creta SX Petrol available hai. Kya aap kal subah 11 baje test drive schedule karna chahenge?"
+              </p>
+</div>
+<!-- WhatsApp Lead Card Notification -->
+<div class="bg-emerald-50/70 border border-emerald-200/80 rounded-lg p-3.5 space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5 text-emerald-800 font-bold">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>WhatsApp Lead Alert</span>
+</div>
+<span class="text-emerald-700 text-[11px] font-mono">Dispatched in 2.4s</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium">
+                Amit Verma • +91 98201 XXXXX • <span class="text-emerald-800 font-semibold">High Intent</span>
+</p>
+<p class="text-label-sm font-label-sm text-tertiary">
+                Interested in: <strong class="text-on-surface">Creta SX(O) Petrol</strong> • Confirmed visit: <strong class="text-on-surface">Tomorrow 11:00 AM</strong>
+</p>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline/70 flex items-center justify-between text-label-sm font-label-sm">
+<span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+              Pushed to CRM + Sales Rep Mobile
+            </span>
+<span class="text-primary font-semibold cursor-pointer hover:underline">Instant Lead Closed</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3-Step Architecture & Workflow -->
+<section class="py-20 md:py-28 bg-surface border-t border-outline" id="how-it-works">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-wider mb-3">Live Telephony Architecture</p>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Zero Hardware. Forward Calls in 60 Seconds.</h2>
+<p class="text-body-lg font-body-lg text-tertiary mt-3">
+          Deploy enterprise-grade conversational AI without changing your telecom provider, installing PBX hardware, or downloading complex apps.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-8 relative flex flex-col justify-between hover:border-primary/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="h-12 w-12 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-headline-sm">
+                01
+              </div>
+<span class="material-symbols-outlined text-secondary text-[28px]">phone_forwarded</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-3">Forward Your Business Number</h3>
+<p class="text-body-sm font-body-sm text-tertiary mb-6">
+              Dial simple carrier divert code (*401* on Jio, Airtel, Vi, or BSNL) for conditional or unconditional forwarding to your assigned dedicated Callivaan trunk.
+            </p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-outline text-label-sm font-label-sm font-mono text-on-surface-variant flex items-center justify-between">
+<span>*401*08047368800#</span>
+<span class="text-emerald-600 font-semibold text-[11px]">INSTANT ACTIVE</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-8 relative flex flex-col justify-between hover:border-primary/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="h-12 w-12 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-headline-sm">
+                02
+              </div>
+<span class="material-symbols-outlined text-primary text-[28px]">graphic_eq</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-3">AI Agent Handles Dialogue</h3>
+<p class="text-body-sm font-body-sm text-tertiary mb-6">
+              Sub-420ms acoustic pipeline interprets real Indian accents and colloquial Hinglish. Checks live catalog pricing, inventory, and confirms time slots.
+            </p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-outline text-label-sm font-label-sm flex items-center justify-between">
+<span class="text-secondary font-medium">Bilingual Synthesizer</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed text-[11px] font-semibold">&lt;420ms Response</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-8 relative flex flex-col justify-between hover:border-primary/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div class="h-12 w-12 rounded-lg bg-emerald-600 text-on-primary flex items-center justify-center font-bold text-headline-sm">
+                03
+              </div>
+<span class="material-symbols-outlined text-emerald-700 text-[28px]">mark_chat_read</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-3">Instant WhatsApp Dispatch</h3>
+<p class="text-body-sm font-body-sm text-tertiary mb-6">
+              Call transcript, intent extraction, and verified contact numbers are dispatched directly into the business owner's and sales manager's WhatsApp within 2.4 seconds.
+            </p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-outline text-label-sm font-label-sm flex items-center justify-between">
+<span class="text-emerald-700 font-semibold">Direct WhatsApp Hook</span>
+<span class="text-on-surface font-mono text-[11px]">2.4s Latency</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- High-Yield Industry Solutions Grid (Bento Grid) -->
+<section class="py-20 md:py-28 bg-surface-container-low/40 border-t border-outline" id="solutions">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div>
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-wider mb-3">Industry Deployments</p>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Engineered for Indian Transaction Cycles</h2>
+</div>
+<p class="text-body-md font-body-md text-tertiary max-w-md">
+          Pre-trained on domain vocabulary, Indian regional acronyms, and buyer objection handling protocols.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Solution 1: Automobile -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 hover:shadow-md transition duration-200 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="flex items-center gap-3">
+<div class="p-2.5 rounded-lg bg-primary-fixed/40 text-primary">
+<span class="material-symbols-outlined text-[24px]">directions_car</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Automobile Dealerships</h3>
+<p class="text-label-sm font-label-sm text-tertiary">Showrooms, Service Centers, Used Cars</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-surface-container-high rounded text-label-sm font-label-sm font-mono font-medium text-on-surface">94% Visit Rate</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">
+              Captures high-volume customer inquiries during festive car launches, festival discounts (Diwali/Dhanteras), test-drive booking, and scheduled car maintenance servicing.
+            </p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline/70 mb-6 space-y-2">
+<p class="text-label-sm font-label-sm font-semibold text-secondary">Audio Excerpt Sample:</p>
+<p class="text-body-sm font-body-sm text-on-surface italic">
+                "Sir, Thar Roxx AX7 Luxury Diesel automatic available hai. Ex-showroom price ₹18.99 Lakhs hai. Kal afternoon slot me home test drive book karein?"
+              </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-4 border-t border-outline">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Creta / Thar Exchanges</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Insurance Renewal</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">&lt;3s WhatsApp Alert</span>
+</div>
+</div>
+<!-- Solution 2: Real Estate -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 hover:shadow-md transition duration-200 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="flex items-center gap-3">
+<div class="p-2.5 rounded-lg bg-primary-fixed/40 text-primary">
+<span class="material-symbols-outlined text-[24px]">domain</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Real Estate &amp; Developers</h3>
+<p class="text-label-sm font-label-sm text-tertiary">Tier-1 &amp; Tier-2 Residential / Commercial</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-surface-container-high rounded text-label-sm font-label-sm font-mono font-medium text-on-surface">3.2x Qualification</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">
+              Filters serious property investors from causal window-shoppers. Collects budget ranges (e.g. ₹75L - ₹1.5 Cr), possession timeline requirements, and arranges site inspection cabs.
+            </p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline/70 mb-6 space-y-2">
+<p class="text-label-sm font-label-sm font-semibold text-secondary">Audio Excerpt Sample:</p>
+<p class="text-body-sm font-body-sm text-on-surface italic">
+                "Ji bilkul, Godrej Woods me 3BHK unit 1450 sqft carpet area start hoti hai ₹1.85 Cr se. Weekend par sample flat inspection fix karoon?"
+              </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-4 border-t border-outline">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Budget Verification</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">RERA Disclosure</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Site Visit Route SMS</span>
+</div>
+</div>
+<!-- Solution 3: Healthcare Clinics -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 hover:shadow-md transition duration-200 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="flex items-center gap-3">
+<div class="p-2.5 rounded-lg bg-primary-fixed/40 text-primary">
+<span class="material-symbols-outlined text-[24px]">local_hospital</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Clinics &amp; Healthcare</h3>
+<p class="text-label-sm font-label-sm text-tertiary">Dental, Diagnostic Labs, Specialist OPDs</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-surface-container-high rounded text-label-sm font-label-sm font-mono font-medium text-on-surface">Zero No-Shows</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">
+              Answers patients calling early morning or late evening. Manages doctor OPD slot availability, symptom triage, pre-test fasting instructions, and pathology report collection queries.
+            </p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline/70 mb-6 space-y-2">
+<p class="text-label-sm font-label-sm font-semibold text-secondary">Audio Excerpt Sample:</p>
+<p class="text-body-sm font-body-sm text-on-surface italic">
+                "Dr. Sharma ka OPD 5:00 PM se 8:30 PM tak available hai. Blood sugar test ke liye 10 hours fasting zaroori hai. Kya 6:15 PM appointment lock karein?"
+              </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-4 border-t border-outline">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">OPD Slot Calendar</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Symptom Intake</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Prescription Reminder</span>
+</div>
+</div>
+<!-- Solution 4: High-Value Retail & Services -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 hover:shadow-md transition duration-200 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="flex items-center gap-3">
+<div class="p-2.5 rounded-lg bg-primary-fixed/40 text-primary">
+<span class="material-symbols-outlined text-[24px]">home_repair_service</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Retail &amp; Premium Services</h3>
+<p class="text-label-sm font-label-sm text-tertiary">Luxury Salons, AC Care, Electronics</p>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-surface-container-high rounded text-label-sm font-label-sm font-mono font-medium text-on-surface">100% Call Coverage</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">
+              Captures high-ticket bridal makeup packages, technician dispatch for domestic appliance repair, warranty checks, and store directions with zero waiting queues.
+            </p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline/70 mb-6 space-y-2">
+<p class="text-label-sm font-label-sm font-semibold text-secondary">Audio Excerpt Sample:</p>
+<p class="text-body-sm font-body-sm text-on-surface italic">
+                "Bridal consultation ke liye hamare senior stylist Saturday 3 PM available hain. Advance booking confirmation aapke WhatsApp par share kar diya gaya hai."
+              </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-4 border-t border-outline">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Bridal Intake</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Doorstep Repair</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Google Maps Pin Dispatch</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Telephony Specs & Latency Benchmark -->
+<section class="py-20 md:py-28 bg-surface border-t border-outline" id="product">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-6 space-y-6">
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-wider">Acoustic Clarity Engine</p>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+            Sub-420ms Response Time. Indistinguishable from Human Staff.
+          </h2>
+<p class="text-body-lg font-body-lg text-tertiary">
+            Indian consumers hang up when they encounter robotic IVR menus or sluggish US-based LLM delays. Callivaan combines low-latency neural acoustic models with regional speech recognition running locally on Indian cloud infrastructure.
+          </p>
+<div class="space-y-4 pt-2">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">verified</span>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Native Hinglish Code-Switching</p>
+<p class="text-body-sm font-body-sm text-tertiary">Effortlessly understands sentences mixing Hindi nouns with English verbs (e.g. "Bhaiya showroom kab close hota hai?").</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">verified</span>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Active Noise &amp; Traffic Filtering</p>
+<p class="text-body-sm font-body-sm text-tertiary">Engineered for real-world Indian conditions—cleans background bus horns, market chatter, and weak 2G/3G audio packets.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">verified</span>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Real-Time SIP &amp; Webhook Synchronization</p>
+<p class="text-body-sm font-body-sm text-tertiary">Directly reads stock status from your inventory CRM and schedules bookings into Google Calendar or customized ERPs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-6">
+<!-- Latency & Architecture Comparison Card -->
+<div class="bg-surface-container-low border border-outline rounded-xl p-8 space-y-6">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Latency Benchmark Over Indian Carriers</h3>
+<!-- Benchmark Bar 1 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">Callivaan Neural Telephony</span>
+<span class="font-bold text-primary">380ms - 420ms</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 25%"></div>
+</div>
+<p class="text-label-sm font-label-sm text-emerald-700">Immediate, uninterrupted human rhythm</p>
+</div>
+<!-- Benchmark Bar 2 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-medium text-secondary">Generic US-Hosted Voice APIs</span>
+<span class="font-medium text-on-surface-variant">1,450ms - 2,100ms</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 75%"></div>
+</div>
+<p class="text-label-sm font-label-sm text-tertiary">Noticeable awkward dead air causes caller drop-off</p>
+</div>
+<!-- Benchmark Bar 3 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-medium text-secondary">Legacy PBX / DTMF IVR Tree</span>
+<span class="font-medium text-on-surface-variant">8,500ms+ (Menu loops)</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 98%"></div>
+</div>
+<p class="text-label-sm font-label-sm text-error">"Press 1 for Sales, Press 2..." high friction abandonment</p>
+</div>
+<div class="pt-4 border-t border-outline flex items-center justify-between text-label-sm font-label-sm text-secondary">
+<span>Benchmarked on Jio 4G / Airtel 5G in Delhi NCR &amp; Bengaluru</span>
+<span class="material-symbols-outlined text-[18px] text-primary">speed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Enterprise Trust, Security & TRAI Compliance -->
+<section class="py-20 md:py-28 bg-surface-container-low/60 border-t border-outline" id="compliance">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-wider mb-3">Enterprise Governance</p>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Built for Complete Regulatory Compliance</h2>
+<p class="text-body-lg font-body-lg text-tertiary mt-3">
+          Designed from the ground up to respect Indian telecom guidelines, TRAI mandates, and the Digital Personal Data Protection Act (DPDPA 2023).
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-6">
+<div class="h-10 w-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">TRAI &amp; DoT Consent</h3>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Mandatory two-party call recording disclaimer chime played automatically at the start of every inbound interaction in Hindi or English.
+          </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-6">
+<div class="h-10 w-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[24px]">location_on</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Sovereign Data Storage</h3>
+<p class="text-body-sm font-body-sm text-tertiary">
+            100% of customer telemetry, audio streams, and transcripts are hosted strictly within AWS Mumbai (<code class="text-xs bg-surface-container-high px-1 py-0.5 rounded">ap-south-1</code>) data centers.
+          </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-6">
+<div class="h-10 w-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[24px]">lock_clock</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Auto Cryptographic Purge</h3>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Strict 90-day retention default with automated cryptographic destruction of caller audio files to guarantee enterprise privacy standards.
+          </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-6">
+<div class="h-10 w-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[24px]">network_check</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">99.98% Carrier SLA</h3>
+<p class="text-body-sm font-body-sm text-tertiary">
+            Redundant direct SIP interconnects with Reliance Jio and Bharti Airtel telecommunication cores, preventing single-point gateway failures.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section (Rupee Billing, Zero Hidden Telecom Fees) -->
+<section class="py-20 md:py-28 bg-surface border-t border-outline" id="pricing">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<p class="text-label-lg font-label-lg text-primary uppercase tracking-wider mb-3">Transparent Rupee Billing</p>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Predictable Plans. No Per-Second Nickel &amp; Diming.</h2>
+<p class="text-body-lg font-body-lg text-tertiary mt-3">
+          Straightforward pricing with bundled voice minutes, GST invoice compliance, and full WhatsApp integration included.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+<!-- Starter Plan -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Clinic &amp; Small Store</h3>
+<p class="text-label-sm font-label-sm text-tertiary mb-6">Ideal for single-location clinics &amp; boutique stores</p>
+<div class="mb-6">
+<span class="text-display-lg font-display-lg text-on-surface font-bold">₹4,999</span>
+<span class="text-body-sm font-body-sm text-tertiary">/month + GST</span>
+</div>
+<ul class="space-y-3.5 text-body-sm font-body-sm text-on-surface-variant mb-8">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>600 Inbound Call Minutes Included</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>1 Dedicated Divert Phone Trunk</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Instant WhatsApp Dispatch to 1 Number</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Standard Hinglish Dialogue</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3 rounded-lg border border-outline text-on-surface text-center font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" href="#demo">
+            Start 14-Day Evaluation
+          </a>
+</div>
+<!-- Pro Plan (Most Popular) -->
+<div class="bg-surface-container-lowest border-2 border-primary rounded-xl p-8 flex flex-col justify-between relative shadow-lg">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-on-primary text-[11px] font-bold tracking-wider rounded-full uppercase">
+            Most Popular for Dealerships
+          </div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Dealership &amp; Realty</h3>
+<p class="text-label-sm font-label-sm text-tertiary mb-6">Automobile showrooms &amp; real estate sales offices</p>
+<div class="mb-6">
+<span class="text-display-lg font-display-lg text-primary font-bold">₹12,499</span>
+<span class="text-body-sm font-body-sm text-tertiary">/month + GST</span>
+</div>
+<ul class="space-y-3.5 text-body-sm font-body-sm text-on-surface mb-8">
+<li class="flex items-center gap-2 font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span>2,000 Inbound Call Minutes Included</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span>3 Divert Phone Trunks (Sales, Service, Test Drive)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span>Multi-Manager WhatsApp Lead Routing</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span>Custom Catalog &amp; Model Variant Training</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span>CRM Webhook (LeadSquared / Salesforce)</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3 rounded-lg bg-primary text-on-primary text-center font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-sm" href="#demo">
+            Deploy in 60 Seconds
+          </a>
+</div>
+<!-- Enterprise Plan -->
+<div class="bg-surface-container-lowest border border-outline rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1">Enterprise Multi-Outlet</h3>
+<p class="text-label-sm font-label-sm text-tertiary mb-6">Multi-city dealer groups &amp; healthcare chains</p>
+<div class="mb-6">
+<span class="text-display-lg font-display-lg text-on-surface font-bold">Custom</span>
+<span class="text-body-sm font-body-sm text-tertiary">volume-based SLA</span>
+</div>
+<ul class="space-y-3.5 text-body-sm font-body-sm text-on-surface-variant mb-8">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Unlimited Concurrent Telephony Channels</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Direct Primary SIP Trunk Interconnect</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Dedicated Enterprise Account Manager</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check</span>
+<span>Custom DPDPA &amp; On-Premise Audit Rights</span>
+</li>
+</ul>
+</div>
+<a class="w-full py-3 rounded-lg border border-outline text-on-surface text-center font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" href="tel:+918047368800">
+            Speak with Enterprise Engineering
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Pre-Footer High Conversion CTA -->
+<section class="py-16 md:py-24 bg-surface-container-low border-t border-outline" id="demo">
+<div class="w-full max-w-5xl mx-auto px-6 md:px-12 text-center">
+<div class="bg-surface-container-lowest border border-outline rounded-2xl p-8 md:p-14 shadow-sm relative overflow-hidden">
+<div class="max-w-2xl mx-auto space-y-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+            14-Day Free Evaluation
+          </span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">
+            Ready to Answer 100% of Your Customer Calls?
+          </h2>
+<p class="text-body-md font-body-md text-tertiary">
+            Start receiving ready-to-buy leads directly on WhatsApp. No credit card required, 30 free voice test minutes included with your dedicated test number.
+          </p>
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all" href="tel:+918047368800">
+<span class="material-symbols-outlined text-[20px]">phone_in_talk</span>
+<span>Test Live Agent: +91 80 4736 8800</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg border border-outline text-on-surface font-label-lg text-label-lg hover:bg-surface-container-low transition-all" href="#pricing">
+<span>View Commercial Plans</span>
+</a>
+</div>
+<p class="text-label-sm font-label-sm text-tertiary pt-4">
+            Setup requires only 60 seconds with simple *401* carrier divert code on Jio, Airtel, Vi, or BSNL.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component Anchor) -->
+<footer class="bg-surface-container-low border-t border-outline">
+<div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-10 pb-12 border-b border-outline">
+<!-- Brand Col -->
+<div class="md:col-span-2 space-y-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-lg bg-primary-container/10 border border-primary-container/20 flex items-center justify-center p-1.5 gap-0.5">
+<span class="w-1 bg-primary-container rounded-full h-3"></span>
+<span class="w-1 bg-primary-container rounded-full h-5"></span>
+<span class="w-1 bg-primary-container rounded-full h-2"></span>
+<span class="w-1 bg-primary-container rounded-full h-6"></span>
+<span class="w-1 bg-primary-container rounded-full h-3.5"></span>
+</div>
+<span class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Callivaan</span>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary max-w-sm">
+            Autonomous enterprise telephony infrastructure purpose-built for Indian automobile dealerships, real estate firms, and service clinics.
+          </p>
+<div class="text-label-sm font-label-sm text-secondary space-y-1">
+<p><strong>Registered Office:</strong> Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051</p>
+<p><strong>CIN:</strong> U72900MH2024PTC412982 | DoT OSP Registered</p>
+</div>
+</div>
+<!-- Links Col 1 -->
+<div class="space-y-3">
+<p class="text-label-md font-label-md font-semibold text-on-surface uppercase tracking-wider">Product</p>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#product">Product Architecture</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#how-it-works">WhatsApp Integration</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#product">API Documentation</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#demo">Android APK Beta</a></li>
+</ul>
+</div>
+<!-- Links Col 2 -->
+<div class="space-y-3">
+<p class="text-label-md font-label-md font-semibold text-on-surface uppercase tracking-wider">Solutions</p>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#solutions">Automobile Dealerships</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#solutions">Real Estate Developers</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#solutions">Healthcare &amp; Clinics</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#solutions">Industry Solutions</a></li>
+</ul>
+</div>
+<!-- Links Col 3 -->
+<div class="space-y-3">
+<p class="text-label-md font-label-md font-semibold text-on-surface uppercase tracking-wider">Governance</p>
+<ul class="space-y-2 text-body-sm font-body-sm">
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#compliance">Security &amp; Compliance</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#compliance">TRAI Disclosures</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<!-- Copyright Bottom Bar -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-body-sm font-body-sm text-tertiary">
+<p>© 2025 Callivaan AI Telephony Technologies Pvt Ltd. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<span class="inline-flex items-center gap-1.5 text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Carrier Core Status: 100% Operational
+          </span>
+<span class="text-outline-variant">|</span>
+<span class="text-label-sm font-label-sm">AWS Mumbai (ap-south-1)</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

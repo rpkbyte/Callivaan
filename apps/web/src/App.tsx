@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { DashboardLayout } from './components/DashboardLayout';
 import { LandingPage } from './pages/LandingPage';
 import { PricingPage } from './pages/PricingPage';
 import { PortalPage } from './pages/PortalPage';
@@ -65,6 +66,27 @@ export const App: React.FC = () => {
     }
   };
 
+  // Authenticated operational dashboard routes render inside the persistent left sidebar shell
+  const isDashboardRoute = [
+    '/portal',
+    '/dashboard',
+    '/agent',
+    '/settings',
+    '/telephony',
+    '/forwarding',
+    '/whatsapp',
+    '/dispatch',
+  ].includes(currentRoute);
+
+  if (isDashboardRoute) {
+    return (
+      <DashboardLayout currentRoute={currentRoute} navigate={navigate}>
+        {renderCurrentPage()}
+      </DashboardLayout>
+    );
+  }
+
+  // Public marketing & legal pages render inside the public navigation shell
   return (
     <div className="flex flex-col min-h-screen bg-surface text-on-surface">
       <Navbar currentRoute={currentRoute} navigate={navigate} />
