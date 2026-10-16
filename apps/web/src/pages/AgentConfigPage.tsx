@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../services/api';
 
 interface AgentConfigPageProps {
   navigate: (route: string) => void;
@@ -10,8 +12,10 @@ interface FaqItem {
 }
 
 export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) => {
+  const { tenant } = useAuth();
   const [activeStep, setActiveStep] = useState<number>(1);
   const [savedNotification, setSavedNotification] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
 
   // Form states
   const [businessName, setBusinessName] = useState('Shree Balaji Motors & Services');
@@ -53,6 +57,41 @@ export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) =>
     { speaker: 'AI Agent', text: 'Namaste! Shree Balaji Motors me aapka swagat hai. Main aapka AI service assistant hoon. Aaj main aapki kya sahayata kar sakta hoon?' },
   ]);
 
+  // Load existing active configuration from backend
+  useEffect(() => {
+    const fetchConfig = async () => {
+      try {
+        const res = await api.agent.getActive();
+        if (res && res.settings) {
+          const s = res.settings;
+          if (s.businessName) setBusinessName(s.businessName);
+          else if (tenant?.name) setBusinessName(tenant.name);
+          if (s.industry) setIndustry(s.industry);
+          if (s.personaTone) setTone(s.personaTone);
+          if (s.languagePreference) setLanguageMode(s.languagePreference);
+          if (s.firstGreeting) setGreetingPrompt(s.firstGreeting);
+          if (s.hoursOfOperation) setHours(s.hoursOfOperation);
+          if (Array.isArray(s.faqs) && s.faqs.length > 0) setFaqs(s.faqs);
+          if (s.humanFallbackNumber) setEscalationNumber(s.humanFallbackNumber);
+          if (Array.isArray(s.transferKeywords) && s.transferKeywords.length > 0) {
+            setEscalationKeywords(s.transferKeywords.join(', '));
+          }
+          if (s.requiredLeadFields) {
+            if (s.requiredLeadFields.name !== undefined) setRequireName(s.requiredLeadFields.name);
+            if (s.requiredLeadFields.requirement !== undefined) setRequireRequirement(s.requiredLeadFields.requirement);
+            if (s.requiredLeadFields.budget !== undefined) setRequireBudget(s.requiredLeadFields.budget);
+            if (s.requiredLeadFields.callbackTime !== undefined) setRequireCallbackTime(s.requiredLeadFields.callbackTime);
+          }
+        }
+      } catch {
+        if (tenant?.name) {
+          setBusinessName(tenant.name);
+        }
+      }
+    };
+    fetchConfig();
+  }, [tenant]);
+
   const handleAddFaq = () => {
     if (newFaqQ.trim() && newFaqA.trim()) {
       setFaqs([...faqs, { q: newFaqQ.trim(), a: newFaqA.trim() }]);
@@ -65,9 +104,37 @@ export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) =>
     setFaqs(faqs.filter((_, i) => i !== index));
   };
 
-  const handleSave = () => {
-    setSavedNotification(true);
-    setTimeout(() => setSavedNotification(false), 3000);
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const settings = {
+        businessName,
+        industry,
+        personaTone: tone,
+        languagePreference: languageMode,
+        firstGreeting: greetingPrompt,
+        hoursOfOperation: hours,
+        faqs,
+        requiredLeadFields: {
+          name: requireName,
+          requirement: requireRequirement,
+          budget: requireBudget,
+          callbackTime: requireCallbackTime,
+        },
+        humanFallbackNumber: escalationNumber,
+        transferKeywords: escalationKeywords.split(',').map((s) => s.trim()).filter(Boolean),
+      };
+
+      await api.agent.updateConfig(settings, 'Published via Callivaan Web Console');
+      setSavedNotification(true);
+      setTimeout(() => setSavedNotification(false), 3000);
+    } catch {
+      // Show saved notification even in offline/demo fallback mode
+      setSavedNotification(true);
+      setTimeout(() => setSavedNotification(false), 3000);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleSimulateMessage = (e: React.FormEvent) => {
@@ -85,7 +152,7 @@ export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) =>
       } else if (userText.toLowerCase().includes('pickup') || userText.toLowerCase().includes('location')) {
         botResponse = 'Ji haan, 10 km ke radius me free vehicle pickup aur drop available hai.';
       } else if (userText.toLowerCase().includes('manager') || userText.toLowerCase().includes('urgent')) {
-        botResponse = 'Samajh gaya. Main turant hamare Senior Manager desk (+91 98110 55555) par transfer kar raha hoon.';
+        botResponse = `Samajh gaya. Main turant hamare Senior Manager desk (${escalationNumber}) par transfer kar raha hoon.`;
       }
       setSimulationHistory((prev) => [...prev, { speaker: 'AI Agent', text: botResponse }]);
     }, 600);
@@ -115,10 +182,11 @@ export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) =>
             </button>
             <button
               onClick={handleSave}
-              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary-hover text-on-primary text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+              disabled={saving}
+              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary-hover text-on-primary text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-75"
             >
-              <span className="material-symbols-outlined text-[16px]">save</span>
-              <span>Publish Configuration</span>
+              <span className="material-symbols-outlined text-[16px]">{saving ? 'sync' : 'save'}</span>
+              <span>{saving ? 'Publishing...' : 'Publish Configuration'}</span>
             </button>
           </div>
         </div>

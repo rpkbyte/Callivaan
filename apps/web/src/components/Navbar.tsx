@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 interface NavbarProps {
   currentRoute: string;
@@ -6,6 +7,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
+  const { isAuthenticated, tenant, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -65,23 +67,44 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
 
         {/* Actions */}
         <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => handleNav('/auth')}
-            className={`hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg text-sm font-medium border transition duration-150 ${
-              currentRoute === '/auth'
-                ? 'bg-primary-fixed text-primary border-primary/30 font-semibold'
-                : 'text-on-surface border-outline hover:bg-surface-container'
-            }`}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => handleNav('/portal')}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-semibold bg-primary hover:bg-primary-hover text-on-primary transition duration-150 shadow-xs"
-          >
-            <span className="material-symbols-outlined text-[18px]">dashboard</span>
-            <span>Dashboard</span>
-          </button>
+          {isAuthenticated ? (
+            <>
+              <button
+                onClick={() => handleNav('/portal')}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-primary hover:bg-primary-hover text-on-primary transition duration-150 shadow-xs"
+              >
+                <span className="material-symbols-outlined text-[18px]">dashboard</span>
+                <span className="truncate max-w-[130px] sm:max-w-[200px]">{tenant?.name || 'Dashboard'}</span>
+              </button>
+              <button
+                onClick={() => logout()}
+                title="Sign Out"
+                className="hidden sm:inline-flex items-center justify-center p-1.5 rounded-lg text-tertiary hover:text-error hover:bg-error-container/30 transition duration-150"
+              >
+                <span className="material-symbols-outlined text-[20px]">logout</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => handleNav('/auth')}
+                className={`hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg text-sm font-medium border transition duration-150 ${
+                  currentRoute === '/auth'
+                    ? 'bg-primary-fixed text-primary border-primary/30 font-semibold'
+                    : 'text-on-surface border-outline hover:bg-surface-container'
+                }`}
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => handleNav('/auth')}
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-semibold bg-primary hover:bg-primary-hover text-on-primary transition duration-150 shadow-xs"
+              >
+                <span className="material-symbols-outlined text-[18px]">dashboard</span>
+                <span>Dashboard</span>
+              </button>
+            </>
+          )}
 
           {/* Mobile Menu Hamburger */}
           <button

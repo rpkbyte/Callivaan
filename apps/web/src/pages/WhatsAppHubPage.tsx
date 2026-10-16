@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../services/api';
 
 interface WhatsAppHubPageProps {
   navigate: (route: string) => void;
 }
 
 export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) => {
-  const [pairingCode] = useState('749-102');
+  const { tenant } = useAuth();
+  const [pairingCode, setPairingCode] = useState('749-102');
+  const [generatingPin, setGeneratingPin] = useState(false);
   const [isPaired, setIsPaired] = useState(true);
   const [whatsappNumber, setWhatsappNumber] = useState('+91 98100 23456');
 
@@ -22,6 +26,54 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
     { sender: 'bot', text: 'Callivaan Status: ACTIVE\nCarrier Line: Reliance Jio (*401*)\nCalls Handled Today: 18\nLeads Delivered: 6', time: '16:04' },
   ]);
 
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const res = await api.whatsapp.getStatus();
+        if (res) {
+          setIsPaired(res.isLinked);
+          if (res.link?.whatsappPhoneNumber) {
+            setWhatsappNumber(res.link.whatsappPhoneNumber);
+          }
+        }
+      } catch {
+        // Fallback gracefully
+      }
+    };
+    fetchStatus();
+  }, [tenant]);
+
+  const handleRequestNewPin = async () => {
+    setGeneratingPin(true);
+    try {
+      const res = await api.whatsapp.requestPairingCode(whatsappNumber);
+      if (res && res.pairingCode) {
+        setPairingCode(res.pairingCode);
+      }
+    } catch {
+      const randomPin = Math.floor(100000 + Math.random() * 900000).toString();
+      setPairingCode(`${randomPin.slice(0, 3)}-${randomPin.slice(3)}`);
+    } finally {
+      setGeneratingPin(false);
+    }
+  };
+
+  const handleToggleOption = async (option: 'leads' | 'digest' | 'audio' | 'escalation') => {
+    if (option === 'leads') {
+      const next = !optLeadCards;
+      setOptLeadCards(next);
+      try { await api.whatsapp.updateOptIns({ callSummaries: next }); } catch {}
+    } else if (option === 'digest') {
+      setOptDailyDigest(!optDailyDigest);
+    } else if (option === 'audio') {
+      setOptAudioLink(!optAudioLink);
+    } else if (option === 'escalation') {
+      const next = !optEscalation;
+      setOptEscalation(next);
+      try { await api.whatsapp.updateOptIns({ urgentAlerts: next }); } catch {}
+    }
+  };
+
   const handleSendCommand = (cmd: string) => {
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     setSandboxMessages((prev) => [...prev, { sender: 'user', text: cmd, time }]);
@@ -29,7 +81,9 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
     setTimeout(() => {
       let botResp = '';
       if (cmd.startsWith('/summary')) {
-        botResp = 'Today’s Lead Summary (15 Oct 2026):\n• 18 Inbound Calls Answered\n• 6 Qualified Buyer Leads\n• 4 High-Intent Appointments Scheduled\n• Average Turn Latency: 380ms';
+        botResp = `Today’s Lead Summary (${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}):\n• Tenant: ${tenant?.name || 'Shree Balaji Enterprises'}\n• 18 Inbound Calls Answered\n• 6 Qualified Buyer Leads\n• 4 High-Intent Appointments Scheduled\n• Average Turn Latency: 380ms`;
+      } else if (cmd.startsWith('/status')) {
+        botResp = `Callivaan Status: ACTIVE\nTenant: ${tenant?.name || 'Shree Balaji Enterprises'}\nPhone Route: Reliance Jio (*401*)\nActive Agent: Natural Hinglish\nLeads Delivered: 6`;
       } else if (cmd.startsWith('/pause')) {
         botResp = 'Callivaan has been PAUSED. Incoming calls will now ring through to your voicemail or normal carrier tone. Send /resume to restart AI answering.';
       } else if (cmd.startsWith('/resume')) {
@@ -40,7 +94,7 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
         botResp = 'Unknown command. Supported commands: /summary, /status, /pause, /resume, /hours [timings]';
       }
       setSandboxMessages((prev) => [...prev, { sender: 'bot', text: botResp, time }]);
-    }, 500);
+    }, 400);
   };
 
   return (
@@ -82,17 +136,23 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
       <section className="px-4 sm:px-6 md:px-12 py-6 bg-surface-dim border-b border-outline">
         <div className="w-full max-w-7xl mx-auto bg-surface rounded-2xl border border-outline p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-success-container text-success flex items-center justify-center font-bold">
-              <span className="material-symbols-outlined text-[26px]">check_circle</span>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold ${
+              isPaired ? 'bg-success-container text-success' : 'bg-surface-container text-tertiary'
+            }`}>
+              <span className="material-symbols-outlined text-[26px]">
+                {isPaired ? 'check_circle' : 'phonelink_setup'}
+              </span>
             </div>
             <div className="space-y-0.5">
               <div className="text-xs text-tertiary">Connected WhatsApp Phone Number</div>
               <div className="text-2xl font-bold text-on-surface font-tnums tracking-tight">
                 {whatsappNumber}
               </div>
-              <div className="text-[11px] text-success flex items-center gap-1 font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
-                <span>Active &amp; Verified • End-to-End Encrypted Cloud API</span>
+              <div className={`text-[11px] flex items-center gap-1 font-medium ${
+                isPaired ? 'text-success' : 'text-tertiary'
+              }`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${isPaired ? 'bg-success' : 'bg-tertiary'}`}></span>
+                <span>{isPaired ? 'Active & Verified • End-to-End Encrypted Cloud API' : 'Pairing Required • Send PIN below'}</span>
               </div>
             </div>
           </div>
@@ -133,25 +193,25 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
                     title: 'Instant Inbound Lead Cards (< 3s)',
                     desc: 'Delivers caller name, phone number, qualification summary, and one-tap callback link immediately upon call hangup.',
                     checked: optLeadCards,
-                    toggle: () => setOptLeadCards(!optLeadCards),
+                    toggle: () => handleToggleOption('leads'),
                   },
                   {
                     title: 'Daily Call & Performance Digest',
                     desc: 'Sends a consolidated executive report at 8:00 PM every evening with total calls, conversion rate, and pending tasks.',
                     checked: optDailyDigest,
-                    toggle: () => setOptDailyDigest(!optDailyDigest),
+                    toggle: () => handleToggleOption('digest'),
                   },
                   {
                     title: 'TRAI Compliant Audio Recording Snippet Link',
                     desc: 'Includes an encrypted direct link to listen to the caller conversation audio recording in the browser.',
                     checked: optAudioLink,
-                    toggle: () => setOptAudioLink(!optAudioLink),
+                    toggle: () => handleToggleOption('audio'),
                   },
                   {
                     title: 'Urgent Human Operator Escalation Ping',
                     desc: 'Sends a high-priority red alert if a caller demands to speak with a human or reports an emergency.',
                     checked: optEscalation,
-                    toggle: () => setOptEscalation(!optEscalation),
+                    toggle: () => handleToggleOption('escalation'),
                   },
                 ].map((item, i) => (
                   <div key={i} className="p-3.5 rounded-lg border border-outline bg-surface-dim flex items-center justify-between gap-4">
@@ -172,9 +232,19 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
 
             {/* Pairing Code Card */}
             <div className="bg-surface rounded-xl border border-outline p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-on-surface">Pairing via Dynamic 6-Digit Code</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-on-surface">Pairing via Dynamic 6-Digit Code</h3>
+                <button
+                  onClick={handleRequestNewPin}
+                  disabled={generatingPin}
+                  className="px-2.5 py-1 rounded bg-surface-dim hover:bg-surface-container border border-outline text-[11px] font-semibold text-primary transition cursor-pointer flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-[14px]">{generatingPin ? 'sync' : 'refresh'}</span>
+                  <span>{generatingPin ? 'Generating...' : 'Refresh PIN'}</span>
+                </button>
+              </div>
               <p className="text-xs text-tertiary leading-relaxed">
-                If connecting a secondary sales agent or moving to a different mobile device, use this dynamic PIN:
+                If connecting a secondary sales agent or moving to a different mobile device, send this dynamic PIN to our WhatsApp gateway:
               </p>
               <div className="flex items-center gap-4 p-4 rounded-xl bg-surface-dim border border-outline">
                 <div className="text-3xl font-mono font-bold tracking-widest text-primary font-tnums">

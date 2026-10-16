@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../services/api';
 
 interface DashboardLayoutProps {
   currentRoute: string;
@@ -19,8 +21,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   navigate,
   children,
 }) => {
+  const { user, tenant, role, logout } = useAuth();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [testCallActive, setTestCallActive] = useState(false);
+  const [testCallSuccess, setTestCallSuccess] = useState<string | null>(null);
 
   const operationsNav: NavItem[] = [
     {
@@ -96,9 +100,20 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     return currentRoute === route;
   };
 
-  const handleSimulateTestCall = () => {
+  const handleSimulateTestCall = async () => {
     setTestCallActive(true);
-    setTimeout(() => setTestCallActive(false), 3000);
+    setTestCallSuccess(null);
+    try {
+      const res = await api.telephony.triggerTestCall();
+      setTestCallSuccess(res.message || 'Test call simulation completed successfully');
+      window.dispatchEvent(new CustomEvent('callivaan_new_call'));
+    } catch {
+      setTestCallSuccess('Simulation completed (local demo mode)');
+    } finally {
+      setTimeout(() => {
+        setTestCallActive(false);
+      }, 3500);
+    }
   };
 
   return (
@@ -271,24 +286,34 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         {/* Sidebar Footer: Business Administrator Card & Logout */}
         <div className="p-3 border-t border-outline bg-surface">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="relative">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="relative shrink-0">
                 <div className="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">
-                  RS
+                  {(user?.fullName || 'RS')
+                    .split(' ')
+                    .map((n) => n[0])
+                    .join('')
+                    .toUpperCase()
+                    .slice(0, 2)}
                 </div>
                 <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white"></span>
               </div>
-              <div>
-                <div className="font-semibold text-xs text-on-surface leading-tight">
-                  Rajesh Sharma
+              <div className="min-w-0 truncate">
+                <div className="font-semibold text-xs text-on-surface leading-tight truncate">
+                  {user?.fullName || 'Rajesh Sharma'}
                 </div>
-                <div className="text-[10px] text-tertiary">Balaji Motors Admin</div>
+                <div className="text-[10px] text-tertiary truncate">
+                  {tenant?.name || 'Balaji Motors Admin'}
+                </div>
               </div>
             </div>
             <button
-              onClick={() => handleNav('/auth')}
+              onClick={() => {
+                logout();
+                handleNav('/auth');
+              }}
               title="Sign Out"
-              className="p-1.5 rounded-lg text-tertiary hover:text-error hover:bg-error-container/30 transition-colors"
+              className="p-1.5 rounded-lg text-tertiary hover:text-error hover:bg-error-container/30 transition-colors shrink-0"
             >
               <span className="material-symbols-outlined text-[18px]">logout</span>
             </button>

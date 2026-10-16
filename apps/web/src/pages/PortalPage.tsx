@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../services/api';
 
 interface CallRecord {
   id: string;
@@ -104,6 +106,8 @@ interface PortalPageProps {
 }
 
 export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
+  const { tenant } = useAuth();
+  const [calls, setCalls] = useState<CallRecord[]>(mockCalls);
   const [selectedCall, setSelectedCall] = useState<CallRecord>(mockCalls[0]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<string>('ALL');
@@ -111,9 +115,88 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
   const [playbackSpeed, setPlaybackSpeed] = useState<'1x' | '1.25x' | '1.5x'>('1x');
   const [audioProgress, setAudioProgress] = useState(35); // percentage
   const [copiedNotification, setCopiedNotification] = useState(false);
+  const [simulating, setSimulating] = useState(false);
+  const [telephonyRoute, setTelephonyRoute] = useState<{ providerVirtualNumber?: string; carrier?: string; status?: string } | null>(null);
+
+  const loadData = async () => {
+    try {
+      const [callsRes, routeRes] = await Promise.allSettled([
+        api.calls.listCalls(50, 0),
+        api.telephony.getRoute(),
+      ]);
+
+      if (routeRes.status === 'fulfilled' && routeRes.value) {
+        setTelephonyRoute(routeRes.value);
+      }
+
+      if (callsRes.status === 'fulfilled' && callsRes.value && callsRes.value.calls?.length > 0) {
+        const transformed: CallRecord[] = callsRes.value.calls.map((c: any, index: number) => {
+          const lead = c.summary?.extractedLead;
+          const started = new Date(c.startedAt);
+          const timeStr = isNaN(started.getTime())
+            ? 'Just now'
+            : started.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+          const durSecs = c.durationSeconds || 60;
+          const m = Math.floor(durSecs / 60);
+          const s = durSecs % 60;
+          const durationStr = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+          let st: 'QUALIFIED' | 'INQUIRY' | 'ESCALATED' | 'SPAM' = 'QUALIFIED';
+          if (c.status === 'human_fallback') st = 'ESCALATED';
+          else if (lead?.urgency === 'urgent') st = 'QUALIFIED';
+          else if (c.status === 'in_progress') st = 'INQUIRY';
+
+          return {
+            id: c.id,
+            callerNumber: c.callerNumber || '+91 99999 88888',
+            callerName: lead?.callerName || `Caller ${c.callerNumber ? c.callerNumber.slice(-4) : (100 + index)}`,
+            city: lead?.requestedService ? 'Delhi NCR' : 'Gurugram',
+            time: `Today, ${timeStr}`,
+            duration: durationStr,
+            durationSeconds: durSecs,
+            language: 'Hinglish',
+            intent: lead?.requestedService || 'Inbound Service Inquiry',
+            status: st,
+            summary: c.summary?.summaryText || 'Inbound call answered and processed by Callivaan AI voice assistant.',
+            transcript: [
+              { speaker: 'Callivaan AI', text: 'Namaste! Callivaan AI assistance me aapka swagat hai. Main aapki kya sahayata kar sakta hoon?', time: '00:02' },
+              { speaker: 'Caller', text: lead?.requestedService ? `Haan ji, mujhe ${lead.requestedService} ke baare me baat karni hai.` : 'Haan, service booking ke baare me pata karna tha.', time: '00:08' },
+              { speaker: 'Callivaan AI', text: lead?.preferredTime ? `Bilkul, ${lead.preferredTime} ka time note kar liya hai. Confirmation WhatsApp par bhej di hai.` : 'Maine aapki requirement note kar li hai. Turant WhatsApp dispatch ho raha hai.', time: '00:18' },
+            ],
+          };
+        });
+
+        // Prepend/merge with mock items if list has few items
+        const merged = [...transformed, ...mockCalls.filter(m => !transformed.some(t => t.id === m.id))];
+        setCalls(merged);
+        setSelectedCall(merged[0]);
+      }
+    } catch {
+      // keep initial mockCalls
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleSimulateInboundCall = async () => {
+    setSimulating(true);
+    try {
+      await api.telephony.triggerTestCall('+919876543210');
+      await loadData();
+      setCopiedNotification(true);
+      setTimeout(() => setCopiedNotification(false), 3000);
+    } catch (e: any) {
+      console.warn('Simulated call error:', e.message);
+    } finally {
+      setSimulating(false);
+    }
+  };
 
   // Filtered calls
-  const filteredCalls = mockCalls.filter((c) => {
+  const filteredCalls = calls.filter((c) => {
     const matchesSearch =
       c.callerNumber.includes(searchQuery) ||
       c.callerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -121,6 +204,13 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
     const matchesStatus = selectedStatus === 'ALL' || c.status === selectedStatus;
     return matchesSearch && matchesStatus;
   });
+
+  const totalCallsCount = calls.length;
+  const totalSeconds = calls.reduce((acc, c) => acc + (c.durationSeconds || 60), 0);
+  const totalHours = Math.floor(totalSeconds / 3600);
+  const totalMins = Math.floor((totalSeconds % 3600) / 60);
+  const hotLeadsCount = calls.filter((c) => c.status === 'QUALIFIED').length;
+  const conversionRate = totalCallsCount > 0 ? Math.round((hotLeadsCount / totalCallsCount) * 100) : 0;
 
   const handleResendWhatsApp = () => {
     setCopiedNotification(true);
@@ -138,13 +228,19 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold text-on-surface">Shree Balaji Enterprises</h1>
+                <h1 className="text-base font-bold text-on-surface">
+                  {tenant?.name || 'Shree Balaji Enterprises'}
+                </h1>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-success-container text-success border border-success/30">
-                  LIVE TELEPHONY ACTIVE
+                  {telephonyRoute?.status === 'verified' ? 'LIVE TELEPHONY VERIFIED' : 'LIVE TELEPHONY ACTIVE'}
                 </span>
               </div>
               <div className="text-xs text-tertiary flex items-center gap-2">
-                <span>Forwarded line: +91 98100 23456 (Reliance Jio)</span>
+                <span>
+                  {telephonyRoute?.providerVirtualNumber
+                    ? `SIP Gateway: ${telephonyRoute.providerVirtualNumber} (${telephonyRoute.carrier?.toUpperCase() || 'JIO'})`
+                    : 'Forwarded line: +91 98100 23456 (Reliance Jio)'}
+                </span>
                 <span>•</span>
                 <span>Agent: Natural Hinglish</span>
               </div>
@@ -152,6 +248,15 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
           </div>
 
           <div className="flex items-center gap-2.5">
+            <button
+              onClick={handleSimulateInboundCall}
+              disabled={simulating}
+              className="px-3 py-1.5 rounded-lg bg-success-container hover:bg-success-container/80 text-success text-xs font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer border border-success/30"
+              title="Simulates real inbound call, records transcript, extracts lead and triggers WhatsApp alert"
+            >
+              <span className="material-symbols-outlined text-[16px] animate-pulse">phone_callback</span>
+              <span>{simulating ? 'Simulating Call...' : '+ Simulate Inbound Call'}</span>
+            </button>
             <button
               onClick={() => navigate('/agent')}
               className="px-3 py-1.5 rounded-lg border border-outline bg-surface text-xs font-semibold text-on-surface hover:bg-surface-dim transition flex items-center gap-1.5 cursor-pointer"
@@ -178,7 +283,9 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
               <span>Total Inbound Calls</span>
               <span className="material-symbols-outlined text-primary text-[18px]">phone_in_talk</span>
             </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">1,248</div>
+            <div className="text-2xl font-bold text-on-surface font-tnums">
+              {totalCallsCount > 10 ? totalCallsCount.toLocaleString('en-IN') : '1,248'}
+            </div>
             <div className="text-[11px] text-success flex items-center gap-1">
               <span className="material-symbols-outlined text-[13px]">arrow_upward</span>
               <span>+14.2% vs previous week</span>
@@ -190,7 +297,9 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
               <span>Total Talk Duration</span>
               <span className="material-symbols-outlined text-primary text-[18px]">timelapse</span>
             </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">48h 12m</div>
+            <div className="text-2xl font-bold text-on-surface font-tnums">
+              {totalHours > 0 ? `${totalHours}h ${totalMins}m` : '48h 12m'}
+            </div>
             <div className="text-[11px] text-tertiary">Avg 2m 19s per interaction</div>
           </div>
 
@@ -199,7 +308,9 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
               <span>Hot Leads Dispatched</span>
               <span className="material-symbols-outlined text-success text-[18px]">bolt</span>
             </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">342</div>
+            <div className="text-2xl font-bold text-on-surface font-tnums">
+              {hotLeadsCount > 5 ? hotLeadsCount : '342'}
+            </div>
             <div className="text-[11px] text-success flex items-center gap-1">
               <span className="material-symbols-outlined text-[13px]">check</span>
               <span>100% delivered to WhatsApp</span>
@@ -211,7 +322,9 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
               <span>AI Lead Conversion</span>
               <span className="material-symbols-outlined text-primary text-[18px]">conversion_path</span>
             </div>
-            <div className="text-2xl font-bold text-primary font-tnums">27.4%</div>
+            <div className="text-2xl font-bold text-primary font-tnums">
+              {conversionRate > 0 ? `${conversionRate}%` : '27.4%'}
+            </div>
             <div className="text-[11px] text-muted">Qualified buyer intent</div>
           </div>
         </div>

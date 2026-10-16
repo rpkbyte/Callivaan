@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { DashboardLayout } from './components/DashboardLayout';
@@ -11,7 +12,8 @@ import { TelephonyPage } from './pages/TelephonyPage';
 import { WhatsAppHubPage } from './pages/WhatsAppHubPage';
 import { LegalPage } from './pages/LegalPage';
 
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const { isAuthenticated, isLoading } = useAuth();
   const [currentRoute, setCurrentRoute] = useState<string>(() => {
     const path = window.location.pathname;
     return path && path !== '' ? path : '/';
@@ -34,6 +36,17 @@ export const App: React.FC = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  const isDashboardRoute = [
+    '/portal',
+    '/dashboard',
+    '/agent',
+    '/settings',
+    '/telephony',
+    '/forwarding',
+    '/whatsapp',
+    '/dispatch',
+  ].includes(currentRoute);
 
   const renderCurrentPage = () => {
     switch (currentRoute) {
@@ -66,19 +79,32 @@ export const App: React.FC = () => {
     }
   };
 
-  // Authenticated operational dashboard routes render inside the persistent left sidebar shell
-  const isDashboardRoute = [
-    '/portal',
-    '/dashboard',
-    '/agent',
-    '/settings',
-    '/telephony',
-    '/forwarding',
-    '/whatsapp',
-    '/dispatch',
-  ].includes(currentRoute);
+  // If loading auth state from localStorage, display brief loading state
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-surface">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-xs font-semibold text-tertiary">Loading Callivaan...</span>
+        </div>
+      </div>
+    );
+  }
 
+  // Protected operational dashboard routes: Require Authentication
   if (isDashboardRoute) {
+    if (!isAuthenticated) {
+      return (
+        <div className="flex flex-col min-h-screen bg-surface text-on-surface">
+          <Navbar currentRoute={currentRoute} navigate={navigate} />
+          <main className="flex-1">
+            <AuthPage navigate={navigate} />
+          </main>
+          <Footer navigate={navigate} />
+        </div>
+      );
+    }
+
     return (
       <DashboardLayout currentRoute={currentRoute} navigate={navigate}>
         {renderCurrentPage()}
@@ -95,6 +121,14 @@ export const App: React.FC = () => {
       </main>
       <Footer navigate={navigate} />
     </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 };
 
