@@ -16,6 +16,7 @@
     "dev:media": "npm run dev --workspace=@callivaan/media-gateway",
     "dev:worker": "npm run dev --workspace=@callivaan/worker",
     "dev:web": "npm run dev --workspace=@callivaan/web",
+    "dev:mobile": "npm run start --workspace=@callivaan/mobile",
     "dev": "npm run dev --workspaces --parallel"
   },
   "devDependencies": {

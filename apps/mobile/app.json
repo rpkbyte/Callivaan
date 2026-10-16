@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Callivaan",
+    "slug": "callivaan-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#FFFFFF",
+      "resizeMode": "contain"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#3157D5"
+      },
+      "package": "com.callivaan.assistant"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.callivaan.assistant"
+    },
+    "experiments": {
+      "reactCompiler": true
+    }
+  }
+}
