@@ -3,19 +3,33 @@
  */
 import { DatabaseRepository } from './repository.js';
 import { MemoryDatabaseRepository } from './memory-store.js';
+import { PostgresDatabaseRepository } from './postgres-store.js';
 
 let dbInstance: DatabaseRepository | null = null;
 
 export function getDatabase(): DatabaseRepository {
   if (!dbInstance) {
-    // If DATABASE_URL is set to a live postgres instance and postgres is preferred,
-    // a PostgresRepository can be instantiated. Otherwise, fallback safely to MemoryDatabaseRepository.
-    dbInstance = new MemoryDatabaseRepository();
+    const databaseUrl = process.env.DATABASE_URL;
+    if (databaseUrl) {
+      try {
+        dbInstance = new PostgresDatabaseRepository(databaseUrl);
+      } catch (err) {
+        console.warn('⚠️ [Callivaan DB] Failed to initialize PostgresDatabaseRepository, falling back to MemoryDatabaseRepository:', err);
+        dbInstance = new MemoryDatabaseRepository();
+      }
+    } else {
+      dbInstance = new MemoryDatabaseRepository();
+    }
   }
   return dbInstance;
+}
+
+export function setDatabase(instance: DatabaseRepository): void {
+  dbInstance = instance;
 }
 
 export function resetDatabaseForTesting(): DatabaseRepository {
   dbInstance = new MemoryDatabaseRepository();
   return dbInstance;
 }
+

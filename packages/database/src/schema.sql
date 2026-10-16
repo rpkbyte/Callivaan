@@ -82,6 +82,9 @@ CREATE TABLE IF NOT EXISTS phone_routes (
     provider VARCHAR(32) DEFAULT 'exotel',
     provider_virtual_number VARCHAR(32) NOT NULL, -- The virtual number callers reach
     customer_original_number VARCHAR(32),
+    carrier VARCHAR(32) DEFAULT 'jio', -- 'jio', 'airtel', 'vi', 'bsnl'
+    forwarding_mode VARCHAR(32) DEFAULT 'conditional_no_reply', -- 'unconditional', 'conditional_no_reply', 'conditional_busy'
+    ring_timeout_seconds INTEGER DEFAULT 15,
     status VARCHAR(32) DEFAULT 'pending_setup', -- 'pending_setup', 'verified', 'active', 'error'
     fallback_behavior VARCHAR(32) DEFAULT 'announcement_hangup',
     call_forwarding_setup_code VARCHAR(64),
@@ -107,6 +110,7 @@ CREATE TABLE IF NOT EXISTS whatsapp_links (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+CREATE INDEX IF NOT EXISTS idx_whatsapp_links_tenant ON whatsapp_links(tenant_id);
 CREATE INDEX IF NOT EXISTS idx_whatsapp_links_phone ON whatsapp_links(whatsapp_phone_number);
 
 -- 8. WhatsApp Configuration Proposals (Two-step confirmation)
@@ -136,6 +140,11 @@ CREATE TABLE IF NOT EXISTS calls (
     agent_config_version_id VARCHAR(36) NOT NULL,
     status VARCHAR(32) NOT NULL DEFAULT 'in_progress', -- 'in_progress', 'completed', 'callback_requested', 'human_fallback', 'caller_disconnected', 'limit_reached', 'technical_failure'
     duration_seconds INTEGER DEFAULT 0,
+    audio_url TEXT,
+    telecom_circle VARCHAR(64) DEFAULT 'Delhi NCR',
+    disposition VARCHAR(32) DEFAULT 'inquiry', -- 'hot_lead', 'service_booking', 'follow_up', 'inquiry', 'escalated', 'spam'
+    two_party_consent_disclosed BOOLEAN DEFAULT TRUE,
+    retention_expires_at TIMESTAMP WITH TIME ZONE DEFAULT (CURRENT_TIMESTAMP + INTERVAL '90 days'),
     started_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     ended_at TIMESTAMP WITH TIME ZONE,
     cost_estimate_inr NUMERIC(10, 2) DEFAULT 0.00,
@@ -143,20 +152,26 @@ CREATE TABLE IF NOT EXISTS calls (
 );
 CREATE INDEX IF NOT EXISTS idx_calls_tenant_started ON calls(tenant_id, started_at DESC);
 CREATE INDEX IF NOT EXISTS idx_calls_provider_call_id ON calls(provider_call_id);
+CREATE INDEX IF NOT EXISTS idx_calls_disposition ON calls(tenant_id, disposition);
+CREATE INDEX IF NOT EXISTS idx_calls_retention_purge ON calls(retention_expires_at) WHERE status = 'completed';
 
--- 10. Call Summaries
+-- 10. Call Summaries & Transcripts
 CREATE TABLE IF NOT EXISTS call_summaries (
     id VARCHAR(36) PRIMARY KEY,
     call_id VARCHAR(36) UNIQUE NOT NULL REFERENCES calls(id) ON DELETE CASCADE,
     tenant_id VARCHAR(36) NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
     summary_text TEXT NOT NULL,
     extracted_lead TEXT NOT NULL DEFAULT '{}', -- JSON ExtractedLead
+    transcript_json TEXT NOT NULL DEFAULT '[]', -- JSON array of TranscriptTurn
+    lead_score INTEGER DEFAULT 0,
+    buyer_intent_topic VARCHAR(255),
     is_unknown_flags TEXT NOT NULL DEFAULT '{}', -- JSON unknown flags
     delivery_status VARCHAR(32) DEFAULT 'pending', -- 'pending', 'delivered', 'failed', 'not_eligible'
     delivered_via_whatsapp_at TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_call_summaries_tenant ON call_summaries(tenant_id);
+CREATE INDEX IF NOT EXISTS idx_call_summaries_lead_score ON call_summaries(tenant_id, lead_score DESC);
 
 -- 11. Usage Ledger
 CREATE TABLE IF NOT EXISTS usage_ledger (
@@ -208,7 +223,7 @@ CREATE INDEX IF NOT EXISTS idx_webhook_events_provider_id ON webhook_events(prov
 -- 14. Audit Events
 CREATE TABLE IF NOT EXISTS audit_events (
     id VARCHAR(36) PRIMARY KEY,
-    tenant_id VARCHAR(36),
+    tenant_id VARCHAR(36) REFERENCES tenants(id) ON DELETE CASCADE,
     actor_id VARCHAR(36) NOT NULL,
     actor_type VARCHAR(32) NOT NULL, -- 'user', 'system', 'whatsapp', 'admin'
     action VARCHAR(64) NOT NULL,
@@ -219,3 +234,25 @@ CREATE TABLE IF NOT EXISTS audit_events (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_audit_events_tenant ON audit_events(tenant_id, created_at DESC);
+
+-- 15. Leads CRM View (Unified real-time pipeline view for Portal & Mobile CRM)
+CREATE OR REPLACE VIEW leads_pipeline_view AS
+SELECT 
+    c.id AS call_id,
+    c.tenant_id,
+    c.caller_number,
+    c.telecom_circle,
+    c.started_at AS call_time,
+    c.duration_seconds,
+    c.disposition,
+    c.audio_url,
+    cs.summary_text,
+    cs.extracted_lead,
+    cs.transcript_json,
+    cs.lead_score,
+    cs.buyer_intent_topic,
+    cs.delivery_status AS whatsapp_delivery_status,
+    cs.delivered_via_whatsapp_at
+FROM calls c
+LEFT JOIN call_summaries cs ON c.id = cs.call_id
+ORDER BY c.started_at DESC;

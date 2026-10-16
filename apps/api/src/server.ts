@@ -1,12 +1,13 @@
 /**
  * Callivaan Product API Server Setup
+ * Configured with Clean Architecture, Aspect-Oriented Interceptors, and Sub-450ms Telemetry.
  */
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { config } from './config.js';
 import { correlationIdMiddleware, AuthenticatedRequest } from './middleware/auth.js';
-import { log } from './logger.js';
+import { requestTimingAspect, auditTrailAspect, globalErrorFilterAspect } from './aop/index.js';
 import { authRouter } from './routes/auth.routes.js';
 import { tenantRouter } from './routes/tenant.routes.js';
 import { agentRouter } from './routes/agent.routes.js';
@@ -53,6 +54,10 @@ export function createServer() {
   // Correlation IDs on all incoming requests
   app.use(correlationIdMiddleware);
 
+  // AOP Interceptors (Timing Telemetry & Automated Compliance Audit Aspect)
+  app.use(requestTimingAspect);
+  app.use(auditTrailAspect);
+
   // Health and Liveness checks
   app.get('/health', (_req: Request, res: Response) => {
     res.json({
@@ -83,18 +88,8 @@ export function createServer() {
     });
   });
 
-  // Central Non-Sensitive Error Handler
-  app.use((err: unknown, req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
-    log('error', 'Unhandled error caught by express middleware', {
-      correlationId: req.correlationId,
-      err,
-    });
-    res.status(500).json({
-      error: 'InternalServerError',
-      message: 'An unexpected technical issue occurred. Correlation ID logged.',
-      correlationId: req.correlationId,
-    });
-  });
+  // Global AOP Exception Filter Aspect (RFC 7807 Problem Details)
+  app.use(globalErrorFilterAspect);
 
   return app;
 }

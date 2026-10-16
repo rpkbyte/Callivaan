@@ -98,9 +98,12 @@ export interface PhoneRoute {
   provider: 'exotel' | 'mock';
   providerVirtualNumber: string; // ExoPhone
   customerOriginalNumber?: string;
+  carrier?: 'jio' | 'airtel' | 'vi' | 'bsnl';
+  forwardingMode?: 'unconditional' | 'conditional_no_reply' | 'conditional_busy';
+  ringTimeoutSeconds?: number;
   status: RouteStatus;
   fallbackBehavior: FallbackBehavior;
-  callForwardingSetupCode?: string; // e.g. *21*<virtualNumber>#
+  callForwardingSetupCode?: string; // e.g. *401*<virtualNumber>
   verifiedAt?: string;
   lastTestCallAt?: string;
   createdAt: string;
@@ -129,6 +132,11 @@ export interface Call {
   startedAt: string;
   endedAt?: string;
   costEstimateInr?: number;
+  audioUrl?: string;
+  telecomCircle?: string;
+  disposition?: 'hot_lead' | 'service_booking' | 'follow_up' | 'inquiry' | 'escalated' | 'spam';
+  twoPartyConsentDisclosed?: boolean;
+  retentionExpiresAt?: string;
   createdAt: string;
 }
 
@@ -142,12 +150,21 @@ export interface ExtractedLead {
   notes?: string;
 }
 
+export interface TranscriptTurn {
+  speaker: 'Caller' | 'Callivaan AI';
+  text: string;
+  time: string;
+}
+
 export interface CallSummary {
   id: string;
   callId: string;
   tenantId: string;
   summaryText: string;
   extractedLead: ExtractedLead;
+  transcript?: TranscriptTurn[];
+  leadScore?: number;
+  buyerIntentTopic?: string;
   isUnknownFlags: {
     callerNameUnknown: boolean;
     preferredTimeUnknown: boolean;
