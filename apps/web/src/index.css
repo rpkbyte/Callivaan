@@ -1,60 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3157D5;
-  --color-primary-container: #3157D5;
-  --color-primary-hover: #2544B0;
-  --color-primary-active: #1D358C;
-  --color-primary-fixed: #DDE1FF;
-  --color-primary-fixed-dim: #B7C4FF;
-  --color-on-primary: #FFFFFF;
-  --color-on-primary-container: #D8DDFF;
-  --color-on-primary-fixed: #001452;
+  --color-primary: #1d4ed8;
+  --color-primary-hover: #1e40af;
+  --color-primary-active: #1e3a8a;
+  --color-primary-subtle: #eff6ff;
 
-  --color-surface: #FFFFFF;
-  --color-surface-dim: #F6F8FC;
-  --color-surface-bright: #FFFFFF;
-  --color-surface-container: #F1F4FA;
-  --color-surface-container-low: #F3F2FE;
-  --color-surface-container-high: #E8EDF5;
-  --color-surface-container-highest: #E2E1EC;
-  --color-surface-container-lowest: #FFFFFF;
+  --color-surface: #ffffff;
+  --color-surface-dim: #f8fafc;
+  --color-surface-container: #f1f5f9;
 
-  --color-on-surface: #172033;
-  --color-on-surface-variant: #444654;
-  --color-tertiary: #475467;
-  --color-secondary: #555E74;
-  --color-muted: #8A94A6;
+  --color-on-surface: #0f172a;
+  --color-tertiary: #475569;
+  --color-muted: #64748b;
 
-  --color-outline: #E4E8F0;
-  --color-outline-variant: #C4C5D6;
+  --color-outline: #e2e8f0;
+  --color-outline-subtle: #f1f5f9;
 
-  --color-error: #D92D20;
-  --color-error-container: #FFDAD6;
-  --color-success: #15803D;
-  --color-success-container: #F0FDF4;
-  --color-warning: #B45309;
-  --color-warning-container: #FFFBEB;
+  --color-error: #dc2626;
+  --color-error-subtle: #fef2f2;
+  --color-success: #15803d;
+  --color-success-subtle: #f0fdf4;
+  --color-warning: #b45309;
+  --color-warning-subtle: #fffbeb;
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Material Symbols font configuration */
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 20px;
-  line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
+html, body {
+  overflow-x: clip;
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  vertical-align: middle;
+}
+
+/* Strict No-Slop Focus: High contrast, instantaneous, no morphing */
+:focus-visible {
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 1px !important;
 }
 
 /* Tabular numerals for timestamps, call stats and monetary values */
@@ -62,30 +48,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Audio waveform animation */
-@keyframes wavePulse {
-  0%, 100% { height: 6px; }
-  50% { height: 26px; }
-}
-.wave-bar-1 { animation: wavePulse 1.1s ease-in-out infinite; }
-.wave-bar-2 { animation: wavePulse 0.8s ease-in-out infinite 0.15s; }
-.wave-bar-3 { animation: wavePulse 1.3s ease-in-out infinite 0.3s; }
-.wave-bar-4 { animation: wavePulse 0.9s ease-in-out infinite 0.45s; }
-.wave-bar-5 { animation: wavePulse 1.4s ease-in-out infinite 0.2s; }
-.wave-bar-6 { animation: wavePulse 0.7s ease-in-out infinite 0.5s; }
-
-/* Custom Scrollbar for Indian Business Tables */
+/* Clean minimal scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #F6F8FC;
+  background: var(--color-surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: #C4C5D6;
-  border-radius: 9999px;
+  background: var(--color-outline);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475467;
+  background: var(--color-muted);
 }

@@ -151,8 +151,8 @@ export const TelephonyPage: React.FC<TelephonyPageProps> = ({ navigate }) => {
           <div className="lg:col-span-7 bg-surface rounded-xl border border-outline p-6 space-y-6 shadow-xs">
             {/* Forwarding Mode Toggle */}
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-on-surface">
-                Step 1: Choose Call Forwarding Mode
+              <label className="text-xs font-semibold text-on-surface">
+                Step 1: Choose call forwarding mode
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div
@@ -165,7 +165,7 @@ export const TelephonyPage: React.FC<TelephonyPageProps> = ({ navigate }) => {
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-bold text-on-surface">Conditional (Recommended)</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary text-white font-bold">SMART</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary text-white font-semibold">Smart</span>
                   </div>
                   <p className="text-[11px] text-tertiary leading-relaxed">
                     You answer calls normally on your phone. If you are on another call, busy, or don't pick up after 15 seconds, Callivaan answers automatically.
@@ -192,8 +192,8 @@ export const TelephonyPage: React.FC<TelephonyPageProps> = ({ navigate }) => {
 
             {/* Carrier Tabs */}
             <div className="space-y-3 pt-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-on-surface">
-                Step 2: Select Your Telecom Carrier
+              <label className="text-xs font-semibold text-on-surface">
+                Step 2: Select your telecom carrier
               </label>
 
               <div className="flex border-b border-outline">
@@ -415,7 +415,7 @@ export const TelephonyPage: React.FC<TelephonyPageProps> = ({ navigate }) => {
               <div className="flex items-center justify-between pb-3 border-b border-outline">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary text-[20px]">router</span>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface">
+                  <h3 className="text-xs font-semibold text-on-surface">
                     Live Route Verification Test
                   </h3>
                 </div>

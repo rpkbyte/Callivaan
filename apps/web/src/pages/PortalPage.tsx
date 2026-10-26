@@ -113,7 +113,7 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
   const [selectedStatus, setSelectedStatus] = useState<string>('ALL');
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<'1x' | '1.25x' | '1.5x'>('1x');
-  const [audioProgress, setAudioProgress] = useState(35); // percentage
+  const [audioProgress, setAudioProgress] = useState(35);
   const [copiedNotification, setCopiedNotification] = useState(false);
   const [simulating, setSimulating] = useState(false);
   const [telephonyRoute, setTelephonyRoute] = useState<{ providerVirtualNumber?: string; carrier?: string; status?: string } | null>(null);
@@ -167,13 +167,12 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
           };
         });
 
-        // Prepend/merge with mock items if list has few items
         const merged = [...transformed, ...mockCalls.filter(m => !transformed.some(t => t.id === m.id))];
         setCalls(merged);
         setSelectedCall(merged[0]);
       }
     } catch {
-      // keep initial mockCalls
+      // keep mockCalls
     }
   };
 
@@ -195,7 +194,6 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
     }
   };
 
-  // Filtered calls
   const filteredCalls = calls.filter((c) => {
     const matchesSearch =
       c.callerNumber.includes(searchQuery) ||
@@ -205,171 +203,82 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
     return matchesSearch && matchesStatus;
   });
 
-  const totalCallsCount = calls.length;
-  const totalSeconds = calls.reduce((acc, c) => acc + (c.durationSeconds || 60), 0);
-  const totalHours = Math.floor(totalSeconds / 3600);
-  const totalMins = Math.floor((totalSeconds % 3600) / 60);
-  const hotLeadsCount = calls.filter((c) => c.status === 'QUALIFIED').length;
-  const conversionRate = totalCallsCount > 0 ? Math.round((hotLeadsCount / totalCallsCount) * 100) : 0;
-
-  const handleResendWhatsApp = () => {
-    setCopiedNotification(true);
-    setTimeout(() => setCopiedNotification(false), 2500);
-  };
-
   return (
     <div className="flex flex-col min-h-screen bg-surface">
-      {/* TOP PORTAL BAR WITH TENANT INFO & FORWARDING STATUS */}
-      <section className="bg-surface border-b border-outline px-4 sm:px-6 md:px-12 py-3.5">
-        <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-bold text-sm">
-              <span className="material-symbols-outlined text-[20px]">corporate_fare</span>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold text-on-surface">
-                  {tenant?.name || 'Shree Balaji Enterprises'}
-                </h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-success-container text-success border border-success/30">
-                  {telephonyRoute?.status === 'verified' ? 'LIVE TELEPHONY VERIFIED' : 'LIVE TELEPHONY ACTIVE'}
-                </span>
-              </div>
-              <div className="text-xs text-tertiary flex items-center gap-2">
-                <span>
-                  {telephonyRoute?.providerVirtualNumber
-                    ? `SIP Gateway: ${telephonyRoute.providerVirtualNumber} (${telephonyRoute.carrier?.toUpperCase() || 'JIO'})`
-                    : 'Forwarded line: +91 98100 23456 (Reliance Jio)'}
-                </span>
-                <span>•</span>
-                <span>Agent: Natural Hinglish</span>
-              </div>
-            </div>
+      {/* COMPACT OPERATIONAL SUB-HEADER (No Giant 4-Card KPI Banner) */}
+      <section className="bg-surface border-b border-outline px-4 sm:px-6 md:px-8 py-3">
+        <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-4">
+            <span className="font-semibold text-on-surface text-sm">
+              {tenant?.name || 'Shree Balaji Enterprises'}
+            </span>
+            <span className="text-tertiary">
+              {telephonyRoute?.providerVirtualNumber
+                ? `Route: ${telephonyRoute.providerVirtualNumber} (${telephonyRoute.carrier?.toUpperCase() || 'JIO'})`
+                : 'Routing: +91 80 4736 8800 (Reliance Jio)'}
+            </span>
+            <span className="text-muted">&bull;</span>
+            <span className="text-emerald-700 font-medium">Active</span>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleSimulateInboundCall}
               disabled={simulating}
-              className="px-3 py-1.5 rounded-lg bg-success-container hover:bg-success-container/80 text-success text-xs font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer border border-success/30"
-              title="Simulates real inbound call, records transcript, extracts lead and triggers WhatsApp alert"
+              className="px-2.5 py-1.5 rounded-md border border-outline hover:bg-surface-dim text-on-surface text-xs font-medium transition-colors duration-100"
             >
-              <span className="material-symbols-outlined text-[16px] animate-pulse">phone_callback</span>
-              <span>{simulating ? 'Simulating Call...' : '+ Simulate Inbound Call'}</span>
+              {simulating ? 'Connecting...' : '+ Test Inbound Call'}
             </button>
             <button
               onClick={() => navigate('/agent')}
-              className="px-3 py-1.5 rounded-lg border border-outline bg-surface text-xs font-semibold text-on-surface hover:bg-surface-dim transition flex items-center gap-1.5 cursor-pointer"
+              className="px-2.5 py-1.5 rounded-md border border-outline hover:bg-surface-dim text-on-surface text-xs font-medium transition-colors duration-100"
             >
-              <span className="material-symbols-outlined text-[16px] text-primary">tune</span>
-              <span>Edit Prompts &amp; FAQs</span>
+              Prompts
             </button>
             <button
               onClick={() => navigate('/telephony')}
-              className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-on-primary text-xs font-semibold transition flex items-center gap-1.5 shadow-xs cursor-pointer"
+              className="px-2.5 py-1.5 rounded-md bg-primary text-white text-xs font-medium hover:bg-primary-hover transition-colors duration-100"
             >
-              <span className="material-symbols-outlined text-[16px]">call_forward</span>
-              <span>Forwarding Settings</span>
+              Forwarding
             </button>
           </div>
         </div>
       </section>
 
-      {/* 4 PRIMARY KPI METRIC CARDS */}
-      <section className="px-4 sm:px-6 md:px-12 py-6 border-b border-outline bg-surface-dim">
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-surface rounded-xl border border-outline p-4 space-y-1 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-tertiary">
-              <span>Total Inbound Calls</span>
-              <span className="material-symbols-outlined text-primary text-[18px]">phone_in_talk</span>
-            </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">
-              {totalCallsCount > 10 ? totalCallsCount.toLocaleString('en-IN') : '1,248'}
-            </div>
-            <div className="text-[11px] text-success flex items-center gap-1">
-              <span className="material-symbols-outlined text-[13px]">arrow_upward</span>
-              <span>+14.2% vs previous week</span>
-            </div>
-          </div>
-
-          <div className="bg-surface rounded-xl border border-outline p-4 space-y-1 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-tertiary">
-              <span>Total Talk Duration</span>
-              <span className="material-symbols-outlined text-primary text-[18px]">timelapse</span>
-            </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">
-              {totalHours > 0 ? `${totalHours}h ${totalMins}m` : '48h 12m'}
-            </div>
-            <div className="text-[11px] text-tertiary">Avg 2m 19s per interaction</div>
-          </div>
-
-          <div className="bg-surface rounded-xl border border-outline p-4 space-y-1 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-tertiary">
-              <span>Hot Leads Dispatched</span>
-              <span className="material-symbols-outlined text-success text-[18px]">bolt</span>
-            </div>
-            <div className="text-2xl font-bold text-on-surface font-tnums">
-              {hotLeadsCount > 5 ? hotLeadsCount : '342'}
-            </div>
-            <div className="text-[11px] text-success flex items-center gap-1">
-              <span className="material-symbols-outlined text-[13px]">check</span>
-              <span>100% delivered to WhatsApp</span>
-            </div>
-          </div>
-
-          <div className="bg-surface rounded-xl border border-outline p-4 space-y-1 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-tertiary">
-              <span>AI Lead Conversion</span>
-              <span className="material-symbols-outlined text-primary text-[18px]">conversion_path</span>
-            </div>
-            <div className="text-2xl font-bold text-primary font-tnums">
-              {conversionRate > 0 ? `${conversionRate}%` : '27.4%'}
-            </div>
-            <div className="text-[11px] text-muted">Qualified buyer intent</div>
-          </div>
-        </div>
-      </section>
-
-      {/* MAIN CALL LOG & SPLIT INSPECTION SECTION */}
-      <section className="flex-1 px-4 sm:px-6 md:px-12 py-6">
+      {/* DUAL-PANE CALL FEED & INSPECTION - Content-First Layout */}
+      <section className="flex-1 px-4 sm:px-6 md:px-8 py-4">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left Column: Call History Table & Filters (7 Columns) */}
-          <div className="lg:col-span-7 space-y-4">
-            {/* Filters Bar */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-              <div className="relative flex-1">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary text-[18px]">
-                  search
-                </span>
-                <input
-                  type="text"
-                  placeholder="Search caller name, phone (+91), or keyword..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 rounded-lg border border-outline bg-surface text-xs text-on-surface focus:outline-primary placeholder:text-muted"
-                />
-              </div>
+          {/* Left Column: Call History Table (7 cols) */}
+          <div className="lg:col-span-7 space-y-3">
+            {/* Search and Filter Row */}
+            <div className="flex items-center justify-between gap-2">
+              <input
+                type="text"
+                placeholder="Search phone number or caller name..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 px-3 py-1.5 rounded-md border border-outline bg-surface text-xs text-on-surface placeholder:text-muted"
+              />
 
-              {/* Status Filter Chips */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                {['ALL', 'QUALIFIED', 'INQUIRY', 'ESCALATED'].map((st) => (
+              <div className="flex items-center gap-1">
+                {(['ALL', 'QUALIFIED', 'INQUIRY', 'ESCALATED'] as const).map((st) => (
                   <button
                     key={st}
                     onClick={() => setSelectedStatus(st)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+                    className={`px-2.5 py-1 rounded text-xs transition-colors duration-100 ${
                       selectedStatus === st
-                        ? 'bg-primary text-white shadow-xs'
-                        : 'border border-outline bg-surface text-tertiary hover:bg-surface-dim'
+                        ? 'bg-surface-dim text-on-surface font-semibold border border-outline'
+                        : 'text-tertiary hover:text-on-surface'
                     }`}
                   >
-                    {st === 'ALL' ? 'All Calls' : st}
+                    {st === 'ALL' ? 'All' : st === 'QUALIFIED' ? 'Qualified' : st === 'INQUIRY' ? 'Inquiry' : 'Escalated'}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Inbound Call Records Table */}
-            <div className="rounded-xl border border-outline overflow-hidden shadow-xs bg-surface">
+            {/* Structured Table */}
+            <div className="border border-outline rounded-lg overflow-hidden bg-surface">
               <div className="divide-y divide-outline">
                 {filteredCalls.map((call) => {
                   const isSelected = selectedCall.id === call.id;
@@ -377,161 +286,106 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
                     <div
                       key={call.id}
                       onClick={() => setSelectedCall(call)}
-                      className={`p-4 transition cursor-pointer flex items-center justify-between gap-4 ${
-                        isSelected ? 'bg-primary-fixed/20 border-l-4 border-primary' : 'hover:bg-surface-dim'
+                      className={`p-3 text-xs transition-colors duration-100 cursor-pointer flex items-center justify-between gap-4 ${
+                        isSelected ? 'bg-primary-subtle/50 border-l-2 border-primary' : 'hover:bg-surface-dim'
                       }`}
                     >
-                      <div className="space-y-1 min-w-0">
+                      <div className="min-w-0 space-y-0.5">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-bold text-on-surface font-tnums">
+                          <span className="font-semibold text-on-surface font-tnums">
                             {call.callerName}
                           </span>
-                          <span className="text-xs text-muted font-tnums">({call.callerNumber})</span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-surface-container text-tertiary">
-                            {call.language}
-                          </span>
+                          <span className="text-muted font-mono">{call.callerNumber}</span>
                         </div>
-                        <div className="text-xs text-tertiary truncate max-w-sm">
+                        <div className="text-tertiary truncate max-w-sm">
                           {call.intent}
                         </div>
-                        <div className="text-[11px] text-muted flex items-center gap-2 font-tnums">
-                          <span>{call.time}</span>
-                          <span>•</span>
-                          <span>Duration: {call.duration}</span>
-                          <span>•</span>
-                          <span>{call.city}</span>
+                        <div className="text-muted text-[11px] font-tnums">
+                          {call.time} &bull; {call.duration} &bull; {call.city}
                         </div>
                       </div>
 
-                      <div className="flex flex-col items-end gap-1.5 shrink-0">
+                      <div className="shrink-0 text-right">
                         <span
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                          className={`inline-block px-2 py-0.5 rounded text-[11px] font-medium ${
                             call.status === 'QUALIFIED'
-                              ? 'bg-success-container text-success border border-success/30'
+                              ? 'bg-emerald-50 text-emerald-800'
                               : call.status === 'ESCALATED'
-                              ? 'bg-error-container text-error border border-error/30'
-                              : 'bg-surface-container text-tertiary border border-outline'
+                              ? 'bg-red-50 text-red-800'
+                              : 'bg-surface-dim text-tertiary'
                           }`}
                         >
-                          {call.status}
+                          {call.status === 'QUALIFIED' ? 'Qualified' : call.status === 'ESCALATED' ? 'Escalated' : 'Inquiry'}
                         </span>
-                        <div className="flex items-center gap-1 text-[11px] text-primary">
-                          <span className="material-symbols-outlined text-[14px]">graphic_eq</span>
-                          <span>Audio</span>
-                        </div>
                       </div>
                     </div>
                   );
                 })}
 
                 {filteredCalls.length === 0 && (
-                  <div className="p-8 text-center text-sm text-tertiary">
-                    No calls match your search query or filter.
+                  <div className="p-6 text-center text-xs text-muted">
+                    No calls match your search query.
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Split Inspection Detail Panel (5 Columns) */}
-          <div className="lg:col-span-5 bg-surface rounded-xl border border-outline p-5 shadow-xs space-y-5 sticky top-20">
-            {/* Caller Header Card */}
-            <div className="flex items-start justify-between border-b border-outline pb-4">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-lg font-bold text-on-surface font-tnums">
-                    {selectedCall.callerName}
-                  </h3>
-                  <span
-                    className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                      selectedCall.status === 'QUALIFIED'
-                        ? 'bg-success-container text-success border border-success/30'
-                        : selectedCall.status === 'ESCALATED'
-                        ? 'bg-error-container text-error border border-error/30'
-                        : 'bg-surface-container text-tertiary'
-                    }`}
-                  >
-                    {selectedCall.status}
-                  </span>
-                </div>
-                <div className="text-xs text-primary font-mono font-medium">{selectedCall.callerNumber}</div>
-                <div className="text-xs text-tertiary">{selectedCall.city} • {selectedCall.time}</div>
+          {/* Right Column: Split Inspection Detail (5 cols) */}
+          <div className="lg:col-span-5 border border-outline rounded-lg p-4 bg-surface space-y-4 text-xs">
+            {/* Header */}
+            <div className="flex items-start justify-between pb-3 border-b border-outline">
+              <div>
+                <div className="font-semibold text-sm text-on-surface">{selectedCall.callerName}</div>
+                <div className="font-mono text-primary">{selectedCall.callerNumber}</div>
+                <div className="text-muted text-[11px] mt-0.5">{selectedCall.city} &bull; {selectedCall.time}</div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <a
-                  href={`tel:${selectedCall.callerNumber}`}
-                  className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-on-primary text-xs font-semibold transition flex items-center gap-1 shadow-xs"
-                >
-                  <span className="material-symbols-outlined text-[16px]">call</span>
-                  <span>Callback</span>
-                </a>
-              </div>
-            </div>
-
-            {/* TRAI Compliance Notice */}
-            <div className="p-2.5 rounded-lg bg-surface-dim border border-outline text-[11px] text-tertiary flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-success text-[15px]">verified</span>
-                <span>TRAI Two-Party Recording Consent Verified</span>
-              </div>
-              <span className="text-muted font-tnums">86 Days Retention Left</span>
+              <a
+                href={`tel:${selectedCall.callerNumber}`}
+                className="px-2.5 py-1.5 rounded-md bg-primary text-white font-medium hover:bg-primary-hover transition-colors duration-100"
+              >
+                Callback
+              </a>
             </div>
 
             {/* Audio Waveform Player */}
-            <div className="bg-surface-dim rounded-xl border border-outline p-4 space-y-3">
-              <div className="flex items-center justify-between text-xs font-semibold text-on-surface">
-                <span>Inbound Call Recording ({selectedCall.duration})</span>
-                <span className="text-muted text-[11px] font-mono">16kHz Linear PCM</span>
+            <div className="border border-outline rounded p-3 bg-surface-dim space-y-2">
+              <div className="flex items-center justify-between text-muted text-[11px]">
+                <span>Call Audio ({selectedCall.duration})</span>
+                <span className="font-mono">16kHz PCM</span>
               </div>
 
-              {/* Waveform Visualization Bars */}
-              <div className="flex items-center gap-1 h-12 bg-surface rounded-lg p-2 border border-outline">
-                {[12, 24, 40, 16, 28, 36, 18, 32, 22, 14, 28, 38, 20, 30, 24, 18, 34, 26, 16, 22, 12, 30, 20, 14].map(
-                  (val, idx) => (
-                    <div
-                      key={idx}
-                      className={`flex-1 rounded-full transition-all duration-150 ${
-                        idx < 8 ? 'bg-primary' : 'bg-outline'
-                      }`}
-                      style={{ height: `${val}px` }}
-                    />
-                  )
-                )}
-              </div>
-
-              {/* Progress Scrub Bar */}
+              {/* Progress Slider */}
               <input
                 type="range"
                 min="0"
                 max="100"
                 value={audioProgress}
                 onChange={(e) => setAudioProgress(Number(e.target.value))}
-                className="w-full accent-primary h-1 bg-surface-container rounded cursor-pointer"
+                className="w-full accent-primary h-1 bg-outline rounded cursor-pointer"
               />
 
-              {/* Player Controls */}
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                    className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-hover transition cursor-pointer"
+                    className="p-1 rounded border border-outline bg-surface text-on-surface hover:bg-surface-dim"
                   >
-                    <span className="material-symbols-outlined text-[18px]">
+                    <span className="material-symbols-outlined text-[16px] leading-none">
                       {isPlayingAudio ? 'pause' : 'play_arrow'}
                     </span>
                   </button>
-                  <span className="text-xs text-tertiary font-tnums">00:46 / {selectedCall.duration}</span>
+                  <span className="text-[11px] text-tertiary font-mono">00:46 / {selectedCall.duration}</span>
                 </div>
 
-                {/* Speed Toggle */}
-                <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-center gap-1">
                   {(['1x', '1.25x', '1.5x'] as const).map((spd) => (
                     <button
                       key={spd}
                       onClick={() => setPlaybackSpeed(spd)}
-                      className={`px-2 py-0.5 rounded text-[11px] font-semibold transition cursor-pointer ${
-                        playbackSpeed === spd ? 'bg-primary text-white' : 'text-tertiary hover:bg-surface'
+                      className={`px-1.5 py-0.5 rounded text-[10px] font-mono ${
+                        playbackSpeed === spd ? 'bg-primary text-white' : 'text-muted hover:text-on-surface'
                       }`}
                     >
                       {spd}
@@ -541,49 +395,35 @@ export const PortalPage: React.FC<PortalPageProps> = ({ navigate }) => {
               </div>
             </div>
 
-            {/* WhatsApp Sync Card Preview */}
-            <div className="bg-surface-container rounded-lg border border-outline p-3.5 space-y-2">
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center gap-1.5 font-bold text-on-surface">
-                  <span className="material-symbols-outlined text-success text-[16px]">chat</span>
-                  <span>WhatsApp Lead Card Dispatched</span>
-                </div>
+            {/* Lead Summary */}
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-on-surface">Extracted requirement</span>
                 <button
-                  onClick={handleResendWhatsApp}
-                  className="text-[11px] text-primary hover:underline font-medium cursor-pointer"
+                  onClick={() => { setCopiedNotification(true); setTimeout(() => setCopiedNotification(false), 2000); }}
+                  className="text-primary hover:underline text-[11px]"
                 >
-                  {copiedNotification ? 'Dispatched!' : 'Resend Alert'}
+                  {copiedNotification ? 'Sent to WhatsApp' : 'Resend to WhatsApp'}
                 </button>
               </div>
-              <p className="text-xs text-tertiary leading-relaxed bg-surface p-2.5 rounded border border-outline">
+              <div className="p-2.5 rounded bg-surface-dim border border-outline text-tertiary leading-relaxed">
                 {selectedCall.summary}
-              </p>
+              </div>
             </div>
 
-            {/* Turn-by-Turn Bilingual Transcript */}
-            <div className="space-y-2.5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface flex items-center justify-between">
-                <span>Call Transcript</span>
-                <span className="text-muted text-[11px] normal-case font-normal">Hinglish Audio Transcription</span>
-              </h4>
-
-              <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+            {/* Transcript */}
+            <div className="space-y-2 pt-1">
+              <div className="font-semibold text-on-surface">Transcript</div>
+              <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
                 {selectedCall.transcript.map((line, idx) => (
-                  <div
-                    key={idx}
-                    className={`p-2.5 rounded-lg text-xs leading-relaxed ${
-                      line.speaker === 'Caller'
-                        ? 'bg-surface-dim border border-outline text-on-surface'
-                        : 'bg-primary-fixed/20 border border-primary/20 text-on-surface'
-                    }`}
-                  >
-                    <div className="flex justify-between items-center mb-1">
-                      <span className={`font-semibold ${line.speaker === 'Caller' ? 'text-tertiary' : 'text-primary'}`}>
+                  <div key={idx} className="p-2 rounded border border-outline bg-surface-dim space-y-0.5">
+                    <div className="flex justify-between text-[10px] text-muted font-mono">
+                      <span className={line.speaker === 'Caller' ? 'text-on-surface font-semibold' : 'text-primary font-semibold'}>
                         {line.speaker}
                       </span>
-                      <span className="text-[10px] text-muted font-tnums">{line.time}</span>
+                      <span>{line.time}</span>
                     </div>
-                    <div>{line.text}</div>
+                    <div className="text-on-surface">{line.text}</div>
                   </div>
                 ))}
               </div>

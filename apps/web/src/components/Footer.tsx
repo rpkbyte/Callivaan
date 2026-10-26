@@ -11,154 +11,96 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
   };
 
   return (
-    <footer className="bg-surface-dim border-t border-outline text-tertiary text-sm mt-auto">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand & Regulatory Column */}
-          <div className="lg:col-span-2 space-y-4">
+    <footer className="bg-surface border-t border-outline text-tertiary text-xs mt-auto">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand & Regulatory */}
+          <div className="space-y-3 md:col-span-1">
             <div 
               onClick={() => handleNav('/')}
-              className="flex items-center gap-2.5 cursor-pointer select-none"
+              className="flex items-center gap-2 cursor-pointer select-none"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNav('/'); }}
             >
-              <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white shadow-xs">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <rect x="3" y="7" width="2.5" height="10" rx="1.25" />
-                  <rect x="7.5" y="3" width="2.5" height="18" rx="1.25" />
-                  <rect x="12" y="5" width="2.5" height="14" rx="1.25" />
-                  <rect x="16.5" y="2" width="2.5" height="20" rx="1.25" />
-                  <rect x="21" y="6" width="2.5" height="12" rx="1.25" />
+              <span className="flex items-center justify-center w-6 h-6 rounded bg-primary text-white">
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <rect x="3" y="7" width="2" height="10" rx="1" />
+                  <rect x="7.5" y="3" width="2" height="18" rx="1" />
+                  <rect x="12" y="5" width="2" height="14" rx="1" />
+                  <rect x="16.5" y="2" width="2" height="20" rx="1" />
+                  <rect x="21" y="6" width="2" height="12" rx="1" />
                 </svg>
               </span>
-              <span className="font-bold text-xl tracking-tight text-on-surface">Callivaan</span>
+              <span className="font-semibold text-sm text-on-surface">Callivaan</span>
             </div>
-            <p className="text-sm text-tertiary leading-relaxed max-w-md">
-              Autonomous AI Inbound Voice Telephony &amp; WhatsApp Assistant engineered for Indian enterprises, clinics, dealerships, and fast-growing small businesses.
+            <p className="text-tertiary leading-relaxed text-xs">
+              Inbound voice agent and telephony forwarding platform for Indian small businesses.
             </p>
-            
-            {/* Regulatory Badge */}
-            <div className="p-3 rounded-lg bg-surface border border-outline space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-primary">
-                <span className="material-symbols-outlined text-[16px]">verified</span>
-                <span>TRAI &amp; DoT Telephony Compliant</span>
-              </div>
-              <p className="text-xs text-muted">
-                Meets Indian Telecom Regulatory guidelines with two-party recording consent chime, 90-day ephemeral retention, and zero model training on caller voice data.
-              </p>
+            <div className="pt-1 text-muted text-[11px]">
+              Compliant with TRAI two-party recording disclosure and ephemeral 90-day retention guidelines.
             </div>
           </div>
 
-          {/* Product Links */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface">Product &amp; Setup</h4>
-            <ul className="space-y-2 text-sm">
+          {/* Product */}
+          <div className="space-y-2.5">
+            <div className="font-medium text-on-surface">Product</div>
+            <ul className="space-y-1.5 text-xs">
               <li>
-                <button onClick={() => handleNav('/')} className="hover:text-primary transition">
-                  Overview &amp; Features
+                <button onClick={() => handleNav('/')} className="hover:text-on-surface transition-colors duration-100">
+                  Overview
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('/portal')} className="hover:text-primary transition">
-                  Inbound Call Dashboard
+                <button onClick={() => handleNav('/pricing')} className="hover:text-on-surface transition-colors duration-100">
+                  Pricing &amp; calculator
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('/agent')} className="hover:text-primary transition">
-                  Voice Agent Persona Setup
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/telephony')} className="hover:text-primary transition">
-                  Carrier Forwarding Guide
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/whatsapp')} className="hover:text-primary transition">
-                  WhatsApp Dispatch Hub
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/pricing')} className="hover:text-primary transition">
-                  Pricing &amp; Calculator
+                <button onClick={() => handleNav('/portal')} className="hover:text-on-surface transition-colors duration-100">
+                  Call dashboard
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Telecom Carriers */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface">Carrier USSD</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
-                <span>Reliance Jio (*401*)</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
-                <span>Bharti Airtel (**61*)</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
-                <span>Vodafone Idea Vi (**67*)</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-success"></span>
-                <span>BSNL Mobile (**61*)</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                <span>Virtual Cloud DID</span>
-              </li>
+          {/* Carrier Forwarding */}
+          <div className="space-y-2.5">
+            <div className="font-medium text-on-surface">Carriers</div>
+            <ul className="space-y-1.5 text-xs text-tertiary">
+              <li>Reliance Jio (*401*)</li>
+              <li>Bharti Airtel (**61*)</li>
+              <li>Vodafone Idea (**67*)</li>
+              <li>BSNL Mobile (**61*)</li>
             </ul>
           </div>
 
-          {/* Legal & Compliance */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface">Legal &amp; Trust</h4>
-            <ul className="space-y-2 text-sm">
+          {/* Legal */}
+          <div className="space-y-2.5">
+            <div className="font-medium text-on-surface">Compliance &amp; Trust</div>
+            <ul className="space-y-1.5 text-xs">
               <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
+                <button onClick={() => handleNav('/legal')} className="hover:text-on-surface transition-colors duration-100">
                   Terms of Service
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
-                  Privacy Policy &amp; Audio Consent
+                <button onClick={() => handleNav('/legal')} className="hover:text-on-surface transition-colors duration-100">
+                  Privacy Policy &amp; Consent
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
-                  TRAI Telecom Compliance
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
-                  Data Retention &amp; PII Redaction
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
-                  Cancellation &amp; Refund Policy
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/legal')} className="hover:text-primary transition">
-                  Grievance Officer
+                <button onClick={() => handleNav('/legal')} className="hover:text-on-surface transition-colors duration-100">
+                  TRAI Telephony Rules
                 </button>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 mt-8 border-t border-outline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-          <p>© 2026 Callivaan Technologies Pvt. Ltd. Bengaluru, Karnataka, India. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 text-success">
-              <span className="w-2 h-2 rounded-full bg-success animate-pulse"></span>
-              All Telephony Gateways Operational
-            </span>
-            <span>Made for Indian Businesses</span>
-          </div>
+        <div className="pt-8 mt-8 border-t border-outline flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted">
+          <div>&copy; 2026 Callivaan Technologies Pvt. Ltd. Bengaluru, India.</div>
+          <div>All Indian telephony routes active.</div>
         </div>
       </div>
     </footer>

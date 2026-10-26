@@ -576,7 +576,7 @@ export const AgentConfigPage: React.FC<AgentConfigPageProps> = ({ navigate }) =>
             <div className="flex items-center justify-between pb-3 border-b border-outline">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-success animate-pulse"></span>
-                <span className="text-xs font-bold text-on-surface uppercase tracking-wider">
+                <span className="text-xs font-semibold text-on-surface">
                   Live Browser Call Simulator
                 </span>
               </div>

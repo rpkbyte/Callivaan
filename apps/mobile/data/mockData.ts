@@ -132,7 +132,7 @@ export const carrierConfigs: readonly CarrierConfig[] = [
     name: 'Reliance Jio',
     condition: 'When Unanswered (15s)',
     ussdCode: `*403*${rawGatewayNumber}`,
-    cancelCode: '*402',
+    cancelCode: '*404',
   },
   {
     id: 'airtel',

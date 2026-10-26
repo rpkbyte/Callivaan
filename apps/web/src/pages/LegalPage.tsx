@@ -57,7 +57,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ navigate }) => {
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Sticky Left Navigation (4 cols) */}
           <div className="lg:col-span-4 bg-surface rounded-xl border border-outline p-4 shadow-xs space-y-2 sticky top-20">
-            <div className="text-xs font-bold uppercase tracking-wider text-muted px-3 py-1">
+            <div className="text-xs font-semibold text-muted px-3 py-1">
               Table of Contents
             </div>
             {navItems.map((item) => (

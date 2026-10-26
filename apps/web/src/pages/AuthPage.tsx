@@ -92,8 +92,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ navigate }) => {
               </svg>
             </span>
             <span className="font-bold text-2xl tracking-tight text-on-surface">Callivaan</span>
-            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-fixed text-primary border border-primary/20">
-              VOICE AI
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-fixed text-primary border border-primary/20">
+              Voice AI
             </span>
           </div>
 

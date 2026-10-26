@@ -11,7 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Product', route: '/' },
+    { label: 'Overview', route: '/' },
     { label: 'Pricing', route: '/pricing' },
     { label: 'Compliance', route: '/legal' },
   ];
@@ -23,39 +23,39 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
   };
 
   return (
-    <header className="bg-surface/95 backdrop-blur-md sticky top-0 z-50 border-b border-outline shadow-xs">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between h-16">
-        {/* Brand Wordmark & 5-Bar Telephony Waveform Icon */}
+    <header className="bg-surface border-b border-outline sticky top-0 z-50">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between h-14">
+        {/* Brand Wordmark - Clean, No Decorative Pill */}
         <div 
           onClick={() => handleNav('/')}
-          className="flex items-center gap-2.5 cursor-pointer group select-none"
+          className="flex items-center gap-2 cursor-pointer select-none rounded focus-visible:outline-none"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNav('/'); }}
         >
-          <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white shadow-xs group-hover:scale-105 transition duration-150">
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <rect x="3" y="7" width="2.5" height="10" rx="1.25" />
-              <rect x="7.5" y="3" width="2.5" height="18" rx="1.25" />
-              <rect x="12" y="5" width="2.5" height="14" rx="1.25" />
-              <rect x="16.5" y="2" width="2.5" height="20" rx="1.25" />
-              <rect x="21" y="6" width="2.5" height="12" rx="1.25" />
+          <span className="flex items-center justify-center w-7 h-7 rounded bg-primary text-white">
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <rect x="3" y="7" width="2" height="10" rx="1" />
+              <rect x="7.5" y="3" width="2" height="18" rx="1" />
+              <rect x="12" y="5" width="2" height="14" rx="1" />
+              <rect x="16.5" y="2" width="2" height="20" rx="1" />
+              <rect x="21" y="6" width="2" height="12" rx="1" />
             </svg>
           </span>
-          <span className="font-bold text-xl tracking-tight text-on-surface">Callivaan</span>
-          <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[11px] font-semibold tracking-wider bg-primary-fixed text-primary border border-primary/20">
-            VOICE AI
-          </span>
+          <span className="font-semibold text-base text-on-surface tracking-tight">Callivaan</span>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+        {/* Desktop Navigation Links - Simple, Solid, Human */}
+        <nav className="hidden lg:flex items-center space-x-1">
           {navLinks.map((link) => {
             const isActive = currentRoute === link.route;
             return (
               <button
                 key={link.route}
                 onClick={() => handleNav(link.route)}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition duration-150 ${
+                className={`px-3 py-1.5 rounded-md text-sm transition-colors duration-100 ${
                   isActive
-                    ? 'text-primary bg-primary-fixed/40 font-semibold'
+                    ? 'text-on-surface font-semibold bg-surface-dim'
                     : 'text-tertiary hover:text-on-surface hover:bg-surface-dim'
                 }`}
               >
@@ -65,43 +65,42 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
           })}
         </nav>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2.5">
+        {/* Actions - Standard Solid/Outlined Buttons, 6px Radius, No Pills */}
+        <div className="flex items-center gap-2">
           {isAuthenticated ? (
             <>
               <button
                 onClick={() => handleNav('/portal')}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-primary hover:bg-primary-hover text-on-primary transition duration-150 shadow-xs"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-hover transition-colors duration-100"
               >
-                <span className="material-symbols-outlined text-[18px]">dashboard</span>
-                <span className="truncate max-w-[130px] sm:max-w-[200px]">{tenant?.name || 'Dashboard'}</span>
+                <span className="material-symbols-outlined text-[16px]">dashboard</span>
+                <span className="truncate max-w-[140px]">{tenant?.name || 'Dashboard'}</span>
               </button>
               <button
                 onClick={() => logout()}
                 title="Sign Out"
-                className="hidden sm:inline-flex items-center justify-center p-1.5 rounded-lg text-tertiary hover:text-error hover:bg-error-container/30 transition duration-150"
+                className="p-1.5 rounded-md text-tertiary hover:text-on-surface hover:bg-surface-dim transition-colors duration-100"
               >
-                <span className="material-symbols-outlined text-[20px]">logout</span>
+                <span className="material-symbols-outlined text-[18px]">logout</span>
               </button>
             </>
           ) : (
             <>
               <button
                 onClick={() => handleNav('/auth')}
-                className={`hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg text-sm font-medium border transition duration-150 ${
+                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-100 ${
                   currentRoute === '/auth'
-                    ? 'bg-primary-fixed text-primary border-primary/30 font-semibold'
-                    : 'text-on-surface border-outline hover:bg-surface-container'
+                    ? 'text-on-surface bg-surface-dim font-semibold'
+                    : 'text-tertiary hover:text-on-surface hover:bg-surface-dim'
                 }`}
               >
                 Sign In
               </button>
               <button
                 onClick={() => handleNav('/auth')}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-semibold bg-primary hover:bg-primary-hover text-on-primary transition duration-150 shadow-xs"
+                className="inline-flex items-center justify-center px-3.5 py-1.5 rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-hover transition-colors duration-100"
               >
-                <span className="material-symbols-outlined text-[18px]">dashboard</span>
-                <span>Dashboard</span>
+                Get Started
               </button>
             </>
           )}
@@ -109,10 +108,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
           {/* Mobile Menu Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-tertiary hover:text-on-surface hover:bg-surface-container transition"
-            aria-label="Toggle Navigation Menu"
+            className="lg:hidden p-1.5 rounded-md text-tertiary hover:text-on-surface hover:bg-surface-dim transition-colors duration-100"
+            aria-label="Toggle navigation"
           >
-            <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined text-[20px]">
               {mobileMenuOpen ? 'close' : 'menu'}
             </span>
           </button>
@@ -121,15 +120,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-outline bg-surface px-4 py-3 space-y-1 shadow-md">
+        <div className="lg:hidden border-t border-outline bg-surface px-4 py-2 space-y-1">
           {navLinks.map((link) => (
             <button
               key={link.route}
               onClick={() => handleNav(link.route)}
-              className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition ${
+              className={`w-full text-left px-3 py-2 rounded-md text-sm ${
                 currentRoute === link.route
-                  ? 'text-primary bg-primary-fixed/40 font-semibold'
-                  : 'text-on-surface hover:bg-surface-dim'
+                  ? 'text-on-surface font-semibold bg-surface-dim'
+                  : 'text-tertiary hover:text-on-surface'
               }`}
             >
               {link.label}
@@ -138,9 +137,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, navigate }) => {
           <div className="pt-2 border-t border-outline flex flex-col gap-2">
             <button
               onClick={() => handleNav('/auth')}
-              className="w-full text-center py-2 text-sm font-medium rounded-lg border border-outline text-on-surface hover:bg-surface-dim"
+              className="w-full text-center py-2 text-sm font-medium rounded-md border border-outline text-on-surface hover:bg-surface-dim"
             >
-              Business Sign In / Register
+              Sign In / Register
             </button>
           </div>
         </div>

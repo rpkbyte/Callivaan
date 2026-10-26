@@ -67,7 +67,10 @@ export class WebhooksController {
 
       if (config.whatsappAppSecret && signature) {
         const expectedSignature = 'sha256=' + crypto.createHmac('sha256', config.whatsappAppSecret).update(rawBody).digest('hex');
-        if (signature !== expectedSignature && config.env === 'production') {
+        const sigBuf = Buffer.from(signature);
+        const expBuf = Buffer.from(expectedSignature);
+        const isValid = sigBuf.length === expBuf.length && crypto.timingSafeEqual(sigBuf, expBuf);
+        if (!isValid && config.env === 'production') {
           log('warn', 'Invalid WhatsApp webhook HMAC signature', { correlationId: authReq.correlationId });
           res.status(401).json({ error: 'Unauthorized', message: 'Invalid webhook signature' });
           return;
@@ -108,7 +111,10 @@ export class WebhooksController {
 
       if (config.razorpayWebhookSecret && signature) {
         const expected = crypto.createHmac('sha256', config.razorpayWebhookSecret).update(rawBody).digest('hex');
-        if (signature !== expected && config.env === 'production') {
+        const sigBuf = Buffer.from(signature);
+        const expBuf = Buffer.from(expected);
+        const isValid = sigBuf.length === expBuf.length && crypto.timingSafeEqual(sigBuf, expBuf);
+        if (!isValid && config.env === 'production') {
           log('warn', 'Invalid Razorpay webhook signature', { correlationId: authReq.correlationId });
           res.status(401).json({ error: 'Unauthorized', message: 'Invalid Razorpay signature' });
           return;

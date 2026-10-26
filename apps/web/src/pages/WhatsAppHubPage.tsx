@@ -264,7 +264,7 @@ export const WhatsAppHubPage: React.FC<WhatsAppHubPageProps> = ({ navigate }) =>
                 <div className="w-6 h-6 rounded-full bg-success flex items-center justify-center text-white">
                   <span className="material-symbols-outlined text-[14px]">terminal</span>
                 </div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface">
+                <h3 className="text-xs font-semibold text-on-surface">
                   WhatsApp Command Sandbox
                 </h3>
               </div>
